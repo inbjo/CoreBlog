@@ -27,7 +27,4 @@
   @include('blog._footer')
   <!-- end main-footer -->
 
-  <!-- start copyright section -->
-  @include('blog._copyright')
-  <!-- end copyright section -->
 @endsection

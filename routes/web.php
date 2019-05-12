@@ -14,14 +14,21 @@
 Route::get('/', 'PagesController@index')->name('index');
 
 
-Route::get('/post/{post}/{slug?}', 'FrontController@post')->name('post.show');
-Route::get('/post/create', 'FrontController@create')->name('post.create');
-Route::get('/at','FrontController@at')->name('users.at');
-Route::get('/author/{user}', 'FrontController@author')->name('author.show');
-Route::get('/tag/{tag}', 'FrontController@tag')->name('tag.show');
-Route::get('/category/{category}', 'FrontController@category')->name('category.show');
-Route::get('/tags', 'FrontController@tags')->name('tags');
-Route::get('/search/{keyword}', 'FrontController@search')->name('search');
+Route::get('/post/{post}', 'PostController@show')->name('post.show');
+
+Route::get('/post/create', 'PostController@create')->name('post.create');
+
+Route::get('/at','UserController@at')->name('users.at');
+
+Route::get('/author/{user}', 'UserController@show')->name('author.show'); //用户发表的文章
+
+Route::get('/tag/{tag}', 'TagController@show')->name('tag.show'); //标签聚合
+Route::get('/tags', 'TagController@tags')->name('tags'); //标签云
+
+Route::get('/category/{category}', 'CategoryController@show')->name('category.show'); //分类目录
+
+
+Route::get('/search/{keyword}', 'PagesController@search')->name('search'); //搜索页面
 
 Auth::routes(['verify' => true]);
 
