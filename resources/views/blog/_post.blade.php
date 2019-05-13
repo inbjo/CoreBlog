@@ -22,7 +22,7 @@
         <div class="post-content">
             <p>{{$post->description}}</p>
         </div>
-        <footer class="post-footer clearfix">
+        <div class="post-footer clearfix">
             <div class="float-left tag-list">
                 <i class="fa fa-tag"></i>
                 @foreach($post->tags as $tag)
@@ -57,6 +57,6 @@
                     </li>
                 </ul>
             </div>
-        </footer>
+        </div>
     </article>
 @endforeach

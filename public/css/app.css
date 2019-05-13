@@ -19222,12 +19222,6 @@ readers do not read off random characters that represent icons */
 	common styles
 ====================================================*/
 
-html {
-  position: relative;
-  min-height: 100%;
-  padding-bottom: 566px;
-}
-
 body {
   font-family: Tahoma, Helvetica, Arial, "Microsoft YaHei", "\9ED1\4F53", "\5B8B\4F53", sans-serif;
   font-size: 0.9rem;
@@ -19310,8 +19304,8 @@ a img {
 }
 
 .btn-default:hover {
-  border: 1px solid #10d4cc;
-  background: #10d4cc;
+  border: 1px solid #00a5ad;
+  background: #00a5ad;
   color: #ffffff;
 }
 
@@ -19490,10 +19484,6 @@ figcaption {
   text-decoration: none;
 }
 
-.main-navigation .menu li.nav-current a {
-  color: #00ada7;
-}
-
 .main-navigation .menu li ul {
   visibility: hidden;
   background: #ffffff;
@@ -19505,10 +19495,6 @@ figcaption {
   top: 120%;
   width: 200px;
   z-index: 999;
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-  -ms-opacity: 0;
-  -o-opacity: 0;
   opacity: 0;
   filter: alpha(opacity=0);
   transition: all 0.2s ease;
@@ -19530,13 +19516,13 @@ figcaption {
 
 .main-navigation .menu li:hover ul {
   visibility: visible;
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
-  -ms-opacity: 1;
-  -o-opacity: 1;
   opacity: 1;
   filter: alpha(opacity=100);
   top: 100%;
+}
+
+.main-navigation .menu li.nav-current a {
+  color: #00ada7;
 }
 
 /*====================================================
@@ -19563,12 +19549,12 @@ figcaption {
   height: 40px;
   line-height: 54px;
   -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .post .featured i {
   -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .post .post-head {
@@ -20175,8 +20161,6 @@ figcaption {
 ====================================================*/
 
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 
@@ -20296,10 +20280,6 @@ footer #back-to-top:hover {
     position: relative;
     top: 0;
     width: 100%;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-    -ms-opacity: 1;
-    -o-opacity: 1;
     opacity: 1;
     filter: alpha(opacity=100);
   }

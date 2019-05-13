@@ -7,7 +7,8 @@
     <!-- end navigation -->
 
     <!-- start site's main /content area -->
-    <section class="container">
+    <section class="content-wrap">
+      <div class="container">
         <div class="row">
             <!-- start main post area -->
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 main-content">
@@ -150,6 +151,7 @@
         <!-- end sidebar -->
 
         </div>
+    </div>
     </section>
     <!-- end site's main /content area -->
 
@@ -157,7 +159,4 @@
     @include('blog._footer')
     <!-- end main-footer -->
 
-    <!-- start copyright section -->
-    @include('blog._copyright')
-    <!-- end copyright section -->
 @endsection

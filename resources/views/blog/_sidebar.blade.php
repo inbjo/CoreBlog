@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 sidebar">
+<aside class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 sidebar">
   <!-- start widget -->
   <div class="widget">
     <h4 class="title">关注我们</h4>
@@ -74,4 +74,4 @@
   </div>
   <!-- end tag cloud widget -->
 
-</div>
+</aside>

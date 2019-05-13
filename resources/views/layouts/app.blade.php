@@ -22,10 +22,6 @@
 
 @show
 
-<!-- start back-to-top -->
-<a href="javascript:void(0);" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-<!-- end back-to-top -->
-
 @section('script')
   <script src="{{ mix('js/app.js') }}"></script>
 @show
