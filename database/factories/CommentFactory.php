@@ -10,7 +10,7 @@ $factory->define(App\Models\Comment::class, function (Faker $faker) {
         'content' => $faker->sentence(),
         'created_at' => $time,
         'updated_at' => $time,
-        'agent'=>$faker->userAgent,
-        'ip'=>$faker->ipv4
+        'agent' => $faker->userAgent,
+        'ip' => $faker->ipv4
     ];
 });

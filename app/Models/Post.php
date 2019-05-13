@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
 //use Laravel\Scout\Searchable;
 
@@ -43,6 +44,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 //    use Searchable;
+    use HashIdHelper;
 
     protected $fillable = [
         'title', 'slug', 'keyword','description','content','published','publish_time','category_id','user_id',

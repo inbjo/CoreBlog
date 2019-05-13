@@ -20,10 +20,10 @@ Route::get('/post/create', 'PostController@create')->name('post.create');
 
 Route::get('/at','UserController@at')->name('users.at');
 
-Route::get('/author/{user}', 'UserController@show')->name('author.show'); //用户发表的文章
+Route::get('/user/{user}', 'UserController@show')->name('user.show'); //用户发表的文章
 
 Route::get('/tag/{tag}', 'TagController@show')->name('tag.show'); //标签聚合
-Route::get('/tags', 'TagController@tags')->name('tags'); //标签云
+Route::get('/tags', 'TagController@index')->name('tags'); //标签云
 
 Route::get('/category/{category}', 'CategoryController@show')->name('category.show'); //分类目录
 
@@ -31,5 +31,8 @@ Route::get('/category/{category}', 'CategoryController@show')->name('category.sh
 Route::get('/search/{keyword}', 'PagesController@search')->name('search'); //搜索页面
 
 Auth::routes(['verify' => true]);
+
+
+Route::resource('comments','CommentsController',['only'=>['store','destroy']])->middleware('auth');
 
 

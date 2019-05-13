@@ -22,7 +22,7 @@
                         <h1 class="post-title h2">{{$post->title}}</h1>
                         <div class="post-meta">
                                 <span class="author">By
-                                    <a href="{{route('author.show',$post->user->id)}}" title="查看该作者发布的所有文章">{{$post->user->name}}</a>
+                                    <a href="{{route('user.show',$post->user->username)}}" title="查看该作者发布的所有文章">{{$post->user->nickname}}</a>
                                 </span> &bull;
                             <span class="date" title="{{ $post->created_at->toDateTimeString() }}">
                                     {{$post->created_at->diffForHumans() }}

@@ -10,8 +10,7 @@ class PagesController extends Controller
     public function index()
     {
         //取文章列表
-        $posts = Post::with(['user:id,name', 'tags'])->withCount('comments')->paginate(12);
+        $posts = Post::with(['user:id,username,nickname', 'tags'])->withCount('comments')->paginate(12);
         return view('pages.index',compact('posts'));
-//        return view('pages.test');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '登录')
+@section('title', __('Login'))
 @section('body')
 
     <!-- start navigation -->

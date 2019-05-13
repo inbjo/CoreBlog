@@ -16,15 +16,15 @@
 
 @include('blog._js')
 
-<body>
+<body  class="{{ route_class() }}-page">
 
 @section('body')
 
 @show
 
+</body>
 @section('script')
   <script src="{{ mix('js/app.js') }}"></script>
 @show
-</body>
 </html>
 

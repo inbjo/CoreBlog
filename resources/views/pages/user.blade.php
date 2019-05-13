@@ -1,0 +1,52 @@
+@extends('layouts.app')
+@section('title', $user->name)
+@section('body')
+
+    <!-- start navigation -->
+    @include('blog._nav')
+    <!-- end navigation -->
+
+    <!-- start site's main /content area -->
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <!-- start main post area -->
+                <div class="col-md-8 main-content">
+                    <div class="cover author-cover">
+                        <div class="avatar-wrap">
+                            <img src="{{$user->avatar}}" alt="{{$user->nickname}}" class="avatar">
+                        </div>
+                        <h3 class="author-name">
+                            {{$user->nickname}}
+                        </h3>
+                        <div class="meta-info">
+                            <span class="post-count"><i class="fa fa-pencil-square-o"></i>{{$user->posts()->count()}}篇文章</span>
+                        </div>
+                        <div class="bio">{{$user->bio}}</div>
+                    </div>
+
+                    <!-- start post -->
+                @include('blog._post')
+                <!-- end post -->
+
+                    <!-- start pagination -->
+                @include('blog._paginate')
+                <!-- end pagination -->
+
+                </div>
+                <!-- end main post area -->
+
+                <!-- start sidebar -->
+            @include('blog._sidebar')
+            <!-- end sidebar -->
+
+            </div>
+        </div>
+    </section>
+    <!-- end site's main /content area -->
+
+    <!-- start main-footer -->
+    @include('blog._footer')
+    <!-- end main-footer -->
+
+@endsection

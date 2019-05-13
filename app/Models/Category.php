@@ -26,6 +26,11 @@ class Category extends Model
         'name', 'count', 'sort','description',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     //Category-Post:One-Many
     public function posts()
     {

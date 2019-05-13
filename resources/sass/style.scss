@@ -5,7 +5,7 @@ body {
   font-family: Tahoma, Helvetica, Arial, "Microsoft YaHei", "黑体", "宋体", sans-serif;
   font-size: 0.9rem;
   color: #505050;
-  //line-height: 1.75em;
+  line-height: 1.75em;
   background: $body-bg;
 }
 
@@ -54,19 +54,13 @@ a:active, a:focus, a img {
 
 .btn {
   padding: 7px 14px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .btn-default {
   border: 1px solid #00ada7;
   background: #00ada7;
   color: #ffffff;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -89,13 +83,7 @@ a:active, a:focus, a img {
 input[type="search"], input[type="text"], input[type="url"], input[type="email"], textarea {
   padding: 7px 7px;
   border: 1px solid #ebebeb;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -154,10 +142,10 @@ figcaption {
 #nav {
   border-color: #e7e7e7;
   background-color: #fff;
-  box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+  box-shadow: 0 1px 11px 2px rgba(42, 42, 42, 0.1);
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 40px;
-  margin-top: 0px;
+  margin-top: 0;
 
   .navbar-nav {
     .nav-item {
@@ -547,8 +535,6 @@ figcaption {
   display: inline-block;
   line-height: 36px;
   padding: 0 14px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -628,8 +614,6 @@ figcaption {
 .about-author .avatar {
   width: 100px;
   height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
@@ -728,10 +712,6 @@ figcaption {
   line-height: 35px;
   border: 1px solid #ebebeb;
   color: #959595;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -748,10 +728,6 @@ figcaption {
   line-height: 1.5em;
   display: inline-block;
   margin: 0 7px 7px 0;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -782,10 +758,6 @@ figcaption {
 .widget .recent-post .recent-single-post .post-title {
   color: #505050;
   font-family: 'Roboto Slab', serif;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -837,18 +809,10 @@ figcaption {
 .widget .flkr-widget li a img {
   width: 70px;
   height: 70px;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .widget .flkr-widget li a img:hover {
-  -webkit-opacity: 0.8;
-  -moz-opacity: 0.8;
-  -ms-opacity: 0.8;
-  -o-opacity: 0.8;
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
@@ -876,8 +840,6 @@ figcaption {
 .cover .avatar {
   width: 100px;
   height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
@@ -1064,10 +1026,10 @@ footer {
 ====================================================*/
 @media (max-width: 767px) {
   .login, .register, .reset {
-    margin: 4vh;
+    margin: 4vh 0;
   }
   .reset-email, .verify {
-    margin: 6vh;
+    margin: 6vh 0;
   }
   .main-navigation {
     text-align: left;
@@ -1081,7 +1043,7 @@ footer {
   }
   .main-navigation .menu li ul {
     visibility: visible;
-    padding: 0px 0px 0px 20px;
+    padding: 0 0 0 20px;
     margin: 0;
     position: relative;
     top: 0;
@@ -1107,5 +1069,14 @@ footer {
   }
   .nav-toggle-button {
     display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .login-page,.register-page,.reset-page,.password-request-page{
+    footer{
+      position: absolute;
+      bottom: 0;
+    }
   }
 }

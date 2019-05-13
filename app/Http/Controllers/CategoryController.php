@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -40,12 +41,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return void
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        $posts = $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        return view('pages.category', compact('posts', 'category'));
     }
 
     /**

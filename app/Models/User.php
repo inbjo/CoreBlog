@@ -44,8 +44,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'username', 'email', 'password', 'avatar'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     /**
      * The attributes that should be hidden for arrays.
