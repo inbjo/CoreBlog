@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $tag->name.' - 标签')
+@section('title', $tag->name.' - '.__('Tag'))
 @section('body')
 
     <!-- start navigation -->

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '发表博文')
+@section('title',  __('CreatePost'))
 @section('body')
 
   <!-- start navigation -->

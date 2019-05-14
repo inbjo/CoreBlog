@@ -68,10 +68,10 @@
             </div>
             <div class="row mt-1">
                 <div class="col-12">
-                    <span><a href="sitemap.xml" target="_blank">网站地图</a></span>
+                    <span><a href="{{ route('sitemap') }}" target="_blank">网站地图</a></span>
                     <span></span>
                     <span>
-                    <a href="rss.xml" target="_blank">RSS</a>
+                    <a href="{{ route('rss') }}" target="_blank">RSS</a>
                 </span>
                     <span></span>
                     <span>

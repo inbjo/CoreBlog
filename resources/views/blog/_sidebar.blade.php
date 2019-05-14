@@ -36,7 +36,7 @@
     <div class="content newsletter">
       <div class="form-group">
         <div class="input-group">
-          <input id="subscribe_email" class="required email" type="email" name="email" required placeholder="请输入您的电子邮件地址..."/>
+          <input id="subscribe_email" class="form-control required email" type="email" name="email" required placeholder="请输入您的电子邮件地址..."/>
         </div>
         <div class="input-group">
           <button class="btn btn-default btn-block" type="button" onclick="themeApp.subscribe()">

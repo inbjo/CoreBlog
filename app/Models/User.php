@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'avatar'
+        'username', 'nickname', 'email', 'password', 'avatar', 'bio'
     ];
 
     public function getRouteKeyName()
@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         parent::boot();
         static::creating(function ($model) {
-            if(empty($model->avatar)){
+            if (empty($model->avatar)) {
                 $model->avatar = '/images/avatar/default.jpg';
             }
         });

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','标签云')
+@section('title',__('TagCloud'))
 @section('body')
 
     <!-- start navigation -->

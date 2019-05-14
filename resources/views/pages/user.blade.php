@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $user->name)
+@section('title', $user->nickname)
 @section('body')
 
     <!-- start navigation -->
