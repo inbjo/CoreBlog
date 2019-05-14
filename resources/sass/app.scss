@@ -8,21 +8,16 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import "~@fortawesome/fontawesome-free/scss/v4-shims.scss";
+// editor.md
+@import "~editor.md/scss/editormd";
 
-@import "style.scss";
-
-//@import 'screen.css';
 //@import 'jquery.atwho.css';
 
-//html {
-//  position: relative;
-//  min-height: 100%;
-//}
-//
-//body {
-//  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
-//  font-size: 14px;
-//}
+// Theme Style
+@import "style.scss";
+
+
+
 
 
 

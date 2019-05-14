@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+window.editormd = require('editor.md/editormd.min');
 
 window.Vue = require('vue');
 

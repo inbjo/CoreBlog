@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
+
 //use Laravel\Scout\Searchable;
 
 /**
@@ -47,7 +48,8 @@ class Post extends Model
     use HashIdHelper;
 
     protected $fillable = [
-        'title', 'slug', 'keyword','description','content','published','publish_time','category_id','user_id',
+        'title', 'keyword', 'description', 'cover', 'content', 'comment_count', 'view_count', 'favorite_count',
+        'status', 'publish_time', 'category_id', 'user_id'
     ];
 
     /**
@@ -57,7 +59,7 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        return $this->only('id', 'title', 'keyword','description','content');
+        return $this->only('id', 'title', 'keyword', 'description', 'content');
     }
 
     /**
@@ -112,7 +114,7 @@ class Post extends Model
      */
     public function post_likes()
     {
-        return $this->belongsToMany(User::Class,'post_likes','post_id', 'user_id');
+        return $this->belongsToMany(User::Class, 'post_likes', 'post_id', 'user_id');
     }
 
     /**

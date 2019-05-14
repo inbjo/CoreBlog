@@ -13,10 +13,10 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 
-
+Route::get('/post/create', 'PostController@create')->name('post.create');
+Route::post('/post/create', 'PostController@store');
 Route::get('/post/{post}', 'PostController@show')->name('post.show');
 
-Route::get('/post/create', 'PostController@create')->name('post.create');
 
 Route::get('/at','UserController@at')->name('users.at');
 

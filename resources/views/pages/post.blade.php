@@ -93,9 +93,9 @@
                 </div>
                 @foreach($comments as $key=> $comment)
                     <div class="post-comment media" name="comment_{{$key+1}}">
-                        <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}" alt="{{$comment->user->name}}">
+                        <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}" alt="{{$comment->user->nickname}}">
                         <div class="media-body">
-                            <h5 class="mt-0">{{$comment->user->name}}
+                            <h5 class="mt-0">{{$comment->user->nickname}}
                                 <span class="ml-2 time" title="{{ $comment->created_at->toDateTimeString() }}">
                                       {{ $comment->created_at->diffForHumans() }}
                                     </span>
@@ -106,7 +106,7 @@
                                     <a id="like-{{$comment->id}}" href="javascript:themeApp.like({{$comment->id}});" data-like="5" title="顶一下">
                                         <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(5)
                                     </a>&nbsp;&nbsp;
-                                    <a href="javascript:themeApp.reply({{$comment->id}},'{{$comment->user->name}}')">
+                                    <a href="javascript:themeApp.reply({{$comment->id}},'{{$comment->user->nickname}}')">
                                       <i class="fa fa-reply" aria-hidden="true"></i> 回复
                                     </a>
                                     <a href="javascript:themeApp.report({{$comment->id}})" class="float-right">

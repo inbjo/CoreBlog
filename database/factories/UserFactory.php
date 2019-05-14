@@ -21,7 +21,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'username' => $faker->userName,
         'nickname' => $faker->firstName,
-        'avatar' => $faker->imageUrl(256, 256),
+        'avatar' => $faker->imageUrl(64, 64),
         'email' => $faker->unique()->safeEmail,
         'bio' => $faker->sentence,
         'password' => bcrypt('secret'),

@@ -177,7 +177,7 @@ figcaption {
 }
 
 .navbar {
-  margin-bottom: 35px;
+  margin-bottom: 3rem;
 }
 
 .navbar-header {
@@ -1072,7 +1072,7 @@ footer {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (min-height: 938px){
   .login-page,.register-page,.reset-page,.password-request-page{
     footer{
       position: absolute;
