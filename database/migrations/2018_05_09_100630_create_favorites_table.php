@@ -17,7 +17,7 @@ class CreateFavoritesTable extends Migration
             $table->increments('id');
             $table->string('name')->comment('名称');
             $table->json('urls')->nullable()->comment('链接集');
-            $table->integer('sort')->unsigned()->comment('排序');
+            $table->unsignedInteger('sort')->comment('排序');
             $table->timestamps();
         });
     }

@@ -37,18 +37,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = Post::create([
-            'title' => $request->title,
-            'keyword' => $request->tags,
+            'title' => $request->input('title'),
+            'keyword' => $request->input('tags'),
             'description' => '',
             'user_id' => Auth::id(),
-            'content' => $request->content,
+            'content' => $request->input('content'),
             'cover' => '',
-            'status' => 2,
-            'comment_count' => 0,
-            'view_count' => 0,
-            'favorite_count' => 0,
-            'publish_time' => 0,
-            'category_id' => $request->category,
+            'status' => 1,
+            'category_id' => $request->input('category'),
         ]);
         $post->save();
         //向被@的人发送通知

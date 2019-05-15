@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'PagesController@index')->name('index');
-Route::get('/webmap', 'PagesController@webmap')->name('webmap');
 Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('rss.xml', 'PagesController@rss')->name('rss');
 

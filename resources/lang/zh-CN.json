@@ -1,10 +1,11 @@
 {
-  "IndexPage":"首页",
-  "Username":"用户名",
-  "Name":"昵称",
-  "Category":"分类",
-  "Tag":"标签",
-  "TagCloud":"标签云",
-  "Sitemap":"网站地图",
-  "CreatePost":"拽写文章"
+    "IndexPage": "首页",
+    "Username": "用户名",
+    "Name": "昵称",
+    "Category": "分类",
+    "Tag": "标签",
+    "TagCloud": "标签云",
+    "Sitemap": "网站地图",
+    "CreatePost": "拽写文章",
+    "If you did not receive the email,": "如果您没有收到邮件，"
 }

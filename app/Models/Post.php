@@ -48,9 +48,19 @@ class Post extends Model
     use HashIdHelper;
 
     protected $fillable = [
-        'title', 'keyword', 'description', 'cover', 'content', 'comment_count', 'view_count', 'favorite_count',
-        'status', 'publish_time', 'category_id', 'user_id'
+        'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
     ];
+
+    /**
+     * 只查询已发布的文章.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('status', 1);
+    }
 
     /**
      * 索引的字段

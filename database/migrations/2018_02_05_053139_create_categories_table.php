@@ -17,8 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name')->comment('分类名称');
             $table->string('slug')->unique()->comment('SEO URL');
-            $table->integer('count')->unsigned()->comment('分类文章数量')->defalut('0');
-            $table->integer('sort')->unsigned()->comment('排序')->defalut('0');
+            $table->unsignedInteger('count')->default(0)->comment('分类文章数量');
+            $table->unsignedInteger('sort')->default(0)->comment('排序');
             $table->string('description')->comment('描述')->nullable();
             $table->timestamps();
         });

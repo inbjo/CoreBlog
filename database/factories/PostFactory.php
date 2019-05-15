@@ -12,13 +12,8 @@ $factory->define(App\Models\Post::class, function (Faker $faker) {
         'keyword' => $faker->words(5, true),
         'description' => $faker->paragraph,
         'content' => $faker->text(1024),
-        'comment_count' => 0,
         'cover' => $faker->imageUrl(1400, 800),
-        'view_count' => rand(1000, 9999),
-        'favorite_count' => rand(1000, 9999),
-        'status' => 2,
-        'publish_time' => 0,
         'created_at' => $created_at,
-        'updated_at' => $updated_at,
+        'updated_at' => $updated_at
     ];
 });

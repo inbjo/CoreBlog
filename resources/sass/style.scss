@@ -918,60 +918,6 @@ figcaption {
 }
 
 /*====================================================
-	Pages & Sitemap
-====================================================*/
-.webmap-page {
-  .article {
-    width: 100%;
-    background: #f7f7f7;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    padding: 5px 10px;
-
-    .title {
-      width: 100%;
-      padding: 5px 0;
-      font-size: 16px;
-      border-bottom: 1px solid #eee;
-
-      time {
-        color: #999;
-      }
-
-      a {
-        color: #00ada7;
-
-        &:hover {
-          color: #00ada7;
-        }
-      }
-    }
-
-    .tags {
-      width: 100%;
-
-      a {
-        color: #00ada7;
-        border: 1px solid #dee2e6;
-        padding: 2px 7px;
-        display: inline-block;
-        margin: 5px 7px 0px 0;
-        transition: all 0.2s ease;
-        outline: none;
-
-        &:hover {
-          border: 1px solid #00ada7;
-          color: #ffffff;
-          background: #00ada7;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-}
-
-/*====================================================
 	Footer
 ====================================================*/
 footer {
@@ -1121,7 +1067,7 @@ footer {
 }
 
 @media (min-width: 992px) and (min-height: 1100px) {
-  .login-page, .register-page, .reset-page, .password-request-page {
+  .login-page, .register-page, .reset-page, .password-request-page,.verification-notice-page{
     footer {
       position: absolute;
       bottom: 0;

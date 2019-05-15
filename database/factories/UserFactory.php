@@ -24,7 +24,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'avatar' => $faker->imageUrl(64, 64),
         'email' => $faker->unique()->safeEmail,
         'bio' => $faker->sentence,
-        'password' => bcrypt('secret'),
+        'password' => bcrypt('password'),
         'created_at' => $created_at,
         'updated_at' => $updated_at,
     ];

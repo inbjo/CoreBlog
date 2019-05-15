@@ -15,9 +15,9 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned()->comment('文章ID');
-            $table->integer('parent_id')->unsigned()->defalut(0)->comment('父评论id');
-            $table->integer('user_id')->unsigned()->comment('用户ID');
+            $table->unsignedInteger('post_id')->comment('文章ID');
+            $table->unsignedInteger('parent_id')->default(0)->comment('父评论id');
+            $table->unsignedInteger('user_id')->comment('用户ID');
             $table->text('content')->comment('评论内容');
             $table->string('agent')->comment('信息头')->nullable();
             $table->string('ip')->comment('评论者IP地址')->nullable();

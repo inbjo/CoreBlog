@@ -16,9 +16,11 @@
                 </span>
             </div>
         </div>
+        @if($post->cover)
         <div class="featured-media">
             <a href="{{route('post.show',$post->id)}}"><img src="{{$post->cover}}" alt="{{$post->title}}"></a>
         </div>
+        @endif
         <div class="post-content">
             <p>{{$post->description}}</p>
         </div>

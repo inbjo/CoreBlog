@@ -32,9 +32,11 @@
                                 </span>
                         </div>
                     </div>
+                    @if($post->cover)
                     <div class="featured-media">
                         <img src="{{$post->cover}}" alt="{{$post->title}}">
                     </div>
+                    @endif
                     <div class="post-content">
                         {{$post->content}}
                     </div>
