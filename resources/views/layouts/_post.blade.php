@@ -12,7 +12,7 @@
                     {{$post->created_at->diffForHumans() }}
                 </span>&bull;
                 <span class="comment-count">
-                        <a href="{{route('post.show',$post->user->id)}}#comments">{{$post->comment_count}}条评论</a>
+                        <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
                 </span>
             </div>
         </div>
