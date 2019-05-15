@@ -3,7 +3,7 @@
 @section('body')
 
     <!-- start navigation -->
-    @include('blog._nav')
+    @include('layouts._nav')
     <!-- end navigation -->
 
     <!-- start site's main /content area -->
@@ -26,18 +26,18 @@
                     </div>
 
                     <!-- start post -->
-                @include('blog._post')
+                @include('layouts._post')
                 <!-- end post -->
 
                     <!-- start pagination -->
-                @include('blog._paginate')
+                @include('layouts._paginate')
                 <!-- end pagination -->
 
                 </div>
                 <!-- end main post area -->
 
                 <!-- start sidebar -->
-            @include('blog._sidebar')
+            @include('layouts._sidebar')
             <!-- end sidebar -->
 
             </div>
@@ -46,7 +46,7 @@
     <!-- end site's main /content area -->
 
     <!-- start main-footer -->
-    @include('blog._footer')
+    @include('layouts._footer')
     <!-- end main-footer -->
 
 @endsection

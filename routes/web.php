@@ -17,7 +17,9 @@ Route::get('rss.xml', 'PagesController@rss')->name('rss');
 
 Route::get('/post/create', 'PostController@create')->name('post.create');
 Route::post('/post/create', 'PostController@store');
+Route::post('upload_image', 'PostController@uploadImage')->name('post.upload_image');
 Route::get('/post/{post}', 'PostController@show')->name('post.show');
+
 
 
 Route::get('/at','UserController@at')->name('users.at');

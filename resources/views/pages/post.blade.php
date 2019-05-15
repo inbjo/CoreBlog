@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('title', $post->title)
+@section('keyword', $post->keyword)
+@section('description', $post->description)
 @section('body')
 
     <!-- start navigation -->
-    @include('blog._nav')
+    @include('layouts._nav')
     <!-- end navigation -->
 
     <!-- start site's main /content area -->
@@ -13,13 +15,13 @@
             <!-- start main post area -->
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 main-content">
                 <!-- start message tips -->
-            @include('blog._msg')
+            @include('layouts._msg')
             <!-- end message tips -->
 
                 <!-- start post -->
                 <article class="post page">
                     <div class="post-head">
-                        <h1 class="post-title h2">{{$post->title}}</h1>
+                        <h3 class="post-title">{{$post->title}}</h3>
                         <div class="post-meta">
                                 <span class="author">By
                                     <a href="{{route('user.show',$post->user->username)}}" title="查看该作者发布的所有文章">{{$post->user->nickname}}</a>
@@ -38,7 +40,7 @@
                     </div>
                     @endif
                     <div class="post-content">
-                        {{$post->content}}
+                        {!! $post->content !!}
                     </div>
                     <footer class="post-footer clearfix">
                         <div class="float-left tag-list">
@@ -149,7 +151,7 @@
             <!-- end main post area -->
 
             <!-- start sidebar -->
-        @include('blog._sidebar')
+        @include('layouts._sidebar')
         <!-- end sidebar -->
 
         </div>
@@ -158,7 +160,7 @@
     <!-- end site's main /content area -->
 
     <!-- start main-footer -->
-    @include('blog._footer')
+    @include('layouts._footer')
     <!-- end main-footer -->
 
 @endsection

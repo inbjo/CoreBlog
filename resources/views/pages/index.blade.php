@@ -3,7 +3,7 @@
 @section('body')
 
   <!-- start navigation -->
-  @include('blog._nav')
+  @include('layouts._nav')
   <!-- end navigation -->
 
   <!-- start site's main content area -->
@@ -12,11 +12,11 @@
       <div class="row">
 
         <!-- start main post area -->
-      @include('blog._main')
+      @include('layouts._main')
       <!-- end main post area -->
 
         <!-- start sidebar -->
-      @include('blog._sidebar')
+      @include('layouts._sidebar')
       <!-- end sidebar -->
       </div>
     </div>
@@ -24,7 +24,7 @@
   <!-- end site's main content area -->
 
   <!-- start main-footer -->
-  @include('blog._footer')
+  @include('layouts._footer')
   <!-- end main-footer -->
 
 @endsection

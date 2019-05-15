@@ -8,13 +8,13 @@
   <meta name="description" content="@yield('description', 'Blog')"/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="Flex">
-  @section('style')
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-  @show
+  <!-- Styles -->
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  @yield('styles')
   <title>@yield('title', 'Hello') - {{ config('app.name', 'CoreBlog') }}</title>
 </head>
 
-@include('blog._js')
+@include('layouts._js')
 
 <body  class="{{ route_class() }}-page">
 
@@ -23,8 +23,8 @@
 @show
 
 </body>
-@section('script')
-  <script src="{{ mix('js/app.js') }}"></script>
-@show
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}"></script>
+@yield('scripts')
 </html>
 

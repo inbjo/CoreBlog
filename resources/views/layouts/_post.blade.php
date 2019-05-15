@@ -1,9 +1,9 @@
 @foreach($posts as $post)
     <article class="post">
         <div class="post-head">
-            <h2 class="post-title">
+            <h3 class="post-title">
                 <a href="{{route('post.show',$post->hash_id)}}">{{$post->title}}</a>
-            </h2>
+            </h3>
             <div class="post-meta">
                 <span class="author">By
                     <a href="{{route('user.show',$post->user->username)}}" title="查看该作者发布的所有文章">{{$post->user->nickname}}</a>

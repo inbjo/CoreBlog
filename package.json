@@ -25,6 +25,6 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.2",
-        "editor.md": "^1.5.0"
+        "simditor": "^2.3.25"
     }
 }

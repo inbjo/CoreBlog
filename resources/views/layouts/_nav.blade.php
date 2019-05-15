@@ -26,6 +26,11 @@
             <ul class="navbar-nav navbar-right">
                 @auth
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('post.create') }}">
+                            <i class="fa fa-plus"></i>
+                          </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="userinfo" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -33,21 +38,13 @@
                                     <img src="{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="30px"
                                          height="30px">
                                 </span>
-                                {{ Auth::user()->name }}<span class="caret"></span>
+                                {{ Auth::user()->nickname }}<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="userinfo">
-                                <a href="{{ route('post.create')}}" class="dropdown-item">
-                                    <i class="fas fa-user"></i>
-                                    发表博文
-                                </a>
-                                {{-- <a href="{{ route('users.show', Auth::id()) }}" class="dropdown-item">
+                                <a href="{{ url('/') }}" class="dropdown-item">
                                      <i class="fas fa-user"></i>
                                      个人中心
                                  </a>
-                                 <a href="{{ route('users.edit', Auth::id()) }}" class="dropdown-item">
-                                     <i class="fas fa-edit"></i>
-                                     编辑资料
-                                 </a>--}}
                                 <a href="{{ route('logout') }}" class="dropdown-item"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt"></i>

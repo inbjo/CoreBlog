@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
+use App\Handlers\ImageUploadHandler;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,22 +41,19 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $post = Post::create([
             'title' => $request->input('title'),
             'keyword' => $request->input('tags'),
-            'description' => '',
             'user_id' => Auth::id(),
             'content' => $request->input('content'),
             'cover' => '',
             'status' => 1,
-            'category_id' => $request->input('category'),
+            'category_id' => $request->input('category_id')
         ]);
         $post->save();
-        //向被@的人发送通知
-        session()->flash('success', '发表文章成功');
-        return redirect()->route('post.show', $post->hash_id);
+        return redirect()->route('post.show', $post->hash_id)->with('success', '文章发表成功！');
     }
 
     /**
@@ -96,5 +100,27 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // 初始化返回数据，默认是失败的
+        $data = [
+            'success'   => false,
+            'msg'       => '上传失败!',
+            'file_path' => ''
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if ($file = $request->upload_file) {
+            // 保存图片到本地
+            $result = $uploader->save($request->upload_file, 'posts', \Auth::id(), 1024);
+            // 图片保存成功的话
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = "上传成功!";
+                $data['success']   = true;
+            }
+        }
+        return $data;
     }
 }
