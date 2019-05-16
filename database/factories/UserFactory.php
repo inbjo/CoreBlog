@@ -19,12 +19,11 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     // 传参为生成最大时间不超过，创建时间永远比更改时间要早
     $created_at = $faker->dateTimeThisMonth($updated_at);
     return [
-        'username' => $faker->userName,
-        'nickname' => $faker->firstName,
+        'name' => $faker->unique()->userName,
         'avatar' => $faker->imageUrl(64, 64),
         'email' => $faker->unique()->safeEmail,
         'bio' => $faker->sentence,
-        'password' => bcrypt('password'),
+        'password' => bcrypt('secret'),
         'created_at' => $created_at,
         'updated_at' => $updated_at,
     ];

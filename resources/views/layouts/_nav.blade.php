@@ -38,23 +38,28 @@
                                     <img src="{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="30px"
                                          height="30px">
                                 </span>
-                                {{ Auth::user()->nickname }}<span class="caret"></span>
+                                {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="userinfo">
-                                <a href="{{ url('/') }}" class="dropdown-item">
-                                     <i class="fas fa-user"></i>
-                                     个人中心
-                                 </a>
-                                <a href="{{ route('logout') }}" class="dropdown-item"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    退出登录
+                                <a href="{{ route('user.edit', Auth::id()) }}" class="dropdown-item">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                     编辑资料
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
+                              <a href="{{ route('user.avatar', Auth::id()) }}" class="dropdown-item">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                更换头像
+                              </a>
+                              <a href="{{ route('user.password', Auth::id()) }}" class="dropdown-item">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                修改密码
+                              </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" id="logout" href="#">
+                                  <form action="{{ route('logout') }}" method="POST">
                                     {{ csrf_field() }}
-                                </form>
+                                    <button class="btn btn-block btn-default btn-sm" type="submit" name="button">退出</button>
+                                  </form>
+                                </a>
                             </div>
                         </li>
                     </ul>

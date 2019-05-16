@@ -24,7 +24,7 @@
                         <h3 class="post-title">{{$post->title}}</h3>
                         <div class="post-meta">
                                 <span class="author">By
-                                    <a href="{{route('user.show',$post->user->username)}}" title="查看该作者发布的所有文章">{{$post->user->nickname}}</a>
+                                    <a href="{{route('user.show',$post->user->id)}}" title="查看该作者发布的所有文章">{{$post->user->name}}</a>
                                 </span> &bull;
                             <span class="date" title="{{ $post->created_at->toDateTimeString() }}">
                                     {{$post->created_at->diffForHumans() }}
@@ -97,9 +97,9 @@
                 </div>
                 @foreach($comments as $key=> $comment)
                     <div class="post-comment media" name="comment_{{$key+1}}">
-                        <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}" alt="{{$comment->user->nickname}}">
+                        <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}" alt="{{$comment->user->name}}">
                         <div class="media-body">
-                            <h5 class="mt-0">{{$comment->user->nickname}}
+                            <h5 class="mt-0">{{$comment->user->name}}
                                 <span class="ml-2 time" title="{{ $comment->created_at->toDateTimeString() }}">
                                       {{ $comment->created_at->diffForHumans() }}
                                     </span>
@@ -110,7 +110,7 @@
                                     <a id="like-{{$comment->id}}" href="javascript:themeApp.like({{$comment->id}});" data-like="5" title="顶一下">
                                         <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(5)
                                     </a>&nbsp;&nbsp;
-                                    <a href="javascript:themeApp.reply({{$comment->id}},'{{$comment->user->nickname}}')">
+                                    <a href="javascript:themeApp.reply({{$comment->id}},'{{$comment->user->name}}')">
                                       <i class="fa fa-reply" aria-hidden="true"></i> 回复
                                     </a>
                                     <a href="javascript:themeApp.report({{$comment->id}})" class="float-right">

@@ -85,7 +85,7 @@
     $(function () {
       var editor = new Simditor({
         textarea: $('#content'),
-        defaultImage: '/images/demo.jpg',
+        // defaultImage: '/images/demo.jpg',
         upload: {
           url: '{{ route('post.upload_image') }}',
           params: {

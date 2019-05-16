@@ -47,11 +47,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'username', 'nickname', 'email', 'password', 'avatar', 'bio'
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
-
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $user->nickname)
+@section('title', $user->name)
 @section('body')
 
     <!-- start navigation -->
@@ -14,10 +14,10 @@
                 <div class="col-md-8 main-content">
                     <div class="cover author-cover">
                         <div class="avatar-wrap">
-                            <img src="{{$user->avatar}}" alt="{{$user->nickname}}" class="avatar">
+                            <img src="{{$user->avatar}}" alt="{{$user->name}}" class="avatar">
                         </div>
                         <h3 class="author-name">
-                            {{$user->nickname}}
+                            {{$user->name}}
                         </h3>
                         <div class="meta-info">
                             <span class="post-count"><i class="fa fa-pencil-square-o"></i>{{$user->posts()->count()}}篇文章</span>
