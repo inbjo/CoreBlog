@@ -20145,14 +20145,6 @@ figcaption {
 }
 
 /*====================================================
-	Plugin css fix
-====================================================*/
-
-.simditor .simditor-body img {
-  max-width: 100%;
-}
-
-/*====================================================
 	Profile page
 ====================================================*/
 
@@ -20324,9 +20316,33 @@ footer #back-to-top:hover {
   .register-page footer,
   .reset-page footer,
   .password-request-page footer,
-  .verification-notice-page footer {
+  .verification-notice-page footer,
+  .user-edit-page footer,
+  .user-avatar-page footer,
+  .user-password-page footer {
     position: absolute;
     bottom: 0;
   }
+}
+
+/*====================================================
+	Plugin css fix
+====================================================*/
+
+.simditor .simditor-body img {
+  max-width: 100%;
+}
+
+.tagator_tag {
+  background-color: #00ada7 !important;
+}
+
+.tagator_tag_remove {
+  line-height: 15px !important;
+}
+
+.tagator_tag_remove:hover {
+  color: #fff !important;
+  background-color: #00ada7 !important;
 }
 

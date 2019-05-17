@@ -3,6 +3,7 @@
 
 @section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/simditor/simditor.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/tagator/fm.tagator.jquery.min.css') }}">
 @stop
 
 @section('body')
@@ -26,6 +27,7 @@
               @include('layouts._msg')
               <!-- end navigation -->
               <form method="post" action="{{ route('post.create') }}">
+                <input type="hidden" name="_method" value="PUT">
                 @csrf
                 <div class="form-group">
                   <label for="title">文章标题</label>
@@ -45,7 +47,7 @@
                 </div>
                 <div class="form-group">
                   <label for="tags">文章标签</label>
-                  <textarea class="form-control" id="tags" rows="2" name="tags"></textarea>
+                  <textarea class="form-control" id="tags" name="tags"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="content">文章内容</label>
@@ -76,13 +78,18 @@
 @endsection
 
 @section('scripts')
-  @parent
+  <script type="text/javascript" src="{{ asset('lib/tagator/fm.tagator.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/simditor/module.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/simditor/hotkeys.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/simditor/uploader.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/simditor/simditor.js') }}"></script>
   <script>
     $(function () {
+
+      $('#tags').tagator({
+        autocomplete: ['php','vue','css','html','swoole','js']
+      });
+
       var editor = new Simditor({
         textarea: $('#content'),
         // defaultImage: '/images/demo.jpg',

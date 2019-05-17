@@ -924,13 +924,6 @@ figcaption {
 }
 
 /*====================================================
-	Plugin css fix
-====================================================*/
-.simditor .simditor-body img {
-  max-width: 100%;
-}
-
-/*====================================================
 	Profile page
 ====================================================*/
 #profile {
@@ -943,7 +936,7 @@ figcaption {
         color: #777;
       }
 
-      &.active{
+      &.active {
         a {
           color: #fff;
         }
@@ -1102,7 +1095,7 @@ footer {
 }
 
 @media (min-width: 992px) and (min-height: 1100px) {
-  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page {
+  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page, .user-edit-page, .user-avatar-page, .user-password-page {
     footer {
       position: absolute;
       bottom: 0;
@@ -1110,4 +1103,22 @@ footer {
   }
 }
 
+/*====================================================
+	Plugin css fix
+====================================================*/
+.simditor .simditor-body img {
+  max-width: 100%;
+}
 
+.tagator_tag {
+  background-color: #00ada7!important;
+}
+
+.tagator_tag_remove {
+  line-height: 15px!important;
+
+  &:hover {
+    color: #fff!important;
+    background-color: #00ada7!important;
+  }
+}
