@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 
 /**
  * App\Tag
@@ -44,5 +45,24 @@ class Tag extends Model
     public static function getTopHotTags($count = 20)
     {
         return self::withCount('posts')->orderBy('posts_count', 'desc')->limit($count)->get();
+    }
+
+    public function getTagIds($tags)
+    {
+        $ids = [];
+        $tags = explode(',', $tags);
+        foreach ($tags as $tag) {
+            $score = Redis::zScore('tags', $tag);
+            if ($score != null) {
+                $ids[] = $score;
+            } else {
+                $insert = new Tag();
+                $insert->name = $tag;
+                $insert->save();
+                Redis::zAdd('tags', $insert->id, $tag);
+                $ids[] = $insert->id;
+            }
+        }
+        return $ids;
     }
 }
