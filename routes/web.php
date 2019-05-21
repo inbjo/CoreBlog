@@ -16,9 +16,12 @@ Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('rss.xml', 'PagesController@rss')->name('rss');
 
 Route::get('/post/create', 'PostsController@create')->name('post.create');
-Route::put('/post/create', 'PostsController@store');
-Route::post('upload_image', 'PostsController@uploadImage')->name('post.upload_image');
+Route::put('/post/create', 'PostsController@store')->name('post.store');
+Route::post('/post/upload_image', 'PostsController@uploadImage')->name('post.upload_image');
 Route::get('/post/{post}', 'PostsController@show')->name('post.show');
+Route::get('/post/{post}/edit', 'PostsController@edit')->name('post.edit');
+Route::put('/post/{post}/edit', 'PostsController@update')->name('post.update');
+Route::delete('/post/{post}', 'PostsController@destroy')->name('post.destroy');
 
 
 

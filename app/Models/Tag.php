@@ -21,6 +21,15 @@ use Illuminate\Support\Facades\Redis;
  */
 class Tag extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
+
     //Tag-Post:Many-Many
     public function posts()
     {
@@ -47,22 +56,21 @@ class Tag extends Model
         return self::withCount('posts')->orderBy('posts_count', 'desc')->limit($count)->get();
     }
 
-    public function getTagIds($tags)
+    public static function getTagIds($tags)
     {
-        $ids = [];
+        $results = [];
         $tags = explode(',', $tags);
         foreach ($tags as $tag) {
             $score = Redis::zScore('tags', $tag);
             if ($score != null) {
-                $ids[] = $score;
+                $results[] = intval($score);
             } else {
-                $insert = new Tag();
-                $insert->name = $tag;
+                $insert = new self(['name' => $tag]);
                 $insert->save();
                 Redis::zAdd('tags', $insert->id, $tag);
-                $ids[] = $insert->id;
+                $results[] = $insert->id;
             }
         }
-        return $ids;
+        return $results;
     }
 }

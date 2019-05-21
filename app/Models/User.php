@@ -84,12 +84,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->notify(new ResetPassword($token));
     }
 
-    /**
-     * 用户与文章一对多关系
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 //use Laravel\Scout\Searchable;
 
@@ -45,7 +46,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 //    use Searchable;
-    use HashIdHelper;
+    use HashIdHelper,SoftDeletes;
 
     protected $fillable = [
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
@@ -115,7 +116,7 @@ class Post extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     /**
