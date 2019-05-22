@@ -40,7 +40,7 @@
             <!-- end message tips -->
 
               <form method="post" action="{{ route('user.update',Auth::id()) }}">
-                <input type="hidden" name="_method" value="PUT">
+                @method('PUT')
                 @csrf
                 <div class="form-group">
                   <label for="name">用户名</label>

@@ -43,10 +43,12 @@
             <div class="post-content">
               {!! $post->content !!}
             </div>
+            @can('update', $post)
             <div class="post-action clearfix">
               <button id="delete" class="btn btn-danger btn-sm float-right">删除</button>
               <a href="{{ route('post.edit',$post->hash_id) }}" class="btn btn-primary btn-sm float-right mr-2">编辑</a>
             </div>
+            @endcan
             <footer class="post-footer clearfix">
               <div class="float-left tag-list">
                 <i class="fa fa-tag"></i>
@@ -136,7 +138,6 @@
               <form action="{{route('comments.store')}}" method="post">
                 <div class="form-group">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="hidden" id="parent_id" name="parent_id" value="0">
                   <input id="post_id" type="hidden" name="post_id" value="{{ $post->id }}">
                 </div>
                 <div class="form-group" id="reply">

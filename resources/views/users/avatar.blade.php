@@ -43,7 +43,7 @@
               </div>
               <form method="post" action="{{ route('user.avatar',Auth::id()) }}" accept-charset="UTF-8"
                     enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PUT">
+                @method('PUT')
                 @csrf
                 <div class="form-group">
                   <label for="avatar">头像</label>

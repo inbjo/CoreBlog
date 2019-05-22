@@ -32,7 +32,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'post_id', 'parent_id', 'user_id', 'content', 'agent', 'ip'
+        'post_id', 'user_id', 'content', 'agent', 'ip'
     ];
 
     //Comment-Post:Many-One

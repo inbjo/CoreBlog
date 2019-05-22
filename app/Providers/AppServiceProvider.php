@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Observers\CommentObserver;
 use App\Observers\PostObserver;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         //observer register
         Post::observe(PostObserver::class);
+        Comment::observe(CommentObserver::class);
 
         //share common view data
         View::share('cats', Category::all()); //取所有分类

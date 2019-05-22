@@ -28,7 +28,7 @@
             @include('layouts._msg')
             <!-- end navigation -->
               <form method="post" action="{{ route('post.update',$post->hash_id) }}" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PUT">
+                @method('PUT')
                 @csrf
                 <div class="form-group">
                   <label for="title">文章标题</label>

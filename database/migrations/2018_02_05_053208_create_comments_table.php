@@ -16,7 +16,6 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('post_id')->comment('文章ID');
-            $table->unsignedInteger('parent_id')->default(0)->comment('父评论id');
             $table->unsignedInteger('user_id')->comment('用户ID');
             $table->text('content')->comment('评论内容');
             $table->string('agent')->comment('信息头')->nullable();
