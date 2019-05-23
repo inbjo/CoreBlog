@@ -2,6 +2,11 @@
 @section('title', $post->title)
 @section('keyword', $post->keyword)
 @section('description', $post->description)
+
+@section('styles')
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/tribute/tribute.css') }}">
+@stop
+
 @section('body')
 
   <!-- start navigation -->
@@ -44,10 +49,10 @@
               {!! $post->content !!}
             </div>
             @can('update', $post)
-            <div class="post-action clearfix">
-              <button id="delete" class="btn btn-danger btn-sm float-right">删除</button>
-              <a href="{{ route('post.edit',$post->hash_id) }}" class="btn btn-primary btn-sm float-right mr-2">编辑</a>
-            </div>
+              <div class="post-action clearfix">
+                <button id="delete" class="btn btn-danger btn-sm float-right">删除</button>
+                <a href="{{ route('post.edit',$post->hash_id) }}" class="btn btn-primary btn-sm float-right mr-2">编辑</a>
+              </div>
             @endcan
             <footer class="post-footer clearfix">
               <div class="float-left tag-list">
@@ -91,18 +96,14 @@
           <!--start comments -->
           <div class="post-comment-bar" id="comments" name="comments">
             <h4 class="mb-0">
-                          <span class="badge badge-primary">
-                            <i class="fa fa-comments" aria-hidden="true"></i> 评论</span>
-              <div class="btn-group float-right" role="group" aria-label="排序">
-                <button type="button" class="btn btn-sm btn-default">最新</button>
-                <button type="button" class="btn btn-sm btn-danger">最热</button>
-                <button type="button" class="btn btn-sm btn-success">最早</button>
-              </div>
+                <span class="badge badge-primary">
+                   <i class="fa fa-comments" aria-hidden="true"></i> 评论
+                </span>
             </h4>
             <div class="clearfix"></div>
             <div id="comment_tips">+1</div>
           </div>
-          @foreach($comments as $key=> $comment)
+          @forelse ($comments as $key=> $comment)
             <div class="post-comment media" name="comment_{{$key+1}}">
               <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}" alt="{{$comment->user->name}}">
               <div class="media-body">
@@ -127,7 +128,11 @@
                                 </span>
               </div>
             </div>
-          @endforeach
+            @empty
+            <div class="post-comment text-center">
+                <h5 class="p-3">(=￣ω￣=)··· 暂无内容！</h5>
+            </div>
+          @endforelse
           <div class="post-comment-bar  mt-4" id="reply" name="reply">
             <h4 class="mb-0"><span class="badge badge-primary"><i class="fa fa-reply" aria-hidden="true"></i> 回复</span>
             </h4>
@@ -172,9 +177,20 @@
   @include('layouts._footer')
   <!-- end main-footer -->
 
+@endsection
+
 @section('scripts')
+  <script type="text/javascript" src="{{ asset('lib/tribute/tribute.min.js') }}"></script>
   <script>
     $(function () {
+      var tribute = new Tribute({
+        values: [
+          {key: 'Phil Heartman', value: 'pheartman'},
+          {key: 'Gordon Ramsey', value: 'gramsey'}
+        ]
+      });
+      tribute.attach(document.getElementById('reply_content'));
+
       $("#delete").click(function () {
         swal({
           title: "确定要删除吗?",
@@ -200,6 +216,4 @@
       });
     });
   </script>
-@endsection
-
 @endsection

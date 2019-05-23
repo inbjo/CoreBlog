@@ -1111,14 +1111,27 @@ footer {
 }
 
 .tagator_tag {
-  background-color: #00ada7!important;
+  background-color: #00ada7 !important;
 }
 
 .tagator_tag_remove {
-  line-height: 15px!important;
+  line-height: 15px !important;
 
   &:hover {
-    color: #fff!important;
-    background-color: #00ada7!important;
+    color: #fff !important;
+    background-color: #00ada7 !important;
+  }
+}
+
+.tribute-container {
+  border-radius: 5px !important;
+
+  ul {
+    background: #ebebeb !important;
+
+    li.highlight {
+      background: $primary !important;
+      color: #fff !important;
+    }
   }
 }

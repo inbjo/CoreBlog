@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@index')->name('index');
+Route::get('/', 'PostsController@index')->name('index');
 Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('rss.xml', 'PagesController@rss')->name('rss');
 

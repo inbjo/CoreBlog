@@ -13,7 +13,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -23,7 +23,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        //取文章列表
+        $posts = Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->withCount('comments')->paginate(12);
+        return view('pages.index', compact('posts'));
     }
 
     /**
@@ -89,6 +91,7 @@ class PostsController extends Controller
      *
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Post $post)
     {
@@ -103,6 +106,7 @@ class PostsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Post $post, ImageUploadHandler $uploader)
     {
@@ -140,7 +144,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-//        $this->authorize('update', $post);
+        $this->authorize('update', $post);
         $post->delete();
         return ['code' => 0, 'msg' => '删除成功'];
     }
