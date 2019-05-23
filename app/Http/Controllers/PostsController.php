@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\FileUploadHandler;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
@@ -151,18 +152,16 @@ class PostsController extends Controller
         return ['code' => 0, 'msg' => '删除成功'];
     }
 
-    public function upload()
+    public function upload(Request $request)
     {
-        $response = FroalaEditor_Image::upload('/uploads/');
-        echo stripslashes(json_encode($response));
+        $result = FileUploadHandler::save($request->file('file'), 'posts');
+        return ['link' => $result['path']];
     }
 
     public function file(Request $request)
     {
-        $path = $request->file('file')->store('file');
+        $path = $request->file('file')->store('public/uploads');
         return ['link' => $path];
-//        $response = FroalaEditor_File::upload('/uploads/');
-//        echo stripslashes(json_encode($response));
     }
 
     public function manager()
