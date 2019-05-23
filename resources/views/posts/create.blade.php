@@ -2,7 +2,7 @@
 @section('title',  __('CreatePost'))
 
 @section('styles')
-  <link rel="stylesheet" type="text/css" href="{{ asset('lib/simditor/simditor.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/froala/css/froala_editor.pkgd.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/tagator/fm.tagator.jquery.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/dropify/dropify.min.css') }}">
 @stop
@@ -28,7 +28,7 @@
             @include('layouts._msg')
             <!-- end navigation -->
               <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
-                @method('PUT')
+                @method('POST')
                 @csrf
                 <div class="form-group">
                   <label for="title">文章标题</label>
@@ -60,17 +60,11 @@
                 </div>
                 <div class="form-group">
                   <label for="content">文章内容</label>
-                  <textarea class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
-                            id="content"
-                            name="content" rows="6"></textarea>
-                  @if ($errors->has('content'))
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $errors->first('content') }}</strong></span>
-                  @endif
+                  <div id="content"></div>
                 </div>
                 <div class="form-group">
-                  <button type="submit" name="status" class="btn btn-primary" value="0">保存为草稿</button>
-                  <button type="submit" name="status" class="btn btn-success" vlaue="1">发布</button>
+                  <button type="button" id="btn-draft" class="btn btn-primary">保存为草稿</button>
+                  <button type="button" id="btn-save" class="btn btn-success">发布</button>
                 </div>
               </form>
             </div>
@@ -91,11 +85,10 @@
 @section('scripts')
   <script type="text/javascript" src="{{ asset('lib/tagator/fm.tagator.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/dropify/dropify.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/module.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/hotkeys.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/uploader.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/simditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/froala/js/froala_editor.pkgd.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/froala/js/languages/zh_cn.js') }}"></script>
   <script>
+    var editor;
     $(function () {
 
       $('#tags').tagator({
@@ -103,28 +96,35 @@
       });
 
       $('#cover').dropify({
-          messages: {
-              'default': '单击此处或者拖动图片到此处',
-              'replace': '单击此处或者拖动图片到此处更换图片',
-              'remove':  '移除',
-              'error':   '哦豁，发生了一点意外。'
-          }
+        messages: {
+          'default': '单击此处或者拖动图片到此处',
+          'replace': '单击此处或者拖动图片到此处更换图片',
+          'remove': '移除',
+          'error': '哦豁，发生了一点意外。'
+        }
       });
 
-      var editor = new Simditor({
-        textarea: $('#content'),
-        // defaultImage: '/images/demo.jpg',
-        upload: {
-          url: '{{ route('post.upload_image') }}',
-          params: {
-            _token: '{{ csrf_token() }}'
-          },
-          fileKey: 'upload_file',
-          connectionCount: 3,
-          leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-        },
-        pasteImage: true,
+      $("#btn-save").click(function () {
+        console.log(editor.html.get());
       });
+
+      editor = new FroalaEditor('#content', {
+        attribution: false,
+        heightMin: 400,
+        spellcheck: false,
+        language: 'zh_cn',
+        imageUploadURL: '/upload/image',
+        fileUploadURL: '/upload/file',
+        imageManagerLoadURL: '/upload/manager',
+        imageManagerDeleteURL: '/upload/delete'
+      });
+
+      console.log(editor);
+
+      // editor.opts.events['image.removed'] = function (e, editor, $img) {
+      //
+      // }
+
     });
   </script>
 @endsection

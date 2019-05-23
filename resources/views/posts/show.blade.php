@@ -140,7 +140,7 @@
           </div>
           <div class="post-reply p-2 mb-5">
             @auth
-              <form action="{{route('comments.store')}}" method="post">
+              <form action="{{route('comment.store')}}" method="post">
                 <div class="form-group">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <input id="post_id" type="hidden" name="post_id" value="{{ $post->id }}">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
+use FroalaEditor_File;
+use FroalaEditor_Image;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -147,6 +149,34 @@ class PostsController extends Controller
         $this->authorize('update', $post);
         $post->delete();
         return ['code' => 0, 'msg' => '删除成功'];
+    }
+
+    public function upload()
+    {
+        $response = FroalaEditor_Image::upload('/uploads/');
+        echo stripslashes(json_encode($response));
+    }
+
+    public function file(Request $request)
+    {
+        $path = $request->file('file')->store('file');
+        return ['link' => $path];
+//        $response = FroalaEditor_File::upload('/uploads/');
+//        echo stripslashes(json_encode($response));
+    }
+
+    public function manager()
+    {
+        $response = FroalaEditor_Image::getList('/uploads/');
+        echo stripslashes(json_encode($response));
+    }
+
+    public function delete(Request $request)
+    {
+        $raw = $request->getContent();
+        $info = json_decode($raw, true);
+        $response = FroalaEditor_Image::delete($info['src']);
+        echo stripslashes(json_encode($response));
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)

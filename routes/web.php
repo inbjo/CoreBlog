@@ -15,14 +15,13 @@ Route::get('/', 'PostsController@index')->name('index');
 Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('rss.xml', 'PagesController@rss')->name('rss');
 
-Route::get('/post/create', 'PostsController@create')->name('post.create');
-Route::put('/post/create', 'PostsController@store')->name('post.store');
-Route::post('/post/upload_image', 'PostsController@uploadImage')->name('post.upload_image');
-Route::get('/post/{post}', 'PostsController@show')->name('post.show');
-Route::get('/post/{post}/edit', 'PostsController@edit')->name('post.edit');
-Route::put('/post/{post}/edit', 'PostsController@update')->name('post.update');
-Route::delete('/post/{post}', 'PostsController@destroy')->name('post.destroy');
 
+Route::post('upload/image', 'PostsController@upload');
+Route::post('upload/file', 'PostsController@file');
+Route::get('upload/manager', 'PostsController@manager');
+Route::post('upload/delete', 'PostsController@delete');
+Route::post('/post/upload_image', 'PostsController@uploadImage')->name('post.upload_image');
+Route::resource('post','PostsController');
 
 
 Route::get('/at','UsersController@at')->name('users.at');
@@ -45,6 +44,6 @@ Route::get('/search/{keyword}', 'PagesController@search')->name('search'); //搜
 Auth::routes(['verify' => true]);
 
 
-Route::resource('comments','CommentsController',['only'=>['store','destroy']])->middleware('auth');
+Route::resource('comment','CommentsController',['only'=>['store','destroy']])->middleware('auth');
 
 
