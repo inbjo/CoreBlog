@@ -66,7 +66,7 @@ class PostsController extends Controller
             'user_id' => Auth::id(),
             'content' => $request->input('content'),
             'cover' => $cover_path,
-            'status' => 1,
+            'status' => $request->input('status'),
             'category_id' => $request->input('category_id')
         ]);
         $post->save();
@@ -85,6 +85,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('show', $post);
         $comments = $post->comments()->with(['user'])->get();
         return view('posts.show', compact('comments', 'post'));
     }
@@ -129,7 +130,7 @@ class PostsController extends Controller
         $post->keyword = $request->input('keyword');
         $post->content = $request->input('content');
         $post->category_id = $request->input('category_id');
-        $post->status = 1;
+        $post->status = $request->input('status');
         $post->save();
         //标签关联
         $tagIds = Tag::getTagIds($request->input('tags'));
@@ -152,31 +153,6 @@ class PostsController extends Controller
         return ['code' => 0, 'msg' => '删除成功'];
     }
 
-    public function upload(Request $request)
-    {
-        $result = FileUploadHandler::save($request->file('file'), 'posts');
-        return ['link' => $result['path']];
-    }
-
-    public function file(Request $request)
-    {
-        $path = $request->file('file')->store('public/uploads');
-        return ['link' => $path];
-    }
-
-    public function manager()
-    {
-        $response = FroalaEditor_Image::getList('/uploads/');
-        echo stripslashes(json_encode($response));
-    }
-
-    public function delete(Request $request)
-    {
-        $raw = $request->getContent();
-        $info = json_decode($raw, true);
-        $response = FroalaEditor_Image::delete($info['src']);
-        echo stripslashes(json_encode($response));
-    }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {

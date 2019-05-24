@@ -16,11 +16,10 @@ Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('rss.xml', 'PagesController@rss')->name('rss');
 
 
-Route::post('upload/image', 'PostsController@upload');
-Route::post('upload/file', 'PostsController@file');
-Route::get('upload/manager', 'PostsController@manager');
-Route::post('upload/delete', 'PostsController@delete');
-Route::post('/post/upload_image', 'PostsController@uploadImage')->name('post.upload_image');
+Route::get('upload', 'FilesController@index')->name('upload.index');
+Route::post('upload', 'FilesController@store')->name('upload.store');
+Route::delete('upload', 'FilesController@destroy')->name('upload.destroy');
+
 Route::resource('post','PostsController');
 
 

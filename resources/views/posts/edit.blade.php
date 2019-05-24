@@ -2,7 +2,7 @@
 @section('title',  '编辑文章')
 
 @section('styles')
-  <link rel="stylesheet" type="text/css" href="{{ asset('lib/simditor/simditor.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/froala/css/froala_editor.pkgd.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/tagator/fm.tagator.jquery.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/dropify/dropify.min.css') }}">
 @stop
@@ -27,7 +27,8 @@
               <!-- start navigation -->
             @include('layouts._msg')
             <!-- end navigation -->
-              <form method="post" action="{{ route('post.update',$post->hash_id) }}" enctype="multipart/form-data">
+              <form id="post" method="post" action="{{ route('post.update',$post->hash_id) }}"
+                    enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group">
@@ -44,7 +45,8 @@
                   <label for="category">文章分类</label>
                   <select class="form-control" id="category" name="category_id">
                     @foreach($cats as $cat)
-                      <option @if($cat->id == $post->category_id) selected @endif value="{{$cat->id}}">{{$cat->name}}</option>
+                      <option @if($cat->id == $post->category_id) selected
+                              @endif value="{{$cat->id}}">{{$cat->name}}</option>
                     @endforeach
                   </select>
                 </div>
@@ -55,21 +57,31 @@
                 <div class="form-group">
                   <label for="cover">封面图</label>
                   <input type="file" class="form-control dropify" id="cover" name="cover"
-                         data-allowed-file-extensions="jpg jpeg png gif bmp webp" data-default-file="{{ $post->cover }}">
+                         data-allowed-file-extensions="jpg jpeg png gif bmp webp"
+                         data-default-file="{{ $post->cover }}">
                 </div>
                 <div class="form-group">
                   <label for="content">文章内容</label>
-                  <textarea class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
-                            id="content"
-                            name="content" rows="6">{{ $post->content }}</textarea>
-                  @if ($errors->has('content'))
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $errors->first('content') }}</strong></span>
-                  @endif
+                  <textarea name="content" id="content" class="form-control">{!! $post->content !!}</textarea>
                 </div>
                 <div class="form-group">
-                  <button type="submit" name="status" class="btn btn-primary" value="0">保存为草稿</button>
-                  <button type="submit" name="status" class="btn btn-success" vlaue="1">发布</button>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="publish" value="1"
+                           @if($post->status == 1) checked @endif>
+                    <label class="form-check-label" for="publish">
+                      直接发布
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="draft" value="0"
+                           @if($post->status == 0) checked @endif>
+                    <label class="form-check-label" for="draft">
+                      保存为草稿
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" data-status="1" class="btn btn-success">提交</button>
                 </div>
               </form>
             </div>
@@ -90,11 +102,11 @@
 @section('scripts')
   <script type="text/javascript" src="{{ asset('lib/tagator/fm.tagator.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/dropify/dropify.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/module.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/hotkeys.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/uploader.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/simditor/simditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/froala/js/froala_editor.pkgd.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/froala/js/languages/zh_cn.js') }}"></script>
   <script>
+    var editor;
+
     $(function () {
 
       $('#tags').tagator({
@@ -102,28 +114,70 @@
       });
 
       $('#cover').dropify({
-          messages: {
-              'default': '单击此处或者拖动图片到此处',
-              'replace': '单击此处或者拖动图片到此处更换图片',
-              'remove':  '移除',
-              'error':   '哦豁，发生了一点意外。'
-          }
+        messages: {
+          'default': '单击此处或者拖动图片到此处',
+          'replace': '单击此处或者拖动图片到此处更换图片',
+          'remove': '移除',
+          'error': '哦豁，发生了一点意外。'
+        }
       });
 
-      var editor = new Simditor({
-        textarea: $('#content'),
-        // defaultImage: '/images/demo.jpg',
-        upload: {
-          url: '{{ route('post.upload_image') }}',
-          params: {
-            _token: '{{ csrf_token() }}'
-          },
-          fileKey: 'upload_file',
-          connectionCount: 3,
-          leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-        },
-        pasteImage: true,
+      $(".submit").click(function () {
+        $("#status").val($(this).data('status'));
+        $("#post").submit();
       });
+
+      editor = new FroalaEditor('#content', {
+        attribution: false,
+        heightMin: 400,
+        spellcheck: false,
+        language: 'zh_cn',
+        imageUploadURL: '{{ route('upload.store') }}',
+        fileUploadURL: '{{ route('upload.store') }}',
+        videoUploadURL: '{{ route('upload.store') }}',
+        imageManagerLoadURL: '{{ route('upload.index') }}',
+        imageManagerDeleteMethod: 'DELETE',
+        imageManagerDeleteURL: '{{ route('upload.destroy') }}',
+        imageMaxSize: 1024 * 1024 * 10,
+        videoMaxSize: 1024 * 1024 * 50,
+        fileMaxSize: 1024 * 1024 * 50,
+        imageUploadParams: {
+          _token: document.head.querySelector('meta[name="csrf-token"]').content
+        },
+        fileUploadParams: {
+          _token: document.head.querySelector('meta[name="csrf-token"]').content
+        },
+        videoUploadParams: {
+          _token: document.head.querySelector('meta[name="csrf-token"]').content
+        },
+        imageManagerDeleteParams: {
+          _token: document.head.querySelector('meta[name="csrf-token"]').content
+        },
+        events: {
+          'image.removed': function ($img) {
+            editor_remove(location.origin + $img.attr('src'));
+          },
+          'file.unlink': function (link) {
+            editor_remove(link.href);
+          },
+          'video.removed': function ($video) {
+            editor_remove($video.find('video')[0].src);
+          }
+        }
+      });
+
+      function editor_remove(link) {
+        axios({
+          method: 'delete',
+          url: '{{ route('upload.destroy') }}',
+          data: {
+            link: link
+          }
+        }).then(function (response) {
+          console.log(response.data.msg)
+        });
+      }
+
     });
   </script>
 @endsection

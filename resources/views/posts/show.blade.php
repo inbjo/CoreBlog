@@ -5,6 +5,7 @@
 
 @section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/tribute/tribute.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/froala/css/froala_style.min.css') }}">
 @stop
 
 @section('body')
@@ -40,12 +41,17 @@
                                 </span>
               </div>
             </div>
+            @if($post->status !=1)
+              <div class="alert alert-warning mt-2" role="alert">
+                当前文章为草稿状态，仅您可见！
+              </div>
+            @endif
             @if($post->cover)
               <div class="featured-media">
                 <img src="{{$post->cover}}" alt="{{$post->title}}">
               </div>
             @endif
-            <div class="post-content">
+            <div class="post-content fr-view">
               {!! $post->content !!}
             </div>
             @can('update', $post)
