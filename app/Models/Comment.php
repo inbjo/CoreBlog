@@ -46,6 +46,11 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function path()
+    {
+//        return route()
+    }
+
     /**
      * 评论与点赞一对多关系
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

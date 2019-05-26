@@ -82,12 +82,14 @@ class PostsController extends Controller
      *
      * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Post $post)
     {
         $this->authorize('show', $post);
         $comments = $post->comments()->with(['user'])->get();
-        return view('posts.show', compact('comments', 'post'));
+        $names = $comments->pluck('user.name')->unique();
+        return view('posts.show', compact('comments', 'post', 'names'));
     }
 
     /**
