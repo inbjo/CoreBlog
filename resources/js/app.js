@@ -5,8 +5,10 @@
  */
 
 require('./bootstrap');
-
 import swal from 'sweetalert';
+require('./main');
+
+
 
 // window.Vue = require('vue');
 

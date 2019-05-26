@@ -46,48 +46,29 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function path()
+    public function favorites()
     {
-//        return route()
+        return $this->morphMany(Favorite::class, 'favorited');
     }
 
-    /**
-     * 评论与点赞一对多关系
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function likes()
+    public function favorite()
     {
-        return $this->belongsToMany(User::Class, 'comment_likes', 'comment_id', 'user_id');
+        $attributes = ['user_id' => auth()->id()];
+
+        if (!$this->favorites()->where($attributes)->exists()) {
+            return $this->favorites()->create($attributes);
+        } else {
+            //todo 取消点赞
+        }
+    }
+
+    public function isFavorited()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->exists();
     }
 
     public function scopeCommented($query, int $post_id)
     {
         return $query->where('post_id', $post_id);
-    }
-
-    /**
-     * 是否已点赞
-     * @param $user_id
-     * @return mixed
-     */
-    public function isLike($user_id)
-    {
-        return $this->likes->contains($user_id);
-    }
-
-    public function like($user_ids)
-    {
-        if (!is_array($user_ids)) {
-            $user_ids = compact('user_ids');
-        }
-        $this->likes()->sync($user_ids, false);
-    }
-
-    public function unlike($user_ids)
-    {
-        if (!is_array($user_ids)) {
-            $user_ids = compact('user_ids');
-        }
-        $this->likes()->detach($user_ids);
     }
 }

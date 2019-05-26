@@ -581,6 +581,37 @@ figcaption {
       color: #00ada7;
     }
   }
+
+  .media-body {
+    span {
+      color: #959595;
+      cursor: pointer;
+
+      .favorite {
+        margin-right: 15px;
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      .favorited{
+
+      }
+
+      .reply {
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      .delete {
+        &:hover {
+          color: #c82333;
+        }
+      }
+    }
+
+  }
 }
 
 .post-reply {

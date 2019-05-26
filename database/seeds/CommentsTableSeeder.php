@@ -36,7 +36,6 @@ class CommentsTableSeeder extends Seeder
                 $post_id=$faker->randomElement($post_ids);
                 $comment->post_id = $post_id;
                 Post::find($post_id)->increment('comment_count');
-                $comment->parent_id =0;
             });
 
         // 将数据集合转换为数组，并插入到数据库中

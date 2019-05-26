@@ -123,16 +123,18 @@
                                 </h5>
                                 <p>{!! $comment->content !!}</p>
                                 <span>
-                                    <a id="like-{{$comment->id}}" href="javascript:themeApp.like({{$comment->id}});"
-                                       data-like="5" title="顶一下">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(5)
-                                    </a>&nbsp;&nbsp;
-                                    <a href="javascript:themeApp.reply({{$comment->id}},'{{$comment->user->name}}')">
+                                    <div class="float-left favorite {{ $comment->isFavorited() ? 'favorited' : '' }}" data-id="{{$comment->id}}" title="点赞或取消点赞">
+                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞({{ $comment->favorites()->count() }})
+                                    </div>
+                                    <div class="float-left reply" data-name="{{$comment->user->name}}"
+                                         title="回复{{$comment->user->name}}">
                                       <i class="fa fa-reply" aria-hidden="true"></i> 回复
-                                    </a>
-                                    <a href="javascript:themeApp.report({{$comment->id}})" class="float-right">
-                                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 举报
-                                    </a>
+                                    </div>
+                                    @can('delete',$comment)
+                                        <div class="float-right delete" data-id="{{$comment->id}}" title="删除该评论">
+                                          <i class="fa fa-trash-alt" aria-hidden="true"></i> 删除
+                                        </div>
+                                    @endcan
                                 </span>
                             </div>
                         </div>
@@ -192,25 +194,20 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('lib/tribute/tribute.min.js') }}"></script>
     <script>
-        // document.oncontextmenu = new Function('event.returnValue=false;');
-        // document.onselectstart = new Function('event.returnValue=false;');
-
-
         $(function () {
+            //at功能支持
             var tribute = new Tribute({
                 values: [
                         @forEach($names as $name)
                     {
                         key: '{{$name}}', value: '{{$name}}'
                     },
-                        @endforeach
+                    @endforeach
                 ],
-                // selectTemplate: function (item) {
-                //     return '<a href="/user/' + item.original.value + '" target="_blank">@' + item.original.key + '</a>';
-                // },
             });
             tribute.attach(document.getElementById('reply_content'));
 
+            //删除文章
             $("#delete").click(function () {
                 swal({
                     title: "确定要删除吗?",

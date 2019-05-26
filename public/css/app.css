@@ -19807,6 +19807,27 @@ figcaption {
   color: #00ada7;
 }
 
+.post-comment .media-body span {
+  color: #959595;
+  cursor: pointer;
+}
+
+.post-comment .media-body span .favorite {
+  margin-right: 15px;
+}
+
+.post-comment .media-body span .favorite:hover {
+  color: #00ada7;
+}
+
+.post-comment .media-body span .reply:hover {
+  color: #00ada7;
+}
+
+.post-comment .media-body span .delete:hover {
+  color: #c82333;
+}
+
 .post-reply {
   background: #fff;
   border-radius: 5px;
