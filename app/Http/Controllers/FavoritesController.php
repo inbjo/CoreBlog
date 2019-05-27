@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
@@ -12,8 +13,17 @@ class FavoritesController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Comment $comment)
+    public function store(Request $request)
     {
-        return $comment->favorite();
+        if ($request->type == 'comment') {
+            $comment = Comment::find($request->id);
+            $rs = $comment->favorite();
+            return $rs;
+//            return ['code' => 0, 'msg' => '点赞成功'];
+        } else {
+            $post = Post::find($request->id);
+//            $post->favorite();
+            return ['code' => 0, 'msg' => '点赞成功'];
+        }
     }
 }

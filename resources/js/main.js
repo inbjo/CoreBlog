@@ -22,33 +22,54 @@ window.app = {
       return false;
     });
   },
-  reply: function (name) {
-    let status = this.islogin();
-    if (status == false) {
-      return false;
-    }
-    $("#parent_id").val(id);
-    $("#reply_content").val('@' + name + ' ').focus();
-    $('html,body').animate({scrollTop: $("#reply").offset().top}, 500);
-  },
-  islogin: function () {
-    let status = $('meta[name="status"]').attr('content');
-    if (status == '') {
-      swal({
-        title: "",
-        text: "您需要登录以后才能操作！",
-        icon: "warning",
-        buttons: ["算了", "前往登录"],
-        dangerMode: true,
-      }).then((choose) => {
-        if (choose) {
-          location.href = '/login';
+  favorite: function () {
+    $(".favorite").click(function () {
+      var id = $(this).data('id');
+      if (is_login == false) {
+        return false;
+      }
+      axios({
+        method: 'post',
+        url: '/favorites',
+        data:{
+          type:'comment',
+          id:id
         }
+      }).then(function (response) {
+        console.log(response.data.msg);
       });
-      return false;
-    } else {
-      return status;
-    }
+    });
+  },
+  reply: function () {
+    $(".reply").click(function () {
+      if (is_login == false) {
+        return false;
+      }
+      var content = $("#reply_content").val() + '@' + $(this).data('name') + ' ';
+      $("#reply_content").val(content).focus();
+      $('html,body').animate({scrollTop: $("#reply").offset().top}, 500);
+    });
+  },
+  delete_comment: function () {
+    $(".delete").click(function () {
+      if (is_login == false) {
+        return false;
+      }
+      swal({
+        title: "确定要删除吗?",
+        text: "一旦删除无法恢复!",
+        icon: "warning",
+        buttons: ['取消操作', '确定删除'],
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("删除成功!", {
+              icon: "success",
+            });
+          }
+        });
+    });
   },
   subscribe: function () {
     var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
@@ -99,10 +120,12 @@ window.app = {
     // document.oncontextmenu = new Function('event.returnValue=false;');
     // document.onselectstart = new Function('event.returnValue=false;');
     app.backToTop();
+    app.favorite();
+    app.reply();
+    app.delete_comment();
   },
   like: function (id) {
-    let status = this.islogin();
-    if (status == false) {
+    if (is_login == false) {
       return false;
     }
     let user_id = status;

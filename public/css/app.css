@@ -19820,6 +19820,10 @@ figcaption {
   color: #00ada7;
 }
 
+.post-comment .media-body span .favorited {
+  color: #00ada7;
+}
+
 .post-comment .media-body span .reply:hover {
   color: #00ada7;
 }

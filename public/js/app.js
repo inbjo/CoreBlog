@@ -37249,38 +37249,59 @@ window.app = {
       return false;
     });
   },
-  reply: function reply(name) {
-    var status = this.islogin();
+  favorite: function favorite() {
+    $(".favorite").click(function () {
+      var id = $(this).data('id');
 
-    if (status == false) {
-      return false;
-    }
+      if (is_login == false) {
+        return false;
+      }
 
-    $("#parent_id").val(id);
-    $("#reply_content").val('@' + name + ' ').focus();
-    $('html,body').animate({
-      scrollTop: $("#reply").offset().top
-    }, 500);
+      axios({
+        method: 'post',
+        url: '/favorites',
+        data: {
+          type: 'comment',
+          id: id
+        }
+      }).then(function (response) {
+        console.log(response.data.msg);
+      });
+    });
   },
-  islogin: function islogin() {
-    var status = $('meta[name="status"]').attr('content');
+  reply: function reply() {
+    $(".reply").click(function () {
+      if (is_login == false) {
+        return false;
+      }
 
-    if (status == '') {
+      var content = $("#reply_content").val() + '@' + $(this).data('name') + ' ';
+      $("#reply_content").val(content).focus();
+      $('html,body').animate({
+        scrollTop: $("#reply").offset().top
+      }, 500);
+    });
+  },
+  delete_comment: function delete_comment() {
+    $(".delete").click(function () {
+      if (is_login == false) {
+        return false;
+      }
+
       swal({
-        title: "",
-        text: "您需要登录以后才能操作！",
+        title: "确定要删除吗?",
+        text: "一旦删除无法恢复!",
         icon: "warning",
-        buttons: ["算了", "前往登录"],
+        buttons: ['取消操作', '确定删除'],
         dangerMode: true
-      }).then(function (choose) {
-        if (choose) {
-          location.href = '/login';
+      }).then(function (willDelete) {
+        if (willDelete) {
+          swal("删除成功!", {
+            icon: "success"
+          });
         }
       });
-      return false;
-    } else {
-      return status;
-    }
+    });
   },
   subscribe: function subscribe() {
     var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
@@ -37335,11 +37356,12 @@ window.app = {
 
 
     app.backToTop();
+    app.favorite();
+    app.reply();
+    app.delete_comment();
   },
   like: function like(id) {
-    var status = this.islogin();
-
-    if (status == false) {
+    if (is_login == false) {
       return false;
     }
 

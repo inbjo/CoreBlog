@@ -144,8 +144,8 @@
                         </div>
                     @endforelse
                     <div class="post-comment-bar  mt-4" id="reply" name="reply">
-                        <h4 class="mb-0"><span class="badge badge-primary"><i class="fa fa-reply"
-                                                                              aria-hidden="true"></i> 回复</span>
+                        <h4 class="mb-0"><span class="badge badge-primary">
+                            <i class="fa fa-reply" aria-hidden="true"></i> 回复</span>
                         </h4>
                         <div class="clearfix"></div>
                     </div>
@@ -198,10 +198,8 @@
             //at功能支持
             var tribute = new Tribute({
                 values: [
-                        @forEach($names as $name)
-                    {
-                        key: '{{$name}}', value: '{{$name}}'
-                    },
+                    @forEach($names as $name)
+                    {key: '{{$name}}', value: '{{$name}}'},
                     @endforeach
                 ],
             });

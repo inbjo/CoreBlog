@@ -58,7 +58,7 @@ class Comment extends Model
         if (!$this->favorites()->where($attributes)->exists()) {
             return $this->favorites()->create($attributes);
         } else {
-            //todo 取消点赞
+            return $this->favorites()->delete();
         }
     }
 

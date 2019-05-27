@@ -21,8 +21,7 @@ Route::get('/category/{category}', 'CategorysController@show')->name('category.s
 
 Route::resource('post','PostsController');
 Route::resource('comment','CommentsController',['only'=>['store','destroy']])->middleware('auth');
-Route::post('/comment/{comment}/favorites','FavoritesController@store');
-Route::post('/post/{post}/favorites','FavoritesController@store');
+Route::post('/favorites','FavoritesController@store');
 Route::get('/search/{keyword}', 'PagesController@search')->name('post.search'); //搜索页面
 
 Route::get('upload', 'FilesController@index')->name('upload.index');
