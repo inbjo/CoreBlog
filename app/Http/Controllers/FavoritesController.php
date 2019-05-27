@@ -17,10 +17,9 @@ class FavoritesController extends Controller
     {
         if ($request->type == 'comment') {
             $comment = Comment::find($request->id);
-            $rs = $comment->favorite();
-            return $rs;
-//            return ['code' => 0, 'msg' => '点赞成功'];
-        } else {
+            return $comment->favorite();
+        }
+        if ($request->type == 'post') {
             $post = Post::find($request->id);
 //            $post->favorite();
             return ['code' => 0, 'msg' => '点赞成功'];

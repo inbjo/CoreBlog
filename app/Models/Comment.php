@@ -56,9 +56,10 @@ class Comment extends Model
         $attributes = ['user_id' => auth()->id()];
 
         if (!$this->favorites()->where($attributes)->exists()) {
-            return $this->favorites()->create($attributes);
+            $this->favorites()->create($attributes);
+            return ['code' => 0, 'msg' => '点赞成功'];
         } else {
-            return $this->favorites()->delete();
+            return ['code' => 1, 'msg' => '您已经点赞过了哦'];
         }
     }
 

@@ -60,11 +60,17 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Comment $comment
+     * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('delete', $comment);
+        if ($comment->delete()) {
+            return ['code' => 0, 'msg' => '删除成功'];
+        } else {
+            return ['code' => 1, 'msg' => '删除失败'];
+        }
     }
 }

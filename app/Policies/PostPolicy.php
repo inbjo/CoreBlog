@@ -27,15 +27,12 @@ class PostPolicy
 
     public function show(User $currentUser, Post $post)
     {
-        //状态为1为已发表对所有人显示
-        if ($post->status == 1) {
-            return true;
+        if ($post->status != 1) {
+            if ($currentUser->id == 1 || $currentUser->id === $post->user_id) {
+                return true;
+            }
+            return false;
         }
-        //草稿状态作者可查看
-        if ($currentUser->id === $post->user_id) {
-            return true;
-        }
-        //非作者禁止查看
-        return false;
+        return true;
     }
 }

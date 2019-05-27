@@ -37257,6 +37257,11 @@ window.app = {
         return false;
       }
 
+      if ($(this).hasClass('favorited')) {
+        swal("您已经点赞过了哦");
+        return false;
+      }
+
       axios({
         method: 'post',
         url: '/favorites',
@@ -37265,7 +37270,13 @@ window.app = {
           id: id
         }
       }).then(function (response) {
-        console.log(response.data.msg);
+        if (response.data.code == 0) {
+          swal("点赞成功", "", "success").then(function () {
+            document.location.reload();
+          });
+        } else {
+          swal(response.data.msg);
+        }
       });
     });
   },
@@ -37284,6 +37295,8 @@ window.app = {
   },
   delete_comment: function delete_comment() {
     $(".delete").click(function () {
+      var id = $(this).data('id');
+
       if (is_login == false) {
         return false;
       }
@@ -37296,8 +37309,17 @@ window.app = {
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          swal("删除成功!", {
-            icon: "success"
+          axios({
+            method: 'delete',
+            url: '/comment/' + id
+          }).then(function (response) {
+            if (response.data.code == 0) {
+              swal(response.data.msg, "", "success").then(function () {
+                document.location.reload();
+              });
+            } else {
+              swal(response.data.msg);
+            }
           });
         }
       });
