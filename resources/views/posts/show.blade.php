@@ -123,7 +123,7 @@
                                 </h5>
                                 <p>{!! $comment->content !!}</p>
                                 <span>
-                                    <div class="float-left favorite {{ $comment->isFavorited() ? 'favorited' : '' }}" data-id="{{$comment->id}}" title="点赞或取消点赞">
+                                    <div class="float-left favorite {{ $comment->isFavorited() ? 'favorited' : '' }}" data-id="{{$comment->id}}" title="点赞这条评论">
                                         <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞({{ $comment->favorites()->count() }})
                                     </div>
                                     <div class="float-left reply" data-name="{{$comment->user->name}}"

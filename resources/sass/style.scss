@@ -288,6 +288,21 @@ figcaption {
   }
 }
 
+.notification-badge {
+  .badge {
+    font-size: 12px;
+    margin-top: 14px;
+  }
+
+  .badge-secondary {
+    background-color: #EBE8E8;
+  }
+
+  .badge-hint {
+    background-color: #d15b47 !important;
+  }
+}
+
 /*====================================================
 	main post area
 ====================================================*/
@@ -589,12 +604,13 @@ figcaption {
 
       .favorite {
         margin-right: 15px;
+
         &:hover {
           color: $primary;
         }
       }
 
-      .favorited{
+      .favorited {
         color: $primary;
       }
 
@@ -692,6 +708,14 @@ figcaption {
 
   a {
     margin-bottom: 7px;
+  }
+}
+/*====================================================
+	notification page
+====================================================*/
+.notification-list{
+  li{
+    margin-bottom: 10px;
   }
 }
 
@@ -1134,7 +1158,7 @@ footer {
 }
 
 @media (min-width: 992px) and (min-height: 1100px) {
-  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page, .user-edit-page, .user-avatar-page, .user-password-page {
+  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page, .user-edit-page, .user-avatar-page, .user-password-page, .notifications-index-page {
     footer {
       position: absolute;
       bottom: 0;

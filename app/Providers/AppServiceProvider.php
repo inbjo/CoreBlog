@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         //observer register
         Post::observe(PostObserver::class);
+        Comment::observe(CommentObserver::class);
 
         //share common view data
         View::share('cats', Category::all()); //取所有分类

@@ -19517,6 +19517,19 @@ figcaption {
   color: #00ada7;
 }
 
+.notification-badge .badge {
+  font-size: 12px;
+  margin-top: 14px;
+}
+
+.notification-badge .badge-secondary {
+  background-color: #EBE8E8;
+}
+
+.notification-badge .badge-hint {
+  background-color: #d15b47 !important;
+}
+
 /*====================================================
 	main post area
 ====================================================*/
@@ -19912,6 +19925,14 @@ figcaption {
 
 .prev-next-wrap a {
   margin-bottom: 7px;
+}
+
+/*====================================================
+	notification page
+====================================================*/
+
+.notification-list li {
+  margin-bottom: 10px;
 }
 
 /*====================================================
@@ -20341,7 +20362,8 @@ footer #back-to-top:hover {
   .verification-notice-page footer,
   .user-edit-page footer,
   .user-avatar-page footer,
-  .user-password-page footer {
+  .user-password-page footer,
+  .notifications-index-page footer {
     position: absolute;
     bottom: 0;
   }

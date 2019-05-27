@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
+            $table->integer('notification_count')->unsigned()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

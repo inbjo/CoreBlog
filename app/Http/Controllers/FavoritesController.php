@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\YouWereFavorited;
 use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
@@ -17,6 +18,7 @@ class FavoritesController extends Controller
     {
         if ($request->type == 'comment') {
             $comment = Comment::find($request->id);
+            $comment->user->notify(new YouWereFavorited($comment));
             return $comment->favorite();
         }
         if ($request->type == 'post') {
