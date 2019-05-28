@@ -10,7 +10,7 @@ $factory->define(App\Models\Category::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'slug' => $faker->slug,
-        'count' => 0,
+        'post_count' => 0,
         'sort' => 0,
         'description' => $faker->sentence(),
         'created_at' => $created_at,

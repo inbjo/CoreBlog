@@ -16,4 +16,11 @@ class CommentObserver
         // 通知文章作者有新的评论
         $comment->post->user->notify(new HaveNewComments($comment));
     }
+
+    public function deleted(Comment $comment)
+    {
+        //文章评论数更新
+        $comment->post->comment_count = $comment->post->comments->count();
+        $comment->post->save();
+    }
 }

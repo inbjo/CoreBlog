@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [
-        'name', 'count', 'sort','description',
+        'name', 'slug', 'sort', 'description',
     ];
 
     public function getRouteKeyName()

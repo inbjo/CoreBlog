@@ -14,7 +14,8 @@ class CategorysController extends Controller
      */
     public function index()
     {
-        //
+        $categorys = Category::paginate(12);
+        return view('categorys.index', compact('categorys'));
     }
 
     /**
@@ -30,7 +31,7 @@ class CategorysController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,13 +48,13 @@ class CategorysController extends Controller
     public function show(Category $category)
     {
         $posts = $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
-        return view('pages.category', compact('posts', 'category'));
+        return view('categorys.show', compact('posts', 'category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -64,8 +65,8 @@ class CategorysController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -76,7 +77,7 @@ class CategorysController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

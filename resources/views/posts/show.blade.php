@@ -106,7 +106,9 @@
               <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}"
                    alt="{{$comment->user->name}}">
               <div class="media-body">
-                <h5 class="mt-0">{{$comment->user->name}}
+                <h5 class="mt-0">
+                  <a class="user-link" href="{{ route('user.show',$comment->user->id) }}"
+                     target="_blank" data-toggle="tooltip" data-placement="bottom" title="查看{{$comment->user->name}}发表的文章">{{$comment->user->name}}</a>
                   <span class="ml-2 time" title="{{ $comment->created_at->toDateTimeString() }}">
                        {{ $comment->created_at->diffForHumans() }}
                   </span>
@@ -115,19 +117,16 @@
                 <p>{!! $comment->content !!}</p>
                 <span>
                     <div class="float-left favorite" data-id="{{$comment->id}}" data-toggle="tooltip"
-                         data-placement="bottom"
-                         title="点赞这条评论">
+                         data-placement="bottom" title="点赞这条评论">
                          <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(<span class="num">{{ $comment->favorites()->count() }}</span>)
                     </div>
                     <div class="float-left reply" data-name="{{$comment->user->name}}" data-toggle="tooltip"
-                         data-placement="bottom"
-                         title="回复{{$comment->user->name}}">
+                         data-placement="bottom" title="回复{{$comment->user->name}}">
                          <i class="fa fa-reply" aria-hidden="true"></i> 回复
                     </div>
                     @can('delete',$comment)
                     <div class="float-right delete" data-id="{{$comment->id}}" data-toggle="tooltip"
-                         data-placement="bottom"
-                         title="删除该评论">
+                         data-placement="bottom" title="删除该评论">
                          <i class="fa fa-trash-alt" aria-hidden="true"></i> 删除
                     </div>
                   @endcan
