@@ -87,6 +87,7 @@ class PostsController extends Controller
     public function show(Post $post)
     {
 //        $this->authorize('show', $post);
+        $post->updateViewCount();
         $comments = $post->comments()->with(['user'])->get();
         $names = $comments->pluck('user.name')->unique();
         return view('posts.show', compact('comments', 'post', 'names'));

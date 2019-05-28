@@ -19666,7 +19666,10 @@ figcaption {
 .post .post-footer {
   margin-top: 30px;
   border-top: 1px solid #ebebeb;
-  padding: 21px 0 0;
+  padding: 20px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .post .post-footer .tag-list {
@@ -19684,35 +19687,17 @@ figcaption {
   color: #00ada7;
 }
 
-.post .post-footer .share .share-icons {
-  padding: 0;
-  margin: 0;
+.post .post-footer .statistical {
+  display: inline-flex;
 }
 
-.post .post-footer .share .share-icons li {
-  list-style: none;
-  display: inline-block;
+.post .post-footer .statistical div {
+  cursor: pointer;
 }
 
-.post .post-footer .share .share-icons li a {
-  color: #959595;
-  text-align: center;
-}
-
-.post .post-footer .share .share-icons li a i {
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
-  border: 1px solid #ebebeb;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  font-size: 12px;
-}
-
-.post .post-footer .share .share-icons li a:hover i {
-  color: #ffffff;
-  background: #00ada7;
-  border: 1px solid #00ada7;
+.post .post-footer .statistical div + div {
+  color: #777;
+  margin-left: 10px;
 }
 
 /*====================================================

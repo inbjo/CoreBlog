@@ -14,17 +14,9 @@ class FavoritesController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request)
+    public function comment(Comment $comment)
     {
-        if ($request->type == 'comment') {
-            $comment = Comment::find($request->id);
-            $comment->user->notify(new YouWereFavorited($comment));
-            return $comment->favorite();
-        }
-        if ($request->type == 'post') {
-            $post = Post::find($request->id);
-//            $post->favorite();
-            return ['code' => 0, 'msg' => '点赞成功'];
-        }
+        $comment->user->notify(new YouWereFavorited($comment));
+        return $comment->favorite();
     }
 }

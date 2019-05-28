@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
 //    use Searchable;
-    use HashIdHelper,SoftDeletes;
+    use HashIdHelper, SoftDeletes;
 
     protected $fillable = [
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
@@ -61,26 +61,6 @@ class Post extends Model
     public function scopePublished($query)
     {
         return $query->where('status', 1);
-    }
-
-    /**
-     * 索引的字段
-     *
-     * @return array
-     */
-    public function toSearchableArray()
-    {
-        return $this->only('id', 'title', 'keyword', 'description', 'content');
-    }
-
-    /**
-     * 文章URL做SEO处理
-     * @param array $params
-     * @return string
-     */
-    public function link($params = [])
-    {
-        return route('post.show', array_merge([$this->id, $this->slug], $params));
     }
 
     /**
@@ -120,15 +100,6 @@ class Post extends Model
     }
 
     /**
-     * 文章与点赞一对多关系
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function post_likes()
-    {
-        return $this->belongsToMany(User::Class, 'post_likes', 'post_id', 'user_id');
-    }
-
-    /**
      * 获取点赞数最多的文章
      * @param int $count
      * @return Post[]|\Illuminate\Database\Eloquent\Collection
@@ -136,5 +107,13 @@ class Post extends Model
     public static function getTopFavoritePosts($count = 3)
     {
         return self::orderBy('favorite_count', 'desc')->take($count)->get();
+    }
+
+    /**
+     * 更新文章查看次数
+     */
+    public function updateViewCount()
+    {
+        $this->increment('view_count');
     }
 }

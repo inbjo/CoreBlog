@@ -37249,12 +37249,13 @@ window.app = {
       return false;
     });
   },
-  favorite: function favorite() {
+  favoriteComment: function favoriteComment() {
     $(".favorite").click(function () {
+      var that = $(this);
       var id = $(this).data('id');
 
       if (is_login == false) {
-        return false;
+        return app.loginTips();
       }
 
       if ($(this).hasClass('favorited')) {
@@ -37264,16 +37265,11 @@ window.app = {
 
       axios({
         method: 'post',
-        url: '/favorites',
-        data: {
-          type: 'comment',
-          id: id
-        }
+        url: '/favorites/comment/' + id
       }).then(function (response) {
         if (response.data.code == 0) {
-          swal("点赞成功", "", "success").then(function () {
-            document.location.reload();
-          });
+          $(that).find(".num").html(response.data.count);
+          swal("点赞成功", "", "success");
         } else {
           swal(response.data.msg);
         }
@@ -37283,7 +37279,7 @@ window.app = {
   reply: function reply() {
     $(".reply").click(function () {
       if (is_login == false) {
-        return false;
+        return app.loginTips();
       }
 
       var content = $("#reply_content").val() + '@' + $(this).data('name') + ' ';
@@ -37293,12 +37289,12 @@ window.app = {
       }, 500);
     });
   },
-  delete_comment: function delete_comment() {
+  deleteComment: function deleteComment() {
     $(".delete").click(function () {
       var id = $(this).data('id');
 
       if (is_login == false) {
-        return false;
+        return app.loginTips();
       }
 
       swal({
@@ -37324,6 +37320,20 @@ window.app = {
         }
       });
     });
+  },
+  loginTips: function loginTips() {
+    swal({
+      title: "",
+      text: "您需要登录以后才能操作！",
+      icon: "warning",
+      buttons: ["算了", "前往登录"],
+      dangerMode: true
+    }).then(function (choose) {
+      if (choose) {
+        location.href = '/login';
+      }
+    });
+    return false;
   },
   subscribe: function subscribe() {
     var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
@@ -37372,44 +37382,17 @@ window.app = {
           'X-CSRF-TOKEN': token.content
         }
       });
-    } //防止复制
+    } //启用bootstarp冒泡插件
+
+
+    $('[data-toggle="tooltip"]').tooltip(); //防止复制
     // document.oncontextmenu = new Function('event.returnValue=false;');
     // document.onselectstart = new Function('event.returnValue=false;');
 
-
     app.backToTop();
-    app.favorite();
+    app.favoriteComment();
     app.reply();
-    app.delete_comment();
-  },
-  like: function like(id) {
-    if (is_login == false) {
-      return false;
-    }
-
-    var user_id = status;
-
-    if (typeof $("#like-" + id).data('is_like') == "undefined" || $("#like-" + id).data('is_like') == false) {
-      $("#like-" + id).css('color', '#00ada7');
-      var like_count = parseInt($("#like-" + id).data('like')) + 1;
-      $("#like-" + id).html('<i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(' + like_count + ')');
-      $("#like-" + id).data('is_like', true);
-      $("#like-" + id).data('like', like_count);
-      $("#comment_tips").html('+1').css('color', 'green').removeClass('animated').removeClass('fadeOutUp');
-      var offset = ($("#like-" + id)[0].offsetWidth - $("#comment_tips").width()) / 2;
-      $("#comment_tips").css('top', $("#like-" + id)[0].offsetTop - 20).css('left', $("#like-" + id)[0].offsetLeft + offset);
-      $("#comment_tips").show().addClass('animated').addClass('fadeOutUp');
-    } else {
-      $("#like-" + id).css('color', '#959595');
-      var like_count = parseInt($("#like-" + id).data('like')) - 1;
-      $("#like-" + id).html('<i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(' + like_count + ')');
-      $("#like-" + id).data('is_like', false);
-      $("#like-" + id).data('like', like_count);
-      $("#comment_tips").html('-1').css('color', 'red').removeClass('animated').removeClass('fadeOutUp');
-      var offset = ($("#like-" + id)[0].offsetWidth - $("#comment_tips").width()) / 2;
-      $("#comment_tips").css('top', $("#like-" + id)[0].offsetTop - 20).css('left', $("#like-" + id)[0].offsetLeft + offset);
-      $("#comment_tips").show().addClass('animated').addClass('fadeOutUp');
-    }
+    app.deleteComment();
   }
 };
 /*===========================
