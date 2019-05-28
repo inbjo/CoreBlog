@@ -46,10 +46,16 @@
                                 {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="userinfo">
-                                <a href="{{ route('user.edit', Auth::id()) }}" class="dropdown-item">
+                              @if(auth()->id() == 1)
+                              <a href="{{ route('setting.index') }}" class="dropdown-item">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                系统管理
+                              </a>
+                              @endif
+                              <a href="{{ route('user.edit', Auth::id()) }}" class="dropdown-item">
                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                      编辑资料
-                                </a>
+                              </a>
                               <a href="{{ route('user.avatar', Auth::id()) }}" class="dropdown-item">
                                 <i class="fa fa-picture-o" aria-hidden="true"></i>
                                 更换头像
