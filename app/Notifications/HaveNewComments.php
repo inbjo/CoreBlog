@@ -40,7 +40,7 @@ class HaveNewComments extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'user_id' => $this->comment->user->id,

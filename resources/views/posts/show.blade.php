@@ -29,13 +29,17 @@
             <div class="post-head">
               <h3 class="post-title">{{$post->title}}</h3>
               <div class="post-meta">
-                                <span class="author">By
-                                    <a href="{{route('user.show',$post->user->id)}}"
-                                       title="查看该作者发布的所有文章">{{$post->user->name}}</a>
-                                </span> &bull;
-                <span class="date" title="{{ $post->created_at->toDateTimeString() }}">
-                                    {{$post->created_at->diffForHumans() }}
-                                </span>
+                  <span class="author">By
+                     <a href="{{route('user.show',$post->user->id)}}" data-toggle="tooltip" data-placement="bottom"
+                        title="查看{{$post->user->name}}发布的所有文章">{{$post->user->name}}
+                     </a>
+                  </span> &bull;
+                        <span class="date" data-toggle="tooltip" data-placement="bottom" title="{{ $post->created_at->toDateTimeString() }}">
+                    {{$post->created_at->diffForHumans() }}
+                  </span>&bull;
+                        <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
+                      <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
+                  </span>
               </div>
             </div>
             @if($post->status !=1)
@@ -72,15 +76,15 @@
               <div class="statistical">
                 <div data-toggle="tooltip" data-placement="top" title="这篇文章被查看了{{$post->view_count}}次">
                   <i class="fa fa-eye" aria-hidden="true"></i>
-                  <span class="badge badge-light">{{$post->view_count}}</span>
+                  <span class="badge">{{$post->view_count}}</span>
                 </div>
                 <div data-toggle="tooltip" data-placement="top" title="{{$post->comment_count}}人评论了这篇文章">
                   <i class="fa fa-comments" aria-hidden="true"></i>
-                  <span class="badge badge-light">{{$post->comment_count}}</span>
+                  <span class="badge">{{$post->comment_count}}</span>
                 </div>
                 <div data-toggle="tooltip" data-placement="top" title="{{$post->favorite_count}}人赞了这篇文章">
                   <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span class="badge badge-light">{{$post->favorite_count}}</span>
+                  <span class="badge">{{$post->favorite_count}}</span>
                 </div>
               </div>
             </div>
@@ -88,7 +92,7 @@
           <!-- end post -->
 
           <!--start comments -->
-          <div class="post-comment-bar" id="comments" name="comments">
+          <div class="post-comment-bar" id="comments">
             <h4 class="mb-0">
                 <span class="badge badge-primary">
                    <i class="fa fa-comments" aria-hidden="true"></i> 评论

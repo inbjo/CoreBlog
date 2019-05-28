@@ -56,7 +56,7 @@ class YouWereMentioned extends Notification implements ShouldQueue
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'user_id' => $this->comment->user->id,

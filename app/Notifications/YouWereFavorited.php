@@ -40,10 +40,15 @@ class YouWereFavorited extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'message' => $this->comment->user->name . '点赞了您在<b>' . $this->comment->post->title . '</b>中的评论',
+            'user_id' => $this->comment->user->id,
+            'user_name' => $this->comment->user->name,
+            'user_avatar' => $this->comment->user->avatar,
+            'post_id' => $this->comment->post->id,
+            'post_title' => $this->comment->post->title,
+            'comment_content' => $this->comment->content,
             'link' => route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id
         ];
     }
