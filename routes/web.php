@@ -31,6 +31,7 @@ Route::delete('upload', 'FilesController@destroy')->name('upload.destroy');
 
 Auth::routes(['verify' => true]);
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+Route::post('/at', 'UsersController@index');
 Route::get('/user/{user}', 'UsersController@show')->name('user.show');
 Route::get('/user/{user}/edit', 'UsersController@edit')->name('user.edit');
 Route::put('/user/{user}/edit', 'UsersController@update')->name('user.update');

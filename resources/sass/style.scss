@@ -1244,3 +1244,11 @@ div.fr-wrapper > div:nth-child(1) > a {
     }
   }
 }
+
+.swal-button--confirm{
+  background-color: $primary !important;
+
+  &:hover {
+    background-color: #00a5ad !important;
+  }
+}

@@ -6,24 +6,13 @@
       <ul class="social">
         <!-- start social links -->
         <!-- replace the # with your own profile link address -->
-        <li><a href="index.html#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-google-plus"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-skype"></i></a></li>
-        <li><a href="index.html#"><i class="fa  fa-pinterest"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-youtube"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-vimeo-square"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-dribbble"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-flickr"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-tumblr"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-github"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-stack-overflow"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-stack-exchange"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-xing"></i></a></li>
-        <li><a href="index.html#"><i class="fa fa-envelope"></i></a></li>
-        <li><a href="rss/index.html"><i class="fa fa-rss"></i></a></li>
+        <li><a href="#"><i class="fa fa-qq"></i></a></li>
+        <li><a href="#"><i class="fa fa-weixin"></i></a></li>
+        <li><a href="#"><i class="fa fa-weibo"></i></a></li>
+        <li><a href="#"><i class="fa fa-github"></i></a></li>
+        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+        <li><a href="#"><i class="fa fa-phone"></i></a></li>
+        <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i></a></li>
         <!-- end social links -->
       </ul>
     </div>
@@ -39,7 +28,7 @@
           <input id="subscribe_email" class="form-control required email" type="email" name="email" required placeholder="请输入您的电子邮件地址..."/>
         </div>
         <div class="input-group">
-          <button class="btn btn-default btn-block" type="button" onclick="themeApp.subscribe()">
+          <button class="btn btn-default btn-block" type="button" onclick="app.subscribe()">
             <span>订阅</span>
           </button>
         </div>

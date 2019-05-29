@@ -145,12 +145,13 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Post $post
+     * @param $id
      * @return array
-     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::findOrFail($id);
         $this->authorize('update', $post);
         $post->delete();
         return ['code' => 0, 'msg' => '删除成功'];

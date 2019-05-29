@@ -9,10 +9,14 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import "~@fortawesome/fontawesome-free/scss/v4-shims.scss";
 
-//@import 'jquery.atwho.css';
+// plugin style
+@import '~tributejs/scss/tribute';
+@import '../lib/froala/css/froala_style.min.css';
 
 // Theme Style
 @import "style.scss";
+
+
 
 
 

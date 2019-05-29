@@ -6,6 +6,7 @@ use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,22 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    public function index(Request $request)
+    {
+        $post_id = $request->id;
+        $name = $request->q;
+        $users = Comment::commented($post_id)->distinct('user_id')->pluck('user_id')->toArray();
+        $lists = User::whereIn('id', $users)->where('name', 'like', $name . "%")->get();
+        $results = [];
+        foreach ($lists as $list) {
+            $results[] = [
+                'key' => $list->name,
+                'value' => $list->name,
+            ];
+        }
+        return response()->json($results);
     }
 
     /**
@@ -83,6 +100,7 @@ class UsersController extends Controller
      * @param UserRequest $request
      * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UserRequest $request, User $user)
     {
@@ -91,14 +109,4 @@ class UsersController extends Controller
         return redirect()->back()->with('success', '资料更新成功！');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

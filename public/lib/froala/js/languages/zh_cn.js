@@ -263,12 +263,12 @@
       'Clean': '清除',
       'Word Paste Detected': '检测到粘贴自 Word 的内容',
       // Character Counter
-      'Characters': '字数',
+      'Characters': '人物',
       // More Buttons
       'More Text': ' 更多文字',
       'More Paragraph': '更多段落',
-      'More Rich': '更多组件',
-      'More Misc': '更多功能'
+      'More Rich': '更多丰富',
+      'More Misc': '更多杂项'
     },
     direction: 'ltr'
   };

@@ -3,11 +3,6 @@
 @section('keyword', $post->keyword)
 @section('description', $post->description)
 
-@section('styles')
-  <link rel="stylesheet" type="text/css" href="{{ asset('lib/tribute/tribute.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('lib/froala/css/froala_style.min.css') }}">
-@stop
-
 @section('body')
 
   <!-- start navigation -->
@@ -25,7 +20,7 @@
         <!-- end message tips -->
 
           <!-- start post -->
-          <article class="post page">
+          <article id="post-wrap" class="post page" data-id="{{ $post->id }}">
             <div class="post-head">
               <h3 class="post-title">{{$post->title}}</h3>
               <div class="post-meta">
@@ -68,7 +63,7 @@
             </div>
             @can('update', $post)
               <div class="post-operate clearfix">
-                <button id="delete" class="btn btn-danger btn-sm float-right">删除</button>
+                <button id="delete" data-id="{{ $post->id }}" class="btn btn-danger btn-sm float-right">删除</button>
                 <a href="{{ route('post.edit',$post->hash_id) }}"
                    class="btn btn-primary btn-sm float-right mr-2">编辑</a>
               </div>
@@ -248,87 +243,4 @@
   </div>
   <!-- Modal -->
 
-@endsection
-
-@section('scripts')
-  <script type="text/javascript" src="{{ asset('lib/tribute/tribute.min.js') }}"></script>
-  <script>
-    $(function () {
-      //at功能支持
-      var tribute = new Tribute({
-        values: [
-            @forEach($names as $name)
-          {
-            key: '{{$name}}', value: '{{$name}}'
-          },
-          @endforeach
-        ],
-      });
-      tribute.attach(document.getElementById('reply_content'));
-
-      //删除文章
-      $("#delete").click(function () {
-        swal({
-          title: "确定要删除吗?",
-          text: "一旦删除，文章无法恢复!",
-          icon: "warning",
-          buttons: ["取消操作", "确定删除"],
-          dangerMode: true,
-        })
-          .then((willDelete) => {
-            if (willDelete) {
-              axios({
-                method: 'delete',
-                url: '{{ route('post.destroy', $post->hash_id) }}'
-              }).then(function (response) {
-                swal(response.data.msg, {
-                  icon: "success",
-                }).then(function () {
-                  location = '{{ route('index') }}';
-                });
-              });
-            }
-          });
-      });
-
-      $("#rewardAuthor").click(function () {
-        $('#payModal').modal('toggle');
-      });
-
-      $("#payModal .item").click(function () {
-        $("#payModal .item").removeClass('active');
-        $(this).addClass('active');
-      });
-
-      $("#payModal #money").focus(function () {
-        $("#payModal .item").removeClass('active');
-      });
-
-      $("#likePost").click(function () {
-        var that = $(this);
-        var id = $(this).data('id');
-        if (is_login == false) {
-          return app.loginTips();
-        }
-        if ($(this).hasClass('active')) {
-          swal("您已经点赞过了哦");
-          return false;
-        }
-        axios({
-          method: 'post',
-          url: '/favorites/post/' + id,
-        }).then(function (response) {
-          if (response.data.code == 0) {
-            $(that).addClass('active');
-            $("#post-favorite-count").html(response.data.count);
-            $("#post-favorite-count").parent()[0].dataset.originalTitle=response.data.count+'人赞了这篇文章';
-            swal("点赞成功", "", "success");
-          } else {
-            swal(response.data.msg);
-          }
-        });
-      });
-
-    });
-  </script>
 @endsection

@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 import swal from 'sweetalert';
+import Tribute from "tributejs";
+window.Tribute = Tribute;
 require('./main');
 
 
