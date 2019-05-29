@@ -20401,7 +20401,14 @@ footer #back-to-top:hover {
   .user-edit-page footer,
   .user-avatar-page footer,
   .user-password-page footer,
-  .notifications-index-page footer {
+  .notifications-index-page footer,
+  .setting-index-page footer,
+  .category-index-page footer,
+  .category-create-page footer,
+  .category-edit-page footer,
+  .link-index-page footer,
+  .link-create-page footer,
+  .link-edit-page footer {
     position: absolute;
     bottom: 0;
   }

@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('user_id');
             $table->text('content');
+            $table->unsignedInteger('favorite_count')->default(0);
             $table->string('agent')->nullable();
             $table->string('ip')->nullable();
             $table->timestamps();

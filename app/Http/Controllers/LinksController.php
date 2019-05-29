@@ -78,7 +78,7 @@ class LinksController extends Controller
     {
         $this->authorize('update', Link::class);
         $link->update($request->all());
-        return redirect()->route('links.index')->with('success', '修改友链成功！');
+        return redirect()->route('link.index')->with('success', '修改友链成功！');
     }
 
     /**

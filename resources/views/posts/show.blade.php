@@ -67,7 +67,7 @@
               </button>
             </div>
             @can('update', $post)
-              <div class="post-action clearfix">
+              <div class="post-operate clearfix">
                 <button id="delete" class="btn btn-danger btn-sm float-right">删除</button>
                 <a href="{{ route('post.edit',$post->hash_id) }}"
                    class="btn btn-primary btn-sm float-right mr-2">编辑</a>
@@ -131,7 +131,7 @@
                     <div class="float-left favorite" data-id="{{$comment->id}}" data-toggle="tooltip"
                          data-placement="bottom" title="点赞这条评论">
                          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                      赞(<span class="num">{{ $comment->favorites()->count() }}</span>)
+                      赞(<span class="num">{{ $comment->favorite_count }}</span>)
                     </div>
                     <div class="float-left reply" data-name="{{$comment->user->name}}" data-toggle="tooltip"
                          data-placement="bottom" title="回复{{$comment->user->name}}">
@@ -321,6 +321,7 @@
           if (response.data.code == 0) {
             $(that).addClass('active');
             $("#post-favorite-count").html(response.data.count);
+            $("#post-favorite-count").parent()[0].dataset.originalTitle=response.data.count+'人赞了这篇文章';
             swal("点赞成功", "", "success");
           } else {
             swal(response.data.msg);

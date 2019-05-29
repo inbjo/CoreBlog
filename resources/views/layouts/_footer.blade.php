@@ -11,7 +11,8 @@
                         <div class="content recent-post">
                             @foreach($top_posts as $post)
                                 <div class="recent-single-post">
-                                    <a href="{{route('post.show',$post->hash_id)}}" class="post-title">{{$post->title}}</a>
+                                    <a href="{{route('post.show',$post->hash_id)}}"
+                                       class="post-title">{{$post->title}}</a>
                                     <div class="date">{{$post->created_at->toDateTimeString()}}</div>
                                 </div>
                             @endforeach
@@ -43,10 +44,9 @@
                     <div class="widget">
                         <h4 class="title">友情链接</h4>
                         <div class="content friend-links">
-                            <a href="#" title="CoreBBS" target="_blank">CoreBBS</a>
-                            <a href="#" title="CoreShop" target="_blank">CoreShop</a>
-                            <a href="#" title="MicroBlog" target="_blank">MicroBlog</a>
-                            <a href="#" title="Mix" target="_blank">Mix</a>
+                            @foreach($links as $link)
+                                <a href="{{ $link->url }}" target="_blank">{{ $link->name }}</a>
+                            @endforeach
                         </div>
                     </div>
                     <!-- end widget -->

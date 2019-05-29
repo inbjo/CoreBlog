@@ -1198,7 +1198,9 @@ footer {
 }
 
 @media (min-width: 992px) and (min-height: 1100px) {
-  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page, .user-edit-page, .user-avatar-page, .user-password-page, .notifications-index-page {
+  .login-page, .register-page, .reset-page, .password-request-page, .verification-notice-page,
+  .user-edit-page, .user-avatar-page, .user-password-page, .notifications-index-page, .setting-index-page,
+  .category-index-page, .category-create-page, .category-edit-page, .link-index-page, .link-create-page, .link-edit-page {
     footer {
       position: absolute;
       bottom: 0;

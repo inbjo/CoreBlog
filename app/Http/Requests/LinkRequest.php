@@ -13,7 +13,7 @@ class LinkRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class LinkRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'       => 'required|max:32',
-            'url'       => 'required|url',
+            'name' => 'required|max:32',
+            'url' => 'required|url',
             'sort' => 'required|numeric',
         ];
     }

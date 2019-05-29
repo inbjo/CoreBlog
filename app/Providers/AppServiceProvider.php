@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Link;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Observers\CommentObserver;
@@ -43,5 +44,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('cats', Category::all()); //取所有分类
         View::share('top_tags', Tag::getTopHotTags(20)); //取20个最热门标签
         View::share('top_posts', Post::getTopFavoritePosts(3)); //取3篇点赞数最多的文章
+        View::share('links', Link::all()); //取所有友链
     }
 }
