@@ -36,37 +36,34 @@
               <!-- start message tips -->
             @include('layouts._msg')
             <!-- end message tips -->
-              <button class="btn btn-default btn-sm mb-2">添加友链</button>
-              <table class="table">
+
+              <a href="{{ route('link.create') }}" class="btn btn-default btn-sm mb-2">添加友链</a>
+              <table class="table table-bordered table-hover table-sm">
                 <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Username</th>
+                  <th scope="col">友链名称</th>
+                  <th scope="col">友链网址</th>
+                  <th scope="col">排序</th>
+                  <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                @foreach($links as $link)
+                  <tr>
+                    <th scope="row">{{ $link->id }}</th>
+                    <td>{{ $link->name }}</td>
+                    <td>{{ $link->url }}</td>
+                    <td>{{ $link->sort }}</td>
+                    <td>
+                      <a href="{{ route('link.edit',$link->id) }}" class="btn btn-default btn-sm">编辑</a>
+                      <button class="btn btn-danger btn-sm delete" data-id="{{$link->id}}">删除</button>
+                    </td>
+                  </tr>
+                @endforeach
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>
@@ -80,4 +77,37 @@
   @include('layouts._footer')
   <!-- end main-footer -->
 
+@endsection
+
+@section('scripts')
+  <script>
+    $(function () {
+      $(".delete").click(function () {
+        var id = $(this).data('id');
+        swal({
+          title: "确定要删除吗?",
+          text: "一旦删除无法恢复!",
+          icon: "warning",
+          buttons: ["取消操作", "确定删除"],
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              axios({
+                method: 'delete',
+                url: '/link/' + id
+              }).then(function (response) {
+                swal(response.data.msg, {
+                  icon: response.data.code == 0 ? "success" : "error",
+                }).then(function () {
+                  if (response.data.code == 0) {
+                    document.location.reload();
+                  }
+                });
+              });
+            }
+          });
+      });
+    });
+  </script>
 @endsection

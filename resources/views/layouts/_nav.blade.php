@@ -48,21 +48,17 @@
                             <div class="dropdown-menu" aria-labelledby="userinfo">
                               @if(auth()->id() == 1)
                               <a href="{{ route('setting.index') }}" class="dropdown-item">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                系统管理
+                                <i class="fa fa-cog" aria-hidden="true"></i> 系统管理
                               </a>
                               @endif
                               <a href="{{ route('user.edit', Auth::id()) }}" class="dropdown-item">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                     编辑资料
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑资料
                               </a>
                               <a href="{{ route('user.avatar', Auth::id()) }}" class="dropdown-item">
-                                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                                更换头像
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> 更换头像
                               </a>
                               <a href="{{ route('user.password', Auth::id()) }}" class="dropdown-item">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                修改密码
+                                <i class="fa fa-lock" aria-hidden="true"></i> 修改密码
                               </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" id="logout" href="#">

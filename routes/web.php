@@ -37,7 +37,7 @@ Route::put('/user/{user}/edit', 'UsersController@update')->name('user.update');
 Route::match(['get', 'put'], '/user/{user}/avatar', 'UsersController@avatar')->name('user.avatar');
 Route::match(['get', 'put'], '/user/{user}/password', 'UsersController@password')->name('user.password');
 
+Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
-Route::get('link', 'LinksController@index')->name('link.index');
 
 

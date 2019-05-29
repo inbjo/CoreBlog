@@ -36,6 +36,7 @@
               <!-- start message tips -->
             @include('layouts._msg')
             <!-- end message tips -->
+
               <a href="{{ route('category.create') }}" class="btn btn-default btn-sm mb-2">添加分类</a>
               <table class="table table-bordered table-hover table-sm">
                 <thead>
@@ -83,6 +84,7 @@
   <script>
     $(function () {
       $(".delete").click(function () {
+        var id = $(this).data('id');
         swal({
           title: "确定要删除吗?",
           text: "一旦删除无法恢复!",
@@ -94,7 +96,7 @@
             if (willDelete) {
               axios({
                 method: 'delete',
-                url: '{{ route('category.destroy', $category->id) }}'
+                url: '/link/' + id
               }).then(function (response) {
                 swal(response.data.msg, {
                   icon: response.data.code == 0 ? "success" : "error",

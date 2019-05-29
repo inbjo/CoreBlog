@@ -17,7 +17,6 @@ class CreateLinksTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('url');
-            $table->string('logo')->nullable();
             $table->unsignedSmallInteger('sort')->default(0);
             $table->timestamps();
         });
