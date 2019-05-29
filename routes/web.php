@@ -17,8 +17,7 @@ Route::get('rss.xml', 'PagesController@rss')->name('rss');
 
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
 Route::get('/tags', 'TagsController@index')->name('tags'); //标签云
-Route::get('/category/{category}', 'CategorysController@show')->name('category.show'); //分类目录
-Route::get('/category', 'CategorysController@index')->name('category.index');
+Route::resource('category', 'CategorysController');
 
 Route::resource('post','PostsController');
 Route::resource('comment','CommentsController',['only'=>['store','destroy']])->middleware('auth');

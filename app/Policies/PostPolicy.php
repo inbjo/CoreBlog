@@ -25,7 +25,7 @@ class PostPolicy
         return $currentUser->id === $post->user_id;
     }
 
-    public function show(User $currentUser, Post $post)
+    public function show(?User $currentUser, Post $post)
     {
         if ($post->status != 1) {
             if ($currentUser->id == 1 || $currentUser->id === $post->user_id) {

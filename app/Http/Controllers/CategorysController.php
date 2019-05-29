@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategorysController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
+        $this->authorize('update', Category::class);
         $categorys = Category::paginate(12);
         return view('categorys.index', compact('categorys'));
     }
@@ -22,21 +29,28 @@ class CategorysController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
-        //
+        $this->authorize('update', Category::class);
+        return view('categorys.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @param Category $category
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request, Category $category)
     {
-        //
+        $this->authorize('update', Category::class);
+        $category->fill($request->all());
+        $category->save();
+        return redirect()->route('category.index')->with('success', '添加分类成功！');
     }
 
     /**
@@ -56,10 +70,13 @@ class CategorysController extends Controller
      *
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
-        //
+        $this->authorize('update', Category::class);
+        $category = Category::findOrFail($id);
+        return view('categorys.edit', compact('category'));
     }
 
     /**
@@ -68,10 +85,14 @@ class CategorysController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $this->authorize('update', Category::class);
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect()->route('category.index')->with('success', '修改分类成功！');
     }
 
     /**
@@ -79,9 +100,17 @@ class CategorysController extends Controller
      *
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('update', Category::class);
+        $category = Category::findOrFail($id);
+        //判断该分类下是否还有文章
+        if ($category->post_count > 0) {
+            return ['code' => 1, 'msg' => '该分类下还有文章'];
+        }
+        $category->delete();
+        return ['code' => 0, 'msg' => '删除成功'];
     }
 }

@@ -36,7 +36,7 @@
               <!-- start message tips -->
             @include('layouts._msg')
             <!-- end message tips -->
-              <button class="btn btn-default btn-sm mb-2">添加分类</button>
+              <a href="{{ route('category.create') }}" class="btn btn-default btn-sm mb-2">添加分类</a>
               <table class="table table-bordered table-hover table-sm">
                 <thead>
                 <tr>
@@ -49,16 +49,16 @@
                 </thead>
                 <tbody>
                 @foreach($categorys as $category)
-                <tr>
-                  <th scope="row">{{ $category->id }}</th>
-                  <td>{{ $category->name }}</td>
-                  <td>{{ $category->slug }}</td>
-                  <td>{{ $category->sort }}</td>
-                  <td>
-                    <button class="btn btn-default btn-sm">编辑</button>
-                    <button class="btn btn-danger btn-sm">删除</button>
-                  </td>
-                </tr>
+                  <tr>
+                    <th scope="row">{{ $category->id }}</th>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->slug }}</td>
+                    <td>{{ $category->sort }}</td>
+                    <td>
+                      <a href="{{ route('category.edit',$category->id) }}" class="btn btn-default btn-sm">编辑</a>
+                      <button class="btn btn-danger btn-sm delete" data-id="{{$category->id}}">删除</button>
+                    </td>
+                  </tr>
                 @endforeach
                 </tbody>
               </table>
@@ -77,4 +77,36 @@
   @include('layouts._footer')
   <!-- end main-footer -->
 
+@endsection
+
+@section('scripts')
+  <script>
+    $(function () {
+      $(".delete").click(function () {
+        swal({
+          title: "确定要删除吗?",
+          text: "一旦删除无法恢复!",
+          icon: "warning",
+          buttons: ["取消操作", "确定删除"],
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              axios({
+                method: 'delete',
+                url: '{{ route('category.destroy', $category->id) }}'
+              }).then(function (response) {
+                swal(response.data.msg, {
+                  icon: response.data.code == 0 ? "success" : "error",
+                }).then(function () {
+                  if (response.data.code == 0) {
+                    document.location.reload();
+                  }
+                });
+              });
+            }
+          });
+      });
+    });
+  </script>
 @endsection
