@@ -7,20 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class HaveNewComments extends Notification
+class PostWereFavorited extends Notification
 {
     use Queueable;
 
-    protected $comment;
+    protected $post;
 
     /**
      * Create a new notification instance.
      *
-     * @param $comment
+     * @return void
      */
-    public function __construct($comment)
+    public function __construct($post)
     {
-        $this->comment = $comment;
+        $this->post = $post;
     }
 
     /**
@@ -43,13 +43,12 @@ class HaveNewComments extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'user_id' => $this->comment->user->id,
-            'user_name' => $this->comment->user->name,
-            'user_avatar' => $this->comment->user->avatar,
-            'post_id' => $this->comment->post->id,
-            'post_title' => $this->comment->post->title,
-            'comment_content' => $this->comment->content,
-            'link' => route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'user_avatar' => auth()->user()->avatar,
+            'post_id' => $this->post->id,
+            'post_title' => $this->post->title,
+            'link' => route('post.show', $this->post->hash_id)
         ];
     }
 }

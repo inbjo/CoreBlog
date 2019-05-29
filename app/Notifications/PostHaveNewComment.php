@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class YouWereFavorited extends Notification
+class PostHaveNewComment extends Notification
 {
     use Queueable;
 

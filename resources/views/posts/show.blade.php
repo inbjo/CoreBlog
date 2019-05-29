@@ -34,10 +34,11 @@
                         title="查看{{$post->user->name}}发布的所有文章">{{$post->user->name}}
                      </a>
                   </span> &bull;
-                        <span class="date" data-toggle="tooltip" data-placement="bottom" title="{{ $post->created_at->toDateTimeString() }}">
+                <span class="date" data-toggle="tooltip" data-placement="bottom"
+                      title="{{ $post->created_at->toDateTimeString() }}">
                     {{$post->created_at->diffForHumans() }}
                   </span>&bull;
-                        <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
+                <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
                       <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
                   </span>
               </div>
@@ -54,6 +55,16 @@
             @endif
             <div class="post-content fr-view">
               {!! $post->content !!}
+            </div>
+            <div class="post-action">
+              <button id="likePost" data-id="{{ $post->id }}" class="btn btn-circle {{$post->isFavorited() ? 'active' : '' }}"
+                      data-toggle="tooltip" data-placement="bottom" title="点赞这篇文章">
+                <i class="fa fa-thumbs-up"></i>
+              </button>
+              <button id="rewardAuthor" class="btn btn-circle active" data-toggle="tooltip"
+                      data-placement="bottom" title="打赏这篇文章的作者">
+                <i class="fa fa-cny"></i>
+              </button>
             </div>
             @can('update', $post)
               <div class="post-action clearfix">
@@ -84,7 +95,7 @@
                 </div>
                 <div data-toggle="tooltip" data-placement="top" title="{{$post->favorite_count}}人赞了这篇文章">
                   <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span class="badge">{{$post->favorite_count}}</span>
+                  <span class="badge" id="post-favorite-count">{{$post->favorite_count}}</span>
                 </div>
               </div>
             </div>
@@ -108,7 +119,8 @@
               <div class="media-body">
                 <h5 class="mt-0">
                   <a class="user-link" href="{{ route('user.show',$comment->user->id) }}"
-                     target="_blank" data-toggle="tooltip" data-placement="bottom" title="查看{{$comment->user->name}}发表的文章">{{$comment->user->name}}</a>
+                     target="_blank" data-toggle="tooltip" data-placement="bottom"
+                     title="查看{{$comment->user->name}}发表的文章">{{$comment->user->name}}</a>
                   <span class="ml-2 time" title="{{ $comment->created_at->toDateTimeString() }}">
                        {{ $comment->created_at->diffForHumans() }}
                   </span>
@@ -118,7 +130,8 @@
                 <span>
                     <div class="float-left favorite" data-id="{{$comment->id}}" data-toggle="tooltip"
                          data-placement="bottom" title="点赞这条评论">
-                         <i class="fa fa-thumbs-up" aria-hidden="true"></i> 赞(<span class="num">{{ $comment->favorites()->count() }}</span>)
+                         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                      赞(<span class="num">{{ $comment->favorites()->count() }}</span>)
                     </div>
                     <div class="float-left reply" data-name="{{$comment->user->name}}" data-toggle="tooltip"
                          data-placement="bottom" title="回复{{$comment->user->name}}">
@@ -186,6 +199,55 @@
   @include('layouts._footer')
   <!-- end main-footer -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">打赏作者</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-4">
+              <div class="item active" data-money="1"><i class="fa fa-cny"></i> 1</div>
+            </div>
+            <div class="col-4">
+              <div class="item" data-money="5"><i class="fa fa-cny"></i> 5</div>
+            </div>
+            <div class="col-4">
+              <div class="item" data-money="10"><i class="fa fa-cny"></i> 10</div>
+            </div>
+            <div class="col-4">
+              <div class="item" data-money="20"><i class="fa fa-cny"></i> 20</div>
+            </div>
+            <div class="col-4">
+              <div class="item" data-money="50"><i class="fa fa-cny"></i> 50</div>
+            </div>
+            <div class="col-4">
+              <div class="item" data-money="100"><i class="fa fa-cny"></i> 100</div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="money">自定义金额</label>
+                <input type="number" class="form-control" id="money" aria-describedby="tips"
+                       placeholder="请输入你要打赏的金额">
+                <small id="tips" class="form-text text-muted">土豪我们做朋友吧~</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">打赏</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
 @endsection
 
 @section('scripts')
@@ -228,6 +290,44 @@
             }
           });
       });
+
+      $("#rewardAuthor").click(function () {
+        $('#payModal').modal('toggle');
+      });
+
+      $("#payModal .item").click(function () {
+        $("#payModal .item").removeClass('active');
+        $(this).addClass('active');
+      });
+
+      $("#payModal #money").focus(function () {
+        $("#payModal .item").removeClass('active');
+      });
+
+      $("#likePost").click(function () {
+        var that = $(this);
+        var id = $(this).data('id');
+        if (is_login == false) {
+          return app.loginTips();
+        }
+        if ($(this).hasClass('active')) {
+          swal("您已经点赞过了哦");
+          return false;
+        }
+        axios({
+          method: 'post',
+          url: '/favorites/post/' + id,
+        }).then(function (response) {
+          if (response.data.code == 0) {
+            $(that).addClass('active');
+            $("#post-favorite-count").html(response.data.count);
+            swal("点赞成功", "", "success");
+          } else {
+            swal(response.data.msg);
+          }
+        });
+      });
+
     });
   </script>
 @endsection

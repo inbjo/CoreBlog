@@ -19663,6 +19663,40 @@ figcaption {
   margin: 0 0 0 0.75em;
 }
 
+.post .post-action {
+  display: flex;
+  justify-content: center;
+}
+
+.post .post-action button {
+  background: #fff;
+  border: 1px solid #ed5565;
+}
+
+.post .post-action button:hover {
+  background: #ed5565;
+  color: #fff;
+}
+
+.post .post-action button.active {
+  background: #ed5565;
+  color: #fff;
+}
+
+.post .post-action button + button {
+  margin-left: 10px;
+}
+
+.post .post-action .btn-circle {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #ed5565;
+}
+
 .post .post-footer {
   margin-top: 30px;
   border-top: 1px solid #ebebeb;
@@ -19698,6 +19732,20 @@ figcaption {
 .post .post-footer .statistical div + div {
   color: #777;
   margin-left: 10px;
+}
+
+#payModal .modal-body .item {
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  padding: 8px 0;
+  border-radius: 5px;
+}
+
+#payModal .modal-body .item.active {
+  background: #00ada7;
+  color: #fff;
 }
 
 /*====================================================
@@ -19922,6 +19970,7 @@ figcaption {
 
 .notification-list li {
   margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
 
 /*====================================================

@@ -15,11 +15,11 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->comment('分类名称');
-            $table->string('slug')->unique()->comment('SEO URL');
-            $table->unsignedInteger('post_count')->default(0)->comment('分类文章数量');
-            $table->unsignedInteger('sort')->default(0)->comment('排序');
-            $table->string('description')->comment('描述')->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->unsignedInteger('post_count')->default(0);
+            $table->unsignedInteger('sort')->default(0);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

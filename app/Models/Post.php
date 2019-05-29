@@ -99,6 +99,29 @@ class Post extends Model
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorited');
+    }
+
+    public function favorite()
+    {
+        $attributes = ['user_id' => auth()->id()];
+
+        if (!$this->favorites()->where($attributes)->exists()) {
+            $this->favorites()->create($attributes);
+            $count = $this->favorites()->count();
+            return ['code' => 0, 'msg' => '点赞成功', 'count' => $count];
+        } else {
+            return ['code' => 1, 'msg' => '您已经点赞过了哦'];
+        }
+    }
+
+    public function isFavorited()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->exists();
+    }
+
     /**
      * 获取点赞数最多的文章
      * @param int $count

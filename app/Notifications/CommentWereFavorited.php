@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class YouWereMentioned extends Notification implements ShouldQueue
+class CommentWereFavorited extends Notification
 {
     use Queueable;
 
@@ -31,23 +31,7 @@ class YouWereMentioned extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->subject($this->comment->user->name . ' 在评论中提及您')
-            ->line("{$this->comment->user->name}在文章: {$this->comment->post->title}的评论中提及了您")
-            ->action('点击查看', route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id)
-            ->line('内容如下：')
-            ->line($this->comment->content);
+        return ['database'];
     }
 
     /**

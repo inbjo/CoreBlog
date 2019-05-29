@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Comment;
-use App\Notifications\HaveNewComments;
+use App\Notifications\PostHaveNewComment;
 
 class CommentObserver
 {
@@ -14,7 +14,7 @@ class CommentObserver
         $comment->post->save();
 
         // 通知文章作者有新的评论
-        $comment->post->user->notify(new HaveNewComments($comment));
+        $comment->post->user->notify(new PostHaveNewComment($comment));
     }
 
     public function deleted(Comment $comment)

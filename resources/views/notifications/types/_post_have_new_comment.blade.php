@@ -1,4 +1,4 @@
-<li class="media @if ( ! $loop->last) border-bottom @endif">
+<li class="media">
     <div class="media-left">
         <a href="{{ route('user.show', $notification->data['user_id']) }}">
             <img class="media-object img-fluid rounded-circle mr-3 mt-2" alt="{{ $notification->data['user_name'] }}"

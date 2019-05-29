@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\User;
-use App\Notifications\YouWereMentioned;
+use App\Notifications\CommentWereMentioned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +45,7 @@ class CommentsController extends Controller
                 $replace = '<a href="' . route('user.show', $user->id) . '" target="_blank">@' . $name . '</a>';
                 $content = str_replace('@' . $name, $replace, $content);
                 //通知提醒
-                $user->notify(new YouWereMentioned($comment));
+                $user->notify(new CommentWereMentioned($comment));
             }
         }
         if ($has_at) {
