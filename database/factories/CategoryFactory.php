@@ -9,7 +9,7 @@ $factory->define(App\Models\Category::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisMonth($updated_at);
     return [
         'name' => $faker->name,
-        'slug' => $faker->slug,
+        'slug' => $faker->unique()->slug,
         'post_count' => 0,
         'sort' => 0,
         'description' => $faker->sentence(),

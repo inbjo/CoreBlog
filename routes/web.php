@@ -23,6 +23,7 @@ Route::resource('post','PostsController');
 Route::resource('comment','CommentsController',['only'=>['store','destroy']])->middleware('auth');
 Route::post('/favorites/comment/{comment}','FavoritesController@comment');
 Route::post('/favorites/post/{post}','FavoritesController@post');
+Route::post('/subscribe','SubscribesController@store');
 Route::get('/search/{keyword}', 'PagesController@search')->name('post.search'); //搜索页面
 
 Route::get('upload', 'FilesController@index')->name('upload.index');

@@ -16,5 +16,6 @@ mix.js('resources/js/app.js', 'public/js')
     .version()
     .copyDirectory('resources/lib/simditor', 'public/lib/simditor')
     .copyDirectory('resources/lib/froala', 'public/lib/froala')
-    .copyDirectory('resources/lib/dropify', 'public/lib/dropify');
+    .copyDirectory('resources/lib/dropify', 'public/lib/dropify')
+    .copyDirectory('resources/lib/tagator', 'public/lib/tagator');
 

@@ -39220,7 +39220,7 @@ window.app = {
           swal({
             title: "操作成功",
             icon: "success",
-            text: response.data.code,
+            text: response.data.msg,
             button: "好的"
           });
         } else {
@@ -39320,13 +39320,13 @@ window.app = {
 
     $('[data-toggle="tooltip"]').tooltip();
     app.backToTop();
+    app.likePost();
+    app.rewardAuthor();
     app.favoriteComment();
     app.reply();
-    app.rewardAuthor();
-    app.likePost();
     app.forbidCopy();
 
-    if (is_login) {
+    if (is_login && document.getElementsByTagName("body")[0].className == 'post-show-page') {
       app.at();
       app.deleteComment();
       app.deletePost();

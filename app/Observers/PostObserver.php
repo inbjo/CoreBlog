@@ -41,10 +41,13 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
-        //移除所有标签关联
-        $post->tags()->detach();
+        if (!$post->trashed()) {
+            //移除所有标签关联
+            $post->tags()->detach();
 
-        //todo 删除评论
+            //删除评论
+            $post->comments()->delete();
+        }
 
         //更新分类文章数量统计
         $post->category->post_count = $post->category->posts->count();
