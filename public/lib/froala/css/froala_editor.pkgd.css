@@ -1,3 +1,9 @@
+/*!
+ * froala_editor v3.0.0-rc.1 (https://www.froala.com/wysiwyg-editor)
+ * License https://froala.com/wysiwyg-editor/terms/
+ * Copyright 2014-2019 Froala Labs
+ */
+
 .clearfix::after {
   clear: both;
   display: block;
@@ -188,14 +194,17 @@ iframe.fr-iframe {
         margin: auto;
         min-height: 26cm !important;
         padding: 1cm 2cm;
-        overflow: visible; }
+        overflow: visible;
+        z-index: auto; }
         .fr-box.fr-document .fr-wrapper .fr-element hr {
           margin-left: -2cm;
           margin-right: -2cm;
           background: #efefef;
           height: 1cm;
           outline: none;
-          border: none; } }
+          border: none; }
+        .fr-box.fr-document .fr-wrapper .fr-element img {
+          z-index: 1; } }
 .fr-tooltip {
   position: absolute;
   top: 0;
@@ -303,7 +312,7 @@ iframe.fr-iframe {
     float: none;
     margin: 8px 7px;
     width: 24px; }
-  .fr-toolbar .fr-command.fr-btn svg, .fr-popup .fr-command.fr-btn svg, .fr-modal .fr-command.fr-btn svg {
+  .fr-toolbar .fr-command.fr-btn svg.fr-svg, .fr-popup .fr-command.fr-btn svg.fr-svg, .fr-modal .fr-command.fr-btn svg.fr-svg {
     height: 24px; }
   .fr-toolbar .fr-command.fr-btn svg path, .fr-popup .fr-command.fr-btn svg path, .fr-modal .fr-command.fr-btn svg path {
     -webkit-transition: all 0.5s;
@@ -469,6 +478,7 @@ iframe.fr-iframe {
     -ms-transition: border-left 0s, background-color 0.5s;
     -o-transition: border-left 0s, background-color 0.5s; }
 .fr-command.fr-btn + .fr-dropdown-menu {
+  background: #FFF;
   display: inline-block;
   position: absolute;
   right: auto;
@@ -495,7 +505,6 @@ iframe.fr-iframe {
     height: auto;
     max-height: 275px; }
   .fr-command.fr-btn + .fr-dropdown-menu .fr-dropdown-wrapper {
-    background: #FFF;
     padding: 0;
     margin: auto;
     display: inline-block;
@@ -540,7 +549,7 @@ iframe.fr-iframe {
             .fr-command.fr-btn + .fr-dropdown-menu .fr-dropdown-wrapper .fr-dropdown-content ul.fr-dropdown-list li a svg {
               width: 24px;
               height: 24px;
-              margin: 8px 4px; }
+              margin: 3px 4px; }
               .fr-command.fr-btn + .fr-dropdown-menu .fr-dropdown-wrapper .fr-dropdown-content ul.fr-dropdown-list li a svg path {
                 fill: #333333; }
             .fr-command.fr-btn + .fr-dropdown-menu .fr-dropdown-wrapper .fr-dropdown-content ul.fr-dropdown-list li a.fr-active {
@@ -634,13 +643,14 @@ body.prevent-scroll {
       width: 100%;
       min-height: 42px;
       z-index: 3;
+      border-bottom: solid #efefef 1px;
       -webkit-transition: all 0.2s ease 0s;
       -moz-transition: all 0.2s ease 0s;
       -ms-transition: all 0.2s ease 0s;
       -o-transition: all 0.2s ease 0s; }
       .fr-modal .fr-modal-wrapper .fr-modal-head .fr-modal-head-line {
         height: 56px;
-        padding: 0 20px; }
+        padding: 0 10px; }
       .fr-modal .fr-modal-wrapper .fr-modal-head .fr-modal-close {
         margin: 10px;
         position: absolute;
@@ -753,8 +763,13 @@ body.prevent-scroll {
     padding: 20px;
     max-height: 200px;
     overflow: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(36px, 36px)); }
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    @supports not (-ms-high-contrast: none) {
+      .fr-popup .fr-icon-container {
+        grid-template-columns: repeat(auto-fill, minmax(36px, 36px));
+        display: grid; } }
     @media (min-width: 768px) {
       .fr-popup .fr-icon-container {
         min-width: 276px; } }
@@ -762,15 +777,6 @@ body.prevent-scroll {
       .fr-popup .fr-icon-container {
         display: inline-flex;
         -ms-flex-flow: row wrap; } }
-    @media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
-      .fr-popup .fr-icon-container.fr-emoticon-container {
-        width: 328px; } }
-    @media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
-      .fr-popup .fr-icon-container.fr-fa-container {
-        width: 466px; } }
-    @media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
-      .fr-popup .fr-icon-container.fr-sc-container {
-        width: 328px; } }
     @media screen and (-ms-high-contrast: active) and (max-width: 768px), (-ms-high-contrast: none) and (max-width: 768px) {
       .fr-popup .fr-icon-container {
         width: 236px; } }
@@ -1130,6 +1136,9 @@ body.prevent-scroll {
   .fr-toolbar .fr-btn-grp {
     display: inline-block;
     margin: 0 17px 0 12px; }
+    @media (max-width: 768px) {
+      .fr-toolbar .fr-btn-grp {
+        margin: 0 7px 0 6px; } }
   .fr-toolbar .fr-command.fr-btn.fr-open {
     margin-top: 10px;
     margin-bottom: -1px;
@@ -1491,7 +1500,6 @@ textarea.fr-code {
   border: 0; }
 
 .fr-popup .fr-layer.fr-color-hex-layer {
-  width: 100%;
   margin: 0;
   padding: 20px;
   padding-top: 0;
@@ -1629,6 +1637,9 @@ textarea.fr-code {
     width: 24px; }
 .fr-popup .fr-command.fr-btn.fr-tabs-unicode {
   padding: 0 0 0 14px; }
+@media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
+  .fr-popup .fr-icon-container.fr-emoticon-container {
+    width: 368px; } }
 
 .clearfix::after {
   clear: both;
@@ -1782,17 +1793,32 @@ body.fr-fullscreen {
   bottom: 0;
   right: 0;
   z-index: 2147483630 !important;
-  width: auto !important;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box; }
-  .fr-box.fr-fullscreen .fr-toolbar.fr-top {
-    top: 0 !important; }
-  .fr-box.fr-fullscreen .fr-toolbar.fr-bottom {
-    bottom: 0 !important; }
+  width: auto !important; }
+  .fr-box.fr-fullscreen.fr-basic.fr-top .fr-wrapper {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+  .fr-box.fr-fullscreen.fr-basic.fr-bottom .fr-wrapper {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+  .fr-box.fr-fullscreen .fr-toolbar {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+    .fr-box.fr-fullscreen .fr-toolbar.fr-top {
+      top: 0 !important; }
+    .fr-box.fr-fullscreen .fr-toolbar.fr-bottom {
+      bottom: 0 !important; }
   .fr-box.fr-fullscreen .second-toolbar {
     margin-top: 0;
     border-radius: 0;
@@ -1880,8 +1906,7 @@ body.fr-fullscreen {
   -ms-user-select: none;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  z-index: 2; }
+  box-sizing: content-box; }
   .fr-image-resizer.fr-active {
     display: block; }
   .fr-image-resizer .fr-handler {
@@ -2242,6 +2267,9 @@ div.fr-modal-body {
         -moz-transition: background 0.2s ease 0s, color 0.2s ease 0s;
         -ms-transition: background 0.2s ease 0s, color 0.2s ease 0s;
         -o-transition: background 0.2s ease 0s, color 0.2s ease 0s;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
         position: absolute;
         cursor: pointer;
         margin: 0;
@@ -2274,8 +2302,8 @@ div.fr-modal-body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
 .fr-desktop .fr-modal-wrapper div.fr-modal-body div.fr-image-list div.fr-image-container:hover .fr-delete-img, .fr-desktop .fr-modal-wrapper div.fr-modal-body div.fr-image-list div.fr-image-container:hover .fr-insert-img {
   display: inline-block;
-  width: 24px;
-  height: 24px; }
+  width: 40px;
+  height: 40px; }
 .fr-desktop .fr-modal-wrapper div.fr-modal-body div.fr-image-list div.fr-image-container .fr-delete-img:hover {
   background: #bf4644;
   color: #FFF; }
@@ -2406,6 +2434,9 @@ div.fr-modal-body {
 .fr-popup .fr-special-character {
   width: 24px;
   height: 24px; }
+@media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
+  .fr-popup .fr-icon-container.fr-sc-container {
+    width: 368px; } }
 
 .clearfix::after {
   clear: both;
@@ -3053,5 +3084,3 @@ span.fr-img-caption.fr-view {
       float: right;
       margin: 5px 0 5px 5px;
       max-width: calc(100% - 5px); }
-
-/*# sourceMappingURL=froala_editor.pkgd.css.map */

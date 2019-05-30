@@ -1,3 +1,9 @@
+/*!
+ * froala_editor v3.0.0-rc.1 (https://www.froala.com/wysiwyg-editor)
+ * License https://froala.com/wysiwyg-editor/terms/
+ * Copyright 2014-2019 Froala Labs
+ */
+
 .clearfix::after {
   clear: both;
   display: block;
@@ -15,7 +21,6 @@
   border: 0; }
 
 .fr-popup .fr-layer.fr-color-hex-layer {
-  width: 100%;
   margin: 0;
   padding: 20px;
   padding-top: 0;
@@ -91,5 +96,3 @@
   -moz-transform: translate3d(100%, 0, 0);
   -ms-transform: translate3d(100%, 0, 0);
   -o-transform: translate3d(100%, 0, 0); }
-
-/*# sourceMappingURL=colors.css.map */
