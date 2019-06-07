@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('IndexPage'))
+@section('title', config('system.name').' - '.config('system.slogan'))
 @section('body')
 
   <!-- start navigation -->

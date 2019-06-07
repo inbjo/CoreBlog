@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Handlers\FileUploadHandler;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
-use FroalaEditor_File;
-use FroalaEditor_Image;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
