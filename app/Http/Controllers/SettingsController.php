@@ -13,14 +13,40 @@ class SettingsController extends Controller
         return view('settings.index');
     }
 
-    public function store(){
-        $arr = [
-            'name' => '裤裆老湿',
-            'slogan' => '一个全栈老司机',
-            'keyword' => '裤裆老湿,博客,全栈,老司机',
-            'description' => '裤裆老湿博客是一个全栈老司机的博客',
-        ];
-        $cache_content = '<?php return ' . var_export($arr, true) . ';';
-        Storage::disk('local')->put('settings.php', $cache_content);
+    public function update(Request $request)
+    {
+        $type = $request->input('type');
+        switch ($type) {
+            case 'basic':
+                $data = [
+                    'APP_URL' => $request->input('APP_URL'),
+                    'SITE_NAME' => $request->input('SITE_NAME'),
+                    'SITE_SLOGAN' => $request->input('SITE_SLOGAN'),
+                    'SITE_KEYWORD' => $request->input('SITE_KEYWORD'),
+                    'SITE_DESCRIPTION' => $request->input('SITE_DESCRIPTION'),
+                ];
+                break;
+            case 'mail':
+                $data = [
+                    'MAIL_DRIVER' => $request->input('MAIL_DRIVER'),
+                    'MAIL_FROM_ADDRESS' => $request->input('MAIL_FROM_ADDRESS'),
+                    'MAIL_FROM_NAME' => $request->input('MAIL_FROM_NAME'),
+                    'MAIL_HOST' => $request->input('MAIL_HOST'),
+                    'MAIL_PORT' => $request->input('MAIL_PORT'),
+                    'MAIL_USERNAME' => $request->input('MAIL_USERNAME'),
+                    'MAIL_PASSWORD' => $request->input('MAIL_PASSWORD'),
+                    'MAIL_ENCRYPTION' => $request->input('MAIL_ENCRYPTION'),
+                ];
+                break;
+            case 'other':
+                $data = [
+                    'REDIS_HOST' => $request->input('REDIS_HOST'),
+                    'REDIS_PASSWORD' => empty($request->input('REDIS_PASSWORD')) ? 'null' : $request->input('REDIS_PASSWORD'),
+                    'REDIS_PORT' => $request->input('REDIS_PORT'),
+                ];
+                break;
+        }
+        modifyEnv($data);
+        return redirect()->route('setting.index')->with('success', '保存配置成功！');
     }
 }

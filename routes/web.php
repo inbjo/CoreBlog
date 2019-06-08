@@ -41,5 +41,6 @@ Route::match(['get', 'put'], '/user/{user}/password', 'UsersController@password'
 
 Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
+Route::put('setting', 'SettingsController@update')->name('setting.update');
 
 
