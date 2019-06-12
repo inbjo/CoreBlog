@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Verify Your Email Address'))
+@section('title', __('Verify Your Email Address').' - '.config('system.name'))
 @section('body')
 
     <!-- start navigation -->

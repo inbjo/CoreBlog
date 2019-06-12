@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.2",
+        "editor.md": "^1.5.0",
         "simditor": "^2.3.25",
         "sweetalert": "^2.1.2",
         "tributejs": "^3.7.1"

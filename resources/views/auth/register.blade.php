@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Register'))
+@section('title', __('Register').' - '.config('system.name'))
 @section('body')
 
     <!-- start navigation -->

@@ -109,4 +109,14 @@ class UsersController extends Controller
         return redirect()->back()->with('success', '资料更新成功！');
     }
 
+    public function binding(Request $request, User $user)
+    {
+        $this->authorize('update', $user);
+        if ($request->isMethod('put')) {
+
+        } else {
+            return view('users.binding', compact('user'));
+        }
+    }
+
 }

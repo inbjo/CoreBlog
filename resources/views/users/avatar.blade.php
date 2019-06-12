@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '更换头像')
+@section('title', '更换头像 - '.config('system.name'))
 @section('body')
 
   <!-- start navigation -->
@@ -25,7 +25,7 @@
               <a href="{{ route('user.password', Auth::id()) }}"><i class="fa fa-lock" aria-hidden="true"></i> 修改密码</a>
             </li>
             <li class="list-group-item">
-              <a href=""><i class="fa fa-user-plus" aria-hidden="true"></i> 账号绑定</a>
+              <a href="{{ route('user.binding', Auth::id()) }}"><i class="fa fa-user-plus" aria-hidden="true"></i> 账号关联</a>
             </li>
           </ul>
         </div>
