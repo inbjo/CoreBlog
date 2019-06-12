@@ -23,40 +23,11 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            // CREATE
-            case 'POST':
-                {
-                    return [
-                        'title'       => 'required|min:2',
-                        'content'        => 'required|min:3',
-                        'category_id' => 'required|numeric',
-                    ];
-                }
-            case 'PUT':
-                {
-                    return [
-                        'title'       => 'required|min:2',
-                        'content'        => 'required|min:3',
-                        'category_id' => 'required|numeric',
-                    ];
-                }
-            case 'PATCH':
-                {
-                    return [
-                        'title'       => 'required|min:2',
-                        'content'        => 'required|min:3',
-                        'category_id' => 'required|numeric',
-                    ];
-                }
-            case 'GET':
-            case 'DELETE':
-            default:
-                {
-                    return [];
-                }
-        }
+        return [
+            'title'       => 'required|min:2',
+            'content'        => 'required|min:3',
+            'category_id' => 'required|numeric',
+        ];
     }
 
     public function messages()

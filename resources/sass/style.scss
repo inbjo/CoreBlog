@@ -1211,6 +1211,14 @@ footer {
 /*====================================================
 	Plugin css fix
 ====================================================*/
+div#editor.editormd-fullscreen {
+  z-index: 999;
+}
+
+.editormd-preview-container, .editormd-html-preview {
+  padding: 0 !important;
+}
+
 .simditor .simditor-body img {
   max-width: 100%;
 }
@@ -1245,7 +1253,7 @@ div.fr-wrapper > div:nth-child(1) > a {
   }
 }
 
-.swal-button--confirm{
+.swal-button--confirm {
   background-color: $primary !important;
 
   &:hover {

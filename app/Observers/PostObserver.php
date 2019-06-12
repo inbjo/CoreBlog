@@ -14,7 +14,9 @@ class PostObserver
     public function creating(Post $post)
     {
         $post->content = clean($post->content, 'user_post_content'); //文章内容xss过滤
-        $post->description = make_description($post->content); //截取文章内容作为描述
+        if(empty($post->description)){
+            $post->description = make_description($post->content); //截取文章内容作为描述
+        }
 
         //标签自动加超链接 存在bug
 //        $tags = explode(',', $post->keyword);

@@ -39239,7 +39239,7 @@ window.app = {
           'X-CSRF-TOKEN': token.content
         }
       });
-    } //修复高度
+    } //修复底部高度
 
 
     if (document.body.clientWidth > 992 && $(".content-wrap").height() < 292) {

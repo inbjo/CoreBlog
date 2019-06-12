@@ -14,8 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
-    .copyDirectory('resources/lib/simditor', 'public/lib/simditor')
-    .copyDirectory('resources/lib/froala', 'public/lib/froala')
+    .copyDirectory('resources/lib/editormd', 'public/lib/editormd')
     .copyDirectory('resources/lib/dropify', 'public/lib/dropify')
     .copyDirectory('resources/lib/tagator', 'public/lib/tagator');
 

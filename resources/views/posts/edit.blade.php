@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title',  '编辑文章')
+@section('title',  '编辑文章 - '.config('system.name'))
 
 @section('styles')
-  <link rel="stylesheet" type="text/css" href="{{ asset('lib/froala/css/froala_editor.pkgd.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('lib/editormd/css/editormd.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/tagator/fm.tagator.jquery.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/dropify/dropify.min.css') }}">
 @stop
@@ -61,7 +61,11 @@
                          data-default-file="{{ $post->cover }}">
                 </div>
                 <div class="form-group">
-                  <label for="content">文章内容</label>
+                  <label for="description">文章描述</label>
+                  <textarea class="form-control" id="description" name="description" rows="3"
+                            placeholder="请简要概述大概内容，不要超过150字" maxlength="150">{{ $post->description }}</textarea>
+                </div>
+                <div class="form-group" id="editor">
                   <textarea name="content" id="content" class="form-control">{!! $post->content !!}</textarea>
                 </div>
                 <div class="form-group">
@@ -81,7 +85,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button type="submit" data-status="1" class="btn btn-success">提交</button>
+                  <button type="submit" class="btn btn-success">提交</button>
                 </div>
               </form>
             </div>
@@ -102,11 +106,8 @@
 @section('scripts')
   <script type="text/javascript" src="{{ asset('lib/tagator/fm.tagator.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/dropify/dropify.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/froala/js/froala_editor.pkgd.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/froala/js/languages/zh_cn.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/editormd/editormd.min.js') }}"></script>
   <script>
-    var editor;
-
     $(function () {
 
       $('#tags').tagator({
@@ -122,61 +123,25 @@
         }
       });
 
-      $(".submit").click(function () {
-        $("#status").val($(this).data('status'));
-        $("#post").submit();
+      var editor = editormd("editor", {
+        width: "100%",
+        height: "500px",
+        // lineNumbers:false,
+        // markdown:'',
+        watch : false,
+        codeFold : true,
+        placeholder:"请在这撰写您的文章内容...",
+        taskList: true,
+        emoji:true,
+        flowChart: true,
+        sequenceDiagram: true,
+        imageUpload: true,
+        imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        imageUploadURL : "{{ route('upload.store') }}",
+        path : "/lib/editormd/lib/"
       });
 
-      editor = new FroalaEditor('#content', {
-        attribution: false,
-        heightMin: 400,
-        spellcheck: false,
-        language: 'zh_cn',
-        imageUploadURL: '{{ route('upload.store') }}',
-        fileUploadURL: '{{ route('upload.store') }}',
-        videoUploadURL: '{{ route('upload.store') }}',
-        imageManagerLoadURL: '{{ route('upload.index') }}',
-        imageManagerDeleteMethod: 'DELETE',
-        imageManagerDeleteURL: '{{ route('upload.destroy') }}',
-        imageMaxSize: 1024 * 1024 * 10,
-        videoMaxSize: 1024 * 1024 * 50,
-        fileMaxSize: 1024 * 1024 * 50,
-        imageUploadParams: {
-          _token: document.head.querySelector('meta[name="csrf-token"]').content
-        },
-        fileUploadParams: {
-          _token: document.head.querySelector('meta[name="csrf-token"]').content
-        },
-        videoUploadParams: {
-          _token: document.head.querySelector('meta[name="csrf-token"]').content
-        },
-        imageManagerDeleteParams: {
-          _token: document.head.querySelector('meta[name="csrf-token"]').content
-        },
-        events: {
-          'image.removed': function ($img) {
-            editor_remove(location.origin + $img.attr('src'));
-          },
-          'file.unlink': function (link) {
-            editor_remove(link.href);
-          },
-          'video.removed': function ($video) {
-            editor_remove($video.find('video')[0].src);
-          }
-        }
-      });
 
-      function editor_remove(link) {
-        axios({
-          method: 'delete',
-          url: '{{ route('upload.destroy') }}',
-          data: {
-            link: link
-          }
-        }).then(function (response) {
-          console.log(response.data.msg)
-        });
-      }
 
     });
   </script>

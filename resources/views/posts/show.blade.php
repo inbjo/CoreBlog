@@ -48,8 +48,8 @@
                 <img src="{{$post->cover}}" alt="{{$post->title}}">
               </div>
             @endif
-            <div class="post-content fr-view">
-              {!! $post->content !!}
+            <div class="post-content" id="markdown-view">
+              <textarea style="display:none;">{!! $post->content !!}</textarea>
             </div>
             <div class="post-action">
               <button id="likePost" data-id="{{ $post->id }}" class="btn btn-circle {{$post->isFavorited() ? 'active' : '' }}"
@@ -105,7 +105,6 @@
                 </span>
             </h4>
             <div class="clearfix"></div>
-            <div id="comment_tips">+1</div>
           </div>
           @forelse ($comments as $key=> $comment)
             <div class="post-comment media" id="comment{{$comment->id}}" name="comment{{$comment->id}}">
@@ -243,4 +242,15 @@
   </div>
   <!-- Modal -->
 
+@endsection
+
+@section('scripts')
+  <script type="text/javascript" src="{{ asset('lib/editormd/editormd.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/editormd/lib/marked.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/editormd/lib/prettify.min.js') }}"></script>
+  <script>
+    $(function() {
+      var View = editormd.markdownToHTML("markdown-view", {});
+    });
+  </script>
 @endsection
