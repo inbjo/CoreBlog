@@ -78,6 +78,16 @@
                       <textarea class="form-control" name="SITE_DESCRIPTION" id="SITE_DESCRIPTION"
                                 rows="3" placeholder="不要超过150个字">{{ config('system.description') }}</textarea>
                     </div>
+                    <div class="form-group">
+                      <label for="SITE_ICP">ICP备案号</label>
+                      <input type="text" class="form-control" id="SITE_ICP" placeholder="Icp备案号"
+                             name="SITE_ICP" value="{{ config('system.icp') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="SITE_POLICE">公安备案号</label>
+                      <input type="text" class="form-control" id="SITE_POLICE" placeholder="公安备案号"
+                             name="SITE_POLICE" value="{{ config('system.police') }}">
+                    </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>
                 </div>

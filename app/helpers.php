@@ -47,3 +47,11 @@ function modifyEnv(array $data)
 
     \File::put($envPath, $content);
 }
+
+function getPoliceNumber()
+{
+    $str = config('system.police');
+    if (preg_match('/\d+/', $str, $arr)) {
+        echo $arr[0];
+    }
+}

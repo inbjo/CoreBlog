@@ -62,8 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <span>Copyright &copy; 2015-2019 <a
-                                href="https://www.inbjo.com">CoreBlog</a> All right Reserved.</span>
+                    <span>Copyright &copy; <a href="{{ config('app.url') }}">{{ config('system.name') }}</a> All right Reserved.</span>
                 </div>
             </div>
             <div class="row mt-1">
@@ -75,12 +74,12 @@
                 </span>
                     <span></span>
                     <span>
-                    <a href="http://www.miibeian.gov.cn/" target="_blank">湘ICP备13005379号</a>
+                    <a href="http://www.beian.miit.gov.cn" target="_blank">{{ config('system.icp') }}</a>
                 </span>
                     <span></span>
                     <span>
-                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43011102001213"
-                       target="_blank">湘公网安备43011102001213号</a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ getPoliceNumber() }}"
+                       target="_blank">{{ config('system.police') }}</a>
                 </span>
                 </div>
             </div>

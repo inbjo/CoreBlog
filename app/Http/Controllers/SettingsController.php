@@ -24,6 +24,8 @@ class SettingsController extends Controller
                     'SITE_SLOGAN' => $request->input('SITE_SLOGAN'),
                     'SITE_KEYWORD' => $request->input('SITE_KEYWORD'),
                     'SITE_DESCRIPTION' => $request->input('SITE_DESCRIPTION'),
+                    'SITE_ICP' => $request->input('SITE_ICP'),
+                    'SITE_POLICE' => $request->input('SITE_POLICE'),
                 ];
                 break;
             case 'mail':
