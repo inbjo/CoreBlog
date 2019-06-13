@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Parsedown;
 
 //use Laravel\Scout\Searchable;
 
@@ -45,12 +46,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model
 {
-//    use Searchable;
     use HashIdHelper, SoftDeletes;
 
     protected $fillable = [
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
     ];
+
+    /**
+     * 将文章markdown格式转换成html
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getContentAttribute($value)
+    {
+        $Parsedown = new Parsedown();
+        return $Parsedown->text($value);
+    }
 
     /**
      * 只查询已发布的文章.

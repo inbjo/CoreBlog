@@ -49,7 +49,7 @@
               </div>
             @endif
             <div class="post-content" id="markdown-view">
-              <textarea style="display:none;">{!! $post->content !!}</textarea>
+              {!! $post->content !!}
             </div>
             <div class="post-action">
               <button id="likePost" data-id="{{ $post->id }}" class="btn btn-circle {{$post->isFavorited() ? 'active' : '' }}"
@@ -242,17 +242,4 @@
   </div>
   <!-- Modal -->
 
-@endsection
-
-@section('scripts')
-  <script type="text/javascript" src="{{ asset('lib/editormd/editormd.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/editormd/lib/marked.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('lib/editormd/lib/prettify.min.js') }}"></script>
-  <script>
-    $(function() {
-      var View = editormd.markdownToHTML("markdown-view", {
-        lineNumbers:false,
-      });
-    });
-  </script>
 @endsection

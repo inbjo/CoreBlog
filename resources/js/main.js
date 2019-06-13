@@ -226,6 +226,8 @@ window.app = {
     //启用bootstarp冒泡插件
     $('[data-toggle="tooltip"]').tooltip();
 
+    hljs.initHighlightingOnLoad();
+
     app.backToTop();
     app.likePost();
     app.rewardAuthor();
