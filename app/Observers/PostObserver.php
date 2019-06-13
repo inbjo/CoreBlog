@@ -13,7 +13,7 @@ class PostObserver
      */
     public function creating(Post $post)
     {
-        $post->content = clean($post->content, 'user_post_content'); //文章内容xss过滤
+//        $post->content = clean($post->content, 'user_post_content'); //文章内容xss过滤
         if(empty($post->description)){
             $post->description = make_description($post->content); //截取文章内容作为描述
         }

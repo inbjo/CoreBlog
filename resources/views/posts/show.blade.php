@@ -250,7 +250,9 @@
   <script type="text/javascript" src="{{ asset('lib/editormd/lib/prettify.min.js') }}"></script>
   <script>
     $(function() {
-      var View = editormd.markdownToHTML("markdown-view", {});
+      var View = editormd.markdownToHTML("markdown-view", {
+        lineNumbers:false,
+      });
     });
   </script>
 @endsection
