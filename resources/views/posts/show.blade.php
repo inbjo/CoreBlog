@@ -48,7 +48,7 @@
                 <img src="{{$post->cover}}" alt="{{$post->title}}">
               </div>
             @endif
-            <div class="post-content" id="markdown-view">
+            <div class="post-content">
               {!! $post->content !!}
             </div>
             <div class="post-action">

@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -35,7 +36,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
+        return view('posts.create',compact('tags'));
     }
 
     /**
@@ -59,7 +61,7 @@ class PostsController extends Controller
         //保存文章
         $post = Post::create([
             'title' => $request->input('title'),
-            'keyword' => $request->input('tags'),
+            'keyword' => str_replace(' ', '', $request->input('tags')),
             'user_id' => Auth::id(),
             'content' => $request->input('content'),
             'description' => $request->input('description'),
@@ -102,7 +104,8 @@ class PostsController extends Controller
     {
         $this->authorize('update', $post);
         $tags = $post->tags->implode('name', ', ');
-        return view('posts.edit', compact('post', 'tags'));
+        $alltags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
+        return view('posts.edit', compact('post', 'tags','alltags'));
     }
 
     /**
@@ -128,7 +131,7 @@ class PostsController extends Controller
 
         //更新文章
         $post->title = $request->input('title');
-        $post->keyword = $request->input('keyword');
+        $post->keyword = str_replace(' ', '', $request->input('tags'));
         $post->content = $request->input('content');
         $post->category_id = $request->input('category_id');
         $post->status = $request->input('status');

@@ -107,7 +107,7 @@
     $(function () {
 
       $('#tags').tagator({
-        autocomplete: ['php', 'vue', 'css', 'html', 'swoole', 'js']
+        autocomplete: {!! $tags !!}
       });
 
       $('#cover').dropify({

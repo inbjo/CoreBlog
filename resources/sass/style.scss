@@ -1216,19 +1216,8 @@ div#editor.editormd-fullscreen {
   z-index: 999;
 }
 
-.editormd-html-preview {
-  padding: 0 !important;
-  overflow: visible !important;
-  font-size: 16px;
-  line-height: 2;
-}
-
-.simditor .simditor-body img {
-  max-width: 100%;
-}
-
-div.fr-wrapper > div:nth-child(1) > a {
-  display: none !important;
+button.close{
+  outline: none;
 }
 
 .tagator_tag {

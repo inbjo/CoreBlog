@@ -66,7 +66,7 @@
                             placeholder="请简要概述大概内容，不要超过150字" maxlength="150">{{ $post->description }}</textarea>
                 </div>
                 <div class="form-group" id="editor">
-                  <textarea name="content" id="content" class="form-control">{!! $post->content !!}</textarea>
+                  <textarea name="content" id="content" class="form-control">{!! $post->getOriginal('content') !!}</textarea>
                 </div>
                 <div class="form-group">
                   <div class="form-check form-check-inline">
@@ -111,7 +111,7 @@
     $(function () {
 
       $('#tags').tagator({
-        autocomplete: ['php', 'vue', 'css', 'html', 'swoole', 'js']
+        autocomplete: {!! $alltags !!}
       });
 
       $('#cover').dropify({

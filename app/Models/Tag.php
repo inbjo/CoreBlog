@@ -61,6 +61,7 @@ class Tag extends Model
         $results = [];
         $tags = explode(',', $tags);
         foreach ($tags as $tag) {
+            $tag = trim($tag);
             $score = Redis::zScore('tags', $tag);
             if ($score != null) {
                 $results[] = intval($score);
