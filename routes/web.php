@@ -44,4 +44,6 @@ Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
 Route::put('setting', 'SettingsController@update')->name('setting.update');
 
-
+Route::get('pay/alipay', 'Pay\AlipayController@pay')->name('pay.alipay');
+Route::get('pay/alipay/return', 'Pay\AlipayController@return');
+Route::get('pay/alipay/notify', 'Pay\AlipayController@notify');
