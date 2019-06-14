@@ -64203,14 +64203,46 @@ window.app = {
   },
   rewardAuthor: function rewardAuthor() {
     $("#rewardAuthor").click(function () {
+      localStorage.setItem('total_amount', '1');
+      localStorage.setItem('payment', 'alipay');
       $('#payModal').modal('toggle');
     });
-    $("#payModal .item").click(function () {
-      $("#payModal .item").removeClass('active');
+    $("#payModal .col-4 .item").click(function () {
+      $("#payModal .col-4 .item").removeClass('active');
+      localStorage.setItem('total_amount', $(this).data('money'));
+      $(this).addClass('active');
+    });
+    $("#payModal .col-6 .item").click(function () {
+      $("#payModal .col-6 .item").removeClass('active');
+      localStorage.setItem('payment', $(this).data('type'));
       $(this).addClass('active');
     });
     $("#payModal #money").focus(function () {
-      $("#payModal .item").removeClass('active');
+      $("#payModal .col-4 .item").removeClass('active');
+    });
+    $("#payModal #money").on('change', function () {
+      localStorage.setItem('total_amount', $("#money").val());
+    });
+    $("#btn-reward").click(function () {
+      if (is_login == false) {
+        return app.loginTips();
+      }
+
+      axios({
+        method: 'post',
+        url: '/pay/alipay/create',
+        data: {
+          'total_amount': localStorage.getItem('total_amount'),
+          'payment': localStorage.getItem('payment'),
+          'post_id': $("#post-wrap").data('id')
+        }
+      }).then(function (response) {
+        if (response.data.code == 0) {
+          window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
+        } else {
+          swal(response.data.msg);
+        }
+      });
     });
   },
   likePost: function likePost() {

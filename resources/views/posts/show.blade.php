@@ -227,15 +227,22 @@
             <div class="col-12">
               <div class="form-group">
                 <label for="money">自定义金额</label>
-                <input type="number" class="form-control" id="money" aria-describedby="tips"
-                       placeholder="请输入你要打赏的金额">
-                <small id="tips" class="form-text text-muted">土豪我们做朋友吧~</small>
+                <input type="number" class="form-control" id="money" placeholder="请输入你要打赏的金额">
               </div>
+            </div>
+            <div class="col-12">
+              <h5>请选择付款方式:</h5>
+            </div>
+            <div class="col-6">
+              <div class="item active" data-type="alipay"><i class="fa fa-cny"></i> 支付宝</div>
+            </div>
+            <div class="col-6">
+              <div class="item" data-type="wechat"><i class="fa fa-cny"></i> 微信</div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">打赏</button>
+          <button id="btn-reward" type="button" class="btn btn-primary">打赏</button>
         </div>
       </div>
     </div>
