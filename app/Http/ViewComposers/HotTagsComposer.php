@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Models\Tag;
 use Illuminate\View\View;
 
-class TagsComposer
+class HotTagsComposer
 {
     protected $tag;
 

@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Models\Post;
 use Illuminate\View\View;
 
-class PostsComposer
+class RecentPostsComposer
 {
     protected $post;
 
