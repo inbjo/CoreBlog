@@ -64230,7 +64230,7 @@ window.app = {
 
       axios({
         method: 'post',
-        url: '/pay/alipay/create',
+        url: '/pay/create',
         data: {
           'total_amount': localStorage.getItem('total_amount'),
           'payment': localStorage.getItem('payment'),
@@ -64239,6 +64239,16 @@ window.app = {
       }).then(function (response) {
         if (response.data.code == 0) {
           window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
+          $('#payModal').modal('toggle');
+          swal({
+            title: "您完成付款了吗?",
+            buttons: ["我已付款", "重新支付"],
+            dangerMode: true
+          }).then(function (choose) {
+            if (choose) {
+              window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
+            }
+          });
         } else {
           swal(response.data.msg);
         }
