@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Pay;
 
 use App\Models\Order;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
 use Yansongda\Pay\Pay;
 
 class AlipayController extends Controller
