@@ -194,31 +194,50 @@ window.app = {
             if (is_login == false) {
                 return app.loginTips();
             }
-            axios({
-                method: 'post',
-                url: '/pay/create',
-                data: {
-                    'total_amount': localStorage.getItem('total_amount'),
-                    'payment': localStorage.getItem('payment'),
-                    'post_id': $("#post-wrap").data('id')
-                }
-            }).then(function (response) {
-                if (response.data.code == 0) {
-                    window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
-                    $('#payModal').modal('toggle');
-                    swal({
-                        title: "您完成付款了吗?",
-                        buttons: ["我已付款", "重新支付"],
-                        dangerMode: true,
-                    }).then((choose) => {
-                        if (choose) {
-                            window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
-                        }
-                    });
-                } else {
-                    swal(response.data.msg);
-                }
-            });
+            if (localStorage.getItem('payment') == 'alipay') {
+                axios({
+                    method: 'post',
+                    url: '/pay/alipay/create',
+                    data: {
+                        'total_amount': localStorage.getItem('total_amount'),
+                        'post_id': $("#post-wrap").data('id')
+                    }
+                }).then(function (response) {
+                    if (response.data.code == 0) {
+                        window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
+                        $('#payModal').modal('toggle');
+                        swal({
+                            title: "您完成付款了吗?",
+                            buttons: ["我已付款", "重新支付"],
+                            dangerMode: true,
+                        }).then((choose) => {
+                            if (choose) {
+                                window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
+                            }
+                        });
+                    } else {
+                        swal(response.data.msg);
+                    }
+                });
+            }
+            if (localStorage.getItem('payment') == 'wechat') {
+                axios({
+                    method: 'post',
+                    url: '/pay/wechat/pay',
+                    data: {
+                        'total_amount': localStorage.getItem('total_amount'),
+                        'post_id': $("#post-wrap").data('id')
+                    }
+                }).then(function (response) {
+                    if (response.data.code == 0) {
+                        $('#payModal').modal('toggle');
+                        //todo 展示付款码
+                    } else {
+                        swal(response.data.msg);
+                    }
+                });
+            }
+
         });
 
     },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pay;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Yansongda\Pay\Pay;
 
 class AlipayController extends Controller
@@ -12,7 +13,22 @@ class AlipayController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth', ['only' => ['create']]);
         $this->config = config('pay.alipay');
+    }
+
+    public function create(Request $request)
+    {
+        $order = Order::create([
+            'type' => 'reward',
+            'no' => time() . rand(1000, 9999),
+            'payment_method' => 'alipay',
+            'total_amount' => $request->input('total_amount'),
+            'post_id' => $request->input('post_id'),
+            'user_id' => auth()->id(),
+        ]);
+        $order->save();
+        return ['code' => 0, 'msg' => '订单生成成功', 'order_id' => $order->id];
     }
 
     public function pay($id)
