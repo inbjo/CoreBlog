@@ -55,3 +55,13 @@ function getPoliceNumber()
         echo $arr[0];
     }
 }
+
+function generateAvatar($email, $size = 64)
+{
+    $filename = md5($email) . '.png';
+    $path = public_path() . '/images/avatar/' . $filename;
+    if (!file_exists($path)) {
+        app('identicon')->saveAvatar($email, $size, $path);
+    }
+    return '/images/avatar/' . $filename;
+}

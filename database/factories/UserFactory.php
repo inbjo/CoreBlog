@@ -14,14 +14,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
-    // 随机取一个月以内的时间
+
     $updated_at = $faker->dateTimeThisMonth();
-    // 传参为生成最大时间不超过，创建时间永远比更改时间要早
     $created_at = $faker->dateTimeThisMonth($updated_at);
+    $email = $faker->unique()->safeEmail;
+
     return [
         'name' => $faker->unique()->userName,
-        'avatar' => $faker->imageUrl(64, 64),
-        'email' => $faker->unique()->safeEmail,
+        'avatar' => generateAvatar($email),
+        'email' => $email,
         'bio' => $faker->sentence,
         'password' => bcrypt('secret'),
         'created_at' => $created_at,

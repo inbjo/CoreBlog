@@ -10,17 +10,18 @@
                 title="查看{{$post->user->name}}发布的所有文章">{{$post->user->name}}
              </a>
           </span> &bull;
-          <span class="date" data-toggle="tooltip" data-placement="bottom" title="{{ $post->created_at->toDateTimeString() }}">
+        <span class="date" data-toggle="tooltip" data-placement="bottom"
+              title="{{ $post->created_at->toDateTimeString() }}">
             {{$post->created_at->diffForHumans() }}
           </span>&bull;
-          <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
+        <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
               <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
           </span>
       </div>
     </div>
     @if($post->cover)
       <div class="featured-media">
-        <a href="{{route('post.show',$post->id)}}"><img src="{{$post->cover}}" alt="{{$post->title}}"></a>
+        <a href="{{route('post.show',$post->hash_id)}}"><img src="{{$post->cover}}" alt="{{$post->title}}"></a>
       </div>
     @endif
     <div class="post-content">
