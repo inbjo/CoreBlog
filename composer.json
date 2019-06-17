@@ -4,7 +4,9 @@
     "description": "The Laravel Framework.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "CoreBlog",
+        "blog"
     ],
     "license": "MIT",
     "require": {

@@ -67,12 +67,12 @@ class UsersController extends Controller
                 if ($result) {
                     $user->avatar = $result['path'];
                     $user->save();
-                    return redirect()->back()->with('success', '头像上传成功！');
+                    return ['code' => 0, 'msg' => '头像上传成功'];
                 } else {
-                    return redirect()->back()->with('error', '头像上传失败！');
+                    return ['code' => 0, 'msg' => '头像上传失败！'];
                 }
             } else {
-                return redirect()->back()->with('error', '非法请求！');
+                return ['code' => 0, 'msg' => '非法请求！'];
             }
         } else {
             return view('users.avatar', compact('user'));

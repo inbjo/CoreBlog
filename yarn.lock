@@ -1575,6 +1575,11 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cropperjs@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.1.tgz#3bf93c6e89bf46d18cccc27160cd7d9b936cac7a"
+  integrity sha512-b6+gzlkhxEUswBNVwYct6fz+sJYdbmW7F6dAXwNkjTVfZcPcXBYADnVzvxNYcSOPkh/ytzmTRktbNkg5/Uw/PQ==
+
 cross-env@^5.2.0:
   version "5.2.0"
   resolved "https://registry.npm.taobao.org/cross-env/download/cross-env-5.2.0.tgz#6ecd4c015d5773e614039ee529076669b9d126f2"
