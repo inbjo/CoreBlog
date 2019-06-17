@@ -8,6 +8,7 @@ require('./bootstrap');
 import swal from 'sweetalert';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai-sublime.css';
+require('../lib/qrcode/jquery.qrcode.min');
 import Tribute from "tributejs";
 window.swal = swal;
 window.hljs = hljs;

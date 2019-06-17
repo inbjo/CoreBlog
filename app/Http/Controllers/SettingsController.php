@@ -40,6 +40,16 @@ class SettingsController extends Controller
                     'MAIL_ENCRYPTION' => $request->input('MAIL_ENCRYPTION'),
                 ];
                 break;
+            case 'pay':
+                $data = [
+                    'ALI_APP_ID' => $request->input('ALI_APP_ID'),
+                    'ALI_PUBLIC_KEY' => $request->input('ALI_PUBLIC_KEY'),
+                    'ALI_PRIVATE_KEY' => $request->input('ALI_PRIVATE_KEY'),
+                    'WECHAT_APP_ID' => $request->input('WECHAT_APP_ID'),
+                    'WECHAT_MCH_ID' => $request->input('WECHAT_MCH_ID'),
+                    'WECHAT_KEY' => $request->input('WECHAT_KEY'),
+                ];
+                break;
             case 'other':
                 $data = [
                     'REDIS_HOST' => $request->input('REDIS_HOST'),

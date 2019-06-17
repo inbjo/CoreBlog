@@ -19266,7 +19266,7 @@ readers do not read off random characters that represent icons */
 @font-face {
   font-family: "editormd-logo";
   src: url(/fonts/editormd-logo.eot?ce4bcd0fb98aea6ce2b921752ac2c6ac);
-  src: url(/fonts/editormd-logo.eot?ce4bcd0fb98aea6ce2b921752ac2c6ac) format("embedded-opentype"), url(/fonts/editormd-logo.woff?1599e9e1435acb162840d3d4459b6d68) format("woff"), url(/fonts/editormd-logo.ttf?3ce5baf8e6d4064ff5fcd4f159ee224a) format("truetype"), url(/fonts/editormd-logo.svg?84b6c2a97d555c0f2e330474604da4f1) format("svg");
+  src: url(/fonts/editormd-logo.eot?ce4bcd0fb98aea6ce2b921752ac2c6ac) format("embedded-opentype"), url(/fonts/editormd-logo.woff?1599e9e1435acb162840d3d4459b6d68) format("woff"), url(/fonts/editormd-logo.ttf?3ce5baf8e6d4064ff5fcd4f159ee224a) format("truetype"), url(/fonts/editormd-logo.svg?53ea80e2163822c872dd3d63d283eee6) format("svg");
   font-weight: normal;
   font-style: normal;
 }

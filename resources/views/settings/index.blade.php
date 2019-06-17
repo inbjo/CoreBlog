@@ -43,6 +43,8 @@
                      aria-controls="nav-basic" aria-selected="true">基本设置</a>
                   <a class="nav-item nav-link" id="nav-mail-tab" data-toggle="tab" href="#nav-mail" role="tab"
                      aria-controls="nav-mail" aria-selected="false">邮件设置</a>
+                  <a class="nav-item nav-link" id="nav-pay-tab" data-toggle="tab" href="#nav-pay" role="tab"
+                     aria-controls="nav-pay" aria-selected="false">支付设置</a>
                   <a class="nav-item nav-link" id="nav-other-tab" data-toggle="tab" href="#nav-other" role="tab"
                      aria-controls="nav-other" aria-selected="false">其他设置</a>
                 </div>
@@ -146,6 +148,44 @@
                         <option value="null"  @if(config('mail.encryption') == 'null') selected @endif>不加密</option>
                         <option value="tls"  @if(config('mail.encryption') == 'tls') selected @endif>tls</option>
                       </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade show" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">
+                  <form class="mt-2" method="post" action="{{ route('setting.update') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="type" value="pay" />
+                    <div class="form-group">
+                      <label for="ALI_APP_ID">支付宝APPID</label>
+                      <input type="text" class="form-control" id="ALI_APP_ID" placeholder="支付宝APPID"
+                             name="ALI_APP_ID" value="{{ config('pay.alipay.app_id') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="ALI_PUBLIC_KEY">支付宝公钥</label>
+                      <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY"
+                                rows="5" placeholder="支付宝公钥(支付宝提供的公钥)">{{ config('pay.alipay.ali_public_key') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="ALI_PRIVATE_KEY">支付宝私钥</label>
+                      <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY"
+                                rows="6" placeholder="支付宝私钥(用户自行生成的私钥)">{{ config('pay.alipay.private_key') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_APP_ID">微信公众号APPID</label>
+                      <input type="text" class="form-control" id="WECHAT_APP_ID" placeholder="微信公众号APPID"
+                             name="WECHAT_APP_ID" value="{{ config('pay.wechat.app_id') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_MCH_ID">微信商户号</label>
+                      <input type="text" class="form-control" id="WECHAT_MCH_ID" placeholder="微信商户号"
+                             name="WECHAT_MCH_ID" value="{{ config('pay.wechat.mch_id') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_KEY">微信支付秘钥</label>
+                      <input type="text" class="form-control" id="WECHAT_KEY" placeholder="微信支付秘钥"
+                             name="WECHAT_KEY" value="{{ config('pay.wechat.key') }}">
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>
