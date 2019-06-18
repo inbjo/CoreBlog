@@ -19,13 +19,28 @@
   </div>
   <!-- end widget -->
 
+  <div class="widget">
+    <h4 class="title">搜索</h4>
+    <div class="content">
+      <div class="row">
+        <div class="col-8">
+          <input name="keyword" type="text" class="form-control" id="keyword" placeholder="请输入关键词...">
+        </div>
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary mb-2">搜索</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- start Newsletter widget -->
   <div class="widget">
     <h4 class="title">订阅邮件</h4>
     <div class="content newsletter">
       <div class="form-group">
         <div class="input-group">
-          <input id="subscribe_email" class="form-control required email" type="email" name="email" required placeholder="请输入您的电子邮件地址..."/>
+          <input id="subscribe_email" class="form-control required email" type="email" name="email" required
+                 placeholder="请输入您的电子邮件地址..."/>
         </div>
         <div class="input-group">
           <button class="btn btn-default btn-block" type="button" onclick="app.subscribe()">

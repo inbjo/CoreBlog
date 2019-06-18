@@ -132,7 +132,6 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->keyword = str_replace(' ', '', $request->input('tags'));
         $post->content = $request->input('content');
-        $post->description = $request->input('description');
         $post->category_id = $request->input('category_id');
         $post->status = $request->input('status');
         $post->save();
