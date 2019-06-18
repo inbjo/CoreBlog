@@ -5,9 +5,8 @@ namespace App\Models;
 use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Parsedown;
-
-//use Laravel\Scout\Searchable;
 
 /**
  * App\Post
@@ -151,5 +150,21 @@ class Post extends Model
     public function updateViewCount()
     {
         $this->increment('view_count');
+    }
+
+    public function toESArray()
+    {
+        $arr = Arr::only($this->toArray(), [
+            'id',
+            'title',
+            'keyword',
+            'description',
+            'content',
+        ]);
+
+        $arr['description'] = strip_tags($this->description);
+        $arr['content'] = strip_tags($this->content);
+
+        return $arr;
     }
 }

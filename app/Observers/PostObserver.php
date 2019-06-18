@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
+use App\Jobs\SyncOnePostToES;
 use App\Models\Post;
-use Illuminate\Support\Facades\Log;
 
 class PostObserver
 {
@@ -14,7 +14,7 @@ class PostObserver
     public function creating(Post $post)
     {
 //        $post->content = clean($post->content, 'user_post_content'); //文章内容xss过滤
-        if(empty($post->description)){
+        if (empty($post->description)) {
             $post->description = make_description($post->content); //截取文章内容作为描述
         }
 
@@ -35,6 +35,11 @@ class PostObserver
         //更新分类文章数量统计
         $post->category->post_count = $post->category->posts->count();
         $post->category->save();
+    }
+
+    public function saved(Post $post)
+    {
+        SyncOnePostToES::dispatch($post);
     }
 
     /**

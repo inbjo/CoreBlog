@@ -123,7 +123,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'predis'),
-            'prefix' => Str::slug(env('APP_NAME', 'laravel'), '_').'_database_',
+            'prefix' => Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_',
         ],
 
         'default' => [
@@ -155,5 +155,9 @@ return [
         ],
 
     ],
+
+    'elasticsearch' => [
+        'hosts' => explode(',', env('ES_HOSTS')),
+    ]
 
 ];

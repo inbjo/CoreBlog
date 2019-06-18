@@ -8,7 +8,6 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -133,6 +132,7 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->keyword = str_replace(' ', '', $request->input('tags'));
         $post->content = $request->input('content');
+        $post->description = $request->input('description');
         $post->category_id = $request->input('category_id');
         $post->status = $request->input('status');
         $post->save();
