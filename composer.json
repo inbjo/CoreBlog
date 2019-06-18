@@ -20,6 +20,7 @@
         "laravel/horizon": "^3.2",
         "laravel/tinker": "^1.0",
         "laravelium/sitemap": "3.1.*",
+        "mews/purifier": "^2.1",
         "overtrue/laravel-lang": "~3.0",
         "predis/predis": "^1.1",
         "valiner/identicon-avatar": "^0.0.1",

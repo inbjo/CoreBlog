@@ -24,7 +24,7 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //评论内容xss过滤
-        $content = clean($request->input('reply_content'), 'user_post_content');
+        $content = clean($request->input('reply_content'), 'user_comment_body');
         $comment = Comment::create([
             'post_id' => $request->input('post_id'),
             'user_id' => Auth::id(),
