@@ -17,11 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('email')->unique();
+            $table->string('mobile')->unique()->nullable();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
             $table->integer('notification_count')->unsigned()->default(0);
+            $table->json('extend')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

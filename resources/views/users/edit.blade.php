@@ -57,6 +57,14 @@
                   <small id="emailHelp" class="form-text text-muted">邮箱暂不支持更改</small>
                 </div>
                 <div class="form-group">
+                  <label for="mobile">手机号</label>
+                  <input type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile"
+                         name="mobile" placeholder="手机号" value="{{ Auth::user()->mobile }}">
+                  @if ($errors->has('mobile'))
+                    <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('mobile') }}</strong></span>
+                  @endif
+                </div>
+                <div class="form-group">
                   <label for="bio">个性签名</label>
                   <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" id="bio" rows="4"
                             name="bio">{{ Auth::user()->bio }}</textarea>

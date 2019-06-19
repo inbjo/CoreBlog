@@ -44,13 +44,17 @@ class User extends Authenticatable implements MustVerifyEmailContract
         notify as protected laravelNotify;
     }
 
+    protected $casts = [
+        'extend' => 'object'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'nickname', 'email', 'password', 'avatar', 'bio'
+        'username', 'nickname', 'email', 'mobile', 'password', 'avatar', 'bio', 'extend'
     ];
 
     /**

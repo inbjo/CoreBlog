@@ -39,13 +39,13 @@
             @include('layouts._msg')
             <!-- end message tips -->
 
-              <form method="post" action="{{ route('user.password', Auth::id()) }}">
+              <form method="post" action="{{ route('user.binding', Auth::id()) }}">
                 @method('PUT')
                 @csrf
                 <div class="form-group">
                   <label for="qq">QQ</label>
-                  <input type="text" class="form-control{{ $errors->has('qq') ? ' is-invalid' : '' }}" id="qq"
-                         name="qq" placeholder="QQ号" value="">
+                  <input type="number" class="form-control{{ $errors->has('qq') ? ' is-invalid' : '' }}" id="qq"
+                         name="extend[qq]" placeholder="QQ号" value="{{ $user->extend->qq ?? '' }}">
                   @if ($errors->has('qq'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('qq') }}</strong></span>
                   @endif
@@ -53,33 +53,25 @@
                 <div class="form-group">
                   <label for="wechat">微信</label>
                   <input type="text" class="form-control{{ $errors->has('wechat') ? ' is-invalid' : '' }}" id="wechat"
-                         name="wechat" placeholder="微信号" value="">
+                         name="extend[wechat]" placeholder="微信号" value="{{ $user->extend->wechat ?? '' }}">
                   @if ($errors->has('wechat'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('wechat') }}</strong></span>
                   @endif
                 </div>
                 <div class="form-group">
                   <label for="weibo">微博</label>
-                  <input type="text" class="form-control{{ $errors->has('weibo') ? ' is-invalid' : '' }}" id="weibo"
-                         name="weibo" placeholder="微博地址" value="">
+                  <input type="url" class="form-control{{ $errors->has('weibo') ? ' is-invalid' : '' }}" id="weibo"
+                         name="extend[weibo]" placeholder="微博地址" value="{{ $user->extend->weibo ?? '' }}">
                   @if ($errors->has('weibo'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('weibo') }}</strong></span>
                   @endif
                 </div>
                 <div class="form-group">
                   <label for="github">Github</label>
-                  <input type="text" class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}" id="github"
-                         name="github" placeholder="github地址" value="">
+                  <input type="url" class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}" id="github"
+                         name="extend[github]" placeholder="github地址" value="{{ $user->extend->github ?? '' }}">
                   @if ($errors->has('github'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('github') }}</strong></span>
-                  @endif
-                </div>
-                <div class="form-group">
-                  <label for="mobile">手机号</label>
-                  <input type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile"
-                         name="mobile" placeholder="手机号" value="">
-                  @if ($errors->has('mobile'))
-                    <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('mobile') }}</strong></span>
                   @endif
                 </div>
                 <div class="form-group">

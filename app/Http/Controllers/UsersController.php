@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\AvatarRequest;
-use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Comment;
 use App\Models\User;
@@ -113,7 +112,9 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
         if ($request->isMethod('put')) {
-
+            $user->extend = $request->extend;
+            $user->save();
+            return redirect()->back()->with('success', '资料更新成功！');
         } else {
             return view('users.binding', compact('user'));
         }

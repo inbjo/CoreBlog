@@ -23,6 +23,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker->unique()->userName,
         'avatar' => generateAvatar($email),
         'email' => $email,
+        'mobile' => $faker->e164PhoneNumber,
         'bio' => $faker->sentence,
         'password' => bcrypt('secret'),
         'created_at' => $created_at,
