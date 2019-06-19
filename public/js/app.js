@@ -67884,6 +67884,20 @@ window.app = {
       document.onselectstart = new Function('event.returnValue=false;');
     }
   },
+  search: function search() {
+    $("#search").click(function () {
+      if ($("#keyword").val() != '') {
+        location.href = location.protocol + '//' + location.host + '/search/' + $("#keyword").val();
+      } else {
+        swal({
+          title: "提示",
+          icon: "error",
+          text: "请填写您要搜索的关键词",
+          button: "好的"
+        });
+      }
+    });
+  },
   init: function init() {
     //设置Jq CSRF令牌
     var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -67905,6 +67919,7 @@ window.app = {
     $('[data-toggle="tooltip"]').tooltip();
     hljs.initHighlightingOnLoad();
     app.backToTop();
+    app.search();
     app.likePost();
     app.rewardAuthor();
     app.favoriteComment();

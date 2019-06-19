@@ -17,7 +17,7 @@
                             搜索: {{$keyword}}
                         </h3>
                         <div class="post-count">
-                            共 {{$total}} 篇文章
+                            共找到 {{$total}} 篇文章
                         </div>
                     </div>
 

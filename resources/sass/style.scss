@@ -767,6 +767,17 @@ figcaption {
   background: #ffffff;
   padding: 21px 30px;
   border-radius: 5px;
+
+  .content {
+    #search {
+      position: relative;
+      top: -27px;
+      right: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #777;
+    }
+  }
 }
 
 .main-footer .widget {
@@ -1216,7 +1227,7 @@ div#editor.editormd-fullscreen {
   z-index: 999;
 }
 
-button.close{
+button.close {
   outline: none;
 }
 

@@ -1,37 +1,14 @@
 <aside class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 sidebar">
   <!-- start widget -->
   <div class="widget">
-    <h4 class="title">关注我们</h4>
+    <h4 class="title">搜索文章</h4>
     <div class="content">
-      <ul class="social">
-        <!-- start social links -->
-        <!-- replace the # with your own profile link address -->
-        <li><a href="#"><i class="fa fa-qq"></i></a></li>
-        <li><a href="#"><i class="fa fa-weixin"></i></a></li>
-        <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-        <li><a href="#"><i class="fa fa-github"></i></a></li>
-        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-        <li><a href="#"><i class="fa fa-phone"></i></a></li>
-        <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i></a></li>
-        <!-- end social links -->
-      </ul>
+      <input type="text" class="form-control" id="keyword" placeholder="请输入关键词...">
+        <i id="search" class="fa fa-search float-right" aria-hidden="true"></i>
+      </input>
     </div>
   </div>
   <!-- end widget -->
-
-  <div class="widget">
-    <h4 class="title">搜索</h4>
-    <div class="content">
-      <div class="row">
-        <div class="col-8">
-          <input name="keyword" type="text" class="form-control" id="keyword" placeholder="请输入关键词...">
-        </div>
-        <div class="col-4">
-          <button type="submit" class="btn btn-primary mb-2">搜索</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- start Newsletter widget -->
   <div class="widget">

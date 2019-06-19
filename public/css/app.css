@@ -20319,6 +20319,15 @@ figcaption {
   border-radius: 5px;
 }
 
+.sidebar .widget .content #search {
+  position: relative;
+  top: -27px;
+  right: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #777;
+}
+
 .main-footer .widget {
   padding: 0px 30px;
 }

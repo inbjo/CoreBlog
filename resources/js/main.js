@@ -8,7 +8,7 @@
  1. function declearetion
  ==========================*/
 window.app = {
-  backToTop: function () {
+  backToTop: () => {
     $(window).scroll(function () {
       if ($(this).scrollTop() > 100) {
         $('#back-to-top').fadeIn();
@@ -22,7 +22,7 @@ window.app = {
       return false;
     });
   },
-  favoriteComment: function () {
+  favoriteComment: () => {
     $(".favorite").click(function () {
       var that = $(this);
       var id = $(this).data('id');
@@ -46,7 +46,7 @@ window.app = {
       });
     });
   },
-  reply: function () {
+  reply: () => {
     $(".reply").click(function () {
       if (is_login == false) {
         return app.loginTips();
@@ -56,7 +56,7 @@ window.app = {
       $('html,body').animate({scrollTop: $("#reply").offset().top}, 500);
     });
   },
-  deleteComment: function () {
+  deleteComment: () => {
     $(".delete").click(function () {
       var id = $(this).data('id');
       if (is_login == false) {
@@ -86,7 +86,7 @@ window.app = {
       });
     });
   },
-  deletePost: function () {
+  deletePost: () => {
     $("#delete").click(function () {
       var id = $(this).data('id');
       swal({
@@ -112,7 +112,7 @@ window.app = {
         });
     });
   },
-  loginTips: function () {
+  loginTips: () => {
     swal({
       title: "",
       text: "您需要登录以后才能操作！",
@@ -126,7 +126,7 @@ window.app = {
     });
     return false;
   },
-  subscribe: function () {
+  subscribe: () => {
     var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
     if (reg.test($("#subscribe_email").val())) {
       axios({
@@ -163,7 +163,7 @@ window.app = {
     });
     tribute.attach(document.getElementById('reply_content'));
   },
-  rewardAuthor: function () {
+  rewardAuthor: () => {
     $("#rewardAuthor").click(function () {
       if (localStorage.getItem('total_amount') == null) {
         localStorage.setItem('total_amount', '1');
@@ -247,7 +247,7 @@ window.app = {
     });
 
   },
-  likePost: function () {
+  likePost: () => {
     $("#likePost").click(function () {
       var that = $(this);
       var id = $(this).data('id');
@@ -273,11 +273,20 @@ window.app = {
       });
     });
   },
-  forbidCopy: function () {
+  forbidCopy: () => {
     if (!is_login) {
       document.oncontextmenu = new Function('event.returnValue=false;');
       document.onselectstart = new Function('event.returnValue=false;');
     }
+  },
+  search: () => {
+    $("#search").click(function () {
+      if ($("#keyword").val() != '') {
+        location.href = location.protocol + '//' + location.host + '/search/' + $("#keyword").val();
+      } else {
+        swal({title: "提示", icon: "error", text: "请填写您要搜索的关键词", button: "好的"});
+      }
+    });
   },
   init: function () {
     //设置Jq CSRF令牌
@@ -299,6 +308,7 @@ window.app = {
     hljs.initHighlightingOnLoad();
 
     app.backToTop();
+    app.search();
     app.likePost();
     app.rewardAuthor();
     app.favoriteComment();
