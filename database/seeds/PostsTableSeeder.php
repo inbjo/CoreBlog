@@ -26,8 +26,7 @@ class PostsTableSeeder extends Seeder
             ->times(100)
             ->make()
             ->each(function ($post, $index)
-            use ($user_ids, $category_ids, $faker)
-            {
+            use ($user_ids, $category_ids, $faker) {
                 // 从用户 ID 数组中随机取出一个并赋值
                 $post->user_id = $faker->randomElement($user_ids);
 
@@ -37,5 +36,13 @@ class PostsTableSeeder extends Seeder
 
         // 将数据集合转换为数组，并插入到数据库中
         Post::insert($posts->toArray());
+
+        //更新分类目录文章数量
+        $categorys = Category::all();
+        $categorys->each(function ($category) {
+            $category->post_count = $category->posts->count();
+            $category->save();
+        });
+
     }
 }
