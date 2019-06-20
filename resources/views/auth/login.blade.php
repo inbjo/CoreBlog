@@ -10,6 +10,11 @@
     <div class="container">
         <div class="row justify-content-center login">
             <div class="col-md-8">
+
+              <!-- start message tips -->
+            @include('layouts._msg')
+            <!-- end message tips -->
+
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
