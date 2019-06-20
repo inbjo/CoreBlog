@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68b54d63a759a0a138b6b52bad13db9b",
+    "content-hash": "b697cac80462c2bcbcf85d73332a4c48",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -1855,6 +1855,75 @@
                 "psysh"
             ],
             "time": "2018-10-12T19:39:35+00:00"
+        },
+        {
+            "name": "laravelium/feed",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/Laravelium/Feed.git",
+                "reference": "cf7c4abf1178ffab761256059f4df9556818013f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/Laravelium%2FFeed/repository/archive.zip?sha=cf7c4abf1178ffab761256059f4df9556818013f",
+                "reference": "cf7c4abf1178ffab761256059f4df9556818013f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/framework": "~5.8",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench-core": "3.8.*",
+                "phpunit/phpunit": "^7.5 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravelium\\Feed\\FeedServiceProvider"
+                    ],
+                    "aliases": {
+                        "Feed": "Laravelium\\Feed\\Feed"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Laravelium\\Feed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@damianoff.com",
+                    "homepage": "https://damianoff.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravelium Feed package for Laravel.",
+            "homepage": "https://laravelium.com",
+            "keywords": [
+                "atom",
+                "feed",
+                "generator",
+                "laravel",
+                "laravelium",
+                "rss"
+            ],
+            "time": "2019-02-27T12:40:58+00:00"
         },
         {
             "name": "laravelium/sitemap",

@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'PostsController@index')->name('index');
-Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
-Route::get('rss.xml', 'PagesController@rss')->name('rss');
+Route::get('sitemap', 'PagesController@sitemap')->name('sitemap');
+Route::get('feed', 'PagesController@feed')->name('feed');
 
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
 Route::get('/tags', 'TagsController@index')->name('tags'); //标签云

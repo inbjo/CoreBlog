@@ -70,7 +70,7 @@
                     <span><a href="{{ route('sitemap') }}" target="_blank">网站地图</a></span>
                     <span></span>
                     <span>
-                    <a href="{{ route('rss') }}" target="_blank">RSS</a>
+                    <a href="{{ route('feed') }}" target="_blank">RSS</a>
                 </span>
                     <span></span>
                     <span>
