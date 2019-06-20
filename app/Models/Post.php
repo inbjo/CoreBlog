@@ -6,6 +6,7 @@ use App\Traits\HashIdHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Laravel\Scout\Searchable;
 use Parsedown;
 
 /**
@@ -45,7 +46,7 @@ use Parsedown;
  */
 class Post extends Model
 {
-    use HashIdHelper, SoftDeletes;
+    use HashIdHelper, SoftDeletes, Searchable;
 
     protected $fillable = [
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
@@ -152,7 +153,12 @@ class Post extends Model
         $this->increment('view_count');
     }
 
-    public function toESArray()
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
     {
         $arr = Arr::only($this->toArray(), [
             'id',

@@ -30,53 +30,9 @@ class PagesController extends Controller
 
     public function search(Request $request)
     {
-        $page = $request->input('page', 1);
-        $perPage = 12;
-
-        // 构建查询
-        $params = [
-            'index' => 'posts',
-            'type' => '_doc',
-            'body' => [
-                'from' => ($page - 1) * $perPage, // 通过当前页数与每页数量计算偏移值
-                'size' => $perPage,
-                'query' => [
-                    'bool' => [
-                        'must' => [
-                            [
-                                'multi_match' => [
-                                    'query' => $request->keyword,
-                                    'fields' => [
-                                        'title^4',
-                                        'keyword^3',
-                                        'description^2',
-                                        'content',
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ];
-
-        $result = app('es')->search($params);
-        $postIds = collect($result['hits']['hits'])->pluck('_id')->all();
-
-        $posts = Post::query()
-            ->whereIn('id', $postIds)
-            ->get();
-
-        $pager = new LengthAwarePaginator($posts, $result['hits']['total'], $perPage, $page, [
-            'path' => route('post.search', $request->keyword), // 手动构建分页的 url
-        ]);
-
-        return view('pages.search', [
-            'posts' => $pager,
-            'total' => $result['hits']['total'],
-            'keyword' => $request->keyword,
-        ]);
-
+        $keyword = $request->keyword;
+        $posts = Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
+        return view('posts.search', compact('posts', 'keyword'));
     }
 
 }

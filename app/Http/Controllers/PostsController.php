@@ -24,7 +24,7 @@ class PostsController extends Controller
     public function index()
     {
         //取文章列表
-        $posts = Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->withCount('comments')->paginate(12);
+        $posts = Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
         return view('pages.index', compact('posts'));
     }
 
@@ -131,6 +131,7 @@ class PostsController extends Controller
         //更新文章
         $post->title = $request->input('title');
         $post->keyword = str_replace(' ', '', $request->input('tags'));
+        $post->description = $request->input('description');
         $post->content = $request->input('content');
         $post->category_id = $request->input('category_id');
         $post->status = $request->input('status');
