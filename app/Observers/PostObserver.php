@@ -37,11 +37,6 @@ class PostObserver
         $post->category->save();
     }
 
-    public function saved(Post $post)
-    {
-        SyncOnePostToES::dispatch($post);
-    }
-
     /**
      * Post deleting
      * @param Post $post
