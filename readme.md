@@ -27,6 +27,7 @@
 * PHP >= 7.1.3
 * Mysql >= 5.7
 * Redis >= 4.0
+* Sqlite PHP 拓展
 * GD PHP 拓展
 * OpenSSL PHP 拓展
 * PDO PHP 拓展
