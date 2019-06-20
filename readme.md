@@ -1,7 +1,7 @@
 <h1 align="center"> CoreBlog </h1>
 
 <p align="center">一款简洁优雅的博客系统</p>
----
+
 ![preview](https://raw.githubusercontent.com/inbjo/CoreBlog/master/public/images/preview.png)
 
 ## 项目概述
