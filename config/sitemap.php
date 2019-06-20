@@ -2,7 +2,7 @@
 
 /* Simple configuration file for Laravel Sitemap package */
 return [
-    'use_cache' => false,
+    'use_cache' => true,
     'cache_key' => 'coreblog.sitemap',
     'cache_duration' => 3600,
     'escaping' => true,

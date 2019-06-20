@@ -14,7 +14,7 @@ class PagesController extends Controller
     public function sitemap()
     {
         $sitemap = App::make('sitemap');
-        $sitemap->setCache('coreblog.sitemap', 600);
+        $sitemap->setCache('coreblog.sitemap', 3600);
 
         if (!$sitemap->isCached()) {
             //首页
@@ -33,7 +33,7 @@ class PagesController extends Controller
             //文章
             $posts = Post::orderBy('created_at', 'desc')->get();
             $posts->each(function ($post) use ($sitemap) {
-                $sitemap->add(route('post.show', $post->hash_id), $post->modified, '0.8', 'monthly');
+                $sitemap->add(route('post.show', $post->hash_id), $post->updated_at->toIso8601String(), '0.8', 'monthly');
             });
         }
 
@@ -45,7 +45,7 @@ class PagesController extends Controller
     {
         $feed = App::make("feed");
 
-        $feed->setCache(600, 'coreblog.feed');
+        $feed->setCache('coreblog.feed', 3600);
         $feed->ctype = "text/xml";
 
         if (!$feed->isCached()) {
@@ -62,7 +62,7 @@ class PagesController extends Controller
             $feed->setTextLimit(100);
 
             $posts->each(function ($post) use ($feed) {
-                $feed->add($post->title, $post->user->name, route('post.show', $post->hash_id), $post->created, $post->description, $post->content);
+                $feed->add($post->title, $post->user->name, route('post.show', $post->hash_id), $post->created_at->toIso8601String(), $post->description, $post->content);
             });
 
         }
