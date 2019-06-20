@@ -12,7 +12,7 @@
 * 文章编辑使用markdown格式；
 * 文章Url地址自动加密；
 * 文章支持点赞、评论、打赏；
-* 文章使用elasticsearch全文索引；
+* 文章使用tntsearch做全文索引、jieba做中文分词；
 * 登录用户支持评论文章、点赞文章、点赞评论；
 * 评论支持@功能、xss过滤；
 * 文章被点赞、文章被评论、评论被点赞、评论被提及将收到站内通知；
@@ -26,6 +26,7 @@
 ### 服务器要求
 * PHP >= 7.1.3
 * Mysql >= 5.7
+* Redis >= 4.0
 * GD PHP 拓展
 * OpenSSL PHP 拓展
 * PDO PHP 拓展
@@ -45,23 +46,18 @@ git clone https://github.com/inbjo/CoreBlog.git
 
 2. 生成配置文件
 ```
-cp .env.example .env    // 进入到项目目录
+cp .env.example .env    //请将.env改为你自己的配置信息
 ```
 修改对应配置
 
 3. 安装扩展包依赖
 ```
-composer install      	// 进入到项目目录
+composer install --optimize-autoloader --no-dev
 ```
 
-4. 生成数据表及生成测试数据
+4. 执行安装命令
 ```
-$ php artisan migrate --seed
-```
-
-5 生成秘钥
-```
-php artisan key:generate
+$ php artisan blog:install
 ```
 至此, 安装完成 ^_^。
 
