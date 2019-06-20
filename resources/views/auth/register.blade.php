@@ -10,6 +10,11 @@
     <div class="container">
         <div class="row justify-content-center register">
             <div class="col-md-8">
+
+              <!-- start message tips -->
+              @include('layouts._msg')
+              <!-- end message tips -->
+
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
 
@@ -21,11 +26,12 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control {{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}" required>
+                                    <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                           name="name" value="{{ old('name') }}" placeholder="仅支持英文、数字、下划线" required>
 
-                                    @if ($errors->has('nickname'))
+                                    @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -35,7 +41,8 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                           name="email" value="{{ old('email') }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
