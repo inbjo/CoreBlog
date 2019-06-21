@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class Install extends Command
 {
@@ -38,12 +39,45 @@ class Install extends Command
      */
     public function handle()
     {
-        Artisan::call('key:generate'); //生成key
-        Artisan::call('route:cache'); //缓存路由
-        Artisan::call('config:cache'); //缓存配置
-        Artisan::call('storage:link'); //创建软连接
-        Artisan::call('migrate --seed'); //创建表并填充假数据
-        Artisan::call('search:sync-posts'); //同步全文索引
-        $this->info('安装完毕 ^_^');
+        $this->info(' _____                    ______  _               ');
+        $this->info('/  __ \                   | ___ \| |              ');
+        $this->info('| /  \/  ___   _ __   ___ | |_/ /| |  ___    __ _ ');
+        $this->info('| |     / _ \ | \'__| / _ \| ___ \| | / _ \  / _` |');
+        $this->info('| \__/\| (_) || |   |  __/| |_/ /| || (_) || (_| |');
+        $this->info(' \____/ \___/ |_|    \___|\____/ |_| \___/  \__, |');
+        $this->info('                                             __/ |');
+        $this->info('                                            |___/ ');
+        $this->info('Start Installing...');
+        $this->call('key:generate');
+        $this->call('route:cache');
+        $this->call('config:cache');
+        $this->call('storage:link');
+        $this->call('migrate');
+
+        if ($this->confirm('Do you need stuff faker data?')) {
+            $this->call('db:seed');
+            $this->call('search:sync-posts');
+        } else {
+            $this->call('db:seed', ['--class' => 'DefaultDataSeeder']);
+        }
+
+        $this->line('Next we need create a admin account');
+        $name = $this->ask('What is your name?');
+        $email = $this->ask('What is your email address?');
+        $password = $this->secret('What is the password?');
+
+        User::updateOrCreate(
+            ['id' => 1],
+            [
+                'name' => $name,
+                'email' => $email,
+                'avatar' => generateAvatar($email),
+                'password' => bcrypt($password),
+                'email_verified_at' => Carbon::now()->toDateTimeString(),
+            ]
+        );
+
+        $this->info('Create Admin Account Success!');
+        $this->info('Ok, The Installation Is Complete ^_^ Enjoy It!');
     }
 }

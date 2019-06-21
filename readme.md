@@ -69,7 +69,7 @@ composer install --optimize-autoloader --no-dev
 
 4. 执行安装命令
 ```
-$ php artisan blog:install
+$ php artisan blog:install //请按照提示进行安装
 ```
 至此, 安装完成 ^_^。
 

@@ -62,7 +62,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <span>Copyright &copy; <a href="{{ config('app.url') }}">{{ config('system.name') }}</a> All right Reserved.</span>
+                    <span>Copyright &copy; <a href="{{ config('app.url') }}">{{ config('system.name') }}</a> All right Reserved.
+                      Powered By <a href="https://github.com/inbjo/CoreBlog" target="_blank">CoreBlog</a></span>
                 </div>
             </div>
             <div class="row mt-1">

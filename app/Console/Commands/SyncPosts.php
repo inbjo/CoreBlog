@@ -42,9 +42,9 @@ class SyncPosts extends Command
             'model' => 'App\Models\Post'
         ]);
         if ($exitCode == 0) {
-            $this->info('同步全文索引成功！');
+            $this->info('Sync Posts Index Success!');
         } else {
-            $this->error('同步全文索引失败！');
+            $this->error('Sync Posts Index Fail!');
         }
     }
 }
