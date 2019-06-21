@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'PostsController@index')->name('index');
-Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
-Route::get('rss.xml', 'PagesController@rss')->name('rss');
+Route::get('sitemap', 'PagesController@sitemap')->name('sitemap');
+Route::get('feed', 'PagesController@feed')->name('feed');
 
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
 Route::get('/tags', 'TagsController@index')->name('tags'); //标签云
@@ -44,7 +44,7 @@ Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
 Route::put('setting', 'SettingsController@update')->name('setting.update');
 
-Route::post('pay/alipay/create', 'Pay\PayController@create');
+Route::post('pay/alipay/create', 'Pay\AlipayController@create');
 Route::get('pay/alipay/return', 'Pay\AlipayController@return');
 Route::post('pay/alipay/notify', 'Pay\AlipayController@notify');
 Route::get('pay/alipay/{id}', 'Pay\AlipayController@pay');

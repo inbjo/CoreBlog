@@ -2,7 +2,17 @@
 
 <p align="center">一款简洁优雅的博客系统</p>
 
-### 支持的功能
+![preview](https://raw.githubusercontent.com/inbjo/CoreBlog/master/public/images/preview.png)
+
+## 项目概述
+
+* 产品名称：酷博
+* 项目代码：CoreBlog
+* 官方地址：https://www.inbjo.com/
+
+[CoreBlog](https://github.com/inbjo/CoreBlog) Laravel 5.8 版本。
+
+## 支持的功能
 * 前端响应式，支持在PC、手机、平板下访问；
 * 用户注册、登录、退出；
 * 根据用户email地址自动生成用户头像；
@@ -23,10 +33,11 @@
 * 分类目录增删改；
 * 支持后台ICP备案号修改、公安备案号修改；
 
-### 服务器要求
+## 服务器要求
+* Nginx >= 1.8
 * PHP >= 7.1.3
 * Mysql >= 5.7
-* Redis >= 4.0
+* Redis >= 3.0
 * Sqlite PHP 拓展
 * GD PHP 拓展
 * OpenSSL PHP 拓展
