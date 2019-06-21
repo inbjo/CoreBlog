@@ -56,10 +56,11 @@ class Install extends Command
 
         if ($this->confirm('Do you need stuff faker data?')) {
             $this->call('db:seed');
-            $this->call('search:sync-posts');
         } else {
             $this->call('db:seed', ['--class' => 'DefaultDataSeeder']);
         }
+        $this->call('search:sync-posts');
+
 
         $this->line('Next we need create a admin account');
         $name = $this->ask('What is your name?');
