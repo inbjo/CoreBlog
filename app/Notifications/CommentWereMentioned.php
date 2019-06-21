@@ -47,7 +47,7 @@ class CommentWereMentioned extends Notification implements ShouldQueue
             ->line("{$this->comment->user->name}在文章: {$this->comment->post->title}的评论中提及了您")
             ->action('点击查看', route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id)
             ->line('内容如下：')
-            ->line($this->comment->content);
+            ->line(strip_tags($this->comment->content));
     }
 
     /**

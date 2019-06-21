@@ -136,13 +136,13 @@ class Post extends Model
     }
 
     /**
-     * 获取点赞数最多的文章
+     * 获取指定属性的文章
      * @param int $count
      * @return Post[]|\Illuminate\Database\Eloquent\Collection
      */
-    public static function getTopFavoritePosts($count = 3)
+    public static function getTopBy($field, $count = 3)
     {
-        return self::orderBy('favorite_count', 'desc')->take($count)->get();
+        return self::orderBy($field, 'desc')->take($count)->get();
     }
 
     /**

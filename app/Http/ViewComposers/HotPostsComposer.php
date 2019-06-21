@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Models\Post;
 use Illuminate\View\View;
 
-class RecentPostsComposer
+class HotPostsComposer
 {
     protected $post;
 
@@ -16,6 +16,6 @@ class RecentPostsComposer
 
     public function compose(View $view)
     {
-        $view->with('recent_posts', $this->post::getTopBy('id', 5));
+        $view->with('hot_posts', $this->post::getTopBy('view_count', 3));
     }
 }

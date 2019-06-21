@@ -7,9 +7,9 @@
                 <div class="col-sm">
                     <!-- start widget -->
                     <div class="widget">
-                        <h4 class="title">最新发布</h4>
+                        <h4 class="title">最热文章</h4>
                         <div class="content recent-post">
-                            @foreach($top_posts as $post)
+                            @foreach($hot_posts as $post)
                                 <div class="recent-single-post">
                                     <a href="{{route('post.show',$post->hash_id)}}"
                                        class="post-title">{{$post->title}}</a>

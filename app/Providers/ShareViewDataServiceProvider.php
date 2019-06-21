@@ -30,7 +30,7 @@ class ShareViewDataServiceProvider extends ServiceProvider
         View::composer('posts.edit', 'App\Http\ViewComposers\CategoriesComposer');
         View::composer('layouts._sidebar', 'App\Http\ViewComposers\RecentPostsComposer');
         View::composer('layouts._sidebar', 'App\Http\ViewComposers\HotTagsComposer');
-        View::composer('layouts._footer', 'App\Http\ViewComposers\RecentPostsComposer');
+        View::composer('layouts._footer', 'App\Http\ViewComposers\HotPostsComposer');
         View::composer('layouts._footer', 'App\Http\ViewComposers\HotTagsComposer');
         View::composer('layouts._footer', 'App\Http\ViewComposers\LinksComposer');
     }

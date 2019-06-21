@@ -7,7 +7,7 @@
     @include('layouts._nav')
     <!-- end navigation -->
 
-    <div class="container">
+    <div class="container content-wrap">
         <div class="col-12">
             <div class="card mb-5">
 
