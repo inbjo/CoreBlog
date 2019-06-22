@@ -25,7 +25,7 @@
               <h3 class="post-title">{{$post->title}}</h3>
               <div class="post-meta">
                   <span class="author">By
-                     <a href="{{route('user.show',$post->user->id)}}" data-toggle="tooltip" data-placement="bottom"
+                     <a href="{{route('user.show',$post->user->name)}}" data-toggle="tooltip" data-placement="bottom"
                         title="查看{{$post->user->name}}发布的所有文章">{{$post->user->name}}
                      </a>
                   </span> &bull;
@@ -34,7 +34,7 @@
                     {{$post->created_at->diffForHumans() }}
                   </span>&bull;
                 <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
-                      <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
+                      <a href="{{route('post.show',$post->slug)}}#comments">{{$post->comment_count}}条评论</a>
                   </span>
               </div>
             </div>
@@ -64,7 +64,7 @@
             @can('update', $post)
               <div class="post-operate clearfix">
                 <button id="delete" data-id="{{ $post->id }}" class="btn btn-danger btn-sm float-right">删除</button>
-                <a href="{{ route('post.edit',$post->hash_id) }}"
+                <a href="{{ route('post.edit',$post->slug) }}"
                    class="btn btn-primary btn-sm float-right mr-2">编辑</a>
               </div>
             @endcan
@@ -112,7 +112,7 @@
                    alt="{{$comment->user->name}}">
               <div class="media-body">
                 <h5 class="mt-0">
-                  <a class="user-link" href="{{ route('user.show',$comment->user->id) }}"
+                  <a class="user-link" href="{{ route('user.show',$comment->user->name) }}"
                      target="_blank" data-toggle="tooltip" data-placement="bottom"
                      title="查看{{$comment->user->name}}发表的文章">{{$comment->user->name}}</a>
                   <span class="ml-2 time" title="{{ $comment->created_at->toDateTimeString() }}">

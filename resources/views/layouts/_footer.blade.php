@@ -11,7 +11,7 @@
                         <div class="content recent-post">
                             @foreach($hot_posts as $post)
                                 <div class="recent-single-post">
-                                    <a href="{{route('post.show',$post->hash_id)}}"
+                                    <a href="{{route('post.show',$post->slug)}}"
                                        class="post-title">{{$post->title}}</a>
                                     <div class="date">{{$post->created_at->toDateTimeString()}}</div>
                                 </div>

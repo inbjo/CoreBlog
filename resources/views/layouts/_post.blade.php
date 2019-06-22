@@ -2,11 +2,11 @@
   <article class="post">
     <div class="post-head">
       <h3 class="post-title">
-        <a href="{{route('post.show',$post->hash_id)}}">{{$post->title}}</a>
+        <a href="{{route('post.show',$post->slug)}}">{{$post->title}}</a>
       </h3>
       <div class="post-meta">
           <span class="author">By
-             <a href="{{route('user.show',$post->user->id)}}" data-toggle="tooltip" data-placement="bottom"
+             <a href="{{route('user.show',$post->user->name)}}" data-toggle="tooltip" data-placement="bottom"
                 title="查看{{$post->user->name}}发布的所有文章">{{$post->user->name}}
              </a>
           </span> &bull;
@@ -15,13 +15,13 @@
             {{$post->created_at->diffForHumans() }}
           </span>&bull;
         <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
-              <a href="{{route('post.show',$post->hash_id)}}#comments">{{$post->comment_count}}条评论</a>
+              <a href="{{route('post.show',$post->slug)}}#comments">{{$post->comment_count}}条评论</a>
           </span>
       </div>
     </div>
     @if($post->cover)
       <div class="featured-media">
-        <a href="{{route('post.show',$post->hash_id)}}"><img src="{{$post->cover}}" alt="{{$post->title}}"></a>
+        <a href="{{route('post.show',$post->slug)}}"><img src="{{$post->cover}}" alt="{{$post->title}}"></a>
       </div>
     @endif
     <div class="post-content">

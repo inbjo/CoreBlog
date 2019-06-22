@@ -42,7 +42,7 @@ class CommentsController extends Controller
             $user = User::whereName($name)->first();
             if ($user) {
                 $has_at = true;
-                $replace = '<a href="' . route('user.show', $user->id) . '" target="_blank">@' . $name . '</a>';
+                $replace = '<a href="' . route('user.show', $user->name) . '" target="_blank">@' . $name . '</a>';
                 $content = str_replace('@' . $name, $replace, $content);
                 //通知提醒
                 $user->notify(new CommentWereMentioned($comment));

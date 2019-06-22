@@ -48,7 +48,7 @@ class PostWereFavorited extends Notification
             'user_avatar' => auth()->user()->avatar,
             'post_id' => $this->post->id,
             'post_title' => $this->post->title,
-            'link' => route('post.show', $this->post->hash_id)
+            'link' => route('post.show', $this->post->slug)
         ];
     }
 }

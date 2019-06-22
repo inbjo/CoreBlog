@@ -83,7 +83,7 @@ class UsersController extends Controller
         $this->authorize('update', $user);
         if ($request->isMethod('put')) {
             $validatedData = $request->validate([
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:8|confirmed',
             ]);
             $user->password = $request->password;
             $user->save();

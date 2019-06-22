@@ -47,7 +47,7 @@ class AlipayController extends Controller
         $data = Pay::alipay($this->config)->verify(); // 是的，验签就这么简单！
         $order = Order::where('no', $data->out_trade_no)->first();
         if ($order) {
-            return redirect()->route('post.show', $order->post->hash_id)->with('success', '支付打赏成功！');
+            return redirect()->route('post.show', $order->post->slug)->with('success', '支付打赏成功！');
         } else {
             return redirect()->route('index');
         }

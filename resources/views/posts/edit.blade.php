@@ -27,7 +27,7 @@
               <!-- start navigation -->
             @include('layouts._msg')
             <!-- end navigation -->
-              <form id="post" method="post" action="{{ route('post.update',$post->hash_id) }}"
+              <form id="post" method="post" action="{{ route('post.update',$post->slug) }}"
                     enctype="multipart/form-data">
                 @method('PUT')
                 @csrf

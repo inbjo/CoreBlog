@@ -45,7 +45,7 @@ class CommentWereMentioned extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject($this->comment->user->name . ' 在评论中提及您')
             ->line("{$this->comment->user->name}在文章: {$this->comment->post->title}的评论中提及了您")
-            ->action('点击查看', route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id)
+            ->action('点击查看', route('post.show', $this->comment->post->slug) . '#comment' . $this->comment->id)
             ->line('内容如下：')
             ->line(strip_tags($this->comment->content));
     }
@@ -65,7 +65,7 @@ class CommentWereMentioned extends Notification implements ShouldQueue
             'post_id' => $this->comment->post->id,
             'post_title' => $this->comment->post->title,
             'comment_content' => $this->comment->content,
-            'link' => route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id
+            'link' => route('post.show', $this->comment->post->slug) . '#comment' . $this->comment->id
         ];
     }
 }

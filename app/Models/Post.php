@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\HashIdHelper;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
 use Parsedown;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 /**
  * App\Post
@@ -46,7 +47,7 @@ use Parsedown;
  */
 class Post extends Model
 {
-    use HashIdHelper, SoftDeletes, Searchable;
+    use SoftDeletes, Searchable, Sluggable;
 
     protected $fillable = [
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
@@ -62,6 +63,37 @@ class Post extends Model
     {
         $Parsedown = new Parsedown();
         return $Parsedown->text($value);
+    }
+
+    /**
+     * 获取该模型的路由的自定义键名。
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'translatetitle'
+            ]
+        ];
+    }
+
+    public function getTranslatetitleAttribute()
+    {
+        $tr = new GoogleTranslate('en');
+        $tr->setUrl('http://translate.google.cn/translate_a/single');
+        return $tr->translate($this->title);
     }
 
     /**

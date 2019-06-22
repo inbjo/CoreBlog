@@ -9,10 +9,11 @@ $factory->define(App\Models\Post::class, function (Faker $faker) {
 
     return [
         'title' => $faker->sentence,
+        'slug' => $faker->unique()->slug,
         'keyword' => $faker->words(5, true),
         'description' => $faker->paragraph,
         'content' => $faker->text(1024),
-        'cover' => $faker->imageUrl(700, 400),
+        'cover' => '/images/hello.jpg',
         'created_at' => $created_at,
         'updated_at' => $updated_at
     ];

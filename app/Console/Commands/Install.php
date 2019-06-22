@@ -39,6 +39,7 @@ class Install extends Command
      */
     public function handle()
     {
+        $this->info('Thanks for using');
         $this->info(' _____                    ______  _               ');
         $this->info('/  __ \                   | ___ \| |              ');
         $this->info('| /  \/  ___   _ __   ___ | |_/ /| |  ___    __ _ ');
@@ -47,38 +48,41 @@ class Install extends Command
         $this->info(' \____/ \___/ |_|    \___|\____/ |_| \___/  \__, |');
         $this->info('                                             __/ |');
         $this->info('                                            |___/ ');
-        $this->info('Start Installing...');
-        $this->call('key:generate');
-        $this->call('route:cache');
-        $this->call('config:cache');
-        $this->call('storage:link');
-        $this->call('migrate');
+        if ($this->confirm('Whether to start the installation?')) {
+            $this->info('Start Installing...');
+            $this->call('key:generate');
+            $this->call('route:cache');
+            $this->call('config:cache');
+            $this->call('storage:link');
+            $this->call('migrate');
 
-        if ($this->confirm('Do you need stuff faker data?')) {
-            $this->call('db:seed');
-        } else {
-            $this->call('db:seed', ['--class' => 'DefaultDataSeeder']);
+            if ($this->confirm('Do you need stuff faker data?')) {
+                $this->call('db:seed');
+            } else {
+                $this->call('db:seed', ['--class' => 'DefaultDataSeeder']);
+            }
+            $this->call('search:sync-posts');
+
+
+            $this->line('Next, We Need Create A Admin Account');
+            $name = $this->ask('What is your name?');
+            $email = $this->ask('What is your email address?');
+            $password = $this->secret('What is the password?');
+
+            User::updateOrCreate(
+                ['id' => 1],
+                [
+                    'name' => $name,
+                    'email' => $email,
+                    'avatar' => generateAvatar($email),
+                    'password' => bcrypt($password),
+                    'email_verified_at' => Carbon::now()->toDateTimeString(),
+                ]
+            );
+
+            $this->info('Create Admin Account Success!');
+            $this->info('Ok, The Installation Is Complete ^_^ Enjoy It!');
         }
-        $this->call('search:sync-posts');
 
-
-        $this->line('Next we need create a admin account');
-        $name = $this->ask('What is your name?');
-        $email = $this->ask('What is your email address?');
-        $password = $this->secret('What is the password?');
-
-        User::updateOrCreate(
-            ['id' => 1],
-            [
-                'name' => $name,
-                'email' => $email,
-                'avatar' => generateAvatar($email),
-                'password' => bcrypt($password),
-                'email_verified_at' => Carbon::now()->toDateTimeString(),
-            ]
-        );
-
-        $this->info('Create Admin Account Success!');
-        $this->info('Ok, The Installation Is Complete ^_^ Enjoy It!');
     }
 }

@@ -73,7 +73,7 @@ class PostsController extends Controller
         $tagIds = Tag::getTagIds($request->input('tags'));
         $post->tags()->attach($tagIds);
         //返回结果
-        return redirect()->route('post.show', $post->hash_id)->with('success', '文章发表成功！');
+        return redirect()->route('post.show', $post->slug)->with('success', '文章发表成功！');
     }
 
     /**
@@ -140,7 +140,7 @@ class PostsController extends Controller
         $tagIds = Tag::getTagIds($request->input('tags'));
         $post->tags()->sync($tagIds);
         //返回结果
-        return redirect()->route('post.show', $post->hash_id)->with('success', '文章修改成功！');
+        return redirect()->route('post.show', $post->slug)->with('success', '文章修改成功！');
     }
 
     /**

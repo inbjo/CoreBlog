@@ -49,7 +49,7 @@ class PostHaveNewComment extends Notification
             'post_id' => $this->comment->post->id,
             'post_title' => $this->comment->post->title,
             'comment_content' => $this->comment->content,
-            'link' => route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id
+            'link' => route('post.show', $this->comment->post->slug) . '#comment' . $this->comment->id
         ];
     }
 }

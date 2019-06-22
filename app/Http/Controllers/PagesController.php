@@ -33,7 +33,7 @@ class PagesController extends Controller
             //文章
             $posts = Post::orderBy('created_at', 'desc')->get();
             $posts->each(function ($post) use ($sitemap) {
-                $sitemap->add(route('post.show', $post->hash_id), $post->updated_at->toIso8601String(), '0.8', 'monthly');
+                $sitemap->add(route('post.show', $post->slug), $post->updated_at->toIso8601String(), '0.8', 'monthly');
             });
         }
 
@@ -62,7 +62,7 @@ class PagesController extends Controller
             $feed->setTextLimit(100);
 
             $posts->each(function ($post) use ($feed) {
-                $feed->add($post->title, $post->user->name, route('post.show', $post->hash_id), $post->created_at->toIso8601String(), $post->description, $post->content);
+                $feed->add($post->title, $post->user->name, route('post.show', $post->slug), $post->created_at->toIso8601String(), $post->description, $post->content);
             });
 
         }

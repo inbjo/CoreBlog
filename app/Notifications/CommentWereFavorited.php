@@ -43,13 +43,13 @@ class CommentWereFavorited extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'user_id' => $this->comment->user->id,
-            'user_name' => $this->comment->user->name,
-            'user_avatar' => $this->comment->user->avatar,
+            'user_id' => auth()->id(),
+            'user_name' => auth()->user()->name,
+            'user_avatar' => auth()->user()->avatar,
             'post_id' => $this->comment->post->id,
             'post_title' => $this->comment->post->title,
             'comment_content' => $this->comment->content,
-            'link' => route('post.show', $this->comment->post->hash_id) . '#comment' . $this->comment->id
+            'link' => route('post.show', $this->comment->post->slug) . '#comment' . $this->comment->id
         ];
     }
 }

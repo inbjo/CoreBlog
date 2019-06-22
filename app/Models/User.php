@@ -77,16 +77,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
     ];
 
     /**
-     * 创建默认头像
+     * 获取该模型的路由的自定义键名。
+     *
+     * @return string
      */
-    public static function boot()
+    public function getRouteKeyName()
     {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->avatar)) {
-                $model->avatar = '/images/avatar/default.jpg';
-            }
-        });
+        return 'name';
     }
 
     public function notify($instance)

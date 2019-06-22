@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 /*
@@ -26,6 +27,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'mobile' => $faker->e164PhoneNumber,
         'bio' => $faker->sentence,
         'password' => bcrypt('secret'),
+        'email_verified_at' => Carbon::now()->toDateTimeString(),
         'created_at' => $created_at,
         'updated_at' => $updated_at,
     ];

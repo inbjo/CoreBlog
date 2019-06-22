@@ -851,9 +851,13 @@ figcaption {
   }
 
   .friend-links a {
-    color: #959595;
     padding: 2px 7px;
     border: 1px solid #303030;
+    color: #959595;
+    line-height: 1.5em;
+    display: inline-block;
+    margin: 0 7px 7px 0;
+    transition: all .2s ease;
 
     &:hover {
       color: #ffffff;

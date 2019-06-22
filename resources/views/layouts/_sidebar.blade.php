@@ -35,7 +35,7 @@
     <div class="content recent-post">
       @foreach($recent_posts as $post)
         <div class="recent-single-post">
-          <a href="{{route('post.show',$post->hash_id)}}" class="post-title">{{$post->title}}</a>
+          <a href="{{route('post.show',$post->slug)}}" class="post-title">{{$post->title}}</a>
           <div class="date">{{$post->created_at->toDateTimeString()}}</div>
         </div>
       @endforeach
