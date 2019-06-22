@@ -32,6 +32,7 @@ class DefaultDataSeeder extends Seeder
         //文章
         DB::table('posts')->insert([
             'title' => 'Hello Word!',
+            'slug' => 'hello-world',
             'keyword' => 'Hello Word!',
             'description' => 'Hello Word!',
             'cover' => '/images/hello.jpg',
