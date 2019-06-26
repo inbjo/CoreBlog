@@ -309,7 +309,7 @@ figcaption {
 .post {
   padding: 35px;
   background: #ffffff;
-  margin-bottom: 35px;
+  margin-bottom: 1.5rem;
   position: relative;
   overflow: hidden;
   border-radius: 5px;
@@ -595,7 +595,22 @@ figcaption {
 /*====================================================
 	comment
 ====================================================*/
-.post-comment-bar {
+.post-author {
+  padding: 15px 20px;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+
+  a.trd {
+    color: #959595;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.post-comment-bar, .post-author {
   padding: 10px 20px;
   width: 100%;
   background: #fff;

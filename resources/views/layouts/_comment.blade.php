@@ -1,3 +1,25 @@
+<div class="post-author media mb-4">
+  <img class="mr-3 avatar rounded-circle" src="{{$post->user->avatar}}" alt="{{$post->user->name}}">
+  <div class="media-body">
+    <h5 class="mt-0">
+      <a class="user-link mr-2" href="{{route('user.show',$post->user->name)}}" target="_blank" data-toggle="tooltip"
+         data-placement="bottom" title="" data-original-title="查看{{$post->user->name}}发表的文章">{{$post->user->name}}</a>
+      @if(!empty($post->user->extend->qq))
+      <a href="tencent://message/?uin={{$post->user->extend->qq}}" class="trd"><i class="fa fa-qq"></i></a>
+      @endif
+      @if(!empty($post->user->extend->wechat))
+      <a onclick="swal('微信号是{{$post->user->extend->wechat}}');" class="trd"><i class="fa fa-weixin"></i></a>
+      @endif
+      @if(!empty($post->user->extend->github))
+      <a href="{{$post->user->extend->weibo}}" class="trd"><i class="fa fa-weibo"></i></a>
+      @endif
+      @if(!empty($post->user->extend->github))
+        <a href="{{$post->user->extend->github}}" class="trd"><i class="fa fa-github"></i></a>
+      @endif
+    </h5>
+    <p>{{$post->user->bio}}</p>
+  </div>
+</div>
 <div class="post-comment-bar" id="comments">
   <h4 class="mb-0">
                 <span class="badge badge-primary">
