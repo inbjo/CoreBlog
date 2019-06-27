@@ -70,7 +70,7 @@ class AlipayController extends Controller
                     $order->payment_no = $data->trade_no;
                     $order->paid_at = $data->gmt_payment;
                     $order->save();
-                    Notification::send($order->payer, new PostWereReward($order));
+                    Notification::send($order->post->user, new PostWereReward($order));
                 }
             }
 

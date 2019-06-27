@@ -56,7 +56,7 @@ class WechatController extends Controller
                     $order->payment_no = $data->transaction_id;
                     $order->paid_at = Carbon::parse($data->time_end)->toDateTimeString();;
                     $order->save();
-                    Notification::send($order->payer, new PostWereReward($order));
+                    Notification::send($order->post->user, new PostWereReward($order));
                 }
             }
 

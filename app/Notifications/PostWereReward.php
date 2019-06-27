@@ -48,6 +48,7 @@ class PostWereReward extends Notification
             'user_avatar' => $this->order->payer->avatar,
             'pay_type' => $this->order->payment_method,
             'amount' => $this->order->total_amount,
+            'remark' => $this->order->remark,
             'link' => route('post.show', $this->order->post->slug)
         ];
     }
