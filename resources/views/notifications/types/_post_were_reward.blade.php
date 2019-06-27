@@ -1,7 +1,7 @@
 <li class="media pb-3">
     <div class="media-left">
         <a href="{{ route('user.show', $notification->data['user_name']) }}">
-            <img class="media-object img-fluid rounded-circle mr-3" alt="{{ $notification->data['user_name'] }}"
+            <img class="media-object img-fluid rounded-circle mr-3 mt-2" alt="{{ $notification->data['user_name'] }}"
                  src="{{ $notification->data['user_avatar'] }}" style="width:48px;height:48px;"/>
         </a>
     </div>
