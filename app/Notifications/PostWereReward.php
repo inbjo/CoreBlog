@@ -7,20 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PostWereFavorited extends Notification
+class PostWereReward extends Notification
 {
     use Queueable;
 
-    protected $post;
+    protected $order;
 
     /**
      * Create a new notification instance.
      *
-     * @param $post
+     * @param $order
      */
-    public function __construct($post)
+    public function __construct($order)
     {
-        $this->post = $post;
+        $this->order = $order;
     }
 
     /**
@@ -43,12 +43,12 @@ class PostWereFavorited extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
-            'user_avatar' => auth()->user()->avatar,
-            'post_id' => $this->post->id,
-            'post_title' => $this->post->title,
-            'link' => route('post.show', $this->post->slug)
+            'post_title' => $this->order->post->title,
+            'user_name' => $this->order->payer->name,
+            'user_avatar' => $this->order->payer->avatar,
+            'pay_type' => $this->order->payment_method,
+            'amount' => $this->order->total_amount,
+            'link' => route('post.show', $this->order->post->slug)
         ];
     }
 }

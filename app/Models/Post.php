@@ -148,6 +148,11 @@ class Post extends Model
         return $this->morphMany(Favorite::class, 'favorited');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function favorite()
     {
         $attributes = ['user_id' => auth()->id()];

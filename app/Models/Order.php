@@ -17,6 +17,6 @@ class Order extends Model
 
     public function payer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 }

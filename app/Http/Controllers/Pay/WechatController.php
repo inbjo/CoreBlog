@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Pay;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Notifications\PostWereReward;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Yansongda\Pay\Pay;
 
 class WechatController extends Controller
@@ -53,6 +55,7 @@ class WechatController extends Controller
                     $order->payment_no = $data->transaction_id;
                     $order->paid_at = Carbon::parse($data->time_end)->toDateTimeString();;
                     $order->save();
+                    Notification::send($order->payer, new PostWereReward($order));
                 }
             }
 
