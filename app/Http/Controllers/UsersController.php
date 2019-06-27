@@ -85,7 +85,7 @@ class UsersController extends Controller
             $validatedData = $request->validate([
                 'password' => 'required|string|min:8|confirmed',
             ]);
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
             $user->save();
             return redirect()->back()->with('success', '密码修改成功！');
         } else {
