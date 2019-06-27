@@ -27,6 +27,7 @@ class AlipayController extends Controller
             'no' => time() . rand(1000, 9999),
             'payment_method' => 'alipay',
             'total_amount' => $request->input('total_amount'),
+            'remark' => $request->input('remark'),
             'post_id' => $request->input('post_id'),
             'user_id' => auth()->id(),
         ]);

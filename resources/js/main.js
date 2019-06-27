@@ -204,7 +204,8 @@ window.app = {
           url: '/pay/alipay/create',
           data: {
             'total_amount': localStorage.getItem('total_amount'),
-            'post_id': $("#post-wrap").data('id')
+            'post_id': $("#post-wrap").data('id'),
+            'remark': $("#remark").val()
           }
         }).then(function (response) {
           if (response.data.code == 0) {
@@ -230,7 +231,8 @@ window.app = {
           url: '/pay/wechat/pay',
           data: {
             'total_amount': localStorage.getItem('total_amount'),
-            'post_id': $("#post-wrap").data('id')
+            'post_id': $("#post-wrap").data('id'),
+            'remark': $("#remark").val()
           }
         }).then(function (response) {
           if (response.data.code == 0) {

@@ -155,6 +155,12 @@
               </div>
             </div>
             <div class="col-12">
+              <div class="form-group">
+                <label for="money">打赏赠言</label>
+                <textarea class="form-control" name="remark" id="remark" rows="3" placeholder="对作者说点啥..."></textarea>
+              </div>
+            </div>
+            <div class="col-12">
               <h5>请选择付款方式:</h5>
             </div>
             <div class="col-6">

@@ -27,6 +27,7 @@ class WechatController extends Controller
             'no' => time() . rand(1000, 9999),
             'payment_method' => 'wechat',
             'total_amount' => floatval($request->input('total_amount')),
+            'remark' => $request->input('remark'),
             'post_id' => $request->input('post_id'),
             'user_id' => auth()->id(),
         ]);
