@@ -183,14 +183,6 @@ class Post extends Model
     }
 
     /**
-     * 更新文章查看次数
-     */
-    public function updateViewCount()
-    {
-        $this->increment('view_count');
-    }
-
-    /**
      * Get the indexable data array for the model.
      *
      * @return array

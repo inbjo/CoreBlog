@@ -1,4 +1,4 @@
-<div class="post-author media mb-4">
+<div class="post-author media mb-2">
   <img class="mr-3 avatar rounded-circle" src="{{$post->user->avatar}}" alt="{{$post->user->name}}">
   <div class="media-body">
     <h5 class="mt-0">

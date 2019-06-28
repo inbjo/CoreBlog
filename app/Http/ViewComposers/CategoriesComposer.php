@@ -3,19 +3,16 @@
 namespace App\Http\ViewComposers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class CategoriesComposer
 {
-    protected $category;
-
-    public function __construct(Category $category)
-    {
-        $this->category = $category;
-    }
-
     public function compose(View $view)
     {
-        $view->with('cats', $this->category->all());
+        $cats = Cache::rememberForever('categories', function () {
+            return Category::all();
+        });
+        $view->with('cats', $cats);
     }
 }

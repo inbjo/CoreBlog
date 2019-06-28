@@ -3,19 +3,16 @@
 namespace App\Http\ViewComposers;
 
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class HotTagsComposer
 {
-    protected $tag;
-
-    public function __construct(Tag $tag)
-    {
-        $this->tag = $tag;
-    }
-
     public function compose(View $view)
     {
-        $view->with('top_tags', $this->tag::getTopHotTags(20));
+        $top_tags = Cache::remember('top_tags', 3600, function () {
+            return Tag::getTopHotTags(20);
+        });
+        $view->with('top_tags', $top_tags);
     }
 }

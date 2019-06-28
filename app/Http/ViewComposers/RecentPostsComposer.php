@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class RecentPostsComposer
@@ -16,6 +17,9 @@ class RecentPostsComposer
 
     public function compose(View $view)
     {
-        $view->with('recent_posts', $this->post::getTopBy('id', 5));
+        $recent_posts = Cache::remember('recent_posts', 3600, function () {
+            return Post::getTopBy('id', 5);
+        });
+        $view->with('recent_posts', $recent_posts);
     }
 }

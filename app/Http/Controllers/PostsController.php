@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
+use App\Services\PostServices;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -36,13 +37,14 @@ class PostsController extends Controller
     public function create()
     {
         $tags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
-        return view('posts.create',compact('tags'));
+        return view('posts.create', compact('tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param PostRequest $request
+     * @param ImageUploadHandler $uploader
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request, ImageUploadHandler $uploader)
@@ -86,10 +88,9 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $this->authorize('show', $post);
-        $post->updateViewCount();
-        $comments = $post->comments()->with(['user'])->get();
-        $names = $comments->pluck('user.name')->unique();
-        return view('posts.show', compact('comments', 'post', 'names'));
+        $data = PostServices::get($post);
+        $data['post']->view_count = PostServices::updateViewCount($post);
+        return view('posts.show', $data);
     }
 
     /**
@@ -104,14 +105,15 @@ class PostsController extends Controller
         $this->authorize('update', $post);
         $tags = $post->tags->implode('name', ', ');
         $alltags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
-        return view('posts.edit', compact('post', 'tags','alltags'));
+        return view('posts.edit', compact('post', 'tags', 'alltags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param Post $post
+     * @param ImageUploadHandler $uploader
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
