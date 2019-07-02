@@ -9,6 +9,7 @@ use App\Services\PostServices;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PostsController extends Controller
 {
@@ -20,12 +21,15 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //取文章列表
-        $posts = Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
+        $page = $request->input('page', 1);
+        $posts = Cache::rememberForever('post-list-' . $page, function () {
+            return Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
+        });
         return view('pages.index', compact('posts'));
     }
 

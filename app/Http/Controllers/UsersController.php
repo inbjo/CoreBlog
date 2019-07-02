@@ -6,8 +6,10 @@ use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class UsersController extends Controller
 {
@@ -36,11 +38,15 @@ class UsersController extends Controller
      * Display the specified resource.
      *
      * @param User $user
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
-        $posts = $user->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        $page = $request->input('page', 1);
+        $posts = Cache::rememberForever('user-list-' . $page, function () use ($user) {
+            return $user->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        });
         return view('users.show', compact('posts', 'user'));
     }
 

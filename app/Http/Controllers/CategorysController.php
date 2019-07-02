@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CategorysController extends Controller
 {
@@ -57,11 +60,15 @@ class CategorysController extends Controller
      * Display the specified resource.
      *
      * @param Category $category
+     * @param Request $request
      * @return void
      */
-    public function show(Category $category)
+    public function show(Category $category, Request $request)
     {
-        $posts = $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        $page = $request->input('page', 1);
+        $posts = Cache::rememberForever('category-list-' . $page, function () use ($category) {
+            return $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        });
         return view('categorys.show', compact('posts', 'category'));
     }
 
