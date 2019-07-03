@@ -47,6 +47,6 @@ Route::put('setting', 'SettingsController@update')->name('setting.update');
 Route::post('pay/alipay/create', 'Pay\AlipayController@create');
 Route::get('pay/alipay/return', 'Pay\AlipayController@return');
 Route::post('pay/alipay/notify', 'Pay\AlipayController@notify');
-Route::get('pay/alipay/{id}', 'Pay\AlipayController@pay');
+Route::get('pay/alipay/{order}', 'Pay\AlipayController@pay');
 Route::post('pay/wechat/pay', 'Pay\WechatController@pay');
 Route::post('pay/wechat/notify', 'Pay\WechatController@notify');

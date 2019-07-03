@@ -32,12 +32,11 @@ class AlipayController extends Controller
             'user_id' => auth()->id(),
         ]);
         $order->save();
-        return ['code' => 0, 'msg' => '订单生成成功', 'order_id' => $order->id];
+        return ['code' => 0, 'msg' => '订单生成成功', 'order_id' => $order->hash_id];
     }
 
-    public function pay($id)
+    public function pay(Order $order)
     {
-        $order = Order::findOrFail($id);
         $info = [
             'out_trade_no' => $order['no'],
             'total_amount' => $order['total_amount'],
