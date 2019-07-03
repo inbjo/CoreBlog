@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PostsController@index')->name('index');
-Route::get('sitemap', 'PagesController@sitemap')->name('sitemap');
+Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('feed', 'PagesController@feed')->name('feed');
 
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
