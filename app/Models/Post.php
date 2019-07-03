@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Scout\Searchable;
 use Parsedown;
 use Stichoza\GoogleTranslate\GoogleTranslate;
@@ -170,6 +171,20 @@ class Post extends Model
     public function isFavorited()
     {
         return $this->favorites()->where('user_id', auth()->id())->exists();
+    }
+
+    /**
+     * 文章浏览次数更新
+     * @param $post
+     * @return bool|int
+     */
+    public function updateViewCount()
+    {
+        $key = 'post:view:' . $this->id;
+        if (!Cache::has($key)) {
+            Cache::forever($key, $this->view_count);
+        }
+        return Cache::increment($key);
     }
 
     /**

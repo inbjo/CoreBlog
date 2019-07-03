@@ -8,7 +8,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-class CategorysController extends Controller
+class CategoriesController extends Controller
 {
     public function __construct()
     {
@@ -25,7 +25,7 @@ class CategorysController extends Controller
     {
         $this->authorize('update', Category::class);
         $categorys = Category::paginate(12);
-        return view('categorys.index', compact('categorys'));
+        return view('categories.index', compact('categorys'));
     }
 
     /**
@@ -37,7 +37,7 @@ class CategorysController extends Controller
     public function create()
     {
         $this->authorize('update', Category::class);
-        return view('categorys.create');
+        return view('categories.create');
     }
 
     /**
@@ -66,10 +66,10 @@ class CategorysController extends Controller
     public function show(Category $category, Request $request)
     {
         $page = $request->input('page', 1);
-        $posts = Cache::rememberForever('category-list-' . $page, function () use ($category) {
+        $posts = Cache::tags(['category-post'])->rememberForever('category:list:' . $page, function () use ($category) {
             return $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
         });
-        return view('categorys.show', compact('posts', 'category'));
+        return view('categories.show', compact('posts', 'category'));
     }
 
     /**
@@ -83,7 +83,7 @@ class CategorysController extends Controller
     {
         $this->authorize('update', Category::class);
         $category = Category::findOrFail($id);
-        return view('categorys.edit', compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**

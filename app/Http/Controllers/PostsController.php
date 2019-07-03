@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostChange;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
@@ -27,7 +28,7 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         $page = $request->input('page', 1);
-        $posts = Cache::rememberForever('post-list-' . $page, function () {
+        $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
             return Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
         });
         return view('pages.index', compact('posts'));
@@ -78,6 +79,8 @@ class PostsController extends Controller
         //标签关联
         $tagIds = Tag::getTagIds($request->input('tags'));
         $post->tags()->attach($tagIds);
+        //文章发布事件
+        event(new PostChange($post->id, 'create'));
         //返回结果
         return redirect()->route('post.show', $post->slug)->with('success', '文章发表成功！');
     }
@@ -92,15 +95,20 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $this->authorize('show', $post);
-        $data = PostServices::get($post);
-        $data['post']->view_count = PostServices::updateViewCount($post);
+        $data = Cache::rememberForever('post:' . $post->id, function () use ($post) {
+            $comments = $post->comments()->with(['user'])->get();
+            $tags = $post->tags()->get();
+            $names = $comments->pluck('user.name')->unique();
+            return compact('post', 'comments', 'names', 'tags');
+        });
+        $data['post']->view_count = $post->updateViewCount();
         return view('posts.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -145,6 +153,8 @@ class PostsController extends Controller
         //标签关联
         $tagIds = Tag::getTagIds($request->input('tags'));
         $post->tags()->sync($tagIds);
+        //文章更新事件
+        event(new PostChange($post->id, 'update'));
         //返回结果
         return redirect()->route('post.show', $post->slug)->with('success', '文章修改成功！');
     }
@@ -161,6 +171,8 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         $this->authorize('update', $post);
         $post->delete();
+        //文章删除事件
+        event(new PostChange($post->id, 'delete'));
         return ['code' => 0, 'msg' => '删除成功'];
     }
 

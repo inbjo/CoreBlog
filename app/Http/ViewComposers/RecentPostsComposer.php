@@ -17,7 +17,7 @@ class RecentPostsComposer
 
     public function compose(View $view)
     {
-        $recent_posts = Cache::remember('recent_posts', 3600, function () {
+        $recent_posts = Cache::remember('recent:posts', 3600, function () {
             return Post::getTopBy('id', 5);
         });
         $view->with('recent_posts', $recent_posts);

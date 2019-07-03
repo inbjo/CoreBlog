@@ -10,7 +10,7 @@ class HotPostsComposer
 {
     public function compose(View $view)
     {
-        $hot_posts = Cache::remember('hot_posts', 3600, function () {
+        $hot_posts = Cache::remember('hot:posts', 3600, function () {
             return Post::getTopBy('view_count', 3);
         });
         $view->with('hot_posts', $hot_posts);

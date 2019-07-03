@@ -17,7 +17,7 @@ Route::get('feed', 'PagesController@feed')->name('feed');
 
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
 Route::get('/tags', 'TagsController@index')->name('tags'); //标签云
-Route::resource('category', 'CategorysController');
+Route::resource('category', 'CategoriesController');
 
 Route::resource('post', 'PostsController');
 Route::resource('comment', 'CommentsController', ['only' => ['store', 'destroy']])->middleware('auth');

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\PostChange;
+use App\Listeners\ClearCache;
 use App\Listeners\EmailVerified;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Event;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         Verified::class => [
             EmailVerified::class,
+        ],
+        PostChange::class => [
+            ClearCache::class,
         ],
     ];
 

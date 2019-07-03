@@ -7,7 +7,7 @@ $factory->define(App\Models\Tag::class, function (Faker $faker) {
     $time = $faker->dateTimeThisMonth();
 
     return [
-        'name' => $faker->word,
+        'name' => $faker->unique()->name,
         'created_at' => $time,
         'updated_at' => $time,
     ];

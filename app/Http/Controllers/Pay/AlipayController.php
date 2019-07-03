@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Pay;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Notifications\PostWereReward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;

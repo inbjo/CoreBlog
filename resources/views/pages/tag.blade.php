@@ -17,7 +17,7 @@
                             标签: {{$tag->name}}
                         </h3>
                         <div class="post-count">
-                            共 {{$tag->posts->count()}} 篇文章
+                            共 {{$posts->total()}} 篇文章
                         </div>
                     </div>
 
