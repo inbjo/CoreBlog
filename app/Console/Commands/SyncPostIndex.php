@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
-class SyncPosts extends Command
+class SyncPostIndex extends Command
 {
     /**
      * The name and signature of the console command.
@@ -19,7 +19,7 @@ class SyncPosts extends Command
      *
      * @var string
      */
-    protected $description = '同步文章全文索引';
+    protected $description = 'sync post full index';
 
     /**
      * Create a new command instance.
