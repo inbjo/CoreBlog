@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
 {
@@ -62,7 +63,8 @@ class PagesController extends Controller
             $feed->setTextLimit(100);
 
             $posts->each(function ($post) use ($feed) {
-                $feed->add($post->title, $post->user->name, route('post.show', $post->slug), $post->created_at->toIso8601String(), $post->description, $post->content);
+                $feed->add($post->title, $post->user->name, route('post.show', $post->slug),
+                    $post->created_at->toIso8601String(), $post->description, $post->content);
             });
 
         }
@@ -73,8 +75,11 @@ class PagesController extends Controller
 
     public function search(Request $request)
     {
+        $page = $request->input('page', 1);
         $keyword = $request->keyword;
-        $posts = Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
+        $posts = Cache::remember('search:' . $keyword . ':' . $page, 3600, function () use ($keyword) {
+            return Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
+        });
         return view('posts.search', compact('posts', 'keyword'));
     }
 

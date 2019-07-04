@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentChange;
 use App\Models\Comment;
 use App\Models\User;
 use App\Notifications\CommentWereMentioned;
@@ -53,6 +54,8 @@ class CommentsController extends Controller
             $comment->save();
         }
 
+        event(new CommentChange($comment));
+
         session()->flash('success', '发表评论成功');
         return redirect()->back();
     }
@@ -67,6 +70,9 @@ class CommentsController extends Controller
     public function destroy(Comment $comment)
     {
         $this->authorize('delete', $comment);
+
+        event(new CommentChange($comment));
+
         if ($comment->delete()) {
             return ['code' => 0, 'msg' => '删除成功'];
         } else {

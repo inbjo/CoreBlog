@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\CommentChange;
 use App\Events\PostChange;
-use App\Listeners\ClearCache;
+use App\Listeners\ClearCommentCache;
+use App\Listeners\ClearPostCache;
 use App\Listeners\EmailVerified;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,8 +27,11 @@ class EventServiceProvider extends ServiceProvider
             EmailVerified::class,
         ],
         PostChange::class => [
-            ClearCache::class,
+            ClearPostCache::class,
         ],
+        CommentChange::class => [
+            ClearCommentCache::class,
+        ]
     ];
 
     /**

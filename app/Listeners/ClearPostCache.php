@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\PostChange;
 use Illuminate\Support\Facades\Cache;
 
-class ClearCache
+class ClearPostCache
 {
     /**
      * Create the event listener.
