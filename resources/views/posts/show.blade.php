@@ -45,14 +45,15 @@
             @endif
             @if($post->cover)
               <div class="featured-media">
-                  <img src="{{$post->cover}}" alt="{{$post->title}}">
+                <img src="{{$post->cover}}" alt="{{$post->title}}">
               </div>
             @endif
             <div class="post-content">
               {!! $post->content !!}
             </div>
             <div class="post-action">
-              <button id="likePost" data-id="{{ $post->id }}" class="btn btn-circle {{$post->isFavorited() ? 'active' : '' }}"
+              <button id="likePost" data-id="{{ $post->id }}"
+                      class="btn btn-circle {{$post->isFavorited() ? 'active' : '' }}"
                       data-toggle="tooltip" data-placement="bottom" title="点赞这篇文章">
                 <i class="fa fa-thumbs-up"></i>
               </button>
@@ -80,9 +81,9 @@
                 @endforeach
               </div>
               <div class="statistical">
-                <div data-toggle="tooltip" data-placement="top" title="这篇文章被查看了{{$post->view_count}}次">
+                <div data-toggle="tooltip" data-placement="top" title="这篇文章被查看了{{$post->visits()->count()}}次">
                   <i class="fa fa-eye" aria-hidden="true"></i>
-                  <span class="badge">{{$post->view_count}}</span>
+                  <span class="badge">{{$post->visits()->count()}}</span>
                 </div>
                 <div data-toggle="tooltip" data-placement="top" title="{{$post->comment_count}}人评论了这篇文章">
                   <i class="fa fa-comments" aria-hidden="true"></i>
@@ -98,8 +99,8 @@
           <!-- end post -->
 
           <!--start comments -->
-          @include('layouts._comment')
-          <!--end comments -->
+        @include('layouts._comment')
+        <!--end comments -->
 
         </div>
         <!-- end main post area -->

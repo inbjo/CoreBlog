@@ -101,7 +101,7 @@ class PostsController extends Controller
             $names = $comments->pluck('user.name')->unique();
             return compact('post', 'comments', 'names', 'tags');
         });
-        $data['post']->view_count = $post->updateViewCount();
+        $post->visits()->increment();
         return view('posts.show', $data);
     }
 

@@ -97,6 +97,11 @@ class Post extends Model
         return $tr->translate($this->title);
     }
 
+    public function visits()
+    {
+        return visits($this);
+    }
+
     /**
      * 只查询已发布的文章.
      *
@@ -171,20 +176,6 @@ class Post extends Model
     public function isFavorited()
     {
         return $this->favorites()->where('user_id', auth()->id())->exists();
-    }
-
-    /**
-     * 文章浏览次数更新
-     * @param $post
-     * @return bool|int
-     */
-    public function updateViewCount()
-    {
-        $key = 'post:view:' . $this->id;
-        if (!Cache::has($key)) {
-            Cache::forever($key, $this->view_count);
-        }
-        return Cache::increment($key);
     }
 
     /**

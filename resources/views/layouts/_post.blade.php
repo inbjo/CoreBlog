@@ -39,9 +39,9 @@
         @endforeach
       </div>
       <div class="statistical">
-        <div data-toggle="tooltip" data-placement="top" title="这篇文章被查看了{{$post->view_count}}次">
+        <div data-toggle="tooltip" data-placement="top" title="这篇文章被查看了{{$post->visits()->count()}}次">
           <i class="fa fa-eye" aria-hidden="true"></i>
-          <span class="badge">{{$post->view_count}}</span>
+          <span class="badge">{{$post->visits()->count()}}</span>
         </div>
         <div data-toggle="tooltip" data-placement="top" title="{{$post->comment_count}}人评论了这篇文章">
           <i class="fa fa-comments" aria-hidden="true"></i>
