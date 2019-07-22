@@ -1,0 +1,12 @@
+- ## Getting Started
+    - [项目简介](/{{route}}/{{version}}/overview)
+- ## 安装与部署
+    - [环境要求](/{{route}}/{{version}}/require)
+    - [构建环境](/{{route}}/{{version}}/environment)
+    - [安装酷博](/{{route}}/{{version}}/setup)
+- ## 使用教程
+    - [分类管理](/{{route}}/{{version}}/category)
+    - [文章管理](/{{route}}/{{version}}/post)
+    - [评论管理](/{{route}}/{{version}}/comment)
+    - [友链管理](/{{route}}/{{version}}/link)
+    - [系统管理](/{{route}}/{{version}}/system)

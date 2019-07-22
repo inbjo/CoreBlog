@@ -9,6 +9,7 @@
 * 产品名称：酷博
 * 项目代码：CoreBlog
 * 官方地址：https://www.inbjo.com/
+* 文档地址：https://www.inbjo.com/docs
 
 [CoreBlog](https://github.com/inbjo/CoreBlog) Laravel 5.8 版本。
 
@@ -72,7 +73,7 @@ composer install --optimize-autoloader --no-dev
 
 4. 执行安装命令
 ```
-$ php artisan blog:install //请按照提示进行安装
+php artisan blog:install //请按照提示进行安装
 ```
 至此, 安装完成 ^_^。
 
