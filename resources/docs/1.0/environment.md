@@ -49,35 +49,21 @@
 ##### Fedora安装命令
 `wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.sh`
 
-根据命令提示进行安装即可，安装完毕后会显示后台管理面板地址以及账号密码。  
-以下主机商必看(开端口教程，不开不能用)  
+执行上述命令后宝塔会询问你默认安装路径如图所示:  
+![宝塔安装位置询问](/images/docs/bt_ask.png)  
+一般来说默认即可，接着脚本会安装宝塔依赖，稍等片刻就会提示安装成功，如下图所示：  
+![宝塔安装位置询问](/images/docs/bt_success.png)  
+复制上述网址登录面板后台  
+如果你无法打开上述地址可能是厂商未开放该端口，请参考下方链接解决    
 腾讯云：https://www.bt.cn/bbs/thread-1229-1-1.html  
 阿里云：https://www.bt.cn/bbs/thread-2897-1-1.html  
 华为云：https://www.bt.cn/bbs/thread-3923-1-1.html
 
-### 预览图
-面板设置
-![面板设置](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021525iyo99uqu9mmf8rjx.jpg)
-SSL
-![SSL](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021537n4y181akxyf441ey.jpg)
-监控
-![监控](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021600mhtlsbbljvbvjjby.jpg)
-文件管理
-![文件管理](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021550k767766ti8zg6cig.jpg)
-计划任务
-![计划任务](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021610t495e6lv5k9l2dv8.jpg)
-软件管理
-![软件管理](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021509dsh0g1lycygdylid.jpg)
-PHP扩展
-![PHP扩展](https://www.bt.cn/bbs/data/attachment/forum/201811/17/021620wbvnd1gbii7zubbd.jpg)
-一键部署源码
-![一键部署源码](https://www.bt.cn/bbs/data/attachment/forum/201811/17/023004p522uoy52ioyuoyy.jpg)
-服务器跑分
-![服务器跑分](https://www.bt.cn/bbs/data/attachment/forum/201811/17/022624gffc2cp3xz2903y2.jpg)
-日志清理
-![日志清理](https://www.bt.cn/bbs/data/attachment/forum/201811/17/022655vtjy39iyjksm99kk.jpg)
-宝塔终端
-![宝塔终端](https://www.bt.cn/bbs/data/attachment/forum/201811/17/022641bq2vnnkwstrazsrv.jpg)
+### 安装套件
+第一次登录到管理面板面板会提示你安装套件  
+![宝塔安装套件](/images/docs/bt_env.png)  
+选择好后点击一键安装即可，编译安装大约需要1~2小时(取决于你的机器配置)  
+编译安装比急速安装大约能提升10%的性能，如果你只是想测试一下选择急速安装即可。
 
 <a name="section-2"></a>
 ## 使用OneInStack部署环境
