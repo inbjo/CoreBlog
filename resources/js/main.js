@@ -290,6 +290,18 @@ window.app = {
       }
     });
   },
+  regServiceWork: () => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', {scope: '/'})
+        .then(function (registration) {
+          // 注册成功
+          console.log('ServiceWorker registration successful with scope: ', registration.scope)
+        }).catch(function (err) {
+        // 注册失败:(
+        console.log('ServiceWorker registration failed: ', err)
+      })
+    }
+  },
   init: function () {
     //设置Jq CSRF令牌
     let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -308,7 +320,7 @@ window.app = {
     $('[data-toggle="tooltip"]').tooltip();
 
     hljs.initHighlightingOnLoad();
-
+    app.regServiceWork();
     app.backToTop();
     app.search();
     app.likePost();

@@ -8,6 +8,7 @@
   <meta name="description" content="@yield('description', config('system.description'))"/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="Flex">
+  <link rel="manifest" href="manifest.json">
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   @yield('styles')
