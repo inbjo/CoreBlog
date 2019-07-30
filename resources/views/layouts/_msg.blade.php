@@ -20,3 +20,10 @@
     </div>
   @endif
 @endforeach
+
+<div id="pwaTip" class="alert alert-light d-none" role="alert">
+  温馨提醒:本站支持PWA，点击我可安装到桌面。
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

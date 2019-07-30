@@ -299,7 +299,39 @@ window.app = {
         }).catch(function (err) {
         // 注册失败:(
         console.log('ServiceWorker registration failed: ', err)
-      })
+      });
+
+      var dfdPrompt = null;
+      var clickTips = false;
+      var pwaTips = document.getElementById('pwaTip');
+
+      window.addEventListener('beforeinstallprompt', function (e) {
+        if (clickTips) return;
+        // 存储事件
+        dfdPrompt = e;
+        // 显示按钮
+        pwaTips.classList.remove("d-none");
+        pwaTips.style.cursor = 'pointer';
+        // 阻止默认事件
+        e.preventDefault();
+        return false;
+      });
+      pwaTips.addEventListener('click', function (e) {
+        console.log(e);
+        if (dfdPrompt == null || e.srcElement.classList.outerText == '×') {
+          return;
+        }
+        // 通过按钮点击事件触发横幅显示
+        dfdPrompt.prompt();
+        // 监控用户的安装行为
+        dfdPrompt.userChoice.then(function (choiceResult) {
+          // alert(choiceResult.outcome);
+        });
+        // 隐藏按钮
+        pwaTips.style.display = 'none';
+        dfdPrompt = null;
+        clickTips = true;
+      });
     }
   },
   init: function () {
