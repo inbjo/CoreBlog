@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/common', 'ApisController@common');
+Route::get('/post', 'ApisController@post');

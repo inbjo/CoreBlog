@@ -36,4 +36,13 @@ class ApisController extends Controller
         ];
         return compact('categories', 'hot_posts', 'tags', 'friend_links', 'recent_posts', 'site_info');
     }
+
+    public function post(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
+            return Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
+        });
+        return $posts;
+    }
 }
