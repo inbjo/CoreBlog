@@ -73,6 +73,11 @@ class PagesController extends Controller
 
     }
 
+    public function manifest()
+    {
+        return view('pages.manifest');
+    }
+
     public function search(Request $request)
     {
         $page = $request->input('page', 1);
