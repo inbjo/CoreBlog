@@ -30,6 +30,8 @@ class Tag extends Model
         'name'
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     //Tag-Post:Many-Many
     public function posts()
     {
