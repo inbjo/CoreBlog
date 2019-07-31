@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
@@ -60,5 +61,15 @@ class SettingsController extends Controller
         }
         modifyEnv($data);
         return redirect()->route('setting.index')->with('success', '保存配置成功！');
+    }
+
+    public function clear()
+    {
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('route:cache');
+        Artisan::call('config:cache');
+        return redirect()->back()->with('success', '清除缓存成功！');
     }
 }

@@ -50,6 +50,9 @@
                               <a href="{{ route('setting.index') }}" class="dropdown-item">
                                 <i class="fa fa-cog" aria-hidden="true"></i> 系统管理
                               </a>
+                              <a href="{{ route('setting.clear') }}" class="dropdown-item">
+                                <i class="fa fa-cog" aria-hidden="true"></i> 清理缓存
+                              </a>
                               @endif
                               <a href="{{ route('user.edit', auth()->user()->name) }}" class="dropdown-item">
                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑资料

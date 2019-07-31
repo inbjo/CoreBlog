@@ -43,6 +43,7 @@ Route::match(['get', 'put'], '/user/{user}/binding', 'UsersController@binding')-
 Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
 Route::put('setting', 'SettingsController@update')->name('setting.update');
+Route::get('clear', 'SettingsController@clear')->name('setting.clear');
 
 Route::post('pay/alipay/create', 'Pay\AlipayController@create');
 Route::get('pay/alipay/return', 'Pay\AlipayController@return');
