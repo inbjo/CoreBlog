@@ -344,9 +344,9 @@ window.app = {
     }
 
     //修复底部高度
-    if (document.body.clientWidth > 992 && $(".content-wrap").height() < 292) {
-      $("#footer-warp").css("position", "absolute").css("bottom", "0");
-    }
+    // if (document.body.clientWidth > 992 && $(".content-wrap").height() < 292) {
+    //   $("#footer-warp").css("position", "absolute").css("bottom", "0");
+    // }
 
     //启用bootstarp冒泡插件
     $('[data-toggle="tooltip"]').tooltip();
