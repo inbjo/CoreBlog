@@ -44,7 +44,7 @@ class UsersController extends Controller
     public function show(User $user, Request $request)
     {
         $page = $request->input('page', 1);
-        $posts = Cache::tags(['user-post'])->rememberForever('user:list:' . $page, function () use ($user) {
+        $posts = Cache::tags(['user-post'])->rememberForever('user:' . $user->id . ':' . $page, function () use ($user) {
             return $user->posts()->with(['user', 'comments', 'tags'])->paginate(12);
         });
         return view('users.show', compact('posts', 'user'));

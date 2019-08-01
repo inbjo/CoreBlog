@@ -36,12 +36,17 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Category $category
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category, Request $request)
     {
-        //
+        $page = $request->input('page', 1);
+        $posts = Cache::tags(['category-post'])->rememberForever('category:list:' . $page, function () use ($category) {
+            return $category->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+        });
+        return compact('posts', 'category');
     }
 
     /**
