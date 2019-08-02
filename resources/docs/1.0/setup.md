@@ -30,8 +30,7 @@ Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装
 ![添加网站](/images/docs/add_site.png)  
 填写完毕后点击添加按钮。   
 ![网站信息](/images/docs/site_info.png)  
-
-将.env文件中的数据库配置信息改为上方保存的信息。  
+将源码根目录.env文件中的数据库配置信息改为上方保存的信息。  
 ```DB_CONNECTION="mysql"
   DB_HOST="127.0.0.1" #数据库ip地址 默认即可
   DB_PORT=3306 #数据库端口 默认即可
@@ -39,7 +38,15 @@ Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装
   DB_USERNAME=root #数据库用户名
   DB_PASSWORD=123456 #数据库密码
 ```
-修改完毕后，执行安装命令  
+进入网站设置(看不清点击图片放大看)
+![网站设置](/images/docs/setting_open.png)  
+修改网站运行目录  
+![运行目录](/images/docs/setting_dir.png)  
+配置伪静态  
+![伪静态](/images/docs/setting_htaccess.png)  
+开启https  
+![SSL](/images/docs/setting_ssl.png)  
+修改完毕后，在终端执行安装命令  
 `php artisan blog:install`  
 至此, 安装完成 ^_^。
 

@@ -66,8 +66,8 @@ vi .env
 ```
 修改数据库配置信息
 ```
-DB_HOST="127.0.0.1" #数据库ip地址 默认即可
-DB_PORT=3306 #数据库端口 默认即可
+DB_HOST="127.0.0.1" #数据库ip地址
+DB_PORT=3306 #数据库端口
 DB_DATABASE=blog #数据库名称
 DB_USERNAME=root #数据库用户名
 DB_PASSWORD=123456 #数据库密码
@@ -80,5 +80,4 @@ php artisan blog:install
 至此, 安装完成 ^_^。更多请查看[在线文档](https://www.inbjo.com/docs)
 
 ## License
-
 MIT
