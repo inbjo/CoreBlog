@@ -2,8 +2,8 @@
 
 ---
 - [添加域名解析](#section-1)
-- [添加网站](#section-2)
-- [安装酷博](#section-3)
+- [安装酷博](#section-2)
+- [绑定网站](#section-3)
 
 <a name="section-1"></a>
 ## 添加域名解析
@@ -12,21 +12,21 @@
 如果你的服务器在大陆网站是需要先备案才能正常访问的。具体备案流程请咨询你的服务器提供商，他们会协助你完成备案。
 
 <a name="section-2"></a>
-## 添加网站
-添加完域名解析后，登录管理面板，依次点击左部菜单的网站，然后在点击添加网站：  
+## 安装酷博
+通过SSH连上服务器，移动到存放网站的根目录    
+`cd /www/wwwroot/`  
+Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装好，如果没有安装请自行安装Composer  
+使用阿里云镜像加速Composer  
+`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`  
+下载酷博源码(请将xxx.com替换成你自己的域名)  
+`composer create-project flex/blog xxx.com`  
+<a name="section-3"></a>
+## 绑定网站
+部署完源码后，登录管理面板，依次点击左部菜单的网站，然后在点击添加网站：  
 ![添加网站](/images/docs/add_site.png)  
 填写完毕后点击添加按钮。   
 ![网站信息](/images/docs/site_info.png)  
-保存好数据库名、用户、密码等信息。后面会用到
 
-<a name="section-3"></a>
-## 安装酷博
-通过SSH连上服务器，移动到网站根目录    
-`cd /www/wwwroot/domian.com` 请将domian.com改为你自己的目录地址  
-
-执行`composer create-project flex/blog`下载CoreBlog源码  
-生成配置文件  
-`cp .env.example .env`  
 将.env文件中的数据库配置信息改为上方保存的信息。  
 ```DB_CONNECTION="mysql"
   DB_HOST="127.0.0.1" #数据库ip地址 默认即可
@@ -38,3 +38,8 @@
 修改完毕后，执行安装命令  
 `php artisan blog:install`  
 至此, 安装完成 ^_^。
+
+
+
+
+
