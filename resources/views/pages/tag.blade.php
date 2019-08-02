@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <!-- start main post area -->
-                <div class="col-md-8 main-content">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 main-content">
                     <div class="cover tag-cover">
                         <h3 class="tag-name">
                             标签: {{$tag->name}}

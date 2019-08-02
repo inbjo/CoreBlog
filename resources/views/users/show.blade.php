@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <!-- start main post area -->
-        <div class="col-md-8 main-content">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 main-content">
           <div class="cover author-cover">
             <div class="avatar-wrap">
               <img src="{{$user->avatar}}" alt="{{$user->name}}" class="avatar">

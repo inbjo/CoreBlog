@@ -20,6 +20,10 @@ Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装
 `composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`  
 下载酷博源码(请将xxx.com替换成你自己的域名)  
 `composer create-project flex/blog xxx.com`  
+稍等2分钟左右就会安装完毕，安装成功会如下图所示：  
+![安装成功](/images/docs/install_success.png)  
+ ps:如果你是以root用户执行的，请执行`chown -R www.www xxx.com` 请将xxx.com改为你自己的目录，命令是更改源码目录的用户组为www，宝塔集成环境中Nginx、Mysql、PHP是以www用户组运行的，不更改将导致权限问题无法写入数据。
+ 
 <a name="section-3"></a>
 ## 绑定网站
 部署完源码后，登录管理面板，依次点击左部菜单的网站，然后在点击添加网站：  
