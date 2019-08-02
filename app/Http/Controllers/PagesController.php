@@ -78,14 +78,4 @@ class PagesController extends Controller
         return view('pages.manifest');
     }
 
-    public function search(Request $request)
-    {
-        $page = $request->input('page', 1);
-        $keyword = $request->keyword;
-        $posts = Cache::remember('search:' . $keyword . ':' . $page, 3600, function () use ($keyword) {
-            return Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
-        });
-        return view('posts.search', compact('posts', 'keyword'));
-    }
-
 }

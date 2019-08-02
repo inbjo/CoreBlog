@@ -16,6 +16,7 @@ Route::get('/site', 'Api\SettingsController@index');
 Route::resource('/category', 'Api\CategoriesController');
 Route::resource('/comment', 'Api\CommentsController');
 Route::resource('/link', 'Api\LinksController');
+Route::get('/search/{keyword}', 'Api\PostsController@search');
 Route::get('/post/recent', 'Api\PostsController@recent');
 Route::get('/post/hot', 'Api\PostsController@hot');
 Route::resource('/post', 'Api\PostsController');

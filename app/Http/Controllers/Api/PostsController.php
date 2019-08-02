@@ -27,6 +27,18 @@ class PostsController extends Controller
         return $hot_posts;
     }
 
+    public function search(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $keyword = $request->keyword;
+        $posts = Cache::remember('search:' . $keyword . ':' . $page, 3600, function () use ($keyword) {
+            $lists = Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
+            $lists->load('user', 'tags');
+            return $lists;
+        });
+        return compact('posts', 'keyword');
+    }
+
     /**
      * Display a listing of the resource.
      *

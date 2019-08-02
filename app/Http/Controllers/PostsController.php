@@ -176,4 +176,16 @@ class PostsController extends Controller
         return ['code' => 0, 'msg' => '删除成功'];
     }
 
+    public function search(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $keyword = $request->keyword;
+        $posts = Cache::remember('search:' . $keyword . ':' . $page, 3600, function () use ($keyword) {
+            $lists = Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
+            $lists->load('user', 'tags');
+            return $lists;
+        });
+        return view('posts.search', compact('posts', 'keyword'));
+    }
+
 }
