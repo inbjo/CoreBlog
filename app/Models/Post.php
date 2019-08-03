@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use ErrorException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 use Laravel\Scout\Searchable;
+use Overtrue\Pinyin\Pinyin;
 use Parsedown;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
@@ -90,11 +91,21 @@ class Post extends Model
         ];
     }
 
+    /**
+     * 自动翻译文章标题生成友好slug
+     * @return string|null
+     */
     public function getTranslatetitleAttribute()
     {
-        $tr = new GoogleTranslate('en');
-        $tr->setUrl('http://translate.google.cn/translate_a/single');
-        return $tr->translate($this->title);
+        try {
+            $tr = new GoogleTranslate('en');
+            $tr->setUrl('http://translate.google.cn/translate_a/single');
+            $slug = $tr->translate($this->title);
+        } catch (ErrorException $e) {
+            $pinyin = new Pinyin();
+            $slug = $pinyin->permalink($this->title);
+        }
+        return $slug;
     }
 
     public function visits()

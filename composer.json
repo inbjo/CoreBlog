@@ -27,6 +27,7 @@
     "laravelium/sitemap": "3.1.*",
     "mews/purifier": "^2.1",
     "overtrue/laravel-lang": "~3.0",
+    "overtrue/pinyin": "~4.0",
     "predis/predis": "^1.1",
     "stichoza/google-translate-php": "^4.0",
     "valiner/identicon-avatar": "^0.0.1",

@@ -6,7 +6,6 @@ use App\Events\PostChange;
 use App\Http\Requests\PostRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
-use App\Services\PostServices;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -58,7 +57,7 @@ class PostsController extends Controller
         $cover_path = '';
         if ($file = $request->cover) {
             // 保存图片到本地
-            $result = $uploader->save($request->cover, 'posts', \Auth::id(), 1024);
+            $result = $uploader->save($request->cover, 'posts', Auth::id(), 1024);
             // 图片保存成功的话
             if ($result) {
                 $cover_path = $result['path'];
