@@ -19,6 +19,14 @@ class UserPolicy
         //
     }
 
+    public function manage(User $currentUser)
+    {
+        if ($currentUser->id == 1) {
+            return true;
+        }
+        return false;
+    }
+
     public function update(User $currentUser, User $user)
     {
         return $currentUser->id === $user->id;

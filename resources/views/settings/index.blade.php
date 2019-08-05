@@ -202,8 +202,8 @@
                     @method('PUT')
                     <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
-                      <label for="mail_drive">发表文章</label>
-                      <select name="MAIL_DRIVER" class="form-control" id="mail_drive">
+                      <label for="AllOW_USER_POST">发表文章</label>
+                      <select name="AllOW_USER_POST" class="form-control" id="AllOW_USER_POST">
                         <option value="false" @if(config('system.allow_user_post') == false) selected @endif>禁止普通用户发表文章
                         </option>
                         <option value="true" @if(config('system.allow_user_post') == true) selected @endif>允许普通用户发表文章

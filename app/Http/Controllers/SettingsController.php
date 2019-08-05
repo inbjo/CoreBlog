@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {
 
     public function index()
     {
+        $this->authorize('manage', User::class);
         return view('settings.index');
     }
 
     public function update(Request $request)
     {
+        $this->authorize('manage', User::class);
         $type = $request->input('type');
         switch ($type) {
             case 'basic':
@@ -53,6 +55,7 @@ class SettingsController extends Controller
                 break;
             case 'other':
                 $data = [
+                    'AllOW_USER_POST' => $request->input('AllOW_USER_POST'),
                     'REDIS_HOST' => $request->input('REDIS_HOST'),
                     'REDIS_PASSWORD' => empty($request->input('REDIS_PASSWORD')) ? 'null' : $request->input('REDIS_PASSWORD'),
                     'REDIS_PORT' => $request->input('REDIS_PORT'),

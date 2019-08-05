@@ -56,9 +56,11 @@ class PostsController extends Controller
      * @param PostRequest $request
      * @param ImageUploadHandler $uploader
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(PostRequest $request, ImageUploadHandler $uploader)
     {
+        $this->authorize('create', Post::class);
         //封面图处理
         $cover_path = '';
         if ($file = $request->cover) {
