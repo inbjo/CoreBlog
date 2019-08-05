@@ -31,6 +31,7 @@ SITE_KEYWORD='CoreBlog,Blog,Laravel' #站点关键词
 SITE_DESCRIPTION='CoreBlog an elegant blog system' #站点描述
 SITE_ICP='京ICP证030173号' #icp备案号
 SITE_POLICE='京公网安备11000002000001号' #公安备案号
+AllOW_USER_POST=false #是否允许注册用户发表文章
 ```
 
 <a name="section-3"></a>
