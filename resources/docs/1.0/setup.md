@@ -31,12 +31,13 @@ Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装
 填写完毕后点击添加按钮。   
 ![网站信息](/images/docs/site_info.png)  
 将源码根目录.env文件中的数据库配置信息改为上方保存的信息。  
-```DB_CONNECTION="mysql"
-  DB_HOST="127.0.0.1" #数据库ip地址 默认即可
-  DB_PORT=3306 #数据库端口 默认即可
-  DB_DATABASE=blog #数据库名称
-  DB_USERNAME=root #数据库用户名
-  DB_PASSWORD=123456 #数据库密码
+```text
+DB_CONNECTION="mysql"
+DB_HOST="127.0.0.1" #数据库ip地址 默认即可
+DB_PORT=3306 #数据库端口 默认即可
+DB_DATABASE=blog #数据库名称
+DB_USERNAME=root #数据库用户名
+DB_PASSWORD=123456 #数据库密码
 ```
 进入网站设置(看不清点击图片放大看)
 ![网站设置](/images/docs/setting_open.png)  
