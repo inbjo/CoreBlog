@@ -20,6 +20,17 @@ class PostPolicy
         //
     }
 
+    public function create(User $currentUser)
+    {
+        logger('8888');
+        logger(json_encode($currentUser));
+
+        if ($currentUser->id == 1) {
+            return true;
+        }
+        return config('system.allow_user_post');
+    }
+
     public function update(User $currentUser, Post $post)
     {
         return $currentUser->id === $post->user_id;

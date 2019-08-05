@@ -54,7 +54,7 @@
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="type" value="basic" />
+                    <input type="hidden" name="type" value="basic"/>
                     <div class="form-group">
                       <label for="APP_URL">博客网址</label>
                       <input type="text" class="form-control" id="APP_URL" placeholder="博客网址"
@@ -97,17 +97,21 @@
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="type" value="mail" />
+                    <input type="hidden" name="type" value="mail"/>
                     <div class="form-group">
                       <label for="mail_drive">邮件驱动</label>
                       <select name="MAIL_DRIVER" class="form-control" id="mail_drive">
                         <option value="smtp" @if(config('mail.driver') == 'smtp') selected @endif>smtp</option>
-                        <option value="sendmail" @if(config('mail.driver') == 'sendmail') selected @endif>sendmail</option>
+                        <option value="sendmail" @if(config('mail.driver') == 'sendmail') selected @endif>sendmail
+                        </option>
                         <option value="mailgun" @if(config('mail.driver') == 'mailgun') selected @endif>mailgun</option>
-                        <option value="mandrill" @if(config('mail.driver') == 'mandrill') selected @endif>mandrill</option>
+                        <option value="mandrill" @if(config('mail.driver') == 'mandrill') selected @endif>mandrill
+                        </option>
                         <option value="ses" @if(config('mail.driver') == 'ses') selected @endif>ses</option>
-                        <option value="sparkpost" @if(config('mail.driver') == 'sparkpost') selected @endif>sparkpost</option>
-                        <option value="postmark" @if(config('mail.driver') == 'postmark') selected @endif>postmark</option>
+                        <option value="sparkpost" @if(config('mail.driver') == 'sparkpost') selected @endif>sparkpost
+                        </option>
+                        <option value="postmark" @if(config('mail.driver') == 'postmark') selected @endif>postmark
+                        </option>
                         <option value="log" @if(config('mail.driver') == 'log') selected @endif>log</option>
                         <option value="array" @if(config('mail.driver') == 'array') selected @endif>array</option>
                       </select>
@@ -145,8 +149,8 @@
                     <div class="form-group">
                       <label for="MAIL_ENCRYPTION">加密协议</label>
                       <select name="MAIL_ENCRYPTION" class="form-control" id="MAIL_ENCRYPTION">
-                        <option value="null"  @if(config('mail.encryption') == 'null') selected @endif>不加密</option>
-                        <option value="tls"  @if(config('mail.encryption') == 'tls') selected @endif>tls</option>
+                        <option value="null" @if(config('mail.encryption') == 'null') selected @endif>不加密</option>
+                        <option value="tls" @if(config('mail.encryption') == 'tls') selected @endif>tls</option>
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
@@ -156,7 +160,7 @@
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="type" value="pay" />
+                    <input type="hidden" name="type" value="pay"/>
                     <div class="form-group">
                       <label for="ALI_APP_ID">支付宝APPID</label>
                       <input type="text" class="form-control" id="ALI_APP_ID" placeholder="支付宝APPID"
@@ -165,12 +169,14 @@
                     <div class="form-group">
                       <label for="ALI_PUBLIC_KEY">支付宝公钥</label>
                       <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY"
-                                rows="5" placeholder="支付宝公钥(支付宝提供的公钥)">{{ config('pay.alipay.ali_public_key') }}</textarea>
+                                rows="5"
+                                placeholder="支付宝公钥(支付宝提供的公钥)">{{ config('pay.alipay.ali_public_key') }}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="ALI_PRIVATE_KEY">支付宝私钥</label>
                       <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY"
-                                rows="6" placeholder="支付宝私钥(用户自行生成的私钥)">{{ config('pay.alipay.private_key') }}</textarea>
+                                rows="6"
+                                placeholder="支付宝私钥(用户自行生成的私钥)">{{ config('pay.alipay.private_key') }}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="WECHAT_APP_ID">微信公众号APPID</label>
@@ -194,7 +200,16 @@
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="type" value="other" />
+                    <input type="hidden" name="type" value="other"/>
+                    <div class="form-group">
+                      <label for="mail_drive">发表文章</label>
+                      <select name="MAIL_DRIVER" class="form-control" id="mail_drive">
+                        <option value="false" @if(config('system.allow_user_post') == false) selected @endif>禁止普通用户发表文章
+                        </option>
+                        <option value="true" @if(config('system.allow_user_post') == true) selected @endif>允许普通用户发表文章
+                        </option>
+                      </select>
+                    </div>
                     <div class="form-group">
                       <label for="REDIS_HOST">Redis服务器地址</label>
                       <input type="text" class="form-control" id="REDIS_HOST" placeholder="Redis服务器地址"

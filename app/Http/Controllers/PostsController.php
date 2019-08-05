@@ -37,11 +37,17 @@ class PostsController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
-        $tags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
-        return view('posts.create', compact('tags'));
+        try {
+            $this->authorize('create', Post::class);
+            $tags = Tag::all()->pluck('name')->toJson(JSON_UNESCAPED_UNICODE);
+            return view('posts.create', compact('tags'));
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('danger', '管理员未开放普通用户发表文章功能！');
+        }
     }
 
     /**
