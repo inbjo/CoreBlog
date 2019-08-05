@@ -96,10 +96,9 @@ class PostsController extends Controller
     {
         $this->authorize('show', $post);
         $data = Cache::rememberForever('post:' . $post->id, function () use ($post) {
-            $comments = $post->comments()->with(['user'])->get();
-            $tags = $post->tags()->get();
-            $names = $comments->pluck('user.name')->unique();
-            return compact('post', 'comments', 'names', 'tags');
+            $data = $post->load('user', 'tags', 'comments');
+            $data->comments->load('user');
+            return compact('post');
         });
         $post->visits()->increment();
         return view('posts.show', $data);

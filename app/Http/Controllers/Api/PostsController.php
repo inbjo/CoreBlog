@@ -78,12 +78,18 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        $data = Cache::rememberForever('post:' . $post->id, function () use ($post) {
+            $data = $post->load('user', 'tags', 'comments');
+            $data->comments->load('user');
+            return $data;
+        });
+        $post->visits()->increment();
+        return $data;
     }
 
     /**

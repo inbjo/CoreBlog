@@ -53,7 +53,7 @@ window.app = {
       }
       var content = $("#reply_content").val() + '@' + $(this).data('name') + ' ';
       $("#reply_content").val(content).focus();
-      $('html,body').animate({scrollTop: $("#reply").offset().top}, 500);
+      $('html,body').animate({scrollTop: $("#reply-wrap").offset().top}, 500);
     });
   },
   deleteComment: () => {

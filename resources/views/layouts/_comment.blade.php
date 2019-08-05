@@ -28,7 +28,7 @@
   </h4>
   <div class="clearfix"></div>
 </div>
-@forelse ($comments as $key=> $comment)
+@forelse ($post->comments as $key=> $comment)
   <div class="post-comment media" id="comment{{$comment->id}}" name="comment{{$comment->id}}">
     <img class="mr-3 avatar rounded-circle" src="{{$comment->user->avatar}}"
          alt="{{$comment->user->name}}">
@@ -67,7 +67,7 @@
     <h5 class="p-3">(=￣ω￣=)··· 暂无内容！</h5>
   </div>
 @endforelse
-<div class="post-comment-bar mt-4" id="reply">
+<div class="post-comment-bar mt-4" id="reply-wrap">
   <h4 class="mb-0">
               <span class="badge badge-primary">
                    <i class="fa fa-reply" aria-hidden="true"></i> 回复

@@ -72,7 +72,7 @@
             <div class="post-footer">
               <div class="tag-list">
                 <i class="fa fa-tag"></i>
-                @foreach($tags as $tag)
+                @foreach($post->tags as $tag)
                   @if ($loop->last)
                     <a href="{{route('tag.show',$tag->name)}}">{{$tag->name}}</a>
                   @else
