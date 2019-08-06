@@ -29,6 +29,7 @@ class SettingsController extends Controller
                     'SITE_DESCRIPTION' => $request->input('SITE_DESCRIPTION'),
                     'SITE_ICP' => $request->input('SITE_ICP'),
                     'SITE_POLICE' => $request->input('SITE_POLICE'),
+                    'AllOW_USER_POST' => $request->input('AllOW_USER_POST'),
                 ];
                 break;
             case 'mail':
@@ -55,7 +56,8 @@ class SettingsController extends Controller
                 break;
             case 'other':
                 $data = [
-                    'AllOW_USER_POST' => $request->input('AllOW_USER_POST'),
+                    'VAPTCHA_VID' => $request->input('VAPTCHA_VID'),
+                    'VAPTCHA_KEY' => $request->input('VAPTCHA_KEY'),
                     'REDIS_HOST' => $request->input('REDIS_HOST'),
                     'REDIS_PASSWORD' => empty($request->input('REDIS_PASSWORD')) ? 'null' : $request->input('REDIS_PASSWORD'),
                     'REDIS_PORT' => $request->input('REDIS_PORT'),

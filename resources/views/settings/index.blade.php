@@ -90,6 +90,15 @@
                       <input type="text" class="form-control" id="SITE_POLICE" placeholder="公安备案号"
                              name="SITE_POLICE" value="{{ config('system.police') }}">
                     </div>
+                    <div class="form-group">
+                      <label for="AllOW_USER_POST">文章设置</label>
+                      <select name="AllOW_USER_POST" class="form-control" id="AllOW_USER_POST">
+                        <option value="false" @if(config('system.allow_user_post') == false) selected @endif>禁止普通用户发表文章
+                        </option>
+                        <option value="true" @if(config('system.allow_user_post') == true) selected @endif>允许普通用户发表文章
+                        </option>
+                      </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>
                 </div>
@@ -202,13 +211,14 @@
                     @method('PUT')
                     <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
-                      <label for="AllOW_USER_POST">发表文章</label>
-                      <select name="AllOW_USER_POST" class="form-control" id="AllOW_USER_POST">
-                        <option value="false" @if(config('system.allow_user_post') == false) selected @endif>禁止普通用户发表文章
-                        </option>
-                        <option value="true" @if(config('system.allow_user_post') == true) selected @endif>允许普通用户发表文章
-                        </option>
-                      </select>
+                      <label for="VAPTCHA_VID">Vaptcha VID</label>
+                      <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="Redis服务器地址"
+                             name="VAPTCHA_VID" value="{{ config('system.vaptcha_vid') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="VAPTCHA_KEY">Vaptcha key</label>
+                      <input type="text" class="form-control" id="VAPTCHA_KEY" placeholder="Redis服务器地址"
+                             name="VAPTCHA_KEY" value="{{ config('system.vaptcha_key') }}">
                     </div>
                     <div class="form-group">
                       <label for="REDIS_HOST">Redis服务器地址</label>
