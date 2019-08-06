@@ -77,17 +77,23 @@
 </div>
 <div class="post-reply p-2 mb-5">
   @auth
-    <form action="{{route('comment.store')}}" method="post">
+    <form id="comment-form" action="{{route('comment.store')}}" method="post">
       <div class="form-group">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input id="post_id" type="hidden" name="post_id" value="{{ $post->id }}">
       </div>
       <div class="form-group" id="reply">
                   <textarea name="reply_content" id="reply_content" class="form-control" rows="5"
-                            placeholder="你要评论的内容..."></textarea>
+                            placeholder="请输入您要评论的内容..." required></textarea>
+      </div>
+      <div class="form-group">
+        <input id="verify_token" type="hidden" name="token" />
+        <div id="vaptchaContainer" data-id="{{config('system.vaptcha_vid')}}">
+          验证码加载中...
+        </div>
       </div>
       <div class="form-group m-0">
-        <button type="submit" class="btn btn-default btn-block">提交评论</button>
+        <button id="submit-comment" type="button" class="btn btn-default btn-block">提交评论</button>
       </div>
     </form>
   @else

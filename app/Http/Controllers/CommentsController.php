@@ -6,6 +6,7 @@ use App\Events\CommentChange;
 use App\Models\Comment;
 use App\Models\User;
 use App\Notifications\CommentWereMentioned;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,27 @@ class CommentsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function store(Request $request)
     {
+        //验证token是否有效
+        $token = $request->input('token');
+        $url = 'http://api.vaptcha.com/v2/validate';
+        $client = new Client();
+        $response = $client->request('POST', $url, [
+            'form_params' => [
+                'id' => config('system.vaptcha_vid'),
+                'secretkey' => config('system.vaptcha_key'),
+                'scene' => '',
+                'token' => $token,
+                'ip' => $request->getClientIp()
+            ]
+        ]);
+        $result = json_decode($response->getBody(), true);
+        if (!isset($result['success']) || $result['success'] != 1) {
+            return redirect()->back()->with('danger', '未通过人机验证!');
+        }
         //评论内容xss过滤
         $content = clean($request->input('reply_content'), 'user_comment_body');
         $comment = Comment::create([
@@ -56,8 +75,7 @@ class CommentsController extends Controller
 
         event(new CommentChange($comment));
 
-        session()->flash('success', '发表评论成功');
-        return redirect()->back();
+        return redirect()->back()->with('success', '发表评论成功！');
     }
 
     /**

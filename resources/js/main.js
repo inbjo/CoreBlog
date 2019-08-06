@@ -334,6 +334,36 @@ window.app = {
       });
     }
   },
+  submitComment: () => {
+    if ((/^\/post\/.*/.test(document.location.pathname))) {
+      $.getScript('https://cdn.vaptcha.com/v2.js', function () {
+        let vid = $("#vaptchaContainer").data('id');
+        window.vaptcha({
+          vid: vid,
+          type: 'click',
+          container: '#vaptchaContainer',
+        }).then(function (vaptchaObj) {
+          vaptchaObj.listen('pass', function () {
+            var token = vaptchaObj.getToken();
+            $("#verify_token").val(token);
+          });
+          vaptchaObj.render();
+        });
+      });
+    }
+
+    $("#submit-comment").click(function () {
+      if ($("#verify_token").val() == '') {
+        swal({title: "提示", icon: "error", text: "请先完成人机验证！", button: "好的"});
+        return;
+      }
+      if ($("#reply_content").val() == '') {
+        swal({title: "提示", icon: "error", text: "评论内容不能为空！", button: "好的"});
+        return;
+      }
+      $("#comment-form").submit();
+    });
+  },
   init: function () {
     //设置Jq CSRF令牌
     let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -360,6 +390,7 @@ window.app = {
     app.favoriteComment();
     app.reply();
     app.forbidCopy();
+    app.submitComment();
     if (is_login && document.getElementsByTagName("body")[0].className == 'post-show-page') {
       app.at();
       app.deleteComment();
