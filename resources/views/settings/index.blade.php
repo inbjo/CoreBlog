@@ -212,12 +212,12 @@
                     <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
                       <label for="VAPTCHA_VID">Vaptcha VID</label>
-                      <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="Redis服务器地址"
+                      <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="VAPTCHA VID"
                              name="VAPTCHA_VID" value="{{ config('system.vaptcha_vid') }}">
                     </div>
                     <div class="form-group">
                       <label for="VAPTCHA_KEY">Vaptcha key</label>
-                      <input type="text" class="form-control" id="VAPTCHA_KEY" placeholder="Redis服务器地址"
+                      <input type="text" class="form-control" id="VAPTCHA_KEY" placeholder="VAPTCHA KEY"
                              name="VAPTCHA_KEY" value="{{ config('system.vaptcha_key') }}">
                     </div>
                     <div class="form-group">
