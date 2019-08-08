@@ -31,6 +31,7 @@
     "overtrue/laravel-lang": "~3.0",
     "overtrue/pinyin": "~4.0",
     "predis/predis": "^1.1",
+    "spatie/laravel-permission": "^2.37",
     "stichoza/google-translate-php": "^4.0",
     "valiner/identicon-avatar": "^0.0.1",
     "vanry/laravel-scout-tntsearch": "^1.3",
