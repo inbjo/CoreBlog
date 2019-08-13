@@ -96,7 +96,7 @@
             if (willDelete) {
               axios({
                 method: 'delete',
-                url: '/link/' + id
+                url: '/category/' + id
               }).then(function (response) {
                 swal(response.data.msg, {
                   icon: response.data.code == 0 ? "success" : "error",
