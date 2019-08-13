@@ -14,15 +14,21 @@
 <a name="section-2"></a>
 ## 安装酷博
 通过SSH连上服务器，移动到存放网站的根目录    
-`cd /www/wwwroot/`  
+```bash
+cd /www/wwwroot/
+```
 Composer是PHP的包管理工具，如果使用宝塔集成环境默认会安装好，如果没有安装请自行安装Composer  
 使用阿里云镜像加速Composer  
-`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`  
+```bash
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+```
 下载酷博源码(请将xxx.com替换成你自己的域名)  
-`composer create-project flex/blog xxx.com`  
+```bash
+composer create-project flex/blog xxx.com
+```
 稍等2分钟左右就会安装完毕，安装成功会如下图所示：  
 ![安装成功](/images/docs/install_success.png)  
- ps:如果你是以root用户执行的，请执行`chown -R www.www xxx.com` 请将xxx.com改为你自己的目录，命令是更改源码目录的用户组为www，宝塔集成环境中Nginx、Mysql、PHP是以www用户组运行的，不更改将导致权限问题无法写入数据。
+> {warning} 如果你是以root用户执行的，请执行`chown -R www.www xxx.com` 请将xxx.com改为你自己的目录，命令是更改源码目录的用户组为www，宝塔集成环境中Nginx、Mysql、PHP是以www用户组运行的，不更改将导致权限问题无法写入数据。
  
 <a name="section-3"></a>
 ## 绑定网站
@@ -48,7 +54,9 @@ DB_PASSWORD=123456 #数据库密码
 开启https  
 ![SSL](/images/docs/setting_ssl.png)  
 修改完毕后，在终端执行安装命令  
-`php artisan blog:install`  
+```bash
+php artisan blog:install
+```
 至此, 安装完成 ^_^。
 
 

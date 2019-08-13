@@ -37,17 +37,24 @@
 ### 安装宝塔
 推荐使用centos7.1+作为操作系统,使用SSH连接到你的服务器，根据你当前的操作系统执行对应的安装命令，以root用户执行。
 
-##### Centos安装命令
-`yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh`  
+#### Centos安装命令
+```bash
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+``` 
 
-##### Ubuntu/Deepin安装命令
-`wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && sudo bash install.sh`
+#### Ubuntu/Deepin安装命令
+```bash
+wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && sudo bash install.sh
+``` 
 
-##### Debian安装命令
-`wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && bash install.sh`
-
-##### Fedora安装命令
-`wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.sh`
+#### Debian安装命令
+```bash
+wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && bash install.sh
+``` 
+#### Fedora安装命令
+```bash
+wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.sh
+``` 
 
 执行上述命令后宝塔会询问你默认安装路径如图所示:  
 ![宝塔安装位置询问](/images/docs/bt_ask.png)  
@@ -63,9 +70,9 @@
 第一次登录到管理面板面板会提示你安装套件  
 ![宝塔安装套件](/images/docs/bt_env.png)  
 选择好后点击一键安装即可，编译安装大约需要1~2小时(取决于你的机器配置)  
-编译安装比急速安装大约能提升10%的性能，如果你只是想测试一下选择急速安装即可。  
 安装完毕之后，请点击左侧菜单【软件商店】找到【Redis5.0.0】再点击安装即可。
-
+> {info} 编译安装比急速安装大约能提升10%的性能，如果你只是想测试一下选择急速安装即可。  
+  
 <a name="section-2"></a>
 ## 使用OneInStack部署环境
 OneInStack是一键部署脚本，其官网已写明安装流程在此不再赘述。  

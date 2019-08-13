@@ -10,7 +10,8 @@
 
 <a name="section-1"></a>
 ## 项目简介
-CoreBlog是一款优雅的博客系统，它基于最流行的PHP框架Laravel和最受欢迎的Bootstrap构建。并实现了响应式支持兼容 PC、平板、手机访问。使用简洁的Markdown来编写文章。
+CoreBlog是一款优雅的博客系统，它基于最流行的PHP框架Laravel和最受欢迎的Bootstrap构建。并实现了响应式支持兼容 PC、平板、手机访问。使用简洁的Markdown来编写文章。  
+> {warning} CoreBlog需要独立的vps来部署(推荐配置1核2G),虚拟主机大部分不满足需求。安装需要具备一定Linux基础和耐心。
 
 <a name="section-2"></a>
 ## 主要功能
@@ -26,7 +27,7 @@ CoreBlog是一款优雅的博客系统，它基于最流行的PHP框架Laravel�
 * 文章支持点赞、评论、打赏；
 * 文章使用tntsearch做全文索引、jieba做中文分词；
 * 登录用户支持评论文章、点赞文章、点赞评论；
-* 评论支持@功能、xss过滤；
+* 评论支持@功能、xss过滤、人机检测；
 * 文章数据缓存；
 * 文章被点赞、文章被评论、评论被点赞、评论被提及将收到站内通知；
 * 支持邮件订阅；
@@ -39,7 +40,7 @@ CoreBlog是一款优雅的博客系统，它基于最流行的PHP框架Laravel�
 <a name="section-3"></a>
 ## 计划功能
 * 前端使用vue进行重构
-* 评论增加安全验证(滑动验证等)
+* 完整的后台管理系统
 * 第三方登录
 
 <a name="section-4"></a>

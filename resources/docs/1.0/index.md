@@ -5,6 +5,7 @@
     - [构建环境](/{{route}}/{{version}}/environment)
     - [安装酷博](/{{route}}/{{version}}/setup)
     - [配置说明](/{{route}}/{{version}}/config)
+    - [常见问题](/{{route}}/{{version}}/faq)
 - ## 使用教程
     - [分类管理](/{{route}}/{{version}}/category)
     - [文章管理](/{{route}}/{{version}}/post)

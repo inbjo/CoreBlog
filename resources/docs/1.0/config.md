@@ -105,4 +105,4 @@ VAPTCHA_VID= #vaptcha vid
 VAPTCHA_KEY= #vaptcha key
 ```
 v1.4.0版本评论新增了人机检测功能，他是由VAPTCHA提供的服务，你需要前往[VAPTCHA](https://www.vaptcha.com/)注册一个账号并新增一个验证单元即可获取到VID和KEY。  
-VAPTCHA是“Variation Analysis based Public Turing Test to Tell Computers and Humans Apart”（基于变量分析来区分人类和计算机的图灵测试程序）的缩写，又称为手势验证码，一种基于人工智能和大数据的人机验证解决方案 。用户仅需用鼠标绘制指定轨迹即可完成人机验证。VAPTCHA能有效防止恶意密码破解、论坛灌水、垃圾邮件、撞库等。
+> {info} VAPTCHA是“Variation Analysis based Public Turing Test to Tell Computers and Humans Apart”（基于变量分析来区分人类和计算机的图灵测试程序）的缩写，又称为手势验证码，一种基于人工智能和大数据的人机验证解决方案 。用户仅需用鼠标绘制指定轨迹即可完成人机验证。VAPTCHA能有效防止恶意密码破解、论坛灌水、垃圾邮件、撞库等。
