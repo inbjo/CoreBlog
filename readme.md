@@ -10,6 +10,7 @@
 * 项目代码：CoreBlog
 * 官方地址：https://www.inbjo.com/
 * 文档地址：https://www.inbjo.com/docs
+* QQ群:[862180297](https://jq.qq.com/?_wv=1027&k=5l6VXeo)
 
 [CoreBlog](https://github.com/inbjo/CoreBlog) Laravel 5.8 版本。
 
