@@ -6,7 +6,7 @@
 - [主要功能](#section-2)
 - [计划功能](#section-3)
 - [Bug反馈](#section-4)
-- [联系作者](#section-5)
+- [获取支持](#section-5)
 
 <a name="section-1"></a>
 ## 项目简介
@@ -48,7 +48,6 @@ CoreBlog是一款优雅的博客系统，它基于最流行的PHP框架Laravel�
 发现Bug或者提交建议请前往github提交[Issues](https://github.com/inbjo/CoreBlog/issues)
 
 <a name="section-5"></a>
-## 联系作者
-QQ:[1400010008](http://sighttp.qq.com/authd?IDKEY=d256d257587618f3fdbce5397975b5bda9533b5814bc043e)  
-E-mail:[2345@mail.com](mailto:2345@mail.com)
+## 获取支持
+QQ群:[862180297](https://jq.qq.com/?_wv=1027&k=5l6VXeo)
 
