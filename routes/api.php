@@ -12,15 +12,28 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+$api = app('Dingo\Api\Routing\Router');
 
-Route::get('/site', 'Api\SettingsController@index');
-Route::resource('/category', 'Api\CategoriesController');
-Route::resource('/comment', 'Api\CommentsController');
-Route::resource('/link', 'Api\LinksController');
-Route::get('/search/{keyword}', 'Api\PostsController@search');
-Route::get('/post/recent', 'Api\PostsController@recent');
-Route::get('/post/hot', 'Api\PostsController@hot');
-Route::resource('/post', 'Api\PostsController');
-Route::get('/tag/hot', 'Api\TagsController@hot');
-Route::resource('/tag', 'Api\TagsController');
-Route::resource('/user', 'Api\UsersController');
+$api->version('v1', function($api) {
+    $api->get('version', function() {
+        return response('this is version v1');
+    });
+});
+
+$api->version('v2', function($api) {
+    $api->get('version', function() {
+        return response('this is version v2');
+    });
+});
+
+//Route::get('/site', 'Api\SettingsController@index');
+//Route::resource('/category', 'Api\CategoriesController');
+//Route::resource('/comment', 'Api\CommentsController');
+//Route::resource('/link', 'Api\LinksController');
+//Route::get('/search/{keyword}', 'Api\PostsController@search');
+//Route::get('/post/recent', 'Api\PostsController@recent');
+//Route::get('/post/hot', 'Api\PostsController@hot');
+//Route::resource('/post', 'Api\PostsController');
+//Route::get('/tag/hot', 'Api\TagsController@hot');
+//Route::resource('/tag', 'Api\TagsController');
+//Route::resource('/user', 'Api\UsersController');
