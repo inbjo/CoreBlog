@@ -14,26 +14,35 @@ use Illuminate\Http\Request;
 */
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', function($api) {
-    $api->get('version', function() {
-        return response('this is version v1');
+
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Api'
+], function ($api) {
+
+    $api->post('register', 'AuthorizationsController@register');
+    $api->post('login', 'AuthorizationsController@login');
+    $api->put('token', 'AuthorizationsController@update');
+    $api->delete('token', 'AuthorizationsController@destroy');
+    $api->post('reset', 'AuthorizationsController@reset');
+
+    $api->group(['middleware' => 'api.auth'], function ($api) {
+        // 当前登录用户信息
+        $api->get('userinfo', 'AuthorizationsController@userinfo');
     });
+
+    $api->get('/site', 'SettingsController@index');
+    $api->get('/category', 'CategoriesController@index');
+    $api->get('/category/{category}', 'CategoriesController@show');
+    $api->get('/link', 'LinksController@index');
+    $api->get('/search/{keyword}', 'PostsController@search');
+    $api->get('/post/recent', 'PostsController@recent');
+    $api->get('/post/hot', 'PostsController@hot');
+    $api->get('/post', 'PostsController@index');
+    $api->get('/post/{post}', 'PostsController@show');
+    $api->get('/tag/hot', 'TagsController@hot');
+    $api->get('/tag', 'TagsController@index');
+    $api->get('/user/{user}', 'UsersController@show');
 });
 
-$api->version('v2', function($api) {
-    $api->get('version', function() {
-        return response('this is version v2');
-    });
-});
 
-//Route::get('/site', 'Api\SettingsController@index');
-//Route::resource('/category', 'Api\CategoriesController');
-//Route::resource('/comment', 'Api\CommentsController');
-//Route::resource('/link', 'Api\LinksController');
-//Route::get('/search/{keyword}', 'Api\PostsController@search');
-//Route::get('/post/recent', 'Api\PostsController@recent');
-//Route::get('/post/hot', 'Api\PostsController@hot');
-//Route::resource('/post', 'Api\PostsController');
-//Route::get('/tag/hot', 'Api\TagsController@hot');
-//Route::resource('/tag', 'Api\TagsController');
-//Route::resource('/user', 'Api\UsersController');
+

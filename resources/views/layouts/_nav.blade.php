@@ -25,7 +25,6 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav navbar-right">
                 @auth
-                    <ul class="navbar-nav">
                         <li class="nav-item">
                           <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('post.create') }}">
                             <i class="fa fa-plus"></i>
@@ -72,7 +71,6 @@
                                 </a>
                             </div>
                         </li>
-                    </ul>
                 @else
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
