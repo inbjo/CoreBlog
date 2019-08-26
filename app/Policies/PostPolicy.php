@@ -22,9 +22,6 @@ class PostPolicy
 
     public function create(User $currentUser)
     {
-        logger('8888');
-        logger(json_encode($currentUser));
-
         if ($currentUser->id == 1) {
             return true;
         }
@@ -33,6 +30,9 @@ class PostPolicy
 
     public function update(User $currentUser, Post $post)
     {
+        if ($currentUser->id == 1) {
+            return true;
+        }
         return $currentUser->id === $post->user_id;
     }
 
