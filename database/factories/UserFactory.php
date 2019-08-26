@@ -26,7 +26,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'email' => $email,
         'mobile' => $faker->e164PhoneNumber,
         'bio' => $faker->sentence,
-        'password' => bcrypt('secret'),
+        'password' => bcrypt('password'),
         'email_verified_at' => Carbon::now()->toDateTimeString(),
         'created_at' => $created_at,
         'updated_at' => $updated_at,

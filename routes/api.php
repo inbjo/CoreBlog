@@ -16,7 +16,8 @@ $api = app('Dingo\Api\Routing\Router');
 
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api'
+    'namespace' => 'App\Http\Controllers\Api',
+    'middleware' => ['bindings']
 ], function ($api) {
 
     $api->post('register', 'AuthorizationsController@register');
@@ -43,6 +44,4 @@ $api->version('v1', [
     $api->get('/tag', 'TagsController@index');
     $api->get('/user/{user}', 'UsersController@show');
 });
-
-
 
