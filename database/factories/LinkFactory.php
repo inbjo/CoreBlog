@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\Link;
 use Faker\Generator as Faker;
 
-$factory->define(Link::class, function (Faker $faker) {
+$factory->define(App\Models\Link::class, function (Faker $faker) {
+
     $updated_at = $faker->dateTimeThisMonth();
     $created_at = $faker->dateTimeThisMonth($updated_at);
 

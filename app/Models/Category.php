@@ -26,8 +26,6 @@ class Category extends Model
         'name', 'slug', 'sort', 'description',
     ];
 
-    protected $hidden = ['created_at', 'updated_at'];
-
     public function getRouteKeyName()
     {
         return 'slug';

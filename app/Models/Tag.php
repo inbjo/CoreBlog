@@ -30,8 +30,6 @@ class Tag extends Model
         'name'
     ];
 
-    protected $hidden = ['created_at', 'updated_at'];
-
     //Tag-Post:Many-Many
     public function posts()
     {
@@ -60,20 +58,12 @@ class Tag extends Model
 
     public static function getTagIds($tags)
     {
-        $results = [];
-        $tags = explode(',', $tags);
-        foreach ($tags as $tag) {
-            $tag = trim($tag);
-            $score = Redis::zScore('tags', $tag);
-            if ($score != null) {
-                $results[] = intval($score);
-            } else {
-                $insert = new self(['name' => $tag]);
-                $insert->save();
-                Redis::zAdd('tags', $insert->id, $tag);
-                $results[] = $insert->id;
-            }
+        $tagids = [];
+        $tagNames = explode(',', $tags);
+        foreach ($tagNames as $name) {
+            $tag = Tag::firstOrCreate(['name' => trim($name)]);
+            $tagids[] = $tag->id;
         }
-        return $results;
+        return $tagids;
     }
 }

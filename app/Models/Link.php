@@ -9,6 +9,4 @@ class Link extends Model
     protected $fillable = [
         'name', 'url', 'sort',
     ];
-
-    protected $hidden = ['created_at', 'updated_at'];
 }

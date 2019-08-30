@@ -1,5 +1,7 @@
 <?php
 
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
+
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 

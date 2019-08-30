@@ -69,16 +69,6 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     ];
 
     /**
-     * 应被转换为日期的属性。
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

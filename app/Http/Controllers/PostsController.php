@@ -189,7 +189,7 @@ class PostsController extends Controller
         $keyword = $request->keyword;
         $posts = Cache::remember('search:' . $keyword . ':' . $page, 3600, function () use ($keyword) {
             $lists = Post::search($keyword)->orderBy('id', 'desc')->paginate(12);
-            $lists->load('user', 'tags');
+            $lists->load('user', 'tags')->loadCount(['comments', 'favorites']);
             return $lists;
         });
         return view('posts.search', compact('posts', 'keyword'));
