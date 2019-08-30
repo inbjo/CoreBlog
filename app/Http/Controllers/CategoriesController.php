@@ -114,7 +114,7 @@ class CategoriesController extends Controller
         $this->authorize('update', Category::class);
         $category = Category::findOrFail($id);
         //判断该分类下是否还有文章
-        if ($category->post_count > 0) {
+        if ($category->posts->count() > 0) {
             return ['code' => 1, 'msg' => '该分类下还有文章'];
         }
         $category->delete();
