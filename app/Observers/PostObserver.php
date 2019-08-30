@@ -32,9 +32,7 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        //更新分类文章数量统计
-        $post->category->post_count = $post->category->posts->count();
-        $post->category->save();
+        clearCache();
     }
 
     /**
@@ -46,13 +44,9 @@ class PostObserver
         if (!$post->trashed()) {
             //移除所有标签关联
             $post->tags()->detach();
-
             //删除评论
             $post->comments()->delete();
         }
-
-        //更新分类文章数量统计
-        $post->category->post_count = $post->category->posts->count();
-        $post->category->save();
+        clearCache();
     }
 }

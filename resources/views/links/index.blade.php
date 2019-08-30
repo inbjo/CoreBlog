@@ -18,6 +18,10 @@
                 系统设置</a>
             </li>
             <li class="list-group-item">
+              <a href="{{ route('post.manage') }}"><i class="fa fa-file-text" aria-hidden="true"></i>
+                文章管理</a>
+            </li>
+            <li class="list-group-item">
               <a href="{{ route('category.index') }}"><i class="fa fa-folder-open" aria-hidden="true"></i>
                 分类管理</a>
             </li>

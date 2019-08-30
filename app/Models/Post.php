@@ -111,15 +111,16 @@ class Post extends Model
         return visits($this);
     }
 
-    /**
-     * 只查询已发布的文章.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePublished($query)
+    public function scopeGetType($query, $type)
     {
-        return $query->where('status', 1);
+        switch ($type) {
+            case 'published':
+                return $query->where('status', 1);
+            case 'draft':
+                return $query->where('status', 0);
+            default:
+                return $query;
+        }
     }
 
     /**

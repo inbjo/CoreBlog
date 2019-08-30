@@ -64,7 +64,7 @@ window.app = {
             }
             swal({
                 title: "确定要删除吗?",
-                text: "一旦删除无法恢复!",
+                text: "删除后可从回收站恢复!",
                 icon: "warning",
                 buttons: ['取消操作', '确定删除'],
                 dangerMode: true,

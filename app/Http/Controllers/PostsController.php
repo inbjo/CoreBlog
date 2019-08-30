@@ -28,10 +28,35 @@ class PostsController extends Controller
     {
         $page = $request->input('page', 1);
         $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
-            return Post::published()->orderBy('id', 'desc')->with(['user', 'tags'])
+            return Post::gettype('published')->orderBy('id', 'desc')->with(['user', 'tags'])
                 ->withCount(['comments', 'favorites'])->paginate(12);
         });
         return view('pages.index', compact('posts'));
+    }
+
+    /**
+     * 文章管理
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function list(Request $request)
+    {
+        $type = $request->input('type', 'all');
+        switch ($type) {
+            case 'all':
+                $posts = Post::orderBy('id', 'desc')->paginate(12);
+                break;
+            case 'published':
+                $posts = Post::gettype('published')->orderBy('id', 'desc')->paginate(12);
+                break;
+            case 'draft':
+                $posts = Post::gettype('draft')->orderBy('id', 'desc')->paginate(12);
+                break;
+            case 'recycle':
+                $posts = Post::onlyTrashed()->orderBy('id', 'desc')->paginate(12);
+                break;
+        }
+        return view('posts.index', compact('posts', 'type'));
     }
 
     /**
@@ -166,6 +191,14 @@ class PostsController extends Controller
         return redirect()->route('post.show', $post->slug)->with('success', '文章修改成功！');
     }
 
+    public function restore()
+    {
+        $post = Post::withTrashed()->findOrFail(request()->id);
+        $this->authorize('update', $post);
+        $post->restore();
+        return ['code' => 0, 'msg' => '恢复成功'];
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -175,11 +208,14 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::withTrashed()->findOrFail($id);
         $this->authorize('update', $post);
-        $post->delete();
-        //文章删除事件
-        event(new PostChange($post->id, 'delete'));
+        if (request()->force == 'true') {
+            $post->forceDelete();
+        } else {
+            $post->delete();
+            event(new PostChange($post->id, 'delete'));
+        }
         return ['code' => 0, 'msg' => '删除成功'];
     }
 

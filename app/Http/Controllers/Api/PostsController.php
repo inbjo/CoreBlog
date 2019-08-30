@@ -49,7 +49,7 @@ class PostsController extends Controller
     {
         $page = $request->input('page', 1);
         $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
-            return Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
+            return Post::gettype('published')->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
         });
         return $posts;
     }

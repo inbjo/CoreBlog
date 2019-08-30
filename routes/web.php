@@ -16,16 +16,16 @@ Route::get('manifest.json', 'PagesController@manifest');
 Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');
 Route::get('feed', 'PagesController@feed')->name('feed');
 
-Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show'); //标签聚合
-Route::get('/tags', 'TagsController@index')->name('tags'); //标签云
+Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show');
+Route::get('/tags', 'TagsController@index')->name('tags');
 Route::resource('category', 'CategoriesController');
-
+Route::patch('/post/restore', 'PostsController@restore')->name('post.restore');
 Route::resource('post', 'PostsController');
 Route::resource('comment', 'CommentsController', ['only' => ['store', 'destroy']])->middleware('auth');
 Route::post('/favorites/comment/{comment}', 'FavoritesController@comment');
 Route::post('/favorites/post/{post}', 'FavoritesController@post');
 Route::post('/subscribe', 'SubscribesController@store');
-Route::get('/search/{keyword}', 'PostsController@search')->name('post.search'); //搜索页面
+Route::get('/search/{keyword}', 'PostsController@search')->name('post.search');
 
 Route::get('upload', 'FilesController@index')->name('upload.index');
 Route::post('upload', 'FilesController@store')->name('upload.store');
@@ -44,6 +44,7 @@ Route::match(['get', 'put'], '/user/{user}/binding', 'UsersController@binding')-
 Route::resource('link', 'LinksController');
 Route::get('setting', 'SettingsController@index')->name('setting.index');
 Route::put('setting', 'SettingsController@update')->name('setting.update');
+Route::get('/posts', 'PostsController@list')->name('post.manage');
 Route::get('clear', 'SettingsController@clear')->name('setting.clear');
 
 Route::post('pay/alipay/create', 'Pay\AlipayController@create');
