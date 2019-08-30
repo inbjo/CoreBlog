@@ -47,7 +47,7 @@
                     <div class="float-left favorite" data-id="{{$comment->id}}" data-toggle="tooltip"
                          data-placement="bottom" title="点赞这条评论">
                          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                      赞(<span class="num">{{ $comment->favorite_count }}</span>)
+                      赞(<span class="num">{{ $comment->favorites_count }}</span>)
                     </div>
                     <div class="float-left reply" data-name="{{$comment->user->name}}" data-toggle="tooltip"
                          data-placement="bottom" title="回复{{$comment->user->name}}">

@@ -1,6 +1,8 @@
 <?php
 
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 function route_class()
@@ -64,4 +66,17 @@ function generateAvatar($email, $size = 64)
         app('identicon')->saveAvatar($email, $size, $path);
     }
     return '/images/avatar/' . $filename;
+}
+
+function clearCache($key = null)
+{
+    if ($key === null) {
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('route:cache');
+        Artisan::call('config:cache');
+    } else {
+        Cache::forget($key);
+    }
 }

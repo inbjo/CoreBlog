@@ -17,7 +17,6 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->unsignedInteger('post_count')->default(0);
             $table->unsignedInteger('sort')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();

@@ -33,7 +33,7 @@ class TagsController extends Controller
     {
         $page = $request->input('page', 1);
         $posts = Cache::tags(['tag-post'])->rememberForever('tag:' . $tag->id . ':' . $page, function () use ($tag) {
-            return $tag->posts()->with(['user', 'comments', 'tags'])->paginate(12);
+            return $tag->posts()->with(['user', 'tags'])->withCount(['comments','favorites'])->paginate(12);
         });
         return view('pages.tag', compact('posts', 'tag'));
     }

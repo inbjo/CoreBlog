@@ -57,8 +57,8 @@ class Comment extends Model
 
         if (!$this->favorites()->where($attributes)->exists()) {
             $this->favorites()->create($attributes);
-            $this->increment('favorite_count');
             $count = $this->favorites()->count();
+            clearCache('post:' . $this->post_id);
             return ['code' => 0, 'msg' => '点赞成功', 'count' => $count];
         } else {
             return ['code' => 1, 'msg' => '您已经点赞过了哦'];

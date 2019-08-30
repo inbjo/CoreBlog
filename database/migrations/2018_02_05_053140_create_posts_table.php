@@ -21,9 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('description',1024)->nullable();
             $table->string('cover')->nullable();
             $table->longText('content');
-            $table->unsignedInteger('comment_count')->default(0);
             $table->unsignedInteger('view_count')->default(0);
-            $table->unsignedInteger('favorite_count')->default(0);
             $table->boolean('status')->default(1);
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();

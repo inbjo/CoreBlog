@@ -28,7 +28,8 @@ class PostsController extends Controller
     {
         $page = $request->input('page', 1);
         $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
-            return Post::published()->orderBy('id', 'desc')->with(['user:id,name', 'tags'])->paginate(12);
+            return Post::published()->orderBy('id', 'desc')->with(['user', 'tags'])
+                ->withCount(['comments', 'favorites'])->paginate(12);
         });
         return view('pages.index', compact('posts'));
     }
@@ -103,8 +104,8 @@ class PostsController extends Controller
     {
         $this->authorize('show', $post);
         $data = Cache::rememberForever('post:' . $post->id, function () use ($post) {
-            $data = $post->load('user', 'tags', 'comments');
-            $data->comments->load('user');
+            $data = $post->load('user', 'tags', 'comments')->loadCount('favorites');
+            $data->comments->load('user')->loadCount('favorites');
             return compact('post');
         });
         $post->visits()->increment();

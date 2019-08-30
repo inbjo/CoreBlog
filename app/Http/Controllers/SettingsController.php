@@ -70,11 +70,7 @@ class SettingsController extends Controller
 
     public function clear()
     {
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('cache:clear');
-        Artisan::call('route:cache');
-        Artisan::call('config:cache');
+        clearCache();
         return redirect()->back()->with('success', '清除缓存成功！');
     }
 }

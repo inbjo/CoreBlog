@@ -20,9 +20,7 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
  * @property string $keyword 关键词
  * @property string $description 文章描述
  * @property string $content 文章内容
- * @property int $comment_count 评论次数
  * @property int $view_count 浏览次数
- * @property int $favorite_count 点赞次数
  * @property int $published 文章是否发布
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -176,8 +174,8 @@ class Post extends Model
 
         if (!$this->favorites()->where($attributes)->exists()) {
             $this->favorites()->create($attributes);
-            $this->increment('favorite_count');
             $count = $this->favorites()->count();
+            clearCache('post:' . $this->id);
             return ['code' => 0, 'msg' => '点赞成功', 'count' => $count];
         } else {
             return ['code' => 1, 'msg' => '您已经点赞过了哦'];

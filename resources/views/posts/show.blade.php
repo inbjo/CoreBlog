@@ -34,7 +34,7 @@
                     {{$post->created_at->diffForHumans() }}
                   </span>&bull;
                 <span class="comment-count" data-toggle="tooltip" data-placement="bottom" title="查看该文章的评论">
-                      <a href="{{route('post.show',$post->slug)}}#comments">{{$post->comment_count}}条评论</a>
+                      <a href="#comments">{{$post->comments->count()}}条评论</a>
                   </span>
               </div>
             </div>
@@ -85,13 +85,13 @@
                   <i class="fa fa-eye" aria-hidden="true"></i>
                   <span class="badge">{{$post->visits()->count()}}</span>
                 </div>
-                <div data-toggle="tooltip" data-placement="top" title="{{$post->comment_count}}人评论了这篇文章">
+                <div data-toggle="tooltip" data-placement="top" title="{{$post->comments->count()}}人评论了这篇文章">
                   <i class="fa fa-comments" aria-hidden="true"></i>
-                  <span class="badge">{{$post->comment_count}}</span>
+                  <span class="badge">{{$post->comments->count()}}</span>
                 </div>
-                <div data-toggle="tooltip" data-placement="top" title="{{$post->favorite_count}}人赞了这篇文章">
+                <div data-toggle="tooltip" data-placement="top" title="{{$post->favorites_count}}人赞了这篇文章">
                   <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span class="badge" id="post-favorite-count">{{$post->favorite_count}}</span>
+                  <span class="badge" id="post-favorite-count">{{$post->favorites_count}}</span>
                 </div>
               </div>
             </div>

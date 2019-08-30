@@ -17,7 +17,7 @@
                             分类: {{$category->name}}
                         </h3>
                         <div class="post-count">
-                            共 {{$category->post_count}} 篇文章
+                            共 {{$posts->total()}} 篇文章
                         </div>
                     </div>
 
