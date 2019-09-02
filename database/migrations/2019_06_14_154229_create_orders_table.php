@@ -22,8 +22,8 @@ class CreateOrdersTable extends Migration
             $table->string('payment_no')->nullable();
             $table->decimal('total_amount');
             $table->string('remark')->nullable();
-            $table->unsignedInteger('post_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('post_id')->index();
+            $table->unsignedInteger('user_id')->index();
             $table->timestamps();
         });
     }

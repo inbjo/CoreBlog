@@ -16,15 +16,15 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->index();
             $table->string('keyword',255)->nullable();
             $table->string('description',1024)->nullable();
             $table->string('cover')->nullable();
             $table->longText('content');
             $table->unsignedInteger('view_count')->default(0);
             $table->boolean('status')->default(1);
-            $table->integer('category_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();
         });
