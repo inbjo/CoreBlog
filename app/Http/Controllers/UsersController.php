@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Comment;
-use App\Models\Post;
 use App\Models\User;
+use App\Services\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -18,6 +17,11 @@ class UsersController extends Controller
         $this->middleware('auth', ['except' => ['show']]);
     }
 
+    /**
+     * at功能
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $post_id = $request->id;
@@ -35,8 +39,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * 个人文章列表页面
      * @param User $user
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -45,14 +48,13 @@ class UsersController extends Controller
     {
         $page = $request->input('page', 1);
         $posts = Cache::tags(['user-post'])->rememberForever('user:' . $user->id . ':' . $page, function () use ($user) {
-            return $user->posts()->with(['user', 'tags'])->withCount(['comments','favorites'])->paginate(12);
+            return $user->posts()->with(['user', 'tags'])->withCount(['comments', 'favorites'])->paginate(12);
         });
         return view('users.show', compact('posts', 'user'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
+     * 编辑资料页面
      * @param User $user
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -63,12 +65,20 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function avatar(AvatarRequest $request, ImageUploadHandler $uploader, User $user)
+    /**
+     * 更换头像
+     * @param AvatarRequest $request
+     * @param User $user
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function avatar(AvatarRequest $request, User $user)
     {
         $this->authorize('update', $user);
         if ($request->isMethod('put')) {
             if ($request->avatar) {
-                $result = $uploader->save($request->avatar, 'avatars', $user->id, 128, 128);
+                $result = Upload::file($request->file('avatar'), 'avatar');
+                Upload::reduceSize($result['path'], 128, 128);
                 if ($result) {
                     $user->avatar = $result['path'];
                     $user->save();
@@ -84,6 +94,13 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * 修改密码
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function password(Request $request, User $user)
     {
         $this->authorize('update', $user);
@@ -100,8 +117,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * 更新资料
      * @param UserRequest $request
      * @param User $user
      * @return \Illuminate\Http\Response
@@ -114,6 +130,13 @@ class UsersController extends Controller
         return redirect()->back()->with('success', '资料更新成功！');
     }
 
+    /**
+     * 绑定账号
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function binding(Request $request, User $user)
     {
         $this->authorize('update', $user);

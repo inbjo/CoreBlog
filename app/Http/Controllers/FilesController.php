@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Handlers\FileUploadHandler;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Services\Upload;
 
 class FilesController extends Controller
 {
@@ -16,7 +19,7 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        $result = FileUploadHandler::upload($request->file('editormd-image-file'), 'posts/' . Auth::id());
+        $result = Upload::file($request->file('editormd-image-file'), 'image');
         return [
             'success' => 1,
             'url' => $result['path'],

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\PostChange;
 use App\Http\Requests\PostRequest;
-use App\Handlers\ImageUploadHandler;
 use App\Models\Tag;
+use App\Services\Upload;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -80,19 +80,17 @@ class PostsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PostRequest $request
-     * @param ImageUploadHandler $uploader
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(PostRequest $request, ImageUploadHandler $uploader)
+    public function store(PostRequest $request)
     {
         $this->authorize('create', Post::class);
         //封面图处理
         $cover_path = '';
-        if ($file = $request->cover) {
-            // 保存图片到本地
-            $result = $uploader->save($request->cover, 'posts', Auth::id(), 1024);
-            // 图片保存成功的话
+        if ($request->hasFile('cover')) {
+            $result = Upload::file($request->file('cover'), 'cover');
+            Upload::reduceSize($result['path'],1024);
             if ($result) {
                 $cover_path = $result['path'];
             }
@@ -157,17 +155,17 @@ class PostsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param Post $post
-     * @param ImageUploadHandler $uploader
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Post $post, ImageUploadHandler $uploader)
+    public function update(Request $request, Post $post)
     {
         $this->authorize('update', $post);
         //封面图处理
         if ($file = $request->cover) {
             // 保存图片到本地
-            $result = $uploader->save($request->cover, 'posts', \Auth::id(), 1024);
+            $result = Upload::file($request->file('cover'), 'cover');
+            Upload::reduceSize($result['path'],1024);
             // 图片保存成功的话
             if ($result) {
                 $post->cover = $result['path'];

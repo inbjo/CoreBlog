@@ -17,7 +17,10 @@ class CreateResourcesTable extends Migration
             $table->bigIncrements('id');
             $table->string('type')->index();
             $table->string('path');
-            $table->integer('user_id')->index();
+            $table->string('hash');
+            $table->json('extend')->nullable();
+            $table->unsignedInteger('post_id')->nullable()->index();
+            $table->unsignedInteger('user_id')->index();
             $table->timestamps();
         });
     }
