@@ -30,6 +30,7 @@
         "overtrue/laravel-lang": "~3.0",
         "overtrue/pinyin": "~4.0",
         "predis/predis": "^1.1",
+        "rachidlaasri/laravel-installer": "^4.0",
         "spatie/laravel-permission": "^2.37",
         "stichoza/google-translate-php": "^4.0",
         "tymon/jwt-auth": "1.0.0-rc.4.1",

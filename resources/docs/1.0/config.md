@@ -1,19 +1,19 @@
 # 配置说明
 
 ---
-- [系统配置](#section-1)
-- [站点配置](#section-2)
-- [数据库配置](#section-3)
-- [驱动配置](#section-4)
-- [搜索配置](#section-5)
-- [Redis配置](#section-6)
-- [邮件配置](#section-7)
-- [支付配置](#section-8)
-- [人机验证配置](#section-9)
+- [系统配置](#system)
+- [站点配置](#site)
+- [数据库配置](#database)
+- [驱动配置](#driver)
+- [搜索配置](#search)
+- [Redis配置](#redis)
+- [邮件配置](#mail)
+- [支付配置](#pay)
+- [人机验证配置](#vaptcha)
 
 大部分的配置信息都保存在项目根目录的`.env`文件中,您可以修改此文件来更改配置。当然管理员也可以在后台进行修改。
 
-<a name="section-1"></a>
+<a name="system"></a>
 ### 系统配置
 ```text
 APP_NAME=Blog #系统名称
@@ -23,7 +23,7 @@ APP_DEBUG=true #调试模式  正式环境请关闭
 APP_URL=http://www.blog.test #博客网址 请自行修改
 ```
 
-<a name="section-2"></a>
+<a name="site"></a>
 ### 站点配置
 ```text
 SITE_NAME=CoreBlog #站点名称
@@ -35,7 +35,7 @@ SITE_POLICE='京公网安备11000002000001号' #公安备案号
 AllOW_USER_POST=false #是否允许注册用户发表文章
 ```
 
-<a name="section-3"></a>
+<a name="database"></a>
 ### 数据库配置
 ```text
 DB_CONNECTION=mysql #数据库类型
@@ -46,7 +46,7 @@ DB_USERNAME=homestead #数据库用户名
 DB_PASSWORD=secret #数据库密码
 ```
 
-<a name="section-4"></a>
+<a name="driver"></a>
 ### 驱动配置
 ```text
 LOG_CHANNEL=stack #日志频道
@@ -57,7 +57,7 @@ SESSION_DRIVER=redis #session驱动
 SESSION_LIFETIME=120 #session过期时间
 ```
 
-<a name="section-5"></a>
+<a name="search"></a>
 ### 搜索配置
 ```text
 SCOUT_DRIVER=tntsearch #全文索引驱动
@@ -65,7 +65,7 @@ TNTSEARCH_TOKENIZER=jieba #分词器
 ```
 CoreBlog目前使用tntsearch做全文索引，tntsearch是基于sqlite开发的全文索引引擎，十分轻巧非常适合博客类网站。之前版本使用过elasticsearch做全文索引，但elasticsearch比较吃配置，杀鸡没必要用宰牛刀故新版移除了支持。
 
-<a name="section-6"></a>
+<a name="redis"></a>
 ### Redis配置
 ```text
 REDIS_HOST=127.0.0.1 #redis服务器地址
@@ -73,7 +73,7 @@ REDIS_PASSWORD=null #redis密码 没有密码请填写null
 REDIS_PORT=6379 #redis端口
 ```
 
-<a name="section-7"></a>
+<a name="mail"></a>
 ### 邮件配置
 ```text
 MAIL_DRIVER=smtp #邮件驱动
@@ -87,7 +87,7 @@ MAIL_ENCRYPTION=ssl #邮件加密方式
 ```
 推荐使用阿里云的邮件推送，每天可免费发送300封邮件。支持自定义域名邮箱。
 
-<a name="section-8"></a>
+<a name="pay"></a>
 ### 支付配置
 ```text
 ALI_APP_ID=  #支付宝APP ID
@@ -98,7 +98,7 @@ WECHAT_MCH_ID= #微信商户号
 WECHAT_KEY= #微信秘钥
 ```
 
-<a name="section-9"></a>
+<a name="vaptcha"></a>
 ### 人机验证配置
 ```text
 VAPTCHA_VID= #vaptcha vid
