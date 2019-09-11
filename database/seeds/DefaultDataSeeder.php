@@ -21,7 +21,6 @@ class DefaultDataSeeder extends Seeder
         Category::create([
             'name' => '默认分类',
             'slug' => 'default',
-            'post_count' => 1,
             'sort' => 0,
             'description' => '默认分类',
         ]);

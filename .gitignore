@@ -12,3 +12,4 @@ yarn-error.log
 /storage/indexes
 /.idea
 composer.lock
+/storage/installed

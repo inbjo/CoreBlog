@@ -34,6 +34,7 @@ return [
             'XML',
             'Ctype',
             'BCMath',
+            'redis'
         ],
         'apache' => [
             'mod_rewrite',
