@@ -8,6 +8,8 @@ return [
     'icp' => env('SITE_ICP', '京ICP证030173号'),
     'police' => env('SITE_POLICE', '京公网安备11000002000001号'),
     'allow_user_post' => env('AllOW_USER_POST', false),
+    'verify_email' => env('VERIFY_EMAIL', false),
+    'verify_comment' => env('VERIFY_COMMENT', false),
     'vaptcha_vid' => env('VAPTCHA_VID', ''),
     'vaptcha_key' => env('VAPTCHA_KEY', ''),
 ];

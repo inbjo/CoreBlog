@@ -112,6 +112,15 @@
                     @method('PUT')
                     <input type="hidden" name="type" value="mail"/>
                     <div class="form-group">
+                      <label for="VERIFY_EMAIL">注册发送邮件功能</label>
+                      <select name="VERIFY_EMAIL" class="form-control" id="VERIFY_EMAIL">
+                        <option value="false" @if(config('system.verify_email') == false) selected @endif>关闭
+                        </option>
+                        <option value="true" @if(config('system.verify_email') == true) selected @endif>开启
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="mail_drive">邮件驱动</label>
                       <select name="MAIL_DRIVER" class="form-control" id="mail_drive">
                         <option value="smtp" @if(config('mail.driver') == 'smtp') selected @endif>smtp</option>
@@ -214,6 +223,15 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="type" value="other"/>
+                    <div class="form-group">
+                      <label for="VERIFY_COMMENT">评论行为验证</label>
+                      <select name="VERIFY_COMMENT" class="form-control" id="VERIFY_COMMENT">
+                        <option value="false" @if(config('system.verify_comment') == false) selected @endif>关闭
+                        </option>
+                        <option value="true" @if(config('system.verify_comment') == true) selected @endif>开启
+                        </option>
+                      </select>
+                    </div>
                     <div class="form-group">
                       <label for="VAPTCHA_VID">Vaptcha VID</label>
                       <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="VAPTCHA VID"
