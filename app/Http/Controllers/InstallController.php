@@ -14,9 +14,6 @@ class InstallController extends Controller
         if (User::count() > 0) {
             abort(404);
         }
-        Artisan::call('route:cache');
-        Artisan::call('config:cache');
-        Artisan::call('storage:link');
         return view('vendor.installer.account');
     }
 
