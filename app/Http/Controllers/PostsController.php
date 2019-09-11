@@ -26,6 +26,9 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
+        if(!alreadyInstalled()){
+            return redirect()->route('LaravelInstaller::welcome');
+        }
         $page = $request->input('page', 1);
         $posts = Cache::tags(['index-post'])->rememberForever('post:list:' . $page, function () {
             return Post::gettype('published')->orderBy('id', 'desc')->with(['user', 'tags'])

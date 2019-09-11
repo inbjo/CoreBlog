@@ -80,3 +80,9 @@ function clearCache($key = null)
         Cache::forget($key);
     }
 }
+
+function alreadyInstalled()
+{
+    return file_exists(storage_path('installed'));
+}
+
