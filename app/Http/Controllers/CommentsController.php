@@ -27,21 +27,23 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //验证token是否有效
-        $token = $request->input('token');
-        $url = 'http://api.vaptcha.com/v2/validate';
-        $client = new Client();
-        $response = $client->request('POST', $url, [
-            'form_params' => [
-                'id' => config('system.vaptcha_vid'),
-                'secretkey' => config('system.vaptcha_key'),
-                'scene' => '',
-                'token' => $token,
-                'ip' => $request->getClientIp()
-            ]
-        ]);
-        $result = json_decode($response->getBody(), true);
-        if (!isset($result['success']) || $result['success'] != 1) {
-            return redirect()->back()->with('danger', '未通过人机验证!');
+        if (config('system.verify_comment') == true) {
+            $token = $request->input('token');
+            $url = 'http://api.vaptcha.com/v2/validate';
+            $client = new Client();
+            $response = $client->request('POST', $url, [
+                'form_params' => [
+                    'id' => config('system.vaptcha_vid'),
+                    'secretkey' => config('system.vaptcha_key'),
+                    'scene' => '',
+                    'token' => $token,
+                    'ip' => $request->getClientIp()
+                ]
+            ]);
+            $result = json_decode($response->getBody(), true);
+            if (!isset($result['success']) || $result['success'] != 1) {
+                return redirect()->back()->with('danger', '未通过人机验证!');
+            }
         }
         //评论内容xss过滤
         $content = clean($request->input('reply_content'), 'user_comment_body');

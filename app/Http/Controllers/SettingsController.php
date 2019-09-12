@@ -34,6 +34,7 @@ class SettingsController extends Controller
                 break;
             case 'mail':
                 $data = [
+                    'VERIFY_EMAIL' => $request->input('VERIFY_EMAIL'),
                     'MAIL_DRIVER' => $request->input('MAIL_DRIVER'),
                     'MAIL_FROM_ADDRESS' => $request->input('MAIL_FROM_ADDRESS'),
                     'MAIL_FROM_NAME' => $request->input('MAIL_FROM_NAME'),
@@ -56,6 +57,7 @@ class SettingsController extends Controller
                 break;
             case 'other':
                 $data = [
+                    'VERIFY_COMMENT' => $request->input('VERIFY_COMMENT'),
                     'VAPTCHA_VID' => $request->input('VAPTCHA_VID'),
                     'VAPTCHA_KEY' => $request->input('VAPTCHA_KEY'),
                     'REDIS_HOST' => $request->input('REDIS_HOST'),

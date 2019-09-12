@@ -335,6 +335,12 @@ window.app = {
     }
   },
   submitComment: () => {
+    if ($("#vaptchaContainer").length > 0 === false) {
+      $("#submit-comment").click(function () {
+        $("#comment-form").submit();
+      });
+      return;
+    }
     $.getScript('https://cdn.vaptcha.com/v2.js', function () {
       let vid = $("#vaptchaContainer").data('id');
       window.vaptcha({

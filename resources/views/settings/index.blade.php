@@ -224,7 +224,7 @@
                     @method('PUT')
                     <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
-                      <label for="VERIFY_COMMENT">评论行为验证</label>
+                      <label for="VERIFY_COMMENT">评论人机验证</label>
                       <select name="VERIFY_COMMENT" class="form-control" id="VERIFY_COMMENT">
                         <option value="false" @if(config('system.verify_comment') == false) selected @endif>关闭
                         </option>
@@ -233,7 +233,7 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="VAPTCHA_VID">Vaptcha VID</label>
+                      <label for="VAPTCHA_VID">Vaptcha VID <a href="https://www.vaptcha.com/">Vaptcha官网</a></label>
                       <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="VAPTCHA VID"
                              name="VAPTCHA_VID" value="{{ config('system.vaptcha_vid') }}">
                     </div>

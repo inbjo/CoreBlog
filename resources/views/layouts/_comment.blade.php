@@ -86,12 +86,14 @@
                   <textarea name="reply_content" id="reply_content" class="form-control" rows="5"
                             placeholder="请输入您要评论的内容..." required></textarea>
       </div>
+      @if(config('system.verify_comment'))
       <div class="form-group">
         <input id="verify_token" type="hidden" name="token" />
         <div id="vaptchaContainer" data-id="{{config('system.vaptcha_vid')}}">
           验证码加载中...
         </div>
       </div>
+      @endif
       <div class="form-group m-0">
         <button id="submit-comment" type="button" class="btn btn-default btn-block">提交评论</button>
       </div>
