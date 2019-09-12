@@ -112,15 +112,6 @@
                     @method('PUT')
                     <input type="hidden" name="type" value="mail"/>
                     <div class="form-group">
-                      <label for="VERIFY_EMAIL">注册发送邮件功能</label>
-                      <select name="VERIFY_EMAIL" class="form-control" id="VERIFY_EMAIL">
-                        <option value="false" @if(config('system.verify_email') == false) selected @endif>关闭
-                        </option>
-                        <option value="true" @if(config('system.verify_email') == true) selected @endif>开启
-                        </option>
-                      </select>
-                    </div>
-                    <div class="form-group">
                       <label for="mail_drive">邮件驱动</label>
                       <select name="MAIL_DRIVER" class="form-control" id="mail_drive">
                         <option value="smtp" @if(config('mail.driver') == 'smtp') selected @endif>smtp</option>

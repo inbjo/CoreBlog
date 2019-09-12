@@ -34,7 +34,6 @@ class SettingsController extends Controller
                 break;
             case 'mail':
                 $data = [
-                    'VERIFY_EMAIL' => $request->input('VERIFY_EMAIL'),
                     'MAIL_DRIVER' => $request->input('MAIL_DRIVER'),
                     'MAIL_FROM_ADDRESS' => $request->input('MAIL_FROM_ADDRESS'),
                     'MAIL_FROM_NAME' => $request->input('MAIL_FROM_NAME'),
