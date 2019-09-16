@@ -14,27 +14,28 @@
         <div class="col-3">
           <ul class="list-group text-center">
             <li class="list-group-item">
-              <a href="{{ route('user.edit', auth()->user()->name) }}"><i class="fa fa-pencil-square-o"
-                                                                          aria-hidden="true"></i>
+              <a href="{{ route('user.edit', auth()->user()->name) }}">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 编辑资料</a>
             </li>
             <li class="list-group-item active">
-              <a href="{{ route('user.paycode', auth()->user()->name) }}"><i class="fa fa-qrcode"
-                                                                             aria-hidden="true"></i>
+              <a href="{{ route('user.paycode', auth()->user()->name) }}">
+                <i class="fa fa-qrcode" aria-hidden="true"></i>
                 打赏收款</a>
             </li>
             <li class="list-group-item">
-              <a href="{{ route('user.avatar', auth()->user()->name) }}"><i class="fa fa-picture-o"
-                                                                            aria-hidden="true"></i>
+              <a href="{{ route('user.avatar', auth()->user()->name) }}">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
                 更换头像</a>
             </li>
             <li class="list-group-item">
-              <a href="{{ route('user.password', auth()->user()->name) }}"><i class="fa fa-lock" aria-hidden="true"></i>
+              <a href="{{ route('user.password', auth()->user()->name) }}">
+                <i class="fa fa-lock" aria-hidden="true"></i>
                 修改密码</a>
             </li>
             <li class="list-group-item">
-              <a href="{{ route('user.binding', auth()->user()->name) }}"><i class="fa fa-user-plus"
-                                                                             aria-hidden="true"></i> 账号关联</a>
+              <a href="{{ route('user.binding', auth()->user()->name) }}">
+                <i class="fa fa-user-plus" aria-hidden="true"></i> 账号关联</a>
             </li>
           </ul>
         </div>
