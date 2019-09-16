@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Zxing\QrReader;
 
 class UsersController extends Controller
 {
@@ -141,11 +142,42 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
         if ($request->isMethod('put')) {
-            $user->extend = $request->extend;
+            $user->extend = merge_obj($user->extend, $request->extend);
             $user->save();
             return redirect()->back()->with('success', '资料更新成功！');
         } else {
             return view('users.binding', compact('user'));
+        }
+    }
+
+    public function paycode(Request $request, User $user)
+    {
+        $this->authorize('update', $user);
+        $data = new \stdClass();
+        if ($request->isMethod('put')) {
+            if ($request->file('alipay_paycode')) {
+                $text = OcrQrcode($request->file('alipay_paycode')->path());
+                if ($text) {
+                    $data->alipay_paycode = $text;
+                }
+            }
+            if ($request->file('wechat_paycode')) {
+                $text = OcrQrcode($request->file('wechat_paycode')->path());
+                if ($text) {
+                    $data->wechat_paycode = $text;
+                }
+            }
+            if ($request->file('qq_paycode')) {
+                $text = OcrQrcode($request->file('qq_paycode')->path());
+                if ($text) {
+                    $data->qq_paycode = $text;
+                }
+            }
+            $user->extend = merge_obj($user->extend, $data);
+            $user->save();
+            return redirect()->back()->with('success', '打赏收款码更新成功！');
+        } else {
+            return view('users.paycode', compact('user'));
         }
     }
 

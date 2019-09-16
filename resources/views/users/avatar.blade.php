@@ -17,6 +17,10 @@
               <a href="{{ route('user.edit', auth()->user()->name) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 编辑资料</a>
             </li>
+            <li class="list-group-item">
+              <a href="{{ route('user.paycode', auth()->user()->name) }}"><i class="fa fa-qrcode" aria-hidden="true"></i>
+                打赏收款</a>
+            </li>
             <li class="list-group-item active">
               <a href="{{ route('user.avatar', auth()->user()->name) }}"><i class="fa fa-picture-o" aria-hidden="true"></i>
                 更换头像</a>

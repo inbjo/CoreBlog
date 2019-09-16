@@ -3,7 +3,9 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Zxing\QrReader;
 
 function route_class()
 {
@@ -14,18 +16,6 @@ function make_description($value, $length = 200)
 {
     $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
     return Str::limit($excerpt, $length, ' ...');
-}
-
-function is_allow_username($username)
-{
-    $black_list = [
-        'admin', 'administrator', 'guest', 'root', 'test', 'system', 'blog', '10000'
-    ];
-    if (in_array($username, $black_list)) {
-        return false;
-    } else {
-        return true;
-    }
 }
 
 function modifyEnv(array $data)
@@ -47,7 +37,7 @@ function modifyEnv(array $data)
 
     $content = implode($contentArray->toArray(), "\n");
 
-    \File::put($envPath, $content);
+    File::put($envPath, $content);
 }
 
 function getPoliceNumber()
@@ -84,5 +74,22 @@ function clearCache($key = null)
 function alreadyInstalled()
 {
     return file_exists(storage_path('installed'));
+}
+
+function OcrQrcode($path)
+{
+    $qrcode = new QrReader($path);
+    $text = $qrcode->text();
+    if ($text == null) {
+        return false;
+    }
+    return $text;
+}
+
+function merge_obj(){
+    foreach(func_get_args() as $a){
+        $objects[]=(array)$a;
+    }
+    return (object)call_user_func_array('array_merge', $objects);
 }
 
