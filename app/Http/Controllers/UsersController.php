@@ -15,7 +15,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'reward']]);
     }
 
     /**
@@ -150,6 +150,13 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * 打赏收款二维码设置
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function paycode(Request $request, User $user)
     {
         $this->authorize('update', $user);
@@ -173,12 +180,51 @@ class UsersController extends Controller
                     $data->qq_paycode = $text;
                 }
             }
+            $data->reward = $request->reward;
             $user->extend = merge_obj($user->extend, $data);
             $user->save();
-            return redirect()->back()->with('success', '打赏收款码更新成功！');
+            return redirect()->back()->with('success', '更新成功！');
         } else {
-            return view('users.paycode', compact('user'));
+            $reward = $user->extend->reward ?? 'false';
+            return view('users.paycode', compact('user', 'reward'));
         }
+    }
+
+    /**
+     * 扫码打赏
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse|string
+     */
+    public function reward(User $user)
+    {
+        $data = [
+            'title' => '(⊙o⊙)…出了点小问题',
+            'status' => 'error',
+            'content' => ''
+        ];
+        if (app('Agent')::match('Alipay')) {
+            if (empty($user->extend->alipay_paycode ?? true)) {
+                $data['content'] = '该作者未开通支付宝收款码';
+                return view('pages.tips', compact('data'));
+            }
+            return redirect()->away($user->extend->alipay_paycode);
+        }
+        if (app('Agent')::match('MicroMessenger')) {
+            if (empty($user->extend->wechat_paycode ?? true)) {
+                $data['content'] = '该作者未开通微信收款码';
+                return view('pages.tips', compact('data'));
+            }
+            return redirect()->away($user->extend->wechat_paycode);
+        }
+        if (app('Agent')::match('QQ')) {
+            if (empty($user->extend->qq_paycode ?? true)) {
+                $data['content'] = '该作者未开通QQ收款码';
+                return view('pages.tips', compact('data'));
+            }
+            return redirect()->away($user->extend->qq_paycode);
+        }
+        $data['content'] = '仅支持支付宝、微信、QQ扫码打赏';
+        return view('pages.tips', compact('data'));
     }
 
 }

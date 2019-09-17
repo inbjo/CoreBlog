@@ -510,24 +510,6 @@ nav {
   }
 }
 
-#payModal {
-  .modal-body {
-    .item {
-      cursor: pointer;
-      text-align: center;
-      border: 1px solid #eee;
-      margin-bottom: 15px;
-      padding: 8px 0;
-      border-radius: 5px;
-
-      &.active {
-        background: $primary;
-        color: #fff;
-      }
-    }
-  }
-}
-
 /*====================================================
 	pagination
 ====================================================*/

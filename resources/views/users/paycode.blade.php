@@ -55,6 +55,13 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
+                      <label for="reward">打赏功能</label>
+                      <select name="reward" class="form-control" id="reward">
+                        <option value="false" @if($reward == 'false') selected @endif>关闭</option>
+                        <option value="true" @if($reward == 'true') selected @endif>开启</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="alipay_paycode">支付宝收款码</label>
                       <input type="file" name="alipay_paycode" class="form-control-file mb-2" id="alipay_paycode">
                       <input type="text" class="form-control" value="{{ $user->extend->alipay_paycode ?? '' }}" disabled

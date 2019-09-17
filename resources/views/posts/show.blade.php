@@ -131,79 +131,29 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-4">
-              <div class="item active" data-money="1"><i class="fa fa-cny"></i> 1</div>
+            <div class="col-12 text-center">
+              <div id="paycode" data-switch="{{$post->user->extend->reward ?? 'false'}}"
+                   data-url="{{route('user.reward',$post->user->name)}}"></div>
             </div>
-            <div class="col-4">
-              <div class="item" data-money="5"><i class="fa fa-cny"></i> 5</div>
-            </div>
-            <div class="col-4">
-              <div class="item" data-money="10"><i class="fa fa-cny"></i> 10</div>
-            </div>
-            <div class="col-4">
-              <div class="item" data-money="20"><i class="fa fa-cny"></i> 20</div>
-            </div>
-            <div class="col-4">
-              <div class="item" data-money="50"><i class="fa fa-cny"></i> 50</div>
-            </div>
-            <div class="col-4">
-              <div class="item" data-money="100"><i class="fa fa-cny"></i> 100</div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="money">自定义金额</label>
-                <input type="number" class="form-control" id="money" placeholder="请输入你要打赏的金额">
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="money">打赏赠言</label>
-                <textarea class="form-control" name="remark" id="remark" rows="3" placeholder="对作者说点啥..."></textarea>
-              </div>
-            </div>
-            <div class="col-12">
-              <h5>请选择付款方式:</h5>
-            </div>
-            <div class="col-6">
-              <div class="item active" data-type="alipay"><i class="fa fa-cny"></i> 支付宝</div>
-            </div>
-            <div class="col-6">
-              <div class="item" data-type="wechat"><i class="fa fa-cny"></i> 微信</div>
+            <div class="col-12 text-center">
+              该作者支持
+              @if($post->user->extend->alipay_paycode ?? false)
+                <span class="badge badge-primary">支付宝</span>
+              @endif
+              @if($post->user->extend->wechat_paycode ?? false)
+                <span class="badge badge-success">微信</span>
+              @endif
+              @if($post->user->extend->qq_paycode ?? false)
+                <span class="badge badge-info">QQ</span>
+              @endif
+              打赏
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button id="btn-reward" type="button" class="btn btn-primary">打赏</button>
         </div>
       </div>
     </div>
   </div>
   <!-- Modal -->
 
-  <!-- Wechat Pay Modal -->
-  <div class="modal fade" id="wechatPayModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">请使用微信扫描下方二维码完成支付</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12 text-center">
-              <div id="qrcode"></div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button data-dismiss="modal" type="button" class="btn btn-primary">我已完成支付</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Wechat Pay Modal -->
 
 @endsection

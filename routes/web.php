@@ -40,6 +40,7 @@ Route::post('/at', 'UsersController@index');
 Route::get('/user/{user}', 'UsersController@show')->name('user.show');
 Route::get('/user/{user}/edit', 'UsersController@edit')->name('user.edit');
 Route::put('/user/{user}/edit', 'UsersController@update')->name('user.update');
+Route::get('/user/{user}/reward', 'UsersController@reward')->name('user.reward');
 Route::match(['get', 'put'], '/user/{user}/avatar', 'UsersController@avatar')->name('user.avatar');
 Route::match(['get', 'put'], '/user/{user}/password', 'UsersController@password')->name('user.password');
 Route::match(['get', 'put'], '/user/{user}/binding', 'UsersController@binding')->name('user.binding');

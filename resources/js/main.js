@@ -164,90 +164,16 @@ window.app = {
     tribute.attach(document.getElementById('reply_content'));
   },
   rewardAuthor: () => {
-    $("#rewardAuthor").click(function () {
-      if (localStorage.getItem('total_amount') == null) {
-        localStorage.setItem('total_amount', '1');
-      }
-      if (localStorage.getItem('payment') == null) {
-        localStorage.setItem('payment', 'alipay');
-      }
-      $('#payModal').modal('toggle');
-    });
-
-    $("#payModal .col-4 .item").click(function () {
-      $("#payModal .col-4 .item").removeClass('active');
-      localStorage.setItem('total_amount', $(this).data('money'));
-      $(this).addClass('active');
-    });
-
-    $("#payModal .col-6 .item").click(function () {
-      $("#payModal .col-6 .item").removeClass('active');
-      localStorage.setItem('payment', $(this).data('type'));
-      $(this).addClass('active');
-    });
-
-    $("#payModal #money").focus(function () {
-      $("#payModal .col-4 .item").removeClass('active');
-    });
-
-    $("#payModal #money").on('change', function () {
-      localStorage.setItem('total_amount', $("#money").val());
-    });
-
-    $("#btn-reward").click(function () {
-      if (is_login == false) {
-        return app.loginTips();
-      }
-      if (localStorage.getItem('payment') == 'alipay') {
-        axios({
-          method: 'post',
-          url: '/pay/alipay/create',
-          data: {
-            'total_amount': localStorage.getItem('total_amount'),
-            'post_id': $("#post-wrap").data('id'),
-            'remark': $("#remark").val()
-          }
-        }).then(function (response) {
-          if (response.data.code == 0) {
-            window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
-            $('#payModal').modal('toggle');
-            swal({
-              title: "您完成付款了吗?",
-              buttons: ["我已付款", "重新支付"],
-              dangerMode: true,
-            }).then((choose) => {
-              if (choose) {
-                window.open(location.protocol + '//' + location.host + '/pay/alipay/' + response.data.order_id);
-              }
-            });
-          } else {
-            swal(response.data.msg);
-          }
-        });
-      }
-      if (localStorage.getItem('payment') == 'wechat') {
-        axios({
-          method: 'post',
-          url: '/pay/wechat/pay',
-          data: {
-            'total_amount': localStorage.getItem('total_amount'),
-            'post_id': $("#post-wrap").data('id'),
-            'remark': $("#remark").val()
-          }
-        }).then(function (response) {
-          if (response.data.code == 0) {
-            $('#payModal').modal('toggle');
-            $("#qrcode").empty();
-            $('#qrcode').qrcode(response.data.qrcode);
-            $('#wechatPayModal').modal('toggle');
-          } else {
-            swal(response.data.msg);
-          }
-        });
-      }
-
-    });
-
+    if ($("#paycode").data('switch') == false) {
+      $("#rewardAuthor").click(function () {
+        swal("该用户未开启打赏功能");
+      });
+    } else {
+      $('#paycode').qrcode($("#paycode").data('url'));
+      $("#rewardAuthor").click(function () {
+        $('#payModal').modal('toggle');
+      });
+    }
   },
   likePost: () => {
     $("#likePost").click(function () {
