@@ -203,21 +203,21 @@ class UsersController extends Controller
             'content' => ''
         ];
         if (app('Agent')::match('Alipay')) {
-            if (empty($user->extend->alipay_paycode ?? true)) {
+            if (empty($user->extend->alipay_paycode ?? null)) {
                 $data['content'] = '该作者未开通支付宝收款码';
                 return view('pages.tips', compact('data'));
             }
             return redirect()->away($user->extend->alipay_paycode);
         }
         if (app('Agent')::match('MicroMessenger')) {
-            if (empty($user->extend->wechat_paycode ?? true)) {
+            if (empty($user->extend->wechat_paycode ?? null)) {
                 $data['content'] = '该作者未开通微信收款码';
                 return view('pages.tips', compact('data'));
             }
             return redirect()->away($user->extend->wechat_paycode);
         }
         if (app('Agent')::match('QQ')) {
-            if (empty($user->extend->qq_paycode ?? true)) {
+            if (empty($user->extend->qq_paycode ?? null)) {
                 $data['content'] = '该作者未开通QQ收款码';
                 return view('pages.tips', compact('data'));
             }

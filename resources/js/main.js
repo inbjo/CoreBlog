@@ -230,6 +230,9 @@ window.app = {
       var dfdPrompt = null;
       var clickTips = false;
       var pwaTips = document.getElementById('pwaTip');
+      if($("#pwaTips").length == 0){
+        return ;
+      }
 
       window.addEventListener('beforeinstallprompt', function (e) {
         if (clickTips) return;
