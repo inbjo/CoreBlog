@@ -50,7 +50,7 @@ class DefaultDataSeeder extends Seeder
         ]);
         //友链
         Link::create([
-            'name' => '裤裆老湿',
+            'name' => '酷博',
             'url' => 'https://www.inbjo.com',
         ]);
     }

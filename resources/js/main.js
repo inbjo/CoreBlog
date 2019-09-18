@@ -169,10 +169,16 @@ window.app = {
         swal("该用户未开启打赏功能");
       });
     } else {
-      $('#paycode').qrcode($("#paycode").data('url'));
       $("#rewardAuthor").click(function () {
         $('#payModal').modal('toggle');
       });
+      $("#pay-wrap .item").click(function () {
+        $('#paycode').empty();
+        $("#pay-wrap .item").removeClass('active');
+        $(this).addClass('active');
+        $('#paycode').qrcode($(this).data('url'));
+      });
+      $("#pay-wrap").find(".item").first().click();
     }
   },
   likePost: () => {
@@ -230,8 +236,8 @@ window.app = {
       var dfdPrompt = null;
       var clickTips = false;
       var pwaTips = document.getElementById('pwaTip');
-      if($("#pwaTips").length == 0){
-        return ;
+      if ($("#pwaTips").length == 0) {
+        return;
       }
 
       window.addEventListener('beforeinstallprompt', function (e) {

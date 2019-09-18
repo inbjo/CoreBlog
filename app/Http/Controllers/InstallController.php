@@ -26,6 +26,7 @@ class InstallController extends Controller
                 'email' => $request->email,
                 'avatar' => generateAvatar($request->email),
                 'password' => bcrypt($request->password),
+                'bio' => '这家伙很懒什么也没写~',
                 'email_verified_at' => Carbon::now()->toDateTimeString(),
             ]
         );

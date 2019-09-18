@@ -132,26 +132,32 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 text-center">
-              <div id="paycode" data-switch="{{$post->user->extend->reward ?? 'false'}}"
-                   data-url="{{route('user.reward',$post->user->name)}}"></div>
+              <div id="paycode" data-switch="{{$post->user->extend->reward ?? 'false'}}"></div>
             </div>
-            <div class="col-12 text-center">
-              该作者支持
-              @if($post->user->extend->alipay_paycode ?? false)
-                <span class="badge badge-primary">支付宝</span>
-              @endif
-              @if($post->user->extend->wechat_paycode ?? false)
-                <span class="badge badge-success">微信</span>
-              @endif
-              @if($post->user->extend->qq_paycode ?? false)
-                <span class="badge badge-info">QQ</span>
-              @endif
-              打赏
-            </div>
+          </div>
+          <hr/>
+          <div id="pay-wrap" class="row">
+            @if($post->user->extend->alipay_paycode ?? false)
+              <div class="col">
+                <div class="item" data-url="{{$post->user->extend->alipay_paycode}}"><i class="fa fa-cny"></i>
+                  支付宝
+                </div>
+              </div>
+            @endif
+            @if($post->user->extend->wechat_paycode ?? false)
+              <div class="col">
+                <div class="item" data-url="{{$post->user->extend->wechat_paycode}}"><i class="fa fa-weixin"></i> 微信</div>
+              </div>
+            @endif
+            @if($post->user->extend->qq_paycode ?? false)
+              <div class="col">
+                <div class="item" data-url="{{$post->user->extend->qq_paycode}}"><i class="fa fa-qq"></i> QQ</div>
+              </div>
+            @endif
           </div>
         </div>
       </div>
-    </div>
+  </div>
   </div>
   <!-- Modal -->
 
