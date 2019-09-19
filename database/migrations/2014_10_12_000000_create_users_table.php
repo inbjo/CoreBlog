@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
             $table->integer('notification_count')->unsigned()->default(0);
-            $table->json('extend')->nullable();
+            $table->text('extend')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

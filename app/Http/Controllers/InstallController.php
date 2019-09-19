@@ -11,7 +11,7 @@ class InstallController extends Controller
 {
     public function show()
     {
-        if (User::count() > 0) {
+        if (User::count() > 1) {
             abort(404);
         }
         return view('vendor.installer.account');

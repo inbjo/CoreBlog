@@ -4,6 +4,7 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,15 @@ class DefaultDataSeeder extends Seeder
      */
     public function run()
     {
+        //用户
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'avatar' => generateAvatar('admin@example.com'),
+            'password' => bcrypt('password'),
+            'bio' => '这家伙很懒什么也没写~',
+            'email_verified_at' => Carbon::now()->toDateTimeString(),
+        ]);
         //分类
         Category::create([
             'name' => '默认分类',
