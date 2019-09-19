@@ -9,7 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/storage/indexes
+/storage/indexes/posts.index
 /.idea
 composer.lock
 /storage/installed
