@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'driver' => env('SCOUT_DRIVER', 'tntsearch'),
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +101,7 @@ return [
         ],
 
         'tokenizer' => [
-            'driver' => env('TNTSEARCH_TOKENIZER', 'default'),
+            'driver' => env('TNTSEARCH_TOKENIZER', 'jieba'),
 
             'jieba' => [
                 'dict' => 'small',

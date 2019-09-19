@@ -69,10 +69,22 @@ wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.
 ### 安装套件
 第一次登录到管理面板面板会提示你安装套件  
 ![宝塔安装套件](/images/docs/bt_env.png)  
+如果你的内存只有1G，Mysql版本请选择5.6版本。  
 选择好后点击一键安装即可，编译安装大约需要1~2小时(取决于你的机器配置)  
-安装完毕之后，请点击左侧菜单【软件商店】找到【Redis5.0.0】再点击安装即可。
 > {info} 编译安装比急速安装大约能提升10%的性能，如果你只是想测试一下选择急速安装即可。  
-  
+
+### 安装Redis
+点击左侧菜单【软件商店】找到【Redis5.0.5】再点击安装即可。
+
+### 安装PHP扩展
+点击左侧菜单【软件商店】找到【PHP7.2】点击右侧的设置，再点击【安装扩展】选项卡。  
+![安装PHP扩展](/images/docs/ext.png)  
+安装`fileinfo`、`opcache`、`redis`扩展即可
+
+### 取消禁用函数
+在上面同一个页面，点击【禁用函数】选项卡。  
+删除以下几个禁用函数`put_env`、`pcntl_signal`、`proc_open`。
+
 <a name="section-2"></a>
 ## 使用OneInStack部署环境
 OneInStack是一键部署脚本，其官网已写明安装流程在此不再赘述。  

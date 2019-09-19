@@ -51,11 +51,11 @@ return [
     |
     */
     'permissions' => [
-        'storage/framework/' => '775',
-        'storage/logs/' => '775',
-        'storage/indexes/' => '775',
-        'storage/app/' => '775',
-        'bootstrap/cache/' => '775'
+        'storage/framework/' => '755',
+        'storage/logs/' => '755',
+        'storage/indexes/' => '755',
+        'storage/app/' => '755',
+        'bootstrap/cache/' => '755'
     ],
 
     /*

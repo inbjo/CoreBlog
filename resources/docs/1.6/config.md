@@ -101,6 +101,7 @@ WECHAT_KEY= #微信秘钥
 <a name="vaptcha"></a>
 ### 人机验证配置
 ```text
+VERIFY_COMMENT=false #是否开启人机验证
 VAPTCHA_VID= #vaptcha vid
 VAPTCHA_KEY= #vaptcha key
 ```

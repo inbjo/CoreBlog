@@ -177,7 +177,7 @@ return [
     'final' => [
         'title' => '安装完成',
         'templateTitle' => '安装完成',
-        'finished' => '应用已成功安装。',
+        'finished' => '应用已成功安装。下一步设置管理员账号',
         'migration' => '迁移和填充控制台输出:',
         'console' => '应用控制台输出:',
         'log' => '安装日志:',

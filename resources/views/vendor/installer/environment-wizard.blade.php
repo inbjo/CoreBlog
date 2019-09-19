@@ -245,7 +245,7 @@
                         <div class="form-group {{ $errors->has('broadcast_driver') ? ' has-error ' : '' }}">
                             <label for="broadcast_driver">{{ trans('installer_messages.environment.wizard.form.app_tabs.broadcasting_label') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -263,7 +263,7 @@
                         <div class="form-group {{ $errors->has('cache_driver') ? ' has-error ' : '' }}">
                             <label for="cache_driver">{{ trans('installer_messages.environment.wizard.form.app_tabs.cache_label') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -281,7 +281,7 @@
                         <div class="form-group {{ $errors->has('session_driver') ? ' has-error ' : '' }}">
                             <label for="session_driver">{{ trans('installer_messages.environment.wizard.form.app_tabs.session_label') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -299,7 +299,7 @@
                         <div class="form-group {{ $errors->has('queue_driver') ? ' has-error ' : '' }}">
                             <label for="queue_driver">{{ trans('installer_messages.environment.wizard.form.app_tabs.queue_label') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#driver" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -327,7 +327,7 @@
                             <label for="redis_hostname">
                                 {{ trans('installer_messages.environment.wizard.form.app_tabs.redis_host') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#redis" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#redis" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -377,7 +377,7 @@
                             <label for="mail_driver">
                                 {{ trans('installer_messages.environment.wizard.form.app_tabs.mail_driver_label') }}
                                 <sup>
-                                    <a href="https://www.inbjo.com/docs/1.0/config#mail" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://www.inbjo.com/docs/1.6/config#mail" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>

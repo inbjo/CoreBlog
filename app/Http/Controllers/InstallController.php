@@ -14,6 +14,7 @@ class InstallController extends Controller
         if (User::count() > 1) {
             abort(404);
         }
+        Artisan::call('search:sync-posts');
         return view('vendor.installer.account');
     }
 
