@@ -18,7 +18,7 @@ class CreateResourcesTable extends Migration
             $table->string('type')->index();
             $table->string('path');
             $table->string('hash');
-            $table->json('extend')->nullable();
+            $table->string('extend')->nullable();
             $table->unsignedInteger('post_id')->nullable()->index();
             $table->unsignedInteger('user_id')->index();
             $table->timestamps();

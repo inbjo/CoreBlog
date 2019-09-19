@@ -118,7 +118,7 @@
                     <label for="app_url">
                         {{ trans('installer_messages.environment.wizard.form.app_url_label') }}
                     </label>
-                    <input type="url" name="app_url" id="app_url" value="http://localhost" placeholder="{{ trans('installer_messages.environment.wizard.form.app_url_placeholder') }}" />
+                    <input type="url" name="app_url" id="app_url" value="http://www.blog.test" placeholder="{{ trans('installer_messages.environment.wizard.form.app_url_placeholder') }}" />
                     @if ($errors->has('app_url'))
                         <span class="error-block">
                             <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -269,7 +269,7 @@
                                     </a>
                                 </sup>
                             </label>
-                            <input type="text" name="cache_driver" id="cache_driver" value="file" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.cache_placeholder') }}" />
+                            <input type="text" name="cache_driver" id="cache_driver" value="redis" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.cache_placeholder') }}" />
                             @if ($errors->has('cache_driver'))
                                 <span class="error-block">
                                     <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -287,7 +287,7 @@
                                     </a>
                                 </sup>
                             </label>
-                            <input type="text" name="session_driver" id="session_driver" value="file" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.session_placeholder') }}" />
+                            <input type="text" name="session_driver" id="session_driver" value="redis" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.session_placeholder') }}" />
                             @if ($errors->has('session_driver'))
                                 <span class="error-block">
                                     <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
