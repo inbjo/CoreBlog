@@ -9,7 +9,11 @@ return [
      */
     'title' => 'CoreBlog 安装程序',
     'next' => '下一步',
+    'back' => '返回',
     'finish' => '安装',
+    'forms' => [
+        'errorTitle' => '发生以下错误:',
+    ],
 
 
     /**
@@ -73,30 +77,16 @@ return [
             ],
             'form' => [
                 'name_required' => '此项必填。',
+                'app_name_placeholder' => '给您的博客起一个名字',
                 'app_name_label' => '博客名称',
-                'app_name_placeholder' => '酷博',
-                'app_environment_label' => '应用模式',
-                'app_environment_label_local' => '本地模式',
-                'app_environment_label_developement' => '开发模式',
-                'app_environment_label_qa' => 'Qa模式',
-                'app_environment_label_production' => '生产模式',
-                'app_environment_label_other' => '自定义模式',
-                'app_environment_placeholder_other' => '请输入你自定义的模式...',
-                'app_debug_label' => '应用调试',
-                'app_debug_label_true' => '打开',
-                'app_debug_label_false' => '关闭',
-                'app_log_level_label' => '应用日志记录等级',
-                'app_log_level_label_debug' => 'debug',
-                'app_log_level_label_info' => 'info',
-                'app_log_level_label_notice' => 'notice',
-                'app_log_level_label_warning' => 'warning',
-                'app_log_level_label_error' => 'error',
-                'app_log_level_label_critical' => 'critical',
-                'app_log_level_label_alert' => 'alert',
-                'app_log_level_label_emergency' => 'emergency',
+                'email_label' => '邮箱地址',
+                'email_placeholder' => '请输入管理员电子邮箱地址',
+                'password_label' => '密码',
+                'password_placeholder' => '请设置管理员密码 长度8位及以上',
                 'app_url_label' => '博客网址',
                 'app_url_placeholder' => '博客网址',
-                'db_connection_label' => '数据库',
+                'db_connection_failed' => '连接数据库失败',
+                'db_connection_label' => '数据库连接',
                 'db_connection_label_mysql' => 'mysql',
                 'db_connection_label_sqlite' => 'sqlite',
                 'db_connection_label_pgsql' => 'pgsql',
@@ -111,45 +101,11 @@ return [
                 'db_username_placeholder' => '数据库用户名',
                 'db_password_label' => '数据库密码',
                 'db_password_placeholder' => '数据库密码',
+                'redis_label' => 'Redis驱动',
+                'redis_host' => 'Redis主机',
+                'redis_password' => 'Redis密码',
+                'redis_port' => 'Redis端口',
 
-                'app_tabs' => [
-                    'more_info' => 'More Info',
-                    'broadcasting_title' => '广播, 缓存, Session, 队列',
-                    'broadcasting_label' => '广播驱动',
-                    'broadcasting_placeholder' => '广播驱动',
-                    'cache_label' => '缓存驱动',
-                    'cache_placeholder' => '缓存驱动',
-                    'session_label' => 'Session驱动',
-                    'session_placeholder' => 'Session驱动',
-                    'queue_label' => '队列驱动',
-                    'queue_placeholder' => '队列驱动',
-                    'redis_label' => 'Redis驱动',
-                    'redis_host' => 'Redis主机',
-                    'redis_password' => 'Redis密码',
-                    'redis_port' => 'Redis端口',
-
-                    'mail_label' => '邮件',
-                    'mail_driver_label' => '邮件驱动',
-                    'mail_driver_placeholder' => '邮件驱动',
-                    'mail_host_label' => '邮件主机',
-                    'mail_host_placeholder' => '邮件主机',
-                    'mail_port_label' => '邮件端口',
-                    'mail_port_placeholder' => '邮件端口',
-                    'mail_username_label' => '邮件用户名',
-                    'mail_username_placeholder' => '邮件用户名',
-                    'mail_password_label' => '邮件密码',
-                    'mail_password_placeholder' => '邮件密码',
-                    'mail_encryption_label' => '邮件加密',
-                    'mail_encryption_placeholder' => '邮件加密',
-
-                    'pusher_label' => '推送',
-                    'pusher_app_id_label' => '推送应用ID',
-                    'pusher_app_id_palceholder' => '推送应用ID',
-                    'pusher_app_key_label' => '推送应用Key',
-                    'pusher_app_key_palceholder' => '推送应用Key',
-                    'pusher_app_secret_label' => '推送应用Secret',
-                    'pusher_app_secret_palceholder' => '推送应用Secret',
-                ],
                 'buttons' => [
                     'setup_database' => '配置数据库',
                     'setup_application' => '配置应用',
@@ -168,6 +124,17 @@ return [
         'errors' => '无法保存 .env 文件, 请手动创建它.',
     ],
 
+    'install' => 'Install',
+
+    /*
+     *
+     * Installed Log translations.
+     *
+     */
+    'installed' => [
+        'success_log_message' => 'CoreBlog 成功安装于',
+    ],
+
 
     /**
      *
@@ -177,11 +144,61 @@ return [
     'final' => [
         'title' => '安装完成',
         'templateTitle' => '安装完成',
-        'finished' => '应用已成功安装。下一步设置管理员账号',
+        'finished' => '应用已成功安装',
         'migration' => '迁移和填充控制台输出:',
         'console' => '应用控制台输出:',
         'log' => '安装日志:',
         'env' => '最终 .env 文件:',
-        'exit' => '设置管理员账号',
+        'exit' => '完成',
+    ],
+
+    /*
+    *
+    * Update specific translations
+    *
+    */
+    'updater' => [
+        /*
+         *
+         * Shared translations.
+         *
+         */
+        'title' => 'Laravel Updater',
+
+        /*
+         *
+         * Welcome page translations for update feature.
+         *
+         */
+        'welcome' => [
+            'title'   => 'Welcome To The Updater',
+            'message' => 'Welcome to the update wizard.',
+        ],
+
+        /*
+         *
+         * Welcome page translations for update feature.
+         *
+         */
+        'overview' => [
+            'title'   => 'Overview',
+            'message' => 'There is 1 update.|There are :number updates.',
+            'install_updates' => 'Install Updates',
+        ],
+
+        /*
+         *
+         * Final page translations.
+         *
+         */
+        'final' => [
+            'title' => 'Finished',
+            'finished' => 'Application\'s database has been successfully updated.',
+            'exit' => 'Click here to exit',
+        ],
+
+        'log' => [
+            'success_message' => 'Laravel Installer successfully UPDATED on ',
+        ],
     ],
 ];

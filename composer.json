@@ -16,6 +16,7 @@
         "dingo/api": "^2.3",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
+        "flex/installer": "^1.0",
         "fukuball/jieba-php": "^0.33.0",
         "guzzlehttp/guzzle": "^6.3",
         "iidestiny/laravel-filesystem-oss": "^1.2",
@@ -30,7 +31,6 @@
         "nesbot/carbon": "^2.22",
         "overtrue/laravel-lang": "~3.0",
         "overtrue/pinyin": "~4.0",
-        "rachidlaasri/laravel-installer": "^4.0",
         "spatie/laravel-permission": "^2.37",
         "stichoza/google-translate-php": "^4.0",
         "tymon/jwt-auth": "1.0.0-rc.4.1",
@@ -90,7 +90,8 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php artisan jwt:secret -f --ansi"
         ]
     }
 }
