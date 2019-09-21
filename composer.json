@@ -22,6 +22,7 @@
         "iidestiny/laravel-filesystem-oss": "^1.2",
         "intervention/image": "^2.4",
         "jenssegers/agent": "^2.6",
+        "rachidlaasri/laravel-installer": "^4.0",
         "khanamiryan/qrcode-detector-decoder": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",

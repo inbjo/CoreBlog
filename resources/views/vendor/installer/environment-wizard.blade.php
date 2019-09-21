@@ -50,29 +50,16 @@
                     @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('email') ? ' has-error ' : '' }}">
+                <div class="form-group {{ $errors->has('site_slogan') ? ' has-error ' : '' }}">
                   <label for="email">
-                    {{ trans('installer_messages.environment.wizard.form.email_label') }}
+                    {{ trans('installer_messages.environment.wizard.form.site_slogan_label') }}
                   </label>
-                  <input type="text" name="email" id="email" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.email_placeholder') }}" />
-                  @if ($errors->has('email'))
+                  <input type="text" name="site_slogan" id="site_slogan" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.site_slogan_placeholder') }}" />
+                  @if ($errors->has('site_slogan'))
                     <span class="error-block">
                               <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                              {{ $errors->first('email') }}
+                              {{ $errors->first('site_slogan') }}
                           </span>
-                  @endif
-                </div>
-
-                <div class="form-group {{ $errors->has('password') ? ' has-error ' : '' }}">
-                  <label for="password">
-                    {{ trans('installer_messages.environment.wizard.form.password_label') }}
-                  </label>
-                  <input type="text" name="password" id="password" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.password_placeholder') }}" />
-                  @if ($errors->has('password'))
-                    <span class="error-block">
-                                <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                                {{ $errors->first('password') }}
-                            </span>
                   @endif
                 </div>
 

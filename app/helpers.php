@@ -21,21 +21,27 @@ function make_description($value, $length = 200)
 function modifyEnv(array $data)
 {
     $envPath = base_path() . DIRECTORY_SEPARATOR . '.env';
-
+    $content = file_get_contents($envPath);
     $contentArray = collect(file($envPath, FILE_IGNORE_NEW_LINES));
+    $appendStr = '';
 
-    $contentArray->transform(function ($item) use ($data) {
-        foreach ($data as $key => $value) {
-            if (Str::contains($item, $key)) {
-                $value = Str::contains($value, ' ') ? '"' . $value . '"' : $value;
-                return $key . '=' . $value;
-            }
+    foreach ($data as $key => $value) {
+        $value = Str::contains($value, ' ') ? '"' . $value . '"' : $value;
+        if(Str::contains($content, $key)){
+            $contentArray->transform(function ($item) use ($key,$value) {
+                if (Str::contains($item, $key)) {
+                    return $key . '=' . $value;
+                }
+
+                return $item;
+            });
+        }else{
+            $appendStr.= PHP_EOL . "$key=$value";
         }
-
-        return $item;
-    });
+    }
 
     $content = implode($contentArray->toArray(), "\n");
+    $content.= $appendStr;
 
     File::put($envPath, $content);
 }
