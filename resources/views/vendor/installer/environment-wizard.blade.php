@@ -50,18 +50,9 @@
                     @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('site_slogan') ? ' has-error ' : '' }}">
-                  <label for="email">
-                    {{ trans('installer_messages.environment.wizard.form.site_slogan_label') }}
-                  </label>
-                  <input type="text" name="site_slogan" id="site_slogan" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.site_slogan_placeholder') }}" />
-                  @if ($errors->has('site_slogan'))
-                    <span class="error-block">
-                              <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                              {{ $errors->first('site_slogan') }}
-                          </span>
-                  @endif
-                </div>
+                <input type="hidden" name="environment" value="production"/>
+                <input type="hidden" name="app_debug" value="true"/>
+                <input type="hidden" name="app_log_level" value="debug"/>
 
                 <div class="form-group {{ $errors->has('app_url') ? ' has-error ' : '' }}">
                     <label for="app_url">
@@ -176,6 +167,20 @@
                 </div>
             </div>
             <div class="tab" id="tab3content">
+
+                <input type="hidden" name="broadcast_driver" value="log"/>
+                <input type="hidden" name="cache_driver" value="redis"/>
+                <input type="hidden" name="session_driver" value="redis"/>
+                <input type="hidden" name="queue_driver" value="sync"/>
+                <input type="hidden" name="mail_driver" value="smtp"/>
+                <input type="hidden" name="mail_host" value="smtp.mailtrap.io"/>
+                <input type="hidden" name="mail_port" value="2525"/>
+                <input type="hidden" name="mail_username" value="null"/>
+                <input type="hidden" name="mail_password" value="null"/>
+                <input type="hidden" name="mail_encryption" value="null"/>
+                <input type="hidden" name="pusher_app_id" value=""/>
+                <input type="hidden" name="pusher_app_key" value=""/>
+                <input type="hidden" name="pusher_app_secret" value=""/>
 
                 <div class="form-group {{ $errors->has('redis_hostname') ? ' has-error ' : '' }}">
                   <label for="redis_hostname">

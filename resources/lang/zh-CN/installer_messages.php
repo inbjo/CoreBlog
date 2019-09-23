@@ -132,7 +132,7 @@ return [
      *
      */
     'installed' => [
-        'success_log_message' => 'CoreBlog 成功安装于',
+        'success_log_message' => 'CoreBlog 成功安装于 ',
     ],
 
 
@@ -149,7 +149,7 @@ return [
         'console' => '应用控制台输出:',
         'log' => '安装日志:',
         'env' => '最终 .env 文件:',
-        'exit' => '完成',
+        'exit' => '设置管理员账号',
     ],
 
     /*
