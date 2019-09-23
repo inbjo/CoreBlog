@@ -6,6 +6,7 @@
 - [无权限写入问题](#section-2)
 - [防跨站攻击问题](#section-3)
 - [同步索引错误问题](#section-4)
+- [搜索报错问题](#section-5)
 
 <a name="section-1"></a>
 ## 加密kEY不存在问题
@@ -42,3 +43,14 @@ CoreBlog使用了TntSearch做全文索引，TntSearch是基于sqlite数据库开
 chmod 777 root_path/storage/indexes/posts.index
 ```
 > {info} 请将root_path更改为你项目的根目录路径  
+
+<a name="section-5"></a>
+## 搜索报错问题
+```bash
+path/storage/indexes/posts.index does not exist
+```
+出现上述问题是未初始化tntsearch的sqlite数据库导致的。在项目根目录执行:
+```bash
+php artisan search:sync-posts
+```
+如果提示`Sync Posts Index Success!`代表修复成功。

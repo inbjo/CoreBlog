@@ -15,7 +15,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
     /**
@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
-        if(!alreadyInstalled()){
+        if (!alreadyInstalled()) {
             return redirect()->route('LaravelInstaller::welcome');
         }
         $page = $request->input('page', 1);
@@ -93,7 +93,7 @@ class PostsController extends Controller
         $cover_path = '';
         if ($request->hasFile('cover')) {
             $result = Upload::file($request->file('cover'), 'cover');
-            Upload::reduceSize($result['path'],1024);
+            Upload::reduceSize($result['path'], 1024);
             if ($result) {
                 $cover_path = $result['path'];
             }
@@ -168,7 +168,7 @@ class PostsController extends Controller
         if ($file = $request->cover) {
             // 保存图片到本地
             $result = Upload::file($request->file('cover'), 'cover');
-            Upload::reduceSize($result['path'],1024);
+            Upload::reduceSize($result['path'], 1024);
             // 图片保存成功的话
             if ($result) {
                 $post->cover = $result['path'];

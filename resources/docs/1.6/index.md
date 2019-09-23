@@ -1,4 +1,4 @@
-- ## Getting Started
+- ## 入门指引
     - [项目简介](/{{route}}/{{version}}/overview)
 - ## 安装与部署
     - [环境要求](/{{route}}/{{version}}/require)
