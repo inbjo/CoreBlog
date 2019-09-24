@@ -25,11 +25,13 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav navbar-right">
                 @auth
+                        @can('create', App\Models\Post::class)
                         <li class="nav-item">
                           <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('post.create') }}">
                             <i class="fa fa-plus"></i>
                           </a>
                         </li>
+                        @endcan
                         <li class="nav-item notification-badge">
                             <a class="nav-link mr-3 badge badge-pill badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }} text-white" href="{{ route('notifications.index') }}">
                                 {{ Auth::user()->notification_count }}

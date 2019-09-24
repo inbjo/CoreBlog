@@ -11,4 +11,5 @@
     - [文章管理](/{{route}}/{{version}}/post)
     - [评论管理](/{{route}}/{{version}}/comment)
     - [友链管理](/{{route}}/{{version}}/link)
+    - [用户管理](/{{route}}/{{version}}/user)
     - [系统管理](/{{route}}/{{version}}/system)
