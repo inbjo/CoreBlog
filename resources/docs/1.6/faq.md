@@ -7,6 +7,7 @@
 - [防跨站攻击问题](#section-3)
 - [同步索引错误问题](#section-4)
 - [搜索报错问题](#section-5)
+- [图片上传后不显示](#section-6)
 
 <a name="section-1"></a>
 ## 加密kEY不存在问题
@@ -54,3 +55,10 @@ path/storage/indexes/posts.index does not exist
 php artisan search:sync-posts
 ```
 如果提示`Sync Posts Index Success!`代表修复成功。
+
+<a name="section-6"></a>
+## 图片上传后不显示
+请确认你是否禁止了PHP函数`symlink`如被禁止了请解除限制，然后在项目根目录执行:
+```bash
+php artisan storage:link
+```

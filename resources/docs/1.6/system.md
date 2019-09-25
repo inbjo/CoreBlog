@@ -15,7 +15,7 @@
 <a name="mail"></a>
 ## 邮件设置
 ![邮件设置](/images/docs/mail.png)  
-推荐使用阿里云的邮件推送服务，每天可免费发送300封邮件，一般来说足够了。  
+推荐使用阿里云的邮件推送服务，每天可免费发送200封邮件，一般来说足够了。  
 ```bash
 MAIL_DRIVER=smtp
 MAIL_HOST=smtpdm.aliyun.com

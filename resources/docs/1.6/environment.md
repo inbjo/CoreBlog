@@ -83,7 +83,7 @@ wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.
 
 ### 取消禁用函数
 在上面同一个页面，点击【禁用函数】选项卡。  
-删除以下几个禁用函数`put_env`、`pcntl_signal`、`proc_open`。
+删除以下几个禁用函数`put_env`、`pcntl_signal`、`proc_open`、`symlink`。
 
 <a name="section-2"></a>
 ## 使用OneInStack部署环境

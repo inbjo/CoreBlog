@@ -85,7 +85,7 @@ MAIL_USERNAME=service@inbjo.com #发信用户名
 MAIL_PASSWORD=***** #发信密码
 MAIL_ENCRYPTION=ssl #邮件加密方式
 ```
-推荐使用阿里云的邮件推送，每天可免费发送300封邮件。支持自定义域名邮箱。
+推荐使用阿里云的邮件推送，每天可免费发送200封邮件。支持自定义域名邮箱。
 
 <a name="pay"></a>
 ### 支付配置
