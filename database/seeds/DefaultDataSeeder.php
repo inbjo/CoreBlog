@@ -63,5 +63,33 @@ class DefaultDataSeeder extends Seeder
             'name' => '酷博',
             'url' => 'https://www.inbjo.com',
         ]);
+        //设置表
+        DB::table('settings')->insert([
+            ['key' => 'SITE_NAME', 'value' => '酷博'],
+            ['key' => 'SITE_SLOGAN', 'value' => '一款优雅的博客系统'],
+            ['key' => 'SITE_KEYWORD', 'value' => 'CoreBlog,酷博'],
+            ['key' => 'SITE_DESCRIPTION', 'value' => 'CoreBlog酷博是一款基于Laravel开发的博客系统'],
+            ['key' => 'SITE_ICP', 'value' => '京ICP证888888号'],
+            ['key' => 'SITE_POLICE', 'value' => '京公网安备00000000000001号'],
+            ['key' => 'AllOW_USER_CREATE_POST', 'value' => false],
+            ['key' => 'VERIFY_COMMENT', 'value' => false],
+            ['key' => 'WATER_MARK', 'value' => false],
+            ['key' => 'WATER_MARK_TYPE', 'value' => 'text'],
+            ['key' => 'WATER_MARK_TEXT', 'value' => 'CoreBlog'],
+            ['key' => 'WATER_MARK_IMAGE', 'value' => ''],
+            ['key' => 'VAPTCHA_VID', 'value' => ''],
+            ['key' => 'VAPTCHA_KEY', 'value' => ''],
+            ['key' => 'ALI_APP_ID', 'value' => ''],
+            ['key' => 'ALI_PUBLIC_KEY', 'value' => ''],
+            ['key' => 'ALI_PRIVATE_KEY', 'value' => ''],
+            ['key' => 'WECHAT_APP_ID', 'value' => ''],
+            ['key' => 'WECHAT_MCH_ID', 'value' => ''],
+            ['key' => 'WECHAT_KEY', 'value' => ''],
+            ['key' => 'OSS_ACCESS_KEY', 'value' => ''],
+            ['key' => 'OSS_SECRET_KEY', 'value' => ''],
+            ['key' => 'OSS_ENDPOINT', 'value' => ''],
+            ['key' => 'OSS_BUCKET', 'value' => ''],
+        ]);
+
     }
 }

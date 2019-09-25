@@ -23,8 +23,11 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->unsignedInteger('view_count')->default(0);
             $table->boolean('status')->default(1);
-            $table->integer('category_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
+            $table->unsignedInteger('publish_time')->nullable();
+            $table->string('password')->nullable();
+            $table->boolean('allow_comment')->default(true);
+            $table->unsignedInteger('category_id')->unsigned()->index();
+            $table->unsignedInteger('user_id')->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();
         });

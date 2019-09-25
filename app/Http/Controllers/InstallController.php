@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class InstallController extends Controller
 {
@@ -13,6 +14,11 @@ class InstallController extends Controller
         if (User::count() > 1) {
             abort(404);
         }
+        //生成软连接
+        if (function_exists('symlink')) {
+            Artisan::call('storage:link');
+        }
+        //todo 同步搜索索引
         return view('vendor.installer.account');
     }
 
