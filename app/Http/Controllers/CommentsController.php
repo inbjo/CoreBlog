@@ -27,14 +27,14 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //验证token是否有效
-        if (config('system.verify_comment') == true) {
+        if (sysConfig('VERIFY_COMMENT') == true) {
             $token = $request->input('token');
             $url = 'http://api.vaptcha.com/v2/validate';
             $client = new Client();
             $response = $client->request('POST', $url, [
                 'form_params' => [
-                    'id' => config('system.vaptcha_vid'),
-                    'secretkey' => config('system.vaptcha_key'),
+                    'id' => sysConfig('VAPTCHA_VID'),
+                    'secretkey' => sysConfig('VAPTCHA_KEY'),
                     'scene' => '',
                     'token' => $token,
                     'ip' => $request->getClientIp()

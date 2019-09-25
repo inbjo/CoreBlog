@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $keyword.' - 搜索 - '.config('system.name'))
+@section('title', $keyword.' - 搜索 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

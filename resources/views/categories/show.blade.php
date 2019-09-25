@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $category->name.' - 分类 - '.config('system.name'))
+@section('title', $category->name.' - 分类 - '.sysConfig('SITE_NAME'))
 @section('body')
 
     <!-- start navigation -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -23,14 +24,13 @@ class SettingsController extends Controller
             case 'basic':
                 $data = [
                     'APP_URL' => $request->input('APP_URL'),
-                    'SITE_NAME' => $request->input('SITE_NAME'),
-                    'SITE_SLOGAN' => $request->input('SITE_SLOGAN'),
-                    'SITE_KEYWORD' => $request->input('SITE_KEYWORD'),
-                    'SITE_DESCRIPTION' => $request->input('SITE_DESCRIPTION'),
-                    'SITE_ICP' => $request->input('SITE_ICP'),
-                    'SITE_POLICE' => $request->input('SITE_POLICE'),
-                    'AllOW_USER_POST' => $request->input('AllOW_USER_POST'),
                 ];
+                sysConfig('SITE_NAME', $request->input('SITE_NAME'));
+                sysConfig('SITE_SLOGAN', $request->input('SITE_SLOGAN'));
+                sysConfig('SITE_KEYWORD', $request->input('SITE_KEYWORD'));
+                sysConfig('SITE_DESCRIPTION', $request->input('SITE_DESCRIPTION'));
+                sysConfig('SITE_ICP', $request->input('SITE_ICP'));
+                sysConfig('SITE_POLICE', $request->input('SITE_POLICE'));
                 break;
             case 'mail':
                 $data = [
@@ -44,28 +44,35 @@ class SettingsController extends Controller
                     'MAIL_ENCRYPTION' => $request->input('MAIL_ENCRYPTION'),
                 ];
                 break;
-            case 'pay':
+            case 'redis':
                 $data = [
-                    'ALI_APP_ID' => $request->input('ALI_APP_ID'),
-                    'ALI_PUBLIC_KEY' => $request->input('ALI_PUBLIC_KEY'),
-                    'ALI_PRIVATE_KEY' => $request->input('ALI_PRIVATE_KEY'),
-                    'WECHAT_APP_ID' => $request->input('WECHAT_APP_ID'),
-                    'WECHAT_MCH_ID' => $request->input('WECHAT_MCH_ID'),
-                    'WECHAT_KEY' => $request->input('WECHAT_KEY'),
-                ];
-                break;
-            case 'other':
-                $data = [
-                    'VERIFY_COMMENT' => $request->input('VERIFY_COMMENT'),
-                    'VAPTCHA_VID' => $request->input('VAPTCHA_VID'),
-                    'VAPTCHA_KEY' => $request->input('VAPTCHA_KEY'),
                     'REDIS_HOST' => $request->input('REDIS_HOST'),
                     'REDIS_PASSWORD' => empty($request->input('REDIS_PASSWORD')) ? 'null' : $request->input('REDIS_PASSWORD'),
                     'REDIS_PORT' => $request->input('REDIS_PORT'),
                 ];
                 break;
+            case 'pay':
+                sysConfig('ALI_APP_ID', $request->input('ALI_APP_ID'));
+                sysConfig('ALI_PUBLIC_KEY', $request->input('ALI_PUBLIC_KEY'));
+                sysConfig('ALI_PRIVATE_KEY', $request->input('ALI_PRIVATE_KEY'));
+                sysConfig('WECHAT_APP_ID', $request->input('WECHAT_APP_ID'));
+                sysConfig('WECHAT_MCH_ID', $request->input('WECHAT_MCH_ID'));
+                sysConfig('WECHAT_KEY', $request->input('WECHAT_KEY'));
+                break;
+            case 'other':
+                sysConfig('AllOW_USER_CREATE_POST', $request->input('AllOW_USER_CREATE_POST'));
+                sysConfig('VERIFY_COMMENT', $request->input('VERIFY_COMMENT'));
+                sysConfig('VAPTCHA_VID', $request->input('VAPTCHA_VID'));
+                sysConfig('VAPTCHA_KEY', $request->input('VAPTCHA_KEY'));
+                sysConfig('WATERMARK', $request->input('WATERMARK'));
+                $result = Upload::file($request->file('WATERMARK_IMAGE'), 'system');
+                sysConfig('WATERMARK_IMAGE', $result['path']);
+                break;
         }
-        modifyEnv($data);
+        if (isset($data)) {
+            modifyEnv($data);
+            clearCache();
+        }
         return redirect()->route('setting.index')->with('success', '保存配置成功！');
     }
 

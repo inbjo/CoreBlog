@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '修改密码 - '.config('system.name'))
+@section('title', '修改密码 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',  __('CreatePost').' - '.config('system.name'))
+@section('title',  __('CreatePost').' - '.sysConfig('SITE_NAME'))
 
 @section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('lib/editormd/css/editormd.min.css') }}">

@@ -53,6 +53,14 @@ class Post extends Model
         'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
     ];
 
+    protected $casts = [
+        'allow_comment' => 'boolean'
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
+
     /**
      * 将文章markdown格式转换成html
      *

@@ -52,8 +52,8 @@ class PagesController extends Controller
         if (!$feed->isCached()) {
             $posts = Post::orderBy('created_at', 'desc')->with('user')->take(20)->get();
 
-            $feed->title = config('system.name');
-            $feed->description = config('system.description');
+            $feed->title = sysConfig('SITE_NAME');
+            $feed->description = sysConfig('SITE_DESCRIPTION');
             $feed->logo = config('app.url') . '/favicon.ico';
             $feed->link = url('feed');
             $feed->setDateFormat('datetime');

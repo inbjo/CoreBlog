@@ -15,10 +15,10 @@ class SettingsController extends Controller
     public function index()
     {
         $site_info = [
-            'site_name' => config('system.name'),
+            'site_name' => sysConfig('SITE_NAME'),
             'site_url' => config('app.url'),
-            'site_icp' => config('system.icp'),
-            'site_gov' => config('system.police'),
+            'site_icp' => sysConfig('SITE_ICP'),
+            'site_gov' => sysConfig('SITE_POLICE'),
         ];
         return $site_info;
     }

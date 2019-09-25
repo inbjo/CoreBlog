@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $post->title.' - '.config('system.name'))
+@section('title', $post->title.' - '.sysConfig('SITE_NAME'))
 @section('keyword', $post->keyword)
 @section('description', $post->description)
 

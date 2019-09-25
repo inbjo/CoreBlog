@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '我的通知 - '.config('system.name'))
+@section('title', '我的通知 - '.sysConfig('SITE_NAME'))
 
 @section('body')
     <!-- start navigation -->

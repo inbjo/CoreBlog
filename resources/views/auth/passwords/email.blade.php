@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Reset Password').' - '.config('system.name'))
+@section('title', __('Reset Password').' - '.sysConfig('SITE_NAME'))
 @section('body')
 
     <!-- start navigation -->

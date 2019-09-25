@@ -42,6 +42,7 @@ class PostObserver
     public function deleted(Post $post)
     {
         if (!$post->trashed()) {
+            //todo 删除没有文章关联的标签
             //移除所有标签关联
             $post->tags()->detach();
             //删除评论

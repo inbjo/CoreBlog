@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '分类管理 - '.config('system.name'))
+@section('title', '分类管理 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

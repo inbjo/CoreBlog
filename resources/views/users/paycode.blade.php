@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '打赏收款 - '.config('system.name'))
+@section('title', '打赏收款 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '账号关联 - '.config('system.name'))
+@section('title', '账号关联 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

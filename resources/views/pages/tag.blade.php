@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $tag->name.' - 标签 - '.config('system.name'))
+@section('title', $tag->name.' - 标签 - '.sysConfig('SITE_NAME'))
 @section('body')
 
     <!-- start navigation -->

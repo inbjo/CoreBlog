@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '编辑友链 - '.config('system.name'))
+@section('title', '编辑友链 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

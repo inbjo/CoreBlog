@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <span>Copyright &copy; <a href="{{ config('app.url') }}">{{ config('system.name') }}</a> All right Reserved.
+                    <span>Copyright &copy; <a href="{{ config('app.url') }}">{{ sysConfig('SITE_NAME') }}</a> All right Reserved.
                       Powered By <a href="https://github.com/inbjo/CoreBlog" target="_blank">CoreBlog</a></span>
                 </div>
             </div>
@@ -75,12 +75,12 @@
                 </span>
                     <span></span>
                     <span>
-                    <a href="http://www.beian.miit.gov.cn" target="_blank">{{ config('system.icp') }}</a>
+                    <a href="http://www.beian.miit.gov.cn" target="_blank">{{ sysConfig('SITE_ICP') }}</a>
                 </span>
                     <span></span>
                     <span>
                     <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ getPoliceNumber() }}"
-                       target="_blank">{{ config('system.police') }}</a>
+                       target="_blank">{{ sysConfig('SITE_POLICE') }}</a>
                 </span>
                 </div>
             </div>

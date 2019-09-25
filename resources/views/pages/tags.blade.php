@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','标签云 - '.config('system.name'))
+@section('title','标签云 - '.sysConfig('SITE_NAME'))
 @section('body')
 
     <!-- start navigation -->

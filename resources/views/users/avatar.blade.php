@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '更换头像 - '.config('system.name'))
+@section('title', '更换头像 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->

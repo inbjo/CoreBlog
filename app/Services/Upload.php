@@ -62,7 +62,7 @@ class Upload
      * @param $max_width
      * @param $max_height
      */
-    public static function reduceSize($file_path, $max_width, $max_height = null)
+    public static function reduceSize($file_path, $max_width, $max_height = null, $watermark = false)
     {
         $path = storage_path('app/public') . str_replace('/storage', '', $file_path);
         $image = Image::make($path);
@@ -71,6 +71,10 @@ class Upload
             $constraint->aspectRatio();
             $constraint->upsize();
         });
+
+        if ($watermark && sysConfig('WATERMARK') && sysConfig('WATERMARK_IMAGE')) {
+            $image->insert(public_path() . sysConfig('WATERMARK_IMAGE'), 'bottom-right', 10, 10);
+        }
 
         $image->save();
     }

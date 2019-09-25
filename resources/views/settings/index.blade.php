@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '系统设置 - '.config('system.name'))
+@section('title', '系统设置 - '.sysConfig('SITE_NAME'))
 @section('body')
 
   <!-- start navigation -->
@@ -47,6 +47,8 @@
                      aria-controls="nav-basic" aria-selected="true">基本设置</a>
                   <a class="nav-item nav-link" id="nav-mail-tab" data-toggle="tab" href="#nav-mail" role="tab"
                      aria-controls="nav-mail" aria-selected="false">邮件设置</a>
+                  <a class="nav-item nav-link" id="nav-other-tab" data-toggle="tab" href="#redis" role="tab"
+                     aria-controls="nav-redis" aria-selected="false">Redis设置</a>
                   <a class="nav-item nav-link" id="nav-pay-tab" data-toggle="tab" href="#nav-pay" role="tab"
                      aria-controls="nav-pay" aria-selected="false">支付设置</a>
                   <a class="nav-item nav-link" id="nav-other-tab" data-toggle="tab" href="#nav-other" role="tab"
@@ -67,41 +69,32 @@
                     <div class="form-group">
                       <label for="SITE_NAME">博客名称</label>
                       <input type="text" class="form-control" id="SITE_NAME" placeholder="博客名称"
-                             name="SITE_NAME" value="{{ config('system.name') }}">
+                             name="SITE_NAME" value="{{ sysConfig('SITE_NAME') }}">
                     </div>
                     <div class="form-group">
                       <label for="SITE_SLOGAN">博客标语</label>
                       <input type="text" class="form-control" id="SITE_SLOGAN" placeholder="博客标语"
-                             name="SITE_SLOGAN" value="{{ config('system.slogan') }}">
+                             name="SITE_SLOGAN" value="{{ sysConfig('SITE_SLOGAN') }}">
                     </div>
                     <div class="form-group">
                       <label for="SITE_KEYWORD">博客关键词</label>
                       <input type="text" class="form-control" id="SITE_KEYWORD" placeholder="多个关键词以逗号分隔"
-                             name="SITE_KEYWORD" value="{{ config('system.keyword') }}">
+                             name="SITE_KEYWORD" value="{{ sysConfig('SITE_KEYWORD') }}">
                     </div>
                     <div class="form-group">
                       <label for="SITE_DESCRIPTION">博客描述</label>
                       <textarea class="form-control" name="SITE_DESCRIPTION" id="SITE_DESCRIPTION"
-                                rows="3" placeholder="不要超过150个字">{{ config('system.description') }}</textarea>
+                                rows="3" placeholder="不要超过150个字">{{ sysConfig('SITE_DESCRIPTION') }}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="SITE_ICP">ICP备案号</label>
                       <input type="text" class="form-control" id="SITE_ICP" placeholder="Icp备案号"
-                             name="SITE_ICP" value="{{ config('system.icp') }}">
+                             name="SITE_ICP" value="{{ sysConfig('SITE_ICP') }}">
                     </div>
                     <div class="form-group">
                       <label for="SITE_POLICE">公安备案号</label>
                       <input type="text" class="form-control" id="SITE_POLICE" placeholder="公安备案号"
-                             name="SITE_POLICE" value="{{ config('system.police') }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="AllOW_USER_POST">文章设置</label>
-                      <select name="AllOW_USER_POST" class="form-control" id="AllOW_USER_POST">
-                        <option value="false" @if(config('system.allow_user_post') == false) selected @endif>禁止普通用户发表文章
-                        </option>
-                        <option value="true" @if(config('system.allow_user_post') == true) selected @endif>允许普通用户发表文章
-                        </option>
-                      </select>
+                             name="SITE_POLICE" value="{{ sysConfig('SITE_POLICE') }}">
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>
@@ -169,70 +162,11 @@
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>
                 </div>
-                <div class="tab-pane fade show" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">
+                <div class="tab-pane fade" id="redis" role="tabpanel" aria-labelledby="nav-redis">
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="type" value="pay"/>
-                    <div class="form-group">
-                      <label for="ALI_APP_ID">支付宝APPID</label>
-                      <input type="text" class="form-control" id="ALI_APP_ID" placeholder="支付宝APPID"
-                             name="ALI_APP_ID" value="{{ config('pay.alipay.app_id') }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="ALI_PUBLIC_KEY">支付宝公钥</label>
-                      <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY"
-                                rows="5"
-                                placeholder="支付宝公钥(支付宝提供的公钥)">{{ config('pay.alipay.ali_public_key') }}</textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="ALI_PRIVATE_KEY">支付宝私钥</label>
-                      <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY"
-                                rows="6"
-                                placeholder="支付宝私钥(用户自行生成的私钥)">{{ config('pay.alipay.private_key') }}</textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="WECHAT_APP_ID">微信公众号APPID</label>
-                      <input type="text" class="form-control" id="WECHAT_APP_ID" placeholder="微信公众号APPID"
-                             name="WECHAT_APP_ID" value="{{ config('pay.wechat.app_id') }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="WECHAT_MCH_ID">微信商户号</label>
-                      <input type="text" class="form-control" id="WECHAT_MCH_ID" placeholder="微信商户号"
-                             name="WECHAT_MCH_ID" value="{{ config('pay.wechat.mch_id') }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="WECHAT_KEY">微信支付秘钥</label>
-                      <input type="text" class="form-control" id="WECHAT_KEY" placeholder="微信支付秘钥"
-                             name="WECHAT_KEY" value="{{ config('pay.wechat.key') }}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">保存</button>
-                  </form>
-                </div>
-                <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab">
-                  <form class="mt-2" method="post" action="{{ route('setting.update') }}">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="type" value="other"/>
-                    <div class="form-group">
-                      <label for="VERIFY_COMMENT">评论人机验证</label>
-                      <select name="VERIFY_COMMENT" class="form-control" id="VERIFY_COMMENT">
-                        <option value="false" @if(config('system.verify_comment') == false) selected @endif>关闭
-                        </option>
-                        <option value="true" @if(config('system.verify_comment') == true) selected @endif>开启
-                        </option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="VAPTCHA_VID">Vaptcha VID <a href="https://www.vaptcha.com/">Vaptcha官网</a></label>
-                      <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="VAPTCHA VID"
-                             name="VAPTCHA_VID" value="{{ config('system.vaptcha_vid') }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="VAPTCHA_KEY">Vaptcha key</label>
-                      <input type="text" class="form-control" id="VAPTCHA_KEY" placeholder="VAPTCHA KEY"
-                             name="VAPTCHA_KEY" value="{{ config('system.vaptcha_key') }}">
-                    </div>
+                    <input type="hidden" name="type" value="redis"/>
                     <div class="form-group">
                       <label for="REDIS_HOST">Redis服务器地址</label>
                       <input type="text" class="form-control" id="REDIS_HOST" placeholder="Redis服务器地址"
@@ -247,6 +181,100 @@
                       <label for="REDIS_PORT">Redis端口</label>
                       <input type="text" class="form-control" id="REDIS_PORT" placeholder="Redis端口"
                              name="REDIS_PORT" value="{{ config('database.redis.default.port') }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade show" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">
+                  <form class="mt-2" method="post" action="{{ route('setting.update') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="type" value="pay"/>
+                    <div class="form-group">
+                      <label for="ALI_APP_ID">支付宝APPID</label>
+                      <input type="text" class="form-control" id="ALI_APP_ID" placeholder="支付宝APPID"
+                             name="ALI_APP_ID" value="{{ sysConfig('ALI_APP_ID') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="ALI_PUBLIC_KEY">支付宝公钥</label>
+                      <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY"
+                                rows="5"
+                                placeholder="支付宝公钥(支付宝提供的公钥)">{{ sysConfig('ALI_PUBLIC_KEY') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="ALI_PRIVATE_KEY">支付宝私钥</label>
+                      <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY"
+                                rows="6"
+                                placeholder="支付宝私钥(用户自行生成的私钥)">{{ sysConfig('ALI_PRIVATE_KEY') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_APP_ID">微信公众号APPID</label>
+                      <input type="text" class="form-control" id="WECHAT_APP_ID" placeholder="微信公众号APPID"
+                             name="WECHAT_APP_ID" value="{{ sysConfig('WECHAT_APP_ID') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_MCH_ID">微信商户号</label>
+                      <input type="text" class="form-control" id="WECHAT_MCH_ID" placeholder="微信商户号"
+                             name="WECHAT_MCH_ID" value="{{ sysConfig('WECHAT_MCH_ID') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="WECHAT_KEY">微信支付秘钥</label>
+                      <input type="text" class="form-control" id="WECHAT_KEY" placeholder="微信支付秘钥"
+                             name="WECHAT_KEY" value="{{ sysConfig('WECHAT_KEY') }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab">
+                  <form class="mt-2" method="post" action="{{ route('setting.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                      <label for="AllOW_USER_CREATE_POST">文章设置</label>
+                      <select name="AllOW_USER_CREATE_POST" class="form-control" id="AllOW_USER_CREATE_POST">
+                        <option value="false" @if(sysConfig('AllOW_USER_CREATE_POST') == 'false') selected @endif>禁止普通用户发表文章
+                        </option>
+                        <option value="true" @if(sysConfig('AllOW_USER_CREATE_POST') == 'true') selected @endif>允许普通用户发表文章
+                        </option>
+                      </select>
+                    </div>
+                    <input type="hidden" name="type" value="other"/>
+                    <div class="form-group">
+                      <label for="VERIFY_COMMENT">评论人机验证</label>
+                      <select name="VERIFY_COMMENT" class="form-control" id="VERIFY_COMMENT">
+                        <option value="false" @if(sysConfig('VERIFY_COMMENT') == 'false') selected @endif>关闭
+                        </option>
+                        <option value="true" @if(sysConfig('VERIFY_COMMENT') == 'true') selected @endif>开启
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="VAPTCHA_VID">Vaptcha VID <a href="https://www.vaptcha.com/">Vaptcha官网</a></label>
+                      <input type="text" class="form-control" id="VAPTCHA_VID" placeholder="VAPTCHA VID"
+                             name="VAPTCHA_VID" value="{{ sysConfig('VAPTCHA_VID') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="VAPTCHA_KEY">Vaptcha key</label>
+                      <input type="text" class="form-control" id="VAPTCHA_KEY" placeholder="VAPTCHA KEY"
+                             name="VAPTCHA_KEY" value="{{ sysConfig('VAPTCHA_KEY') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="WATERMARK">图片水印</label>
+                      <select name="WATERMARK" class="form-control" id="WATERMARK">
+                        <option value="false" @if(sysConfig('WATERMARK') == false) selected @endif>关闭
+                        </option>
+                        <option value="true" @if(sysConfig('WATERMARK') == true) selected @endif>开启
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="WATERMARK_IMAGE">水印图片</label>
+                      <input type="file" class="form-control" id="WATERMARK_IMAGE" placeholder="水印文字"
+                             name="WATERMARK_IMAGE">
+                    </div>
+                    <div class="form-group">
+                      <label>水印图片预览</label>
+                      <img class="img-thumbnail" src="{{ sysConfig('WATERMARK_IMAGE') }}" alt="">
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>

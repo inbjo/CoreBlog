@@ -25,7 +25,7 @@ class PostPolicy
         if ($currentUser->id == 1) {
             return true;
         }
-        return config('system.allow_user_post');
+        return sysConfig('AllOW_USER_CREATE_POST');
     }
 
     public function update(User $currentUser, Post $post)
