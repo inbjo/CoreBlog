@@ -25,7 +25,7 @@ class PostPolicy
         if ($currentUser->id == 1) {
             return true;
         }
-        return sysConfig('AllOW_USER_CREATE_POST');
+        return sysConfig('AllOW_USER_CREATE_POST') == 'true';
     }
 
     public function update(User $currentUser, Post $post)

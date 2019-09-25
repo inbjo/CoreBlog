@@ -86,7 +86,7 @@
                   <textarea name="reply_content" id="reply_content" class="form-control" rows="5"
                             placeholder="请输入您要评论的内容..." required></textarea>
       </div>
-      @if(sysConfig('VERIFY_COMMENT'))
+      @if(sysConfig('VERIFY_COMMENT') == 'true')
       <div class="form-group">
         <input id="verify_token" type="hidden" name="token" />
         <div id="vaptchaContainer" data-id="{{sysConfig('VAPTCHA_VID')}}">

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Jobs\SyncOnePostToES;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostObserver
 {
@@ -42,9 +43,16 @@ class PostObserver
     public function deleted(Post $post)
     {
         if (!$post->trashed()) {
-            //todo 删除没有文章关联的标签
+            $tag_ids = $post->tags->pluck('id')->all();
             //移除所有标签关联
             $post->tags()->detach();
+            //todo 删除没有文章关联的标签
+            foreach ($tag_ids as $k => $v) {
+                $tag = Tag::find($v);
+                if ($tag->posts->count() == 0) {
+                    $tag->delete();
+                }
+            }
             //删除评论
             $post->comments()->delete();
         }

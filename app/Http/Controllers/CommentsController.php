@@ -27,7 +27,7 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //验证token是否有效
-        if (sysConfig('VERIFY_COMMENT') == true) {
+        if (sysConfig('VERIFY_COMMENT') == 'true') {
             $token = $request->input('token');
             $url = 'http://api.vaptcha.com/v2/validate';
             $client = new Client();

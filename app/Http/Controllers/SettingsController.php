@@ -65,8 +65,10 @@ class SettingsController extends Controller
                 sysConfig('VAPTCHA_VID', $request->input('VAPTCHA_VID'));
                 sysConfig('VAPTCHA_KEY', $request->input('VAPTCHA_KEY'));
                 sysConfig('WATERMARK', $request->input('WATERMARK'));
-                $result = Upload::file($request->file('WATERMARK_IMAGE'), 'system');
-                sysConfig('WATERMARK_IMAGE', $result['path']);
+                if ($request->file('WATERMARK_IMAGE')) {
+                    $result = Upload::file($request->file('WATERMARK_IMAGE'), 'system');
+                    sysConfig('WATERMARK_IMAGE', $result['path']);
+                }
                 break;
         }
         if (isset($data)) {
