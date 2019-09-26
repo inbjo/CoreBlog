@@ -46,7 +46,6 @@ class PostObserver
             $tag_ids = $post->tags->pluck('id')->all();
             //移除所有标签关联
             $post->tags()->detach();
-            //todo 删除没有文章关联的标签
             foreach ($tag_ids as $k => $v) {
                 $tag = Tag::find($v);
                 if ($tag->posts->count() == 0) {

@@ -212,6 +212,16 @@ class PostsController extends Controller
         $post = Post::withTrashed()->findOrFail($id);
         $this->authorize('update', $post);
         if (request()->force == 'true') {
+            $tag_ids = $post->tags->pluck('id')->all();
+            $post->tags()->detach();
+            foreach ($tag_ids as $k => $v) {
+                $tag = Tag::find($v);
+                if ($tag->posts->count() == 0) {
+                    logger('删除标签'.$v);
+                    $tag->delete();
+                }
+            }
+            $post->comments()->delete();
             $post->forceDelete();
         } else {
             $post->delete();
