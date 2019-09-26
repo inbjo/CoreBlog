@@ -11,7 +11,8 @@ class InstallController extends Controller
 {
     public function show()
     {
-        if (User::count() > 1) {
+        $user = User::find(1);
+        if ($user && $user->email != 'admin@example.com') {
             abort(404);
         }
         //生成软连接
