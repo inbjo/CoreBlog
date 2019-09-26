@@ -39,6 +39,10 @@ return [
         'apache' => [
             'mod_rewrite',
         ],
+        'function' =>[
+            'proc_open',
+            'symlink',
+        ]
     ],
 
     /*
@@ -70,7 +74,9 @@ return [
     'environment' => [
         'form' => [
             'rules' => [
-                'app_name' => 'required|string|max:50',
+                'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|max:50',
+                'email' => 'required|email|max:100',
+                'password' => 'required|string|min:8',
                 'app_url' => 'required|url',
                 'database_connection' => 'required|string|max:50',
                 'database_hostname' => 'required|string|max:50',
@@ -79,7 +85,7 @@ return [
                 'database_username' => 'required|string|max:50',
                 'database_password' => 'required|string|max:50',
                 'redis_hostname' => 'required|string|max:50',
-                'redis_password' => 'required|string|max:50',
+                'redis_password' => 'nullable|max:50',
                 'redis_port' => 'required|numeric',
             ],
         ],

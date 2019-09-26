@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/install/account', 'InstallController@show')->name('install.account');
-Route::post('/install/account', 'InstallController@store')->name('install.store');
-
 Route::get('/', 'PostsController@index')->name('index');
 Route::get('manifest.json', 'PagesController@manifest');
 Route::get('sitemap.xml', 'PagesController@sitemap')->name('sitemap');

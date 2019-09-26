@@ -131,7 +131,7 @@ function sysConfig($key = null, $value = null)
             $settings->each(function ($item) {
                 RedisManager::hset('settins', $item->key, $item->value);
             });
-            return getConfig($key);
+            return sysConfig($key);
         }
     } else {
         if ($value != null) return false;

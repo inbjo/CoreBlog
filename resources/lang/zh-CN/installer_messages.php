@@ -71,26 +71,22 @@ return [
             'templateTitle' => '第三步 | 环境设置 | 表单引导',
             'title' => '<code>.env</code> 配置表单',
             'tabs' => [
-                'environment' => '环境配置',
+                'environment' => '基础配置',
                 'database' => '数据库配置',
                 'application' => '应用配置'
             ],
             'form' => [
                 'name_required' => '此项必填。',
-                'app_name_placeholder' => '给您的博客起一个名字',
-                'app_name_label' => '博客名称',
+                'name_label' => '用户名',
+                'name_placeholder' => '管理员用户名',
                 'email_label' => '邮箱地址',
-                'email_placeholder' => '请输入管理员电子邮箱地址',
+                'email_placeholder' => '管理员电子邮箱地址',
                 'password_label' => '密码',
-                'password_placeholder' => '请设置管理员密码 长度8位及以上',
+                'password_placeholder' => '管理员密码 长度8位及以上',
                 'app_url_label' => '博客网址',
                 'app_url_placeholder' => '博客网址',
                 'db_connection_failed' => '连接数据库失败',
-                'db_connection_label' => '数据库连接',
-                'db_connection_label_mysql' => 'mysql',
-                'db_connection_label_sqlite' => 'sqlite',
-                'db_connection_label_pgsql' => 'pgsql',
-                'db_connection_label_sqlsrv' => 'sqlsrv',
+                'redis_connection_failed' => '连接Redis失败',
                 'db_host_label' => '数据库地址',
                 'db_host_placeholder' => '数据库地址',
                 'db_port_label' => '数据库端口',
@@ -102,8 +98,9 @@ return [
                 'db_password_label' => '数据库密码',
                 'db_password_placeholder' => '数据库密码',
                 'redis_label' => 'Redis驱动',
-                'redis_host' => 'Redis主机',
-                'redis_password' => 'Redis密码',
+                'redis_host' => 'Redis地址',
+                'redis_password_label' => 'Redis密码',
+                'redis_password_placeholder' => '无密码请留空',
                 'redis_port' => 'Redis端口',
 
                 'buttons' => [
@@ -149,7 +146,7 @@ return [
         'console' => '应用控制台输出:',
         'log' => '安装日志:',
         'env' => '最终 .env 文件:',
-        'exit' => '设置管理员账号',
+        'exit' => '完成',
     ],
 
     /*
@@ -163,7 +160,7 @@ return [
          * Shared translations.
          *
          */
-        'title' => 'Laravel Updater',
+        'title' => 'CoreBlog 更新',
 
         /*
          *
@@ -171,8 +168,8 @@ return [
          *
          */
         'welcome' => [
-            'title'   => 'Welcome To The Updater',
-            'message' => 'Welcome to the update wizard.',
+            'title'   => '欢迎使用更新程序',
+            'message' => '欢迎使用更新表单',
         ],
 
         /*
@@ -181,9 +178,9 @@ return [
          *
          */
         'overview' => [
-            'title'   => 'Overview',
-            'message' => 'There is 1 update.|There are :number updates.',
-            'install_updates' => 'Install Updates',
+            'title'   => '概览',
+            'message' => '有一个更新.|这里有 :number 更新.',
+            'install_updates' => '安装成功',
         ],
 
         /*
@@ -192,13 +189,13 @@ return [
          *
          */
         'final' => [
-            'title' => 'Finished',
-            'finished' => 'Application\'s database has been successfully updated.',
-            'exit' => 'Click here to exit',
+            'title' => '完成',
+            'finished' => 'CoreBlog\'s 的数据库已经成功更新了.',
+            'exit' => '点击退出',
         ],
 
         'log' => [
-            'success_message' => 'Laravel Installer successfully UPDATED on ',
+            'success_message' => 'CoreBlog 成功更新于 ',
         ],
     ],
 ];

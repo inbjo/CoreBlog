@@ -7,6 +7,8 @@ use App\Events\PostChange;
 use App\Listeners\ClearCommentCache;
 use App\Listeners\ClearPostCache;
 use App\Listeners\EmailVerified;
+use App\Listeners\InstallerFinish;
+use Flex\Installer\Events\LaravelInstallerFinished;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -31,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CommentChange::class => [
             ClearCommentCache::class,
+        ],
+        LaravelInstallerFinished::class => [
+            InstallerFinish::class
         ]
     ];
 

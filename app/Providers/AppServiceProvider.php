@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        ini_set('memory_limit', "256M");
+        ini_set('memory_limit', "512M");
 
         //compatible low mysql version
         Schema::defaultStringLength(191);

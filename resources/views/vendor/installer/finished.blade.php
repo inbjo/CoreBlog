@@ -26,7 +26,7 @@
 	<pre><code>{{ $finalEnvFile }}</code></pre>
 
     <div class="buttons">
-        <a href="{{ route('install.account') }}" class="button">{{ trans('installer_messages.final.exit') }}</a>
+        <a href="{{ url('/') }}" class="button">{{ trans('installer_messages.final.exit') }}</a>
     </div>
 
 @endsection
