@@ -217,7 +217,6 @@ class PostsController extends Controller
             foreach ($tag_ids as $k => $v) {
                 $tag = Tag::find($v);
                 if ($tag->posts->count() == 0) {
-                    logger('删除标签'.$v);
                     $tag->delete();
                 }
             }

@@ -14,3 +14,4 @@ yarn-error.log
 /.idea
 composer.lock
 /storage/installed
+app/Providers/TelescopeServiceProvider.php

@@ -42,19 +42,6 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
-        if (!$post->trashed()) {
-            $tag_ids = $post->tags->pluck('id')->all();
-            //移除所有标签关联
-            $post->tags()->detach();
-            foreach ($tag_ids as $k => $v) {
-                $tag = Tag::find($v);
-                if ($tag->posts->count() == 0) {
-                    $tag->delete();
-                }
-            }
-            //删除评论
-            $post->comments()->delete();
-        }
         clearCache();
     }
 }

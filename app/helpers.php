@@ -58,6 +58,9 @@ function getPoliceNumber()
 function generateAvatar($email, $size = 64)
 {
     $filename = md5($email) . '.png';
+    if (!is_dir(storage_path() . '/app/public/avatar/')) {
+        mkdir(storage_path() . '/app/public/avatar/');
+    }
     $path = storage_path() . '/app/public/avatar/' . $filename;
     if (!file_exists($path)) {
         app('identicon')->saveAvatar($email, $size, $path);
