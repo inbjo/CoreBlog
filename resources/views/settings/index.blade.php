@@ -149,7 +149,7 @@
                     </div>
                     <div class="form-group">
                       <label for="MAIL_PASSWORD">密码</label>
-                      <input type="text" class="form-control" id="MAIL_PASSWORD" placeholder="发信密码"
+                      <input type="password" class="form-control" id="MAIL_PASSWORD" placeholder="发信密码"
                              name="MAIL_PASSWORD" value="{{ config('mail.password') }}">
                     </div>
                     <div class="form-group">
@@ -157,6 +157,7 @@
                       <select name="MAIL_ENCRYPTION" class="form-control" id="MAIL_ENCRYPTION">
                         <option value="null" @if(config('mail.encryption') == 'null') selected @endif>不加密</option>
                         <option value="tls" @if(config('mail.encryption') == 'tls') selected @endif>tls</option>
+                        <option value="tls" @if(config('mail.encryption') == 'ssl') selected @endif>ssl</option>
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
@@ -174,7 +175,7 @@
                     </div>
                     <div class="form-group">
                       <label for="REDIS_PASSWORD">Redis密码</label>
-                      <input type="text" class="form-control" id="REDIS_PASSWORD" placeholder="无密码请留空"
+                      <input type="password" class="form-control" id="REDIS_PASSWORD" placeholder="无密码请留空"
                              name="REDIS_PASSWORD" value="{{ config('database.redis.default.password') }}">
                     </div>
                     <div class="form-group">
