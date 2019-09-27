@@ -157,7 +157,7 @@
                       <select name="MAIL_ENCRYPTION" class="form-control" id="MAIL_ENCRYPTION">
                         <option value="null" @if(config('mail.encryption') == 'null') selected @endif>不加密</option>
                         <option value="tls" @if(config('mail.encryption') == 'tls') selected @endif>tls</option>
-                        <option value="tls" @if(config('mail.encryption') == 'ssl') selected @endif>ssl</option>
+                        <option value="ssl" @if(config('mail.encryption') == 'ssl') selected @endif>ssl</option>
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
