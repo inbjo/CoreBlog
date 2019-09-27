@@ -79,7 +79,10 @@ wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.
 ### 安装PHP扩展
 点击左侧菜单【软件商店】找到【PHP7.2】点击右侧的设置，再点击【安装扩展】选项卡。  
 ![安装PHP扩展](/images/docs/ext.png)  
-安装`fileinfo`、`opcache`、`redis`扩展即可
+安装`fileinfo`、`opcache`、`redis`、`exif`扩展即可。
+
+### 修改最大内容限制
+然后再点击【配置修改】将【memory_limit】修改为512M然后点击保存。
 
 ### 取消禁用函数
 在上面同一个页面，点击【禁用函数】选项卡。  
