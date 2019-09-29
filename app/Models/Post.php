@@ -50,7 +50,8 @@ class Post extends Model
     use SoftDeletes, Searchable, Sluggable;
 
     protected $fillable = [
-        'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id', 'user_id'
+        'title', 'keyword', 'description', 'cover', 'content', 'status', 'category_id',
+        'user_id', 'publish_time', 'password', 'allow_comment'
     ];
 
     protected $casts = [
@@ -123,7 +124,7 @@ class Post extends Model
     {
         switch ($type) {
             case 'published':
-                return $query->where('status', 1);
+                return $query->where('status', 1)->whereNull('password')->where('publish_time', '<=', time());
             case 'draft':
                 return $query->where('status', 0);
             default:

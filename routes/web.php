@@ -20,6 +20,7 @@ Route::get('/tag/{tag}', 'TagsController@show')->name('tag.show');
 Route::get('/tags', 'TagsController@index')->name('tags');
 Route::resource('category', 'CategoriesController');
 Route::patch('/post/restore', 'PostsController@restore')->name('post.restore');
+Route::post('/post/{post}/unlock', 'PostsController@unlock')->name('post.unlock');
 Route::resource('post', 'PostsController');
 Route::resource('comment', 'CommentsController', ['only' => ['store', 'destroy']])->middleware('auth');
 Route::post('/favorites/comment/{comment}', 'FavoritesController@comment');

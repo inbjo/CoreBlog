@@ -329,7 +329,7 @@ window.app = {
     app.favoriteComment();
     app.reply();
     app.forbidCopy();
-    if (is_login && document.getElementsByTagName("body")[0].className == 'post-show-page') {
+    if (is_login && $("body").hasClass('post-show-page') && $("#post-reply").data('allow-coment') == 1) {
       app.submitComment();
       app.at();
       app.deleteComment();

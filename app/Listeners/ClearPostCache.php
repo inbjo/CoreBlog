@@ -25,15 +25,9 @@ class ClearPostCache
      */
     public function handle(PostChange $event)
     {
-        if ($event->action == 'update') {
-            if (Cache::has('post:' . $event->post_id)) {
-                Cache::forget('post:' . $event->post_id);
-            }
-        } else {
-            Cache::tags('index-post')->flush();
-            Cache::tags('category-post')->flush();
-            Cache::tags('user-post')->flush();
-            Cache::tags('tag-post')->flush();
-        }
+        Cache::tags('index-post')->flush();
+        Cache::tags('category-post')->flush();
+        Cache::tags('user-post')->flush();
+        Cache::tags('tag-post')->flush();
     }
 }

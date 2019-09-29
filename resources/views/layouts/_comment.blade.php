@@ -75,29 +75,35 @@
   </h4>
   <div class="clearfix"></div>
 </div>
-<div class="post-reply p-2 mb-5">
+<div class="post-reply p-2 mb-5" id="post-reply" data-allow-coment="{{$post->getOriginal('allow_comment')}}">
   @auth
-    <form id="comment-form" action="{{route('comment.store')}}" method="post">
-      <div class="form-group">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input id="post_id" type="hidden" name="post_id" value="{{ $post->id }}">
-      </div>
-      <div class="form-group" id="reply">
+    @if($post->allow_comment)
+      <form id="comment-form" action="{{route('comment.store')}}" method="post">
+        <div class="form-group">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input id="post_id" type="hidden" name="post_id" value="{{ $post->id }}">
+        </div>
+        <div class="form-group" id="reply">
                   <textarea name="reply_content" id="reply_content" class="form-control" rows="5"
                             placeholder="请输入您要评论的内容..." required></textarea>
-      </div>
-      @if(sysConfig('VERIFY_COMMENT') == 'true')
-      <div class="form-group">
-        <input id="verify_token" type="hidden" name="token" />
-        <div id="vaptchaContainer" data-id="{{sysConfig('VAPTCHA_VID')}}">
-          验证码加载中...
         </div>
+        @if(sysConfig('VERIFY_COMMENT') == 'true')
+          <div class="form-group">
+            <input id="verify_token" type="hidden" name="token" />
+            <div id="vaptchaContainer" data-id="{{sysConfig('VAPTCHA_VID')}}">
+              验证码加载中...
+            </div>
+          </div>
+        @endif
+        <div class="form-group m-0">
+          <button id="submit-comment" type="button" class="btn btn-default btn-block">提交评论</button>
+        </div>
+      </form>
+    @else
+      <div class="d-flex justify-content-center mt-5 mb-5">
+        <h5>作者未开启此文的评论功能</h5>
       </div>
-      @endif
-      <div class="form-group m-0">
-        <button id="submit-comment" type="button" class="btn btn-default btn-block">提交评论</button>
-      </div>
-    </form>
+    @endif
   @else
     <div class="d-flex justify-content-center mt-5 mb-5">
       <h5>您还未登录,请先<a href="{{route('login')}}">登录</a>或者<a href="{{route('register')}}">注册</a>

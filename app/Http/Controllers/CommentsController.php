@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\CommentChange;
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use App\Notifications\CommentWereMentioned;
 use GuzzleHttp\Client;
@@ -23,9 +24,12 @@ class CommentsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
+        $post_id = $request->input('post_id');
+        $this->authorize('comment', Post::findOrFail($post_id));
         //验证token是否有效
         if (sysConfig('VERIFY_COMMENT') == 'true') {
             $token = $request->input('token');
@@ -48,7 +52,7 @@ class CommentsController extends Controller
         //评论内容xss过滤
         $content = clean($request->input('reply_content'), 'user_comment_body');
         $comment = Comment::create([
-            'post_id' => $request->input('post_id'),
+            'post_id' => $post_id,
             'user_id' => Auth::id(),
             'content' => $content,
             'agent' => $request->userAgent(),

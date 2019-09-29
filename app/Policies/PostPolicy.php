@@ -46,4 +46,9 @@ class PostPolicy
         }
         return true;
     }
+
+    public function comment(User $currentUser, Post $post)
+    {
+        return $post->allow_comment;
+    }
 }

@@ -6,6 +6,7 @@ use App\Events\PostChange;
 use App\Http\Requests\PostRequest;
 use App\Models\Tag;
 use App\Services\Upload;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'unlock']]);
     }
 
     /**
@@ -98,6 +99,13 @@ class PostsController extends Controller
                 $cover_path = $result['path'];
             }
         }
+
+        if ($request->input('publish_time')) {
+            $publish_time = strtotime($request->input('publish_time'));
+        } else {
+            $publish_time = 0;
+        }
+
         //保存文章
         $post = Post::create([
             'title' => $request->input('title'),
@@ -106,6 +114,9 @@ class PostsController extends Controller
             'content' => $request->input('content'),
             'description' => $request->input('description'),
             'cover' => $cover_path,
+            'publish_time' => $publish_time,
+            'password' => $request->input('password'),
+            'allow_comment' => $request->input('allow_comment'),
             'status' => $request->input('status'),
             'category_id' => $request->input('category_id')
         ]);
@@ -134,8 +145,33 @@ class PostsController extends Controller
             $data->comments->load('user')->loadCount('favorites');
             return compact('post');
         });
-        $post->visits()->increment();
-        return view('posts.show', $data);
+        if (empty($post->password) || $this->authorize('update', $post)) {
+            $post->visits()->increment();
+            return view('posts.show', $data);
+        } else {
+            $unlock = session("post-{$post->id}", false);
+            if ($unlock) {
+                return view('posts.show', $data);
+            }
+            return view('posts.password', $data);
+        }
+    }
+
+    /**
+     * unlock the post
+     * @param Post $post
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unlock(Post $post, Request $request)
+    {
+        $password = $request->input('password');
+        if ($post->password == $password) {
+            session(["post-{$post->id}" => true]);
+            return redirect()->route('post.show', $post->slug);
+        } else {
+            return redirect()->back()->with('error', '访问密码不正确');
+        }
     }
 
     /**
@@ -182,6 +218,11 @@ class PostsController extends Controller
         $post->content = $request->input('content');
         $post->category_id = $request->input('category_id');
         $post->status = $request->input('status');
+        if ($request->input('publish_time')) {
+            $post->publish_time = strtotime($request->input('publish_time'));
+        }
+        $post->password = $request->input('password');
+        $post->allow_comment = $request->input('allow_comment');
         $post->save();
         //标签关联
         $tagIds = Tag::getTagIds($request->input('tags'));

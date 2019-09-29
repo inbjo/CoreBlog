@@ -17,13 +17,13 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('slug')->unique()->index();
-            $table->string('keyword',255)->nullable();
-            $table->string('description',1024)->nullable();
+            $table->string('keyword', 255)->nullable();
+            $table->string('description', 1024)->nullable();
             $table->string('cover')->nullable();
             $table->longText('content');
             $table->unsignedInteger('view_count')->default(0);
             $table->boolean('status')->default(1);
-            $table->unsignedInteger('publish_time')->nullable();
+            $table->unsignedInteger('publish_time')->default(0);
             $table->string('password')->nullable();
             $table->boolean('allow_comment')->default(true);
             $table->unsignedInteger('category_id')->unsigned()->index();

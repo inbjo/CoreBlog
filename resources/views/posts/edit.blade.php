@@ -68,6 +68,26 @@
                 <div class="form-group" id="editor">
                   <textarea name="content" id="content" class="form-control">{!! $post->getOriginal('content') !!}</textarea>
                 </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <label for="publish_time">定时发布</label>
+                    <input id="publish_time" name="publish_time" type="text" class="form-control"
+                           autocomplete="off" placeholder="不定时发表请留空"
+                           value="{{empty($post->publish_time)?'':date('Y-m-d H:i:s',$post->publish_time)}}" />
+                  </div>
+                  <div class="col">
+                    <label for="password">文章密码</label>
+                    <input id="password" name="password" type="text" class="form-control" value="{{$post->password}}"
+                           placeholder="不加密请留空" />
+                  </div>
+                  <div class="col">
+                    <label for="allow_comment">可否评论</label>
+                    <select class="form-control" id="allow_comment" name="allow_comment">
+                      <option value="1" @if($post->allow_comment == true) checked @endif>可被评论</option>
+                      <option value="0" @if($post->allow_comment == false) checked @endif>禁止评论</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="status" id="publish" value="1"
@@ -107,12 +127,15 @@
   <script type="text/javascript" src="{{ asset('lib/tagator/fm.tagator.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/dropify/dropify.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('lib/editormd/editormd.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('lib/laydate/laydate.js') }}"></script>
   <script>
     $(function () {
 
       $('#tags').tagator({
         autocomplete: {!! $alltags !!}
       });
+
+      laydate.render({elem: '#publish_time',type: 'datetime'});
 
       $('#cover').dropify({
         messages: {
