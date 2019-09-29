@@ -260,6 +260,12 @@
                              name="VAPTCHA_KEY" value="{{ sysConfig('VAPTCHA_KEY') }}">
                     </div>
                     <div class="form-group">
+                      <label for="STAT_CODE">统计代码</label>
+                      <textarea class="form-control" name="STAT_CODE" id="STAT_CODE"
+                                rows="5"
+                                placeholder="第三方js统计代码">{{ sysConfig('STAT_CODE') }}</textarea>
+                    </div>
+                    <div class="form-group">
                       <label for="WATERMARK">图片水印</label>
                       <select name="WATERMARK" class="form-control" id="WATERMARK">
                         <option value="false" @if(sysConfig('WATERMARK') == false) selected @endif>关闭

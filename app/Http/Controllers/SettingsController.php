@@ -62,6 +62,7 @@ class SettingsController extends Controller
             case 'other':
                 sysConfig('AllOW_USER_CREATE_POST', $request->input('AllOW_USER_CREATE_POST'));
                 sysConfig('VERIFY_COMMENT', $request->input('VERIFY_COMMENT'));
+                sysConfig('STAT_CODE', $request->input('STAT_CODE'));
                 sysConfig('VAPTCHA_VID', $request->input('VAPTCHA_VID'));
                 sysConfig('VAPTCHA_KEY', $request->input('VAPTCHA_KEY'));
                 sysConfig('WATERMARK', $request->input('WATERMARK'));

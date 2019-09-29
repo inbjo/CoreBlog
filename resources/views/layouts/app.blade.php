@@ -27,5 +27,6 @@
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
+{!! sysConfig('STAT_CODE') !!}
 </html>
 
