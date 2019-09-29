@@ -8,7 +8,7 @@
       <a href="tencent://message/?uin={{$post->user->extend->qq}}" class="trd"><i class="fa fa-qq"></i></a>
       @endif
       @if(!empty($post->user->extend->wechat))
-      <a onclick="swal('微信号是{{$post->user->extend->wechat}}');" class="trd"><i class="fa fa-weixin"></i></a>
+      <a id="wechat" data-url="{{$post->user->extend->wechat}}" class="trd"><i class="fa fa-weixin"></i></a>
       @endif
       @if(!empty($post->user->extend->github))
       <a href="{{$post->user->extend->weibo}}" class="trd"><i class="fa fa-weibo"></i></a>

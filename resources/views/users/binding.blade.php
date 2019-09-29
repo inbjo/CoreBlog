@@ -43,29 +43,27 @@
             @include('layouts._msg')
             <!-- end message tips -->
 
-              <form method="post" action="{{ route('user.binding', auth()->user()->name) }}">
+              <form method="post" action="{{ route('user.binding', auth()->user()->name) }}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group">
                   <label for="qq">QQ</label>
                   <input type="number" class="form-control{{ $errors->has('qq') ? ' is-invalid' : '' }}" id="qq"
-                         name="extend[qq]" placeholder="QQ号" value="{{ $user->extend->qq ?? '' }}">
+                         name="qq" placeholder="QQ号" value="{{ $user->extend->qq ?? '' }}">
                   @if ($errors->has('qq'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('qq') }}</strong></span>
                   @endif
                 </div>
                 <div class="form-group">
-                  <label for="wechat">微信</label>
-                  <input type="text" class="form-control{{ $errors->has('wechat') ? ' is-invalid' : '' }}" id="wechat"
-                         name="extend[wechat]" placeholder="微信号" value="{{ $user->extend->wechat ?? '' }}">
-                  @if ($errors->has('wechat'))
-                    <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('wechat') }}</strong></span>
-                  @endif
+                  <label for="wechat">微信二维码</label>
+                  <input type="file" name="wechat" class="form-control-file mb-2" id="wechat">
+                  <input type="text" class="form-control" value="{{ $user->extend->wechat ?? '' }}" disabled
+                         placeholder="当前未上传微信二维码">
                 </div>
                 <div class="form-group">
                   <label for="weibo">微博</label>
                   <input type="url" class="form-control{{ $errors->has('weibo') ? ' is-invalid' : '' }}" id="weibo"
-                         name="extend[weibo]" placeholder="微博地址" value="{{ $user->extend->weibo ?? '' }}">
+                         name="weibo" placeholder="微博地址" value="{{ $user->extend->weibo ?? '' }}">
                   @if ($errors->has('weibo'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('weibo') }}</strong></span>
                   @endif
@@ -73,7 +71,7 @@
                 <div class="form-group">
                   <label for="github">Github</label>
                   <input type="url" class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}" id="github"
-                         name="extend[github]" placeholder="github地址" value="{{ $user->extend->github ?? '' }}">
+                         name="github" placeholder="github地址" value="{{ $user->extend->github ?? '' }}">
                   @if ($errors->has('github'))
                     <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('github') }}</strong></span>
                   @endif

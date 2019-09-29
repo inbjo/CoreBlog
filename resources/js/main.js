@@ -303,6 +303,14 @@ window.app = {
       $("#comment-form").submit();
     });
   },
+  addWechat: function () {
+    if ($("body").hasClass('post-show-page') && $("#wechat").length > 0) {
+      $("#wechat_qrcode").qrcode($("#wechat").data('url'));
+      $("#wechat").click(function () {
+        $('#wechatModal').modal('toggle');
+      });
+    }
+  },
   init: function () {
     //设置Jq CSRF令牌
     let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -329,6 +337,7 @@ window.app = {
     app.favoriteComment();
     app.reply();
     app.forbidCopy();
+    app.addWechat();
     if (is_login && $("body").hasClass('post-show-page') && $("#post-reply").data('allow-coment') == 1) {
       app.submitComment();
       app.at();

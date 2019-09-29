@@ -143,7 +143,17 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
         if ($request->isMethod('put')) {
-            $user->extend = merge_obj($user->extend, $request->extend);
+            $data = new \stdClass();
+            $data->qq = $request->input('qq');
+            $data->weibo = $request->input('weibo');
+            $data->github = $request->input('github');
+            if ($request->file('wechat')) {
+                $text = OcrQrcode($request->file('wechat')->path());
+                if ($text) {
+                    $data->wechat = $text;
+                }
+            }
+            $user->extend = merge_obj($user->extend, $data);
             $user->save();
             clearCache();
             return redirect()->back()->with('success', '资料更新成功！');
