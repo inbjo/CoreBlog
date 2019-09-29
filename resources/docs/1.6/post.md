@@ -15,7 +15,12 @@
 点击【+】图标进入发表文章页面  
 ![发表文章1](/images/docs/add-post1.png)  
 ![发表文章2](/images/docs/add-post2.png)  
-如果你对markdown语法不熟悉，请参考[markdown教程](http://www.markdown.cn)
+【文章描述】对应`description`标签，简要介绍文章内容方便搜索引擎进行索引。  
+内容请使用Markdown格式来编写，如果你对markdown语法不熟悉，请参考[markdown教程](http://www.markdown.cn)  
+支持【定时发布】，点击输入框然后在弹框中选择对应时间即可。  
+支持【文章加密】访客许正确输入密码才可看到内容。  
+评论支持开关，不想文章被评论可关闭评论功能(只针对该文章生效)。  
+文章可以保存为草稿方便下次再接着拽写。
 
 <a name="edit-post"></a>
 ## 编辑文章
