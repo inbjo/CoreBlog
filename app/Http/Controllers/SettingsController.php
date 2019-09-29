@@ -60,6 +60,7 @@ class SettingsController extends Controller
                 sysConfig('WECHAT_KEY', $request->input('WECHAT_KEY'));
                 break;
             case 'other':
+                logger($request->all());
                 sysConfig('AllOW_USER_CREATE_POST', $request->input('AllOW_USER_CREATE_POST'));
                 sysConfig('VERIFY_COMMENT', $request->input('VERIFY_COMMENT'));
                 sysConfig('STAT_CODE', $request->input('STAT_CODE'));

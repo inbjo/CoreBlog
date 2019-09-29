@@ -198,14 +198,12 @@
                     </div>
                     <div class="form-group">
                       <label for="ALI_PUBLIC_KEY">支付宝公钥</label>
-                      <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY"
-                                rows="5"
+                      <textarea class="form-control" name="ALI_PUBLIC_KEY" id="ALI_PUBLIC_KEY" rows="5"
                                 placeholder="支付宝公钥(支付宝提供的公钥)">{{ sysConfig('ALI_PUBLIC_KEY') }}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="ALI_PRIVATE_KEY">支付宝私钥</label>
-                      <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY"
-                                rows="6"
+                      <textarea class="form-control" name="ALI_PRIVATE_KEY" id="ALI_PRIVATE_KEY" rows="6"
                                 placeholder="支付宝私钥(用户自行生成的私钥)">{{ sysConfig('ALI_PRIVATE_KEY') }}</textarea>
                     </div>
                     <div class="form-group">
@@ -230,6 +228,7 @@
                   <form class="mt-2" method="post" action="{{ route('setting.update') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
                       <label for="AllOW_USER_CREATE_POST">文章设置</label>
                       <select name="AllOW_USER_CREATE_POST" class="form-control" id="AllOW_USER_CREATE_POST">
@@ -239,7 +238,6 @@
                         </option>
                       </select>
                     </div>
-                    <input type="hidden" name="type" value="other"/>
                     <div class="form-group">
                       <label for="VERIFY_COMMENT">评论人机验证</label>
                       <select name="VERIFY_COMMENT" class="form-control" id="VERIFY_COMMENT">
@@ -261,8 +259,7 @@
                     </div>
                     <div class="form-group">
                       <label for="STAT_CODE">统计代码</label>
-                      <textarea class="form-control" name="STAT_CODE" id="STAT_CODE"
-                                rows="5"
+                      <textarea class="form-control" name="STAT_CODE" id="STAT_CODE" rows="5"
                                 placeholder="第三方js统计代码">{{ sysConfig('STAT_CODE') }}</textarea>
                     </div>
                     <div class="form-group">

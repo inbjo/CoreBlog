@@ -104,10 +104,10 @@ function merge_obj()
     return (object)call_user_func_array('array_merge', $objects);
 }
 
-function sysConfig($key = null, $value = null)
+function sysConfig($key = null, $value = 'undefined')
 {
     if (alreadyInstalled()) {
-        if ($value != null) {
+        if ($value != 'undefined') {
             RedisManager::hset('settins', $key, $value);
             App\Models\Setting::updateOrCreate(
                 ['key' => $key],
@@ -137,7 +137,7 @@ function sysConfig($key = null, $value = null)
             return sysConfig($key);
         }
     } else {
-        if ($value != null) return false;
+        if ($value != 'undefined') return false;
         $config = config('system');
         if (array_key_exists($key, $config)) {
             return $config[$key];
