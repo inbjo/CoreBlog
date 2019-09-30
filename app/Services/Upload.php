@@ -72,7 +72,7 @@ class Upload
             $constraint->upsize();
         });
 
-        if ($watermark && sysConfig('WATERMARK') && sysConfig('WATERMARK_IMAGE')) {
+        if ($watermark && sysConfig('WATERMARK') == 'true' && sysConfig('WATERMARK_IMAGE')) {
             $image->insert(public_path() . sysConfig('WATERMARK_IMAGE'), 'bottom-right', 10, 10);
         }
 

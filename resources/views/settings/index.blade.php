@@ -265,9 +265,9 @@
                     <div class="form-group">
                       <label for="WATERMARK">图片水印</label>
                       <select name="WATERMARK" class="form-control" id="WATERMARK">
-                        <option value="false" @if(sysConfig('WATERMARK') == false) selected @endif>关闭
+                        <option value="false" @if(sysConfig('WATERMARK') == 'false') selected @endif>关闭
                         </option>
-                        <option value="true" @if(sysConfig('WATERMARK') == true) selected @endif>开启
+                        <option value="true" @if(sysConfig('WATERMARK') == 'true') selected @endif>开启
                         </option>
                       </select>
                     </div>
