@@ -123,7 +123,9 @@ class PostsController extends Controller
         $post->save();
         //标签关联
         $tagIds = Tag::getTagIds($request->input('tags'));
-        $post->tags()->attach($tagIds);
+        if (count($tagIds)) {
+            $post->tags()->attach($tagIds);
+        }
         //文章发布事件
         event(new PostChange($post->id, 'create'));
         //返回结果

@@ -58,6 +58,9 @@ class Tag extends Model
     public static function getTagIds($tags)
     {
         $tagids = [];
+        if (empty(trim($tags))) {
+            return $tagids;
+        }
         $tagNames = explode(',', $tags);
         foreach ($tagNames as $name) {
             $tag = Tag::firstOrCreate(['name' => trim($name)]);
