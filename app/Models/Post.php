@@ -71,6 +71,7 @@ class Post extends Model
     public function getContentAttribute($value)
     {
         $Parsedown = new Parsedown();
+        $Parsedown->setSafeMode(true);
         return $Parsedown->text($value);
     }
 
