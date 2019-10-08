@@ -66,7 +66,7 @@ class CategoriesController extends Controller
     public function show(Category $category, Request $request)
     {
         $page = $request->input('page', 1);
-        $posts = Cache::tags(['category-post'])->rememberForever('category:list:' . $page, function () use ($category) {
+        $posts = Cache::tags(['category-post'])->rememberForever('category' . $category->id . 'list:' . $page, function () use ($category) {
             return $category->posts()->with(['user', 'tags'])->withCount(['comments', 'favorites'])->orderBy('id', 'desc')->paginate(12);
         });
         return view('categories.show', compact('posts', 'category'));
