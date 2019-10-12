@@ -26,7 +26,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker->unique()->userName,
         'avatar' => generateAvatar($email),
         'email' => $email,
-        'mobile' => $faker->e164PhoneNumber,
+        'mobile' => $faker->phoneNumber,
         'bio' => $faker->sentence,
         'password' => bcrypt('password'),
         'email_verified_at' => Carbon::now()->toDateTimeString(),

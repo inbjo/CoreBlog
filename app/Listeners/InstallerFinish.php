@@ -2,9 +2,13 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
+use Flex\Installer\Events\LaravelInstallerFinished;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 
 class InstallerFinish
 {
@@ -21,18 +25,28 @@ class InstallerFinish
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param LaravelInstallerFinished $event
      * @return void
      */
-    public function handle($event)
+    public function handle(LaravelInstallerFinished $event)
     {
-        //优化配置
+        $admin = Cache::pull('admin');
+        if ($admin) {
+            User::updateOrCreate(
+                ['id' => 1],
+                [
+                    'name' => $admin['name'],
+                    'email' => $admin['email'],
+                    'avatar' => generateAvatar($admin['email']),
+                    'password' => bcrypt($admin['password']),
+                    'bio' => '这家伙很懒什么也没写~',
+                    'email_verified_at' => Carbon::now()->toDateTimeString(),
+                ]
+            );
+        }
         Artisan::call('config:cache');
         Artisan::call('route:cache');
         Artisan::call('optimize');
-        //todo 同步索引
-
-        //创建软连接
         Artisan::call('storage:link');
     }
 }
