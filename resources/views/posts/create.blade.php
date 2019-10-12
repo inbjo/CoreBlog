@@ -50,7 +50,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="tags">文章标签</label>
+                  <label for="tags" data-toggle="tooltip" title="输入完标签请按回车" data-placement="right">文章标签</label>
                   <textarea class="form-control" id="tags" name="tags"></textarea>
                 </div>
                 <div class="form-group">
