@@ -71,8 +71,6 @@ function generateAvatar($email, $size = 64)
 function clearCache($key = null)
 {
     if ($key === null) {
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
         Artisan::call('cache:clear');
         Artisan::call('route:cache');
         Artisan::call('config:cache');
