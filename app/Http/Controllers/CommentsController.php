@@ -35,6 +35,7 @@ class CommentsController extends Controller
             $token = $request->input('token');
             $result = Vaptcha::validate($token);
             if (!isset($result['success']) || $result['success'] != 1) {
+                logger($result);
                 return redirect()->back()->with('danger', '未通过人机验证!');
             }
         }

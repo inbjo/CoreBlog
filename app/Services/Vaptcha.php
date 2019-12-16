@@ -57,7 +57,7 @@ class Vaptcha
             'ip' => self::getClientIp()
         );
         $response = self::_post(self::$validata_url, $query);
-        return $response;
+        return json_decode($response, true);
     }
 
     private static function offlineValidate($token)
