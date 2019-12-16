@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Services\Vaptcha;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -76,6 +77,18 @@ class PagesController extends Controller
     public function manifest()
     {
         return view('pages.manifest');
+    }
+
+    public function offline(Request $request)
+    {
+        if ($request->has('offline_action')) {
+            if ($request->has('v')) {
+                return Vaptcha::offline($request->offline_action, $request->callback, $request->v, $request->knock);
+            } else {
+                return Vaptcha::offline($request->offline_action, $request->callback);
+            }
+        }
+        return ['code' => 1, 'msg' => 'Illegal request'];
     }
 
 }

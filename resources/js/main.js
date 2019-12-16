@@ -276,12 +276,14 @@ window.app = {
       });
       return;
     }
-    $.getScript('https://cdn.vaptcha.com/v2.js', function () {
+    $.getScript('https://v.vaptcha.com/v3.js', function () {
       let vid = $("#vaptchaContainer").data('id');
       window.vaptcha({
         vid: vid,
         type: 'click',
+        scene: 0,
         container: '#vaptchaContainer',
+        offline_server: '/offline',
       }).then(function (vaptchaObj) {
         vaptchaObj.listen('pass', function () {
           var token = vaptchaObj.getToken();

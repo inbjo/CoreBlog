@@ -7,7 +7,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\CommentWereMentioned;
-use GuzzleHttp\Client;
+use App\Services\Vaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,18 +33,7 @@ class CommentsController extends Controller
         //验证token是否有效
         if (sysConfig('VERIFY_COMMENT') == 'true') {
             $token = $request->input('token');
-            $url = 'http://api.vaptcha.com/v2/validate';
-            $client = new Client();
-            $response = $client->request('POST', $url, [
-                'form_params' => [
-                    'id' => sysConfig('VAPTCHA_VID'),
-                    'secretkey' => sysConfig('VAPTCHA_KEY'),
-                    'scene' => '',
-                    'token' => $token,
-                    'ip' => $request->getClientIp()
-                ]
-            ]);
-            $result = json_decode($response->getBody(), true);
+            $result = Vaptcha::validate($token);
             if (!isset($result['success']) || $result['success'] != 1) {
                 return redirect()->back()->with('danger', '未通过人机验证!');
             }
