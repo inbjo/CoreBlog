@@ -161,10 +161,13 @@
         imageUpload: true,
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL : "{{ route('upload.store') }}",
-        path : "/lib/editormd/lib/"
+        path : "/lib/editormd/lib/",
+        onload: function() {
+          editormd.loadPlugin("/lib/editormd/lib/image-handle-paste", function(){
+            editor.imagePaste();
+          });
+        }
       });
-
-
 
     });
   </script>
