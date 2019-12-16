@@ -18,11 +18,11 @@
 @include('layouts._js')
 
 <body class="{{ route_class() }}-page">
+  <div id="app">
+    @section('body')
 
-@section('body')
-
-@show
-
+    @show
+  </div>
 </body>
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
