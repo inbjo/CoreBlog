@@ -17,6 +17,11 @@ class Vaptcha
 
     private static $offline_imgurl = 'https://offline.vaptcha.com/';
 
+    public static function initConfig()
+    {
+        self::$vid = sysConfig('VAPTCHA_VID');
+        self::$key = sysConfig('VAPTCHA_KEY');
+    }
 
     /**
      * 二次验证
@@ -26,19 +31,20 @@ class Vaptcha
      */
     public static function validate($token, $scene = 0)
     {
+        self::initConfig();
         $str = 'ffline-';
         if (empty($scene)) $scene = 0;
         if (strpos($token, $str, 0) == 1) {
             $res = self::offlineValidate($token);
             if ($res == 1) {
-                $data = json_encode([
+                $data = [
                     'success' => 1
-                ]);
+                ];
             } else {
-                $data = json_encode([
+                $data = [
                     'success' => 0,
                     'msg' => "二次验证失败"
-                ]);
+                ];
             }
             return $data;
         } else {
@@ -50,8 +56,8 @@ class Vaptcha
     {
         if (empty($token)) return false;
         $query = array(
-            'id' => sysConfig('VAPTCHA_VID'),
-            'secretkey' => sysConfig('VAPTCHA_KEY'),
+            'id' => self::$vid,
+            'secretkey' => self::$key,
             'scene' => $scene,
             'token' => $token,
             'ip' => self::getClientIp()
@@ -83,9 +89,9 @@ class Vaptcha
 
     public static function getChannelData()
     {
-        $url = self::$offline_url . sysConfig('VAPTCHA_VID');
+        $url = self::$offline_url . self::$vid;
         //前端mode: offline时 请求地址：
-        // $url = self::$offline_url. 'offline';
+//        $url = self::$offline_url . 'offline';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -99,7 +105,7 @@ class Vaptcha
     private static function getOfflineCaptcha($callback)
     {
         $time = self::getCurrentTime();
-        $md5 = md5($time . sysConfig('VAPTCHA_KEY'));
+        $md5 = md5($time . self::$key);
         $captcha = substr($md5, 0, 3);
         $data = self::getChannelData();
         $knock = md5($captcha . $time);
@@ -154,6 +160,7 @@ class Vaptcha
 
     public static function offline($data, $callback, $v = null, $knock = null)
     {
+        self::initConfig();
         if (!$data) {
             return array("error" => "params error");
         }
@@ -221,31 +228,33 @@ class Vaptcha
 
     public static function set($key, $value, $expire = 600)
     {
-        return $_SESSION[$key] = array(
+        $data = [
             'value' => $value,
             'create' => time(),
             'readcount' => 0,
-            'expire' => $expire,
-        );
+            'expire' => $expire
+        ];
+        return session([$key => $data]);
     }
 
     public static function get($key, $default = null)
     {
-        $data = $_SESSION[$key];
+        $data = session($key);
         $now = time();
         if (!$data) {
             return $default;
         } else if ($now - $data['create'] > $data['expire']) {
             return $default;
         } else {
-            $_SESSION[$key]['readcount']++;
+            $data['readcount']++;
+            session([$key => $data]);
             return $data['value'];
         }
     }
 
     public static function delete($key)
     {
-        unset($_SESSION[$key]);
+        session()->forget($key);
     }
 
     public static function create_uuid($prefix = "")
