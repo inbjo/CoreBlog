@@ -30,6 +30,10 @@ class InstallerFinish
      */
     public function handle(LaravelInstallerFinished $event)
     {
+        Artisan::call('config:cache');
+        Artisan::call('route:cache');
+        Artisan::call('optimize');
+        Artisan::call('storage:link');
         $admin = Cache::pull('admin');
         if ($admin) {
             User::updateOrCreate(
@@ -43,10 +47,8 @@ class InstallerFinish
                     'email_verified_at' => Carbon::now()->toDateTimeString(),
                 ]
             );
+        }else{
+            logger('获取账号信息失败');
         }
-        Artisan::call('config:cache');
-        Artisan::call('route:cache');
-        Artisan::call('optimize');
-        Artisan::call('storage:link');
     }
 }
