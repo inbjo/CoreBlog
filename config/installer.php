@@ -55,6 +55,7 @@ return [
     |
     */
     'permissions' => [
+        '.env' => '644',
         'storage/framework/' => '755',
         'storage/logs/' => '755',
         'storage/indexes/' => '755',

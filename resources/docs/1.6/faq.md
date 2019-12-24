@@ -8,6 +8,8 @@
 - [同步索引错误问题](#section-4)
 - [搜索报错问题](#section-5)
 - [图片上传后不显示](#section-6)
+- [无法登陆后台问题](#section-7)
+- [安装最后一步显示500错误](#section-8)
 
 <a name="section-1"></a>
 ## 加密kEY不存在问题
@@ -62,3 +64,16 @@ php artisan search:sync-posts
 ```bash
 php artisan storage:link
 ```
+
+<a name="section-7"></a>
+## 无法登陆后台问题
+症状是初始化安装完毕之后，使用设置好的邮箱和密码登陆提示账号密码错误。  
+这是安装程序设置管理员账号失败了，临时解决办法是使用默认的账号密码登录。
+默认账号为:`admin@example.com`密码为`password`。  
+后台可以修改密码，邮箱需要去数据库修改一下。  
+此问题在部分场景下会出现，如碰到此问题请联系作者帮忙排查。
+
+<a name="section-8"></a>
+## 安装最后一步显示500错误
+大部分原因是文件权限问题。请检查一下是项目目录所有者和所有组是否更改成www。  
+如还不能解决，请复制项目根目录下`/storage/logs/laravel-year-month-day.log`的内容加QQ群求助解决。
