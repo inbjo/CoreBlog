@@ -55,6 +55,8 @@
 * Redis PHP 扩展
 
 ### 安装与配置
+Docker部署[点此前往](https://github.com/inbjo/CoreBlog-Docker)
+
 #### 下载源码包
 ```
 composer create-project flex/blog 

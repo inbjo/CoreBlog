@@ -1,0 +1,17 @@
+- ## 入门指引
+    - [项目简介](/{{route}}/{{version}}/overview)
+- ## 安装与部署
+    - [环境要求](/{{route}}/{{version}}/require)
+    - [构建环境](/{{route}}/{{version}}/environment)
+    - [安装酷博](/{{route}}/{{version}}/setup)
+    - [配置说明](/{{route}}/{{version}}/config)
+    - [常见问题](/{{route}}/{{version}}/faq)
+- ## Docker
+    - [部署教程](/{{route}}/{{version}}/docker)
+- ## 使用教程
+    - [分类管理](/{{route}}/{{version}}/category)
+    - [文章管理](/{{route}}/{{version}}/post)
+    - [评论管理](/{{route}}/{{version}}/comment)
+    - [友链管理](/{{route}}/{{version}}/link)
+    - [用户管理](/{{route}}/{{version}}/user)
+    - [系统管理](/{{route}}/{{version}}/system)
