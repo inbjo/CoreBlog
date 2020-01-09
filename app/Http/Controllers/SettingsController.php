@@ -59,6 +59,16 @@ class SettingsController extends Controller
                 sysConfig('WECHAT_MCH_ID', $request->input('WECHAT_MCH_ID'));
                 sysConfig('WECHAT_KEY', $request->input('WECHAT_KEY'));
                 break;
+            case 'storage':
+                $data = [
+                    'FILESYSTEM_DRIVER' => $request->input('FILESYSTEM_DRIVER'),
+                    'OSS_ACCESS_KEY' => $request->input('OSS_ACCESS_KEY'),
+                    'OSS_SECRET_KEY' => $request->input('OSS_SECRET_KEY'),
+                    'OSS_ENDPOINT' => $request->input('OSS_ENDPOINT'),
+                    'OSS_BUCKET' => $request->input('OSS_BUCKET'),
+                    'OSS_IS_CNAME' => $request->input('OSS_IS_CNAME'),
+                ];
+                break;
             case 'other':
                 sysConfig('AllOW_USER_CREATE_POST', $request->input('AllOW_USER_CREATE_POST'));
                 sysConfig('VERIFY_COMMENT', $request->input('VERIFY_COMMENT'));

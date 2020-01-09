@@ -17,24 +17,14 @@ class Upload
      */
     public static function file($file, $type = 'file')
     {
+        $filename = $file->getClientOriginalName();
         $hash = sha1_file($file->path());
-        $extension = $file->extension();
+        $extension = $file->extension() ?? $file->getClientOriginalExtension();
         $size = $file->getClientSize();
+        $mimeType = $file->guessClientExtension() ?? $file->getClientMimeType();
 
-        //判断是否上传重复文件
-        $res = Resource::where('hash', $hash)->first();
-        if ($res) {
-            return [
-                'link' => config('app.url') . $res['path'],
-                'path' => $res['path'],
-                'ext' => $res['extend']->ext,
-                'size' => $res['extend']->size,
-                'hash' => $res['hash']
-            ];
-        }
-
-        //保存文件
-        $path = Storage::putFile($type, $file);
+        $path = $file->store($type, config('filesystems.default'));
+        Storage::setVisibility($path, 'public');
 
         Resource::create([
             'type' => $type,
@@ -42,13 +32,14 @@ class Upload
             'hash' => $hash,
             'extend' => [
                 'ext' => $extension,
-                'size' => $size
+                'size' => $size,
+                'mimeType' => $mimeType
             ],
             'user_id' => auth()->id()
         ]);
 
         return [
-            'link' => config('app.url') . Storage::url($path),
+            'link' => Storage::url($path),
             'path' => Storage::url($path),
             'ext' => $extension,
             'size' => $size,

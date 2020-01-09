@@ -83,10 +83,6 @@ class DefaultDataSeeder extends Seeder
             ['key' => 'WECHAT_APP_ID', 'value' => ''],
             ['key' => 'WECHAT_MCH_ID', 'value' => ''],
             ['key' => 'WECHAT_KEY', 'value' => ''],
-            ['key' => 'OSS_ACCESS_KEY', 'value' => ''],
-            ['key' => 'OSS_SECRET_KEY', 'value' => ''],
-            ['key' => 'OSS_ENDPOINT', 'value' => ''],
-            ['key' => 'OSS_BUCKET', 'value' => ''],
             ['key' => 'STAT_CODE', 'value' => ''],
         ]);
 

@@ -20,7 +20,7 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         $result = Upload::file($request->file('editormd-image-file'), 'image');
-        Upload::reduceSize($result['path'], 1024, null, true);
+        //Upload::reduceSize($result['path'], 1024, null, true);
         return [
             'success' => 1,
             'url' => $result['path'],

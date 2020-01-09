@@ -51,6 +51,8 @@
                      aria-controls="nav-redis" aria-selected="false">Redis设置</a>
                   <a class="nav-item nav-link" id="nav-pay-tab" data-toggle="tab" href="#nav-pay" role="tab"
                      aria-controls="nav-pay" aria-selected="false">支付设置</a>
+                  <a class="nav-item nav-link" id="nav-storage-tab" data-toggle="tab" href="#nav-storage" role="tab"
+                     aria-controls="nav-storage" aria-selected="false">附件设置</a>
                   <a class="nav-item nav-link" id="nav-other-tab" data-toggle="tab" href="#nav-other" role="tab"
                      aria-controls="nav-other" aria-selected="false">其他设置</a>
                 </div>
@@ -220,6 +222,52 @@
                       <label for="WECHAT_KEY">微信支付秘钥</label>
                       <input type="text" class="form-control" id="WECHAT_KEY" placeholder="微信支付秘钥"
                              name="WECHAT_KEY" value="{{ sysConfig('WECHAT_KEY') }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="nav-storage" role="tabpanel" aria-labelledby="nav-storage">
+                  <form class="mt-2" method="post" action="{{ route('setting.update') }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="type" value="storage"/>
+                    <div class="form-group">
+                      <label for="FILESYSTEM_DRIVER">存储驱动</label>
+                      <select name="FILESYSTEM_DRIVER" class="form-control" id="FILESYSTEM_DRIVER">
+                        <option value="local" @if(config('filesystems.default') == 'local') selected @endif>本地服务器
+                        </option>
+                        <option value="oss" @if(config('filesystems.default') == 'oss') selected @endif>阿里云OSS
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="OSS_ACCESS_KEY">OSS_ACCESS_KEY</label>
+                      <input type="text" class="form-control" id="OSS_ACCESS_KEY" placeholder="OSS_ACCESS_KEY"
+                             name="OSS_ACCESS_KEY" value="{{ config('filesystems.disks.oss.access_key') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="OSS_SECRET_KEY">OSS_SECRET_KEY</label>
+                      <input type="text" class="form-control" id="OSS_SECRET_KEY" placeholder="OSS_SECRET_KEY"
+                             name="OSS_SECRET_KEY" value="{{ config('filesystems.disks.oss.secret_key') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="OSS_ENDPOINT">OSS节点</label>
+                      <input type="text" class="form-control" id="OSS_ENDPOINT" placeholder="如果启用了域名别名这里填写自定义域名"
+                             name="OSS_ENDPOINT" value="{{ config('filesystems.disks.oss.endpoint') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="OSS_BUCKET">Bucket选择</label>
+                      <input type="text" class="form-control" id="OSS_BUCKET" placeholder="OSS_BUCKET"
+                             name="OSS_BUCKET" value="{{ config('filesystems.disks.oss.bucket') }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="OSS_IS_CNAME">OSS域名别名</label>
+                      <select name="OSS_IS_CNAME" class="form-control" id="OSS_IS_CNAME">
+                        <option value="true" @if(config('filesystems.disks.oss.isCName') == true) selected @endif>启用
+                        </option>
+                        <option value="false" @if(config('filesystems.disks.oss.isCName') == false) selected @endif>关闭
+                        </option>
+                      </select>
                     </div>
                     <button type="submit" class="btn btn-primary">保存</button>
                   </form>

@@ -29,9 +29,7 @@ Route::post('/favorites/post/{post}', 'FavoritesController@post');
 Route::post('/subscribe', 'SubscribesController@store');
 Route::get('/search/{keyword}', 'PostsController@search')->name('post.search');
 
-Route::get('upload', 'FilesController@index')->name('upload.index');
 Route::post('upload', 'FilesController@store')->name('upload.store');
-Route::delete('upload', 'FilesController@destroy')->name('upload.destroy');
 
 Auth::routes(['verify' => true]);
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);

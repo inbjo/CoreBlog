@@ -72,7 +72,7 @@ return [
             'secret_key' => env('OSS_SECRET_KEY'),
             'endpoint'   => env('OSS_ENDPOINT'),
             'bucket'     => env('OSS_BUCKET'),
-            'isCName'    => env('OSS_IS_CNAME', false),
+            'isCName'    => env('OSS_IS_CNAME'),
         ],
 
     ],

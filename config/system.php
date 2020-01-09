@@ -19,9 +19,5 @@ return [
     'WECHAT_APP_ID' => '',
     'WECHAT_MCH_ID' => '',
     'WECHAT_KEY' => '',
-    'OSS_ACCESS_KEY' => '',
-    'OSS_SECRET_KEY' => '',
-    'OSS_ENDPOINT' => '',
-    'OSS_BUCKET' => '',
 ];
 
