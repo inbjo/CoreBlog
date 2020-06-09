@@ -59,6 +59,7 @@
                   <input type="file" class="form-control dropify" id="cover" name="cover"
                          data-allowed-file-extensions="jpg jpeg png gif bmp webp"
                          data-default-file="{{ $post->cover }}">
+                  <input id="remove_cover" name="remove_cover" type="hidden" value="">
                 </div>
                 <div class="form-group">
                   <label for="description">文章描述</label>
@@ -144,6 +145,8 @@
           'remove': '移除',
           'error': '哦豁，发生了一点意外。'
         }
+      }).on('dropify.afterClear', function(event, element){
+        $("#remove_cover").val(1);
       });
 
       var editor = editormd("editor", {

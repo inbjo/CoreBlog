@@ -212,6 +212,10 @@ class PostsController extends Controller
                 $post->cover = $result['path'];
             }
         }
+        //处理删除封面图的情况
+        if ($request->input('remove_cover') == 1) {
+            $post->cover = '';
+        }
 
         //更新文章
         $post->title = $request->input('title');
