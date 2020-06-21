@@ -64,6 +64,24 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        'oss' => [
+            'driver' => 'oss',
+            'root' => '',
+            'access_key' => env('OSS_ACCESS_KEY'),
+            'secret_key' => env('OSS_SECRET_KEY'),
+            'endpoint'   => env('OSS_ENDPOINT'),
+            'bucket'     => env('OSS_BUCKET'),
+            'isCName'    => env('OSS_IS_CNAME', false),
+            'buckets'=>[
+                'test'=>[
+                    'access_key' => env('OSS_ACCESS_KEY'),
+                    'secret_key' => env('OSS_SECRET_KEY'),
+                    'bucket'     => env('OSS_TEST_BUCKET'),
+                    'endpoint'   => env('OSS_TEST_ENDPOINT'),
+                    'isCName'    => env('OSS_TEST_IS_CNAME', false),
+                ],
+            ],
+        ],
 
     ],
 
