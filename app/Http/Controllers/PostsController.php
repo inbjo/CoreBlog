@@ -213,7 +213,7 @@ class PostsController extends Controller
             }
         }
         //处理删除封面图的情况
-        if ($request->input('remove_cover') == 1) {
+        if ($request->input('remove_cover') == 1 && empty($post->cover)) {
             $post->cover = '';
         }
 
