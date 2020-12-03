@@ -1,6 +1,6 @@
 <h1 align="center"> CoreBlog </h1>
 
-<p align="center">一款简洁优雅的博客系统</p>
+<p align="center">一款非常简洁优雅的博客系统</p>
 
 ![preview](https://raw.githubusercontent.com/inbjo/CoreBlog/master/public/images/preview.png)
 
@@ -63,7 +63,7 @@ composer create-project flex/blog
 ```
 
 #### 访问安装引导程序
-访问xxx.com/install运行安装引导程序，按照提示进行安装即可。
+访问yourdomain.com运行安装引导程序，按照提示进行安装即可。
 
 更多请查看[在线文档](https://www.inbjo.com/docs)
 
