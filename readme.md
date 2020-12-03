@@ -63,7 +63,7 @@ composer create-project flex/blog
 ```
 
 #### 访问安装引导程序
-访问yourdomain.com/install运行安装引导程序，按照提示进行安装即可。
+访问yourdomain.com运行安装引导程序，按照提示进行安装即可。
 
 更多请查看[在线文档](https://www.inbjo.com/docs)
 
